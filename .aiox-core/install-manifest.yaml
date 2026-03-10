@@ -8,7 +8,7 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-06T11:56:08.042Z"
+generated_at: "2026-03-10T17:08:07.160Z"
 generator: scripts/generate-install-manifest.js
 file_count: 1089
 files:
@@ -1713,9 +1713,9 @@ files:
     type: script
     size: 20129
   - path: development/scripts/workflow-validator.js
-    hash: sha256:55bd8375e570cf0c738c10ebc52637462b89cb9cde16c3b53b48e60c3cac49f4
+    hash: sha256:abb16e5cd34ec06bbca0a31af3fc500c3a5c98f66d0a72546e4a2827653abcd3
     type: script
-    size: 22989
+    size: 25481
   - path: development/scripts/yaml-validator.js
     hash: sha256:916864f9e56e1ccb7fc1596bd2da47400e4037f848a0d4e2bc46d0fa24cc544f
     type: script
@@ -1893,9 +1893,9 @@ files:
     type: task
     size: 9952
   - path: development/tasks/create-workflow.md
-    hash: sha256:64abe2114fc3ab6b0494375c6401aa6a8213c63b1dc18ffac729d2acf1161a2c
+    hash: sha256:76f47a9fa54b9690a10ddf4544c96f8d732c658550fd8487f9defd2339b8e222
     type: task
-    size: 11492
+    size: 11767
   - path: development/tasks/create-worktree.md
     hash: sha256:143b9bdf87a4eed0faac612e137965483dec1224a7579399a68b68b6bc0689b7
     type: task
@@ -2537,9 +2537,9 @@ files:
     type: task
     size: 5995
   - path: development/tasks/validate-workflow.md
-    hash: sha256:97d591c9ce8a932e7fa21206b58448c85c5340e254460d221e6b3bd0b5278565
+    hash: sha256:e01147feb106d803a298447e5a4988d5310e65cd5b5e291f771923d457056008
     type: task
-    size: 8275
+    size: 8336
   - path: development/tasks/verify-subtask.md
     hash: sha256:4ad9d89256ed9c34f104ae951e7d3b3739f6c5611f22fcf98ab5b666b60cc39f
     type: task
@@ -2649,9 +2649,9 @@ files:
     type: template
     size: 1510
   - path: development/templates/squad-template/workflows/example-workflow.yaml
-    hash: sha256:ae6b2e5eadba6625323b0e646fe9648ae8acf86c8bc6ea4ac35aa5a7c5265d5f
+    hash: sha256:79f78f4a03e316845e4e6cab89911c70d98af2cd8c2daef479340d533098f0e2
     type: workflow
-    size: 1173
+    size: 1688
   - path: development/templates/squad/agent-template.md
     hash: sha256:1b4c081953a4eb4821a3920d8fbe80c54b9582f0b1100528af6466f24f201499
     type: template
@@ -2681,9 +2681,9 @@ files:
     type: template
     size: 1796
   - path: development/templates/squad/workflow-template.yaml
-    hash: sha256:837991039c9dcb77ad4ded82035da96eac70ac2c4fd208833ace470a3ec32c0e
+    hash: sha256:2bbe46ba2e6c5e58470e18a43cc2eab6509e30f8585b9ea45564675c2cc9deac
     type: template
-    size: 2199
+    size: 2840
   - path: development/templates/subagent-step-prompt.md
     hash: sha256:b3c1ca58b83723f62e2d2f40f188c5ae552f10c9bd06aa4edb68a588731feed8
     type: template
@@ -2713,9 +2713,9 @@ files:
     type: workflow
     size: 6945
   - path: development/workflows/development-cycle.yaml
-    hash: sha256:e882daca473a95807e5c480c9b1c3d7b428277b075232cb907f9a253468a17c1
+    hash: sha256:c22f2700d6c3dcd227efec711ab206b4fa9e268768a15be86eea0405e2c82c4d
     type: workflow
-    size: 13539
+    size: 15851
   - path: development/workflows/epic-orchestration.yaml
     hash: sha256:4bb9d91027036d089ab880e46e4b256290761c4dbf17d716abe61b541161fe05
     type: workflow
@@ -2737,9 +2737,9 @@ files:
     type: workflow
     size: 18739
   - path: development/workflows/README.md
-    hash: sha256:672bd8a48692c7afd5726a303222890fd46ee42ebddf4c03abc116745d1242d6
+    hash: sha256:c29eb23e385a47b3d680054130302bee2dc2fe1c0157ac948576afd79a9ff8c5
     type: workflow
-    size: 2423
+    size: 2592
   - path: development/workflows/spec-pipeline.yaml
     hash: sha256:4604ff3e2e945fbbb45006e32d8de81c73cb38782526ca3c87924549ccc29ccf
     type: workflow

@@ -1,4 +1,4 @@
-# Synkra AIOX: Framework Universal de Agentes IA 🚀
+# AIOX Squad: Artificial Intelligence Orchestration eXperience
 
 > 🌍 [English](README.en.md) | **[Português](README.md)**
 
@@ -7,14 +7,14 @@
 [![Versão Node.js](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
 [![CI](https://github.com/SynkraAI/aiox-core/actions/workflows/ci.yml/badge.svg)](https://github.com/SynkraAI/aiox-core/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/SynkraAI/aiox-core/branch/main/graph/badge.svg)](https://codecov.io/gh/SynkraAI/aiox-core)
-[![Documentação](https://img.shields.io/badge/docs-disponível-orange.svg)](https://synkra.ai)
+[![Documentação](https://img.shields.io/badge/docs-disponível-orange.svg)](https://aioxsquad.ai)
 [![Open Source](https://img.shields.io/badge/Open%20Source-Yes-success.svg)](LICENSE)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-Contributor%20Covenant-blue.svg)](CODE_OF_CONDUCT.md)
 
 > 🌐 README por idioma: [EN](docs/README.md) | [PT](docs/pt/README.md) | [ES](docs/es/README.md) | [ZH](docs/zh/README.md)
-
-Framework de Desenvolvimento Auto-Modificável Alimentado por IA. Fundado em Desenvolvimento Ágil Dirigido por Agentes, oferecendo capacidades revolucionárias para desenvolvimento dirigido por IA e muito mais. Transforme qualquer domínio com expertise especializada de IA: desenvolvimento de software, entretenimento, escrita criativa, estratégia de negócios, bem-estar pessoal e muito mais.
+>
+> **Devolvendo às pessoas o poder de criar** — Framework open source de orquestração de IA que devolve o controle a quem tem coragem de construir. Agentes especializados, workflows e experiência CLI First para qualquer domínio.
 
 ## Comece Aqui (10 Min)
 
@@ -55,21 +55,11 @@ Muitos recursos avançados do AIOX dependem de eventos de ciclo de vida (hooks).
 
 Impactos e mitigação detalhados: `docs/ide-integration.md`.
 
-## Acknowledgments & Attribution
-
-Synkra AIOX was originally derived from the [BMad Method](https://github.com/bmad-code-org/BMAD-METHOD), created by [Brian Madison](https://github.com/bmadcode) (BMad Code, LLC). We gratefully acknowledge the BMad Method for providing the foundation from which this project began.
-
-**Important:** This project is **NOT affiliated with, endorsed by, or sanctioned by** the BMad Method or BMad Code, LLC. Contributors appearing in the git history from the original BMad Method repository do not imply active participation in or endorsement of Synkra AIOX.
-
-Since its origin, AIOX has evolved significantly with its own architecture, terminology, and features (v4.x+), and does not depend on BMad for current operation. The BMad Method remains an excellent framework in its own right — please visit the [official BMad Method repository](https://github.com/bmad-code-org/BMAD-METHOD) to learn more.
-
-BMad, BMad Method, and BMad Core are trademarks of BMad Code, LLC. See [TRADEMARK.md](https://github.com/bmad-code-org/BMAD-METHOD/blob/main/TRADEMARK.md) for usage guidelines.
-
 ## Visão Geral
 
 ### Premissa Arquitetural: CLI First
 
-O Synkra AIOX segue uma hierarquia clara de prioridades:
+O AIOX segue uma hierarquia clara de prioridades:
 
 ```
 CLI First → Observability Second → UI Third
@@ -90,7 +80,7 @@ CLI First → Observability Second → UI Third
 
 ---
 
-**As Duas Inovações Chave do Synkra AIOX:**
+**As Duas Inovações Chave do AIOX:**
 
 **1. Planejamento Agêntico:** Agentes dedicados (analyst, pm, architect) colaboram com você para criar documentos de PRD e Arquitetura detalhados e consistentes. Através de engenharia avançada de prompts e refinamento com human-in-the-loop, estes agentes de planejamento produzem especificações abrangentes que vão muito além da geração genérica de tarefas de IA.
 
@@ -125,7 +115,7 @@ Esta abordagem de duas fases elimina tanto a **inconsistência de planejamento**
 1. **[Fluxo de Planejamento (Interface Web)](docs/guides/user-guide.md#the-planning-workflow-web-ui)** - Como criar documentos de PRD e Arquitetura
 2. **[Ciclo Principal de Desenvolvimento (IDE)](docs/guides/user-guide.md#the-core-development-cycle-ide)** - Como os agentes sm, dev e qa colaboram através de arquivos de histórias
 
-> ⚠️ **Estes diagramas explicam 90% da confusão sobre o fluxo Synkra AIOX Agentic Agile** - Entender a criação de PRD+Arquitetura e o fluxo de trabalho sm/dev/qa e como os agentes passam notas através de arquivos de histórias é essencial - e também explica por que isto NÃO é taskmaster ou apenas um simples executor de tarefas!
+> ⚠️ **Estes diagramas explicam 90% da confusão sobre o fluxo AIOX Agentic Agile** - Entender a criação de PRD+Arquitetura e o fluxo de trabalho sm/dev/qa e como os agentes passam notas através de arquivos de histórias é essencial - e também explica por que isto NÃO é taskmaster ou apenas um simples executor de tarefas!
 
 ### O que você gostaria de fazer?
 
@@ -159,7 +149,7 @@ Isto facilita beneficiar-se das últimas melhorias, correções de bugs e novos 
 
 ### 🚀 Instalação via NPX (Recomendado)
 
-**Instale o Synkra AIOX com um único comando:**
+**Instale o AIOX com um único comando:**
 
 ```bash
 # Criar um novo projeto com assistente interativo moderno
@@ -175,7 +165,7 @@ npx aiox-core@latest init meu-projeto
 
 ### ✨ Assistente de Instalação Moderno
 
-O Synkra AIOX agora inclui uma experiência de instalação interativa de última geração, inspirada em ferramentas modernas como Vite e Next.js:
+O AIOX agora inclui uma experiência de instalação interativa de última geração, inspirada em ferramentas modernas como Vite e Next.js:
 
 **Recursos do Instalador Interativo:**
 
@@ -214,7 +204,7 @@ npx aiox-core@latest install
 
 ### Configure Seu IDE para Desenvolvimento AIOX
 
-O Synkra AIOX inclui regras pré-configuradas para IDE para melhorar sua experiência de desenvolvimento:
+O AIOX inclui regras pré-configuradas para IDE para melhorar sua experiência de desenvolvimento:
 
 #### Para Cursor:
 
@@ -266,7 +256,7 @@ Estas regras fornecem:
 
 ### Referência de Comandos CLI
 
-O Synkra AIOX oferece uma CLI moderna e cross-platform com comandos intuitivos:
+O AIOX oferece uma CLI moderna e cross-platform com comandos intuitivos:
 
 ```bash
 # Gerenciamento de Projeto (com assistente interativo)
@@ -290,7 +280,7 @@ npx aiox-core doctor --fix Corrigir problemas detectados automaticamente
 
 # Manutenção
 npx aiox-core update      Atualizar para versão mais recente
-npx aiox-core uninstall   Remover Synkra AIOX
+npx aiox-core uninstall   Remover AIOX
 ```
 
 **Recursos da CLI:**
@@ -308,7 +298,7 @@ npx aiox-core uninstall   Remover Synkra AIOX
 ```bash
 $ npx aiox-core install
 
-🚀 Synkra AIOX Installation
+🚀 AIOX Installation
 
 ◆ What is your project name?
 │  my-awesome-project
@@ -353,7 +343,7 @@ Next steps:
 ```bash
 # Instalação automatizada sem prompts
 $ npx aiox-core install --quiet --force
-✔ Synkra AIOX installed successfully
+✔ AIOX installed successfully
 ```
 
 #### Simulação de Instalação (Dry-Run)
@@ -380,7 +370,7 @@ $ npx aiox-core doctor
 ✔ npm version: 10.2.3
 ✔ Git installed: version 2.43.0
 ✔ GitHub CLI: gh 2.40.1
-✔ Synkra AIOX: v4.2.11
+✔ AIOX: v4.2.11
 
 Configuration:
 ✔ .aiox-core/ directory exists
@@ -405,7 +395,7 @@ $ npx aiox-core --help
 
 Usage: aiox-core [options] [command]
 
-Synkra AIOX: AI-Orchestrated System for Full Stack Development
+AIOX: AI-Orchestrated System for Full Stack Development
 
 Options:
   -V, --version                output the version number
@@ -453,11 +443,11 @@ npx aiox-core@latest install
 
 ## 🌟 Além do Desenvolvimento de Software - Squads
 
-O framework de linguagem natural do AIOX funciona em QUALQUER domínio. Os Squads fornecem agentes IA especializados para escrita criativa, estratégia de negócios, saúde e bem-estar, educação e muito mais. Além disso, os Squads podem expandir o núcleo do Synkra AIOX com funcionalidade específica que não é genérica para todos os casos. [Veja o Guia de Squads](docs/guides/squads-guide.md) e aprenda a criar os seus próprios!
+O framework de linguagem natural do AIOX funciona em QUALQUER domínio. Os Squads fornecem agentes IA especializados para escrita criativa, estratégia de negócios, saúde e bem-estar, educação e muito mais. Além disso, os Squads podem expandir o núcleo do AIOX com funcionalidade específica que não é genérica para todos os casos. [Veja o Guia de Squads](docs/guides/squads-guide.md) e aprenda a criar os seus próprios!
 
 ## Agentes Disponíveis
 
-O Synkra AIOX vem com 11 agentes especializados:
+O AIOX vem com 12 agentes especializados:
 
 ### Agentes Meta
 
@@ -477,6 +467,8 @@ O Synkra AIOX vem com 11 agentes especializados:
 - **dev** - Desenvolvedor e implementação
 - **qa** - Garantia de qualidade e testes
 - **po** (Product Owner) - Gerenciamento de backlog e histórias
+- **data-engineer** - Design de banco de dados e modelagem de dados
+- **devops** - CI/CD, infraestrutura e operações git (autoridade exclusiva de push)
 
 ## Documentação e Recursos
 
@@ -500,7 +492,7 @@ O Synkra AIOX vem com 11 agentes especializados:
 
 ## 🤖 AIOX Autonomous Development Engine (ADE)
 
-O Synkra AIOX introduz o **Autonomous Development Engine (ADE)** - um sistema completo para desenvolvimento autônomo que transforma requisitos em código funcional.
+O AIOX introduz o **Autonomous Development Engine (ADE)** - um sistema completo para desenvolvimento autônomo que transforma requisitos em código funcional.
 
 ### 🎯 O Que é o ADE?
 
@@ -612,9 +604,9 @@ Squads são equipes modulares de agentes IA. Veja a [Visão Geral de Squads](doc
 
 ## AIOX Pro
 
-O **AIOX Pro** (`@aiox-fullstack/pro`) é o módulo premium do Synkra AIOX, oferecendo funcionalidades avançadas para equipes e projetos de maior escala.
+O **AIOX Pro** (`@aiox-fullstack/pro`) é o módulo premium do AIOX, oferecendo funcionalidades avançadas para equipes e projetos de maior escala.
 
-> **Disponibilidade restrita:** O AIOX Pro está disponível exclusivamente para membros do **AIOX Cohort Advanced**. [Saiba mais sobre o programa](https://synkra.ai).
+> **Disponibilidade restrita:** O AIOX Pro está disponível exclusivamente para membros do **AIOX Cohort Advanced**. [Saiba mais sobre o programa](https://aioxsquad.ai).
 
 ### Instalação
 
@@ -643,7 +635,7 @@ Para mais informações, execute `npx aiox-core pro --help` após a instalação
 
 ## Git Workflow e Validação
 
-O Synkra AIOX implementa um sistema de validação de múltiplas camadas para garantir qualidade do código e consistência:
+O AIOX implementa um sistema de validação de múltiplas camadas para garantir qualidade do código e consistência:
 
 ### 🛡️ Defense in Depth - 3 Camadas de Validação
 
@@ -732,11 +724,7 @@ Veja também:
 | **Roadmap**           | [Roadmap](docs/roadmap.md)                  | [PT-BR](docs/pt/roadmap.md)           |
 | **Changelog**         | [Version History](CHANGELOG.md)             | -                                     |
 
-## Reconhecimentos
-
-This project was originally derived from the [BMad Method](https://github.com/bmad-code-org/BMAD-METHOD) by [Brian Madison](https://github.com/bmadcode). We thank Brian and all BMad Method contributors for the original work that made this project possible.
-
-**Note:** Some contributors shown in the GitHub contributors graph are inherited from the original BMad Method git history and do not represent active participation in or endorsement of Synkra AIOX.
+## Contribuidores
 
 [![Contributors](https://contrib.rocks/image?repo=SynkraAI/aiox-core)](https://github.com/SynkraAI/aiox-core/graphs/contributors)
 
@@ -755,4 +743,4 @@ This project was originally derived from the [BMad Method](https://github.com/bm
 
 ---
 
-**[⬆ Voltar ao topo](#synkra-aiox-framework-universal-de-agentes-ia-)**
+**[⬆ Voltar ao topo](#aiox-squad-artificial-intelligence-orchestration-experience)**
