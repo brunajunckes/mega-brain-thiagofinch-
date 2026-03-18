@@ -87,7 +87,7 @@ projectStatus:
   maxModifiedFiles: 5
   maxRecentCommits: 2
 boundary:
-  frameworkProtection: false
+  frameworkProtection: true
   protected:
     - .aiox-core/core/**
     - .aiox-core/development/tasks/**
