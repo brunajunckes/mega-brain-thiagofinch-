@@ -39,3 +39,16 @@
 ## Pre-existing Test Failures (not EPIC-ACT related)
 - squads/mmos-squad/ (6 suites): missing clickup module
 - tests/core/orchestration/ (2 suites): greenfield-handler, terminal-spawner
+
+## AIOX Supreme Brain Architecture (2026-03-18)
+- Full manifesto delivered: /root/AIOX/supreme-brain/ (not yet created — architecture only)
+- 7-module cognitive system: scanner, memory, reasoning, planner, executor, learning, evolution-bridge
+- Runs as systemd daemon (supreme-brain.service), 15-min autonomous cycles
+- Zero new infrastructure: reuses Redis (db=5), Qdrant (collection: supreme-brain-episodes), file system
+- Evolution Engine integration: read-only memory files + CLI spawn for deploys
+- All deploys queued for human review by default (evolutionDeployAutoApprove: false)
+- Claude memory at /root/.claude/projects/-srv-aiox/memory/ is read-only seed input
+- Blocked actions: git push, .aiox-core/core/** writes, db drops, volume deletes
+- Implementation roadmap: 7 sessions (S1 foundation → S7 tests/docs)
+- Key files: brain.js (CLI+daemon), config/brain-config.yaml, patterns/patterns.yaml (declarative)
+- IPC: Unix socket /tmp/supreme-brain.sock, JSON-RPC

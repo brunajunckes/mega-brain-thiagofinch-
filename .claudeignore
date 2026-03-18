@@ -1,0 +1,61 @@
+# Token Economy — arquivos pesados que o Claude não precisa ler
+
+# Dependencies
+node_modules/
+.yarn/
+venv/
+__pycache__/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+.vercel/
+
+# Version control
+.git/
+.github/
+
+# Logs
+*.log
+logs/
+.claude/logs/
+
+# Lock files (grandes, não mudam frequentemente)
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Media (imagens, vídeos)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.mov
+
+# Data (dumps, backups)
+*.sql
+*.dump
+backups/
+*.tar.gz
+
+# Temporary
+*.tmp
+.DS_Store
+*.swp
+.cache/
+
+# Large documents
+*.pdf
+*.docx
+
+# Específico do AIOX
+.aiox-core/node_modules/
+.aiox-core/dist/
+.aiox-core/build/
+
+# Docker
+Dockerfile
+docker-compose.yml
