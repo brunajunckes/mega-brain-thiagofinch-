@@ -2,11 +2,15 @@
 
 const http = require('http');
 const OLLAMA_URL = process.env.OLLAMA_URL || 'http://localhost:11434';
-const MODEL = process.env.OLLAMA_MODEL || 'qwen2.5:7b';
+
+// Model routing: primary with fallbacks
+const PRIMARY_MODEL = process.env.OLLAMA_PRIMARY_MODEL || 'qwen2.5:14b'; // "cloud" mode
+const FALLBACK_MODELS = ['qwen2.5:14b', 'qwen2.5:7b', 'deepseek-coder:6.7b'];
+let CURRENT_MODEL = PRIMARY_MODEL;
 
 function queryOllama(prompt) {
   return new Promise((resolve, reject) => {
-    const data = JSON.stringify({ model: MODEL, prompt, stream: false });
+    const data = JSON.stringify({ model: CURRENT_MODEL, prompt, stream: false });
     const url = new URL(OLLAMA_URL);
     const opts = {
       hostname: url.hostname,
@@ -24,13 +28,28 @@ function queryOllama(prompt) {
       res.on('data', (chunk) => { body += chunk; });
       res.on('end', () => {
         try {
-          resolve(JSON.parse(body).response.trim());
+          const result = JSON.parse(body);
+          if (result.response) {
+            resolve(result.response.trim());
+          } else {
+            reject(new Error('Empty response'));
+          }
         } catch (e) {
-          reject(new Error('Parse error'));
+          reject(new Error('Parse error: ' + e.message));
         }
       });
     });
-    req.on('error', reject);
+
+    req.on('error', (e) => {
+      reject(new Error('Ollama error: ' + e.message));
+    });
+
+    // Timeout after 60 seconds
+    req.setTimeout(60000, () => {
+      req.destroy();
+      reject(new Error('Request timeout'));
+    });
+
     req.write(data);
     req.end();
   });
@@ -57,16 +76,36 @@ async function main() {
       process.exit(0);
     }
 
+    if (prompt === '/status') {
+      console.log(`\nModel: ${CURRENT_MODEL}\nBackend: Ollama\nStatus: Ready\n`);
+      rl.prompt();
+      return;
+    }
+
     if (!prompt) {
       rl.prompt();
       return;
     }
 
-    try {
-      const response = await queryOllama(prompt);
-      console.log(`assistant\n${response}\n`);
-    } catch (e) {
-      console.log(`Error: ${e.message}\n`);
+    let response = null;
+    let lastError = null;
+
+    // Try primary model, then fallbacks
+    for (const model of [PRIMARY_MODEL, ...FALLBACK_MODELS]) {
+      try {
+        CURRENT_MODEL = model;
+        response = await queryOllama(prompt);
+        console.log(`assistant (${model})\n${response}\n`);
+        break;
+      } catch (e) {
+        lastError = e.message;
+        // Try next model
+        continue;
+      }
+    }
+
+    if (!response) {
+      console.log(`Error: ${lastError}\n`);
     }
 
     rl.prompt();
