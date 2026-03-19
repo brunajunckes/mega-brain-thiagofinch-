@@ -1,7 +1,7 @@
 metadata:
   version: 1.0.0
-  lastUpdated: '2026-03-19T01:45:09.094Z'
-  entityCount: 755
+  lastUpdated: '2026-03-19T01:57:18.957Z'
+  entityCount: 760
   checksumAlgorithm: sha256
   resolutionRate: 100
 entities:
@@ -8237,36 +8237,22 @@ entities:
       checksum: sha256:10586193db3efc151c4347d24786a657a01f611a0ffb55ce4008e62c6fe89e40
       lastVerified: '2026-03-19T01:45:08.667Z'
     index:
-      path: .aiox-core/core/index.js
+      path: .aiox-core/core/repo-analyzer/index.js
       layer: L1
       type: module
-      purpose: Entity at .aiox-core/core/index.js
+      purpose: Entity at .aiox-core/core/repo-analyzer/index.js
       keywords:
         - index
       usedBy: []
       dependencies:
-        - config-cache
-        - config-loader
-        - context-detector
-        - context-loader
-        - elicitation-engine
-        - session-manager
-        - agent-elicitation
-        - task-elicitation
-        - workflow-elicitation
-        - output-formatter
-        - yaml-validator
-        - registry-loader
-      externalDeps: []
-      plannedDeps:
-        - health-check
-      lifecycle: experimental
+        - scanner
+        - dependency-analyzer
       adaptability:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:970b617b0e723e8248065f698eca2298a5a0b72e3e43ee820ea85294555736e2
-      lastVerified: '2026-03-19T01:45:08.667Z'
+      checksum: sha256:c4fbf2bd012b2cce3c4d3c36aadb1e734ac68ea414019690bb2b98fc2b4e478c
+      lastVerified: '2026-03-19T01:57:18.950Z'
     code-intel-client:
       path: .aiox-core/core/code-intel/code-intel-client.js
       layer: L1
@@ -8529,7 +8515,6 @@ entities:
         - elicitation
       usedBy:
         - index.esm
-        - index
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -8550,7 +8535,6 @@ entities:
         - engine
       usedBy:
         - index.esm
-        - index
         - batch-creator
         - component-generator
       dependencies:
@@ -8575,7 +8559,6 @@ entities:
         - manager
       usedBy:
         - index.esm
-        - index
         - elicitation-engine
         - session-manager.test
       dependencies: []
@@ -8598,7 +8581,6 @@ entities:
         - elicitation
       usedBy:
         - index.esm
-        - index
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -8620,7 +8602,6 @@ entities:
       usedBy:
         - verify-workflow-gaps
         - index.esm
-        - index
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -9172,7 +9153,6 @@ entities:
         - registry
         - loader
       usedBy:
-        - index
         - registry-syncer
         - framework-governor
         - code-intel-source
@@ -10352,7 +10332,6 @@ entities:
         - greeting-builder
         - unified-activation-pipeline
         - index.esm
-        - index
         - context-loader
       dependencies:
         - atomic-write
@@ -10377,7 +10356,6 @@ entities:
         - context-loading
         - unified-activation-pipeline
         - index.esm
-        - index
       dependencies:
         - context-detector
       externalDeps: []
@@ -12989,6 +12967,86 @@ entities:
         extensionPoints: []
       checksum: sha256:dd025894f8f0d3bd22a147dbc0debef8b83e96f3c59483653404b3cd5a01d5aa
       lastVerified: '2026-03-19T01:45:08.726Z'
+    dependency-analyzer:
+      path: .aiox-core/core/repo-analyzer/dependency-analyzer.js
+      layer: L1
+      type: module
+      purpose: '{'
+      keywords:
+        - dependency
+        - analyzer
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.4
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:742ff27a0f8cebe58442c8c5b197314c53cbf75515a270348e5a7c338dafd9b8
+      lastVerified: '2026-03-19T01:57:18.946Z'
+    metrics-collector:
+      path: .aiox-core/core/repo-analyzer/metrics-collector.js
+      layer: L1
+      type: module
+      purpose: '{'
+      keywords:
+        - metrics
+        - collector
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.4
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:be9b7429e5e0a7a9d5ef34eb0f593f2284f241567881ac5648d3f61d74f58dd2
+      lastVerified: '2026-03-19T01:57:18.950Z'
+    pattern-detector:
+      path: .aiox-core/core/repo-analyzer/pattern-detector.js
+      layer: L1
+      type: module
+      purpose: Entity at .aiox-core/core/repo-analyzer/pattern-detector.js
+      keywords:
+        - pattern
+        - detector
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.4
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:b525d7e42b1059485958cd7013dc636961b596907796d5102f22e08fcd987f0e
+      lastVerified: '2026-03-19T01:57:18.951Z'
+    report-generator:
+      path: .aiox-core/core/repo-analyzer/report-generator.js
+      layer: L1
+      type: module
+      purpose: '{'
+      keywords:
+        - report
+        - generator
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.4
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:85d1aaa694627996e57349a92cd9b391b0c271b85be188dbf75f1da33f1dd5d9
+      lastVerified: '2026-03-19T01:57:18.951Z'
+    scanner:
+      path: .aiox-core/core/repo-analyzer/scanner.js
+      layer: L1
+      type: module
+      purpose: '{'
+      keywords:
+        - scanner
+      usedBy:
+        - index
+      dependencies: []
+      adaptability:
+        score: 0.4
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:f1860faaaa34da0c384bc49ce8594a0d09d2dbfaff62fe7535cf1d4de9e59f57
+      lastVerified: '2026-03-19T01:57:18.951Z'
   agents:
     aiox-master:
       path: .aiox-core/development/agents/aiox-master.md
@@ -15128,7 +15186,6 @@ entities:
       usedBy:
         - agent-config-loader
         - index.esm
-        - index
         - config-resolver
       dependencies: []
       externalDeps: []
@@ -15150,7 +15207,6 @@ entities:
         - loader
       usedBy:
         - index.esm
-        - index
       dependencies:
         - agent-config-loader
       externalDeps: []
@@ -15232,6 +15288,7 @@ entities:
         - analyzer
       usedBy:
         - modification-validator
+        - index
         - batch-creator
       dependencies: []
       externalDeps: []
@@ -15552,7 +15609,6 @@ entities:
       usedBy:
         - next
         - index.esm
-        - index
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -16507,7 +16563,6 @@ entities:
       usedBy:
         - modification-validator
         - index.esm
-        - index
         - component-generator
       dependencies: []
       externalDeps: []
