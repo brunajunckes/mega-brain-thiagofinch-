@@ -1,23 +1,23 @@
 #!/usr/bin/env node
 
 /**
- * AIOX Ollama Bridge CLI Wrapper
- * Executa o chat interativo com Ollama
+ * AIOX Ollama Engine CLI Wrapper
+ * Terminal interativo com FastAPI + Ollama (100% offline, zero tokens)
  */
 
 const path = require('path');
 const { spawn } = require('child_process');
 
-const ollamaScript = path.join(__dirname, 'packages/ollama-bridge/bin/ollama-interactive.js');
+const engineCliScript = path.join(__dirname, 'packages/ollama-bridge/bin/aiox-engine-cli.js');
 
-const child = spawn('node', [ollamaScript], {
+const child = spawn('node', [engineCliScript], {
   stdio: 'inherit',
   cwd: __dirname,
   env: { ...process.env }
 });
 
 child.on('error', (err) => {
-  console.error('❌ Error starting Ollama:', err.message);
+  console.error('❌ Error starting AIOX Engine CLI:', err.message);
   process.exit(1);
 });
 
