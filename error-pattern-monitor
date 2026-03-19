@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+
+#
+# ERROR PATTERN MONITOR
+# Detecta quando mesmo erro ocorre 2x consecutivas
+# Ativa auto-recovery apenas quando necessário
+#
+
+LOG_FILE="/root/.aiox/aiox-auto.log"
+STATE_FILE="/tmp/error-monitor.state"
+RECOVERY_LOCK="/tmp/error-recovery.lock"
+
+log() {
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] [MONITOR] $*" >> "$LOG_FILE"
+}
+
+# Obter últimos 2 erros do log
+get_last_errors() {
+  grep "❌ Erro:" "$LOG_FILE" 2>/dev/null | tail -2 | sed 's/.*❌ Erro: //' | sed 's/^[[:space:]]*//'
+}
+
+# Comparar se os últimos 2 erros são iguais
+check_repeated_error() {
+  local errors=$(get_last_errors)
+  local error_count=$(echo "$errors" | wc -l)
+
+  if [ "$error_count" -lt 2 ]; then
+    return 1  # Menos de 2 erros, não há repetição
+  fi
+
+  local error1=$(echo "$errors" | head -1)
+  local error2=$(echo "$errors" | tail -1)
+
+  if [ "$error1" = "$error2" ] && [ -n "$error1" ]; then
+    return 0  # Mesmo erro repetido
+  fi
+
+  return 1  # Erros diferentes
+}
+
+log "🔍 Monitor iniciado - detectando padrões de erro repetido"
+
+LAST_ERROR=""
+
+while true; do
+  sleep 5  # Verifica a cada 5 segundos
+
+  # Obter último erro
+  CURRENT_ERROR=$(grep "❌ Erro:" "$LOG_FILE" 2>/dev/null | tail -1 | sed 's/.*❌ Erro: //' | sed 's/^[[:space:]]*//')
+
+  # Se há um novo erro e é igual ao anterior
+  if [ -n "$CURRENT_ERROR" ] && [ "$CURRENT_ERROR" = "$LAST_ERROR" ] && [ -n "$LAST_ERROR" ]; then
+
+    # Verificar se já não estamos em recovery
+    if [ ! -f "$RECOVERY_LOCK" ]; then
+      log "🚨 ERRO REPETIDO DETECTADO: $CURRENT_ERROR"
+      log "⚠️  Acionando AUTO-RECOVERY..."
+
+      # Criar lock para evitar múltiplas ativações
+      touch "$RECOVERY_LOCK"
+
+      # Log da ação
+      log "🔄 [AUTO-RECOVERY] Parando aiox-auto..."
+      pkill -f "aiox-auto -c"
+      sleep 2
+
+      # Diagnosticar problema
+      if ! curl -s -m 5 http://localhost:11434/api/tags > /dev/null 2>&1; then
+        log "❌ Ollama não respondendo - reiniciando..."
+        pkill -9 ollama 2>/dev/null || true
+        sleep 2
+        nohup ollama serve > /root/.aiox/ollama.log 2>&1 &
+        sleep 5
+      fi
+
+      # Reiniciar aiox-auto
+      log "🚀 Reiniciando aiox-auto..."
+      nohup aiox-auto -c >> "$LOG_FILE" 2>&1 &
+      echo $! > /root/.aiox/aiox-auto.pid
+
+      # Remover lock após 60s (permite próxima ativação se erro continua)
+      sleep 60
+      rm -f "$RECOVERY_LOCK"
+
+      LAST_ERROR=""
+    fi
+  else
+    LAST_ERROR="$CURRENT_ERROR"
+  fi
+done
