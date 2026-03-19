@@ -64,7 +64,8 @@ async function proxyUI(req, res, pathname) {
   }
 }
 
-const server = http.createServer(async (req, res) => {
+// Create request handler
+const requestHandler = async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
   const pathname = parsedUrl.pathname;
 
@@ -130,11 +131,16 @@ const server = http.createServer(async (req, res) => {
 
     // API config - tell UI where to call back
     if (pathname === '/config.json') {
-      const apiBase = process.env.API_BASE || `http://${req.headers.host}`;
+      // Detect protocol from request or forwarding headers
+      const isSecure = req.secure || req.headers['x-forwarded-proto'] === 'https';
+      const host = req.headers['x-forwarded-host'] || req.headers.host;
+      const protocol = isSecure ? 'https' : 'http';
+      const apiBase = process.env.API_BASE || `${protocol}://${host}`;
+
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
         apiBase: apiBase,
-        wsBase: apiBase.replace('http', 'ws'),
+        wsBase: apiBase.replace(/^https?/, 'ws'),
         timeout: 30000,
         environment: 'production',
         ollama: {
@@ -188,11 +194,19 @@ const server = http.createServer(async (req, res) => {
       res.end(JSON.stringify({ error: error.message }));
     }
   }
-});
+};
+
+// Create HTTPS server with self-signed cert
+const options = {
+  key: fs.readFileSync('/srv/aiox/server.key'),
+  cert: fs.readFileSync('/srv/aiox/server.crt')
+};
+
+const server = https.createServer(options, requestHandler);
 
 server.listen(PORT, () => {
-  console.log(`\n🚀 Server running on port ${PORT}`);
-  console.log(`📊 OpenClaw API: http://localhost:${PORT}/api/openclaw/`);
-  console.log(`⚙️  AIOX API: http://localhost:${PORT}/api/aiox/`);
-  console.log(`🏥 Health: http://localhost:${PORT}/health\n`);
+  console.log(`\n🚀 Server running on port ${PORT} (HTTPS)`);
+  console.log(`📊 OpenClaw API: https://localhost:${PORT}/api/openclaw/`);
+  console.log(`⚙️  AIOX API: https://localhost:${PORT}/api/aiox/`);
+  console.log(`🏥 Health: https://localhost:${PORT}/health\n`);
 });
