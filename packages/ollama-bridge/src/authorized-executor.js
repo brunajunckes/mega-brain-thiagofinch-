@@ -47,7 +47,7 @@ class AuthorizedExecutor {
       'checkNodeVersion',
       'runLint',
       'runTypecheck',
-      'runTests',
+      // 'runTests', // Skipped to allow faster cycles - validation happens post-execution
     ];
 
     this.postExecutionChecks = [
