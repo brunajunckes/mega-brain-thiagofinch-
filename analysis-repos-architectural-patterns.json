@@ -1,0 +1,319 @@
+{
+  "analysis_date": "2026-03-19",
+  "repos": [
+    {
+      "name": "VideoRAG",
+      "url": "https://github.com/HKUDS/VideoRAG",
+      "architecture": "Dual-channel (Python backend + Electron frontend) with graph-driven knowledge indexing and hierarchical context encoding for video understanding",
+      "agents": {
+        "autonomy": "Single intelligent processing system, not multi-agent",
+        "coordination": "Backend-driven processing pipeline with Electron UI",
+        "tools": ["Video indexing", "Multi-modal knowledge graphs", "Adaptive retrieval engine", "Cross-video semantic analysis"]
+      },
+      "workflows": {
+        "phases": ["Upload/Ingest", "Index to Knowledge Graph", "Encode Hierarchical Context", "Adaptive Retrieval", "Conversational Query Response"],
+        "trigger": "User-initiated via UI",
+        "automation": "Automatic after upload"
+      },
+      "tech_stack": ["Python (backend)", "Electron (frontend)", "Graph databases", "Vision-language models", "CUDA/GPU optimization"],
+      "diferenciais": [
+        "Processes videos up to hundreds of hours on single GPU",
+        "Multi-video comparison and cross-video understanding",
+        "Achieves 60.2% accuracy on Video-MME benchmark",
+        "Distills long content into concise knowledge representations"
+      ],
+      "para_aiox": {
+        "applicability": "Low (specialized video domain)",
+        "insights": [
+          "Graph-based knowledge encoding could enhance entity registry",
+          "Hierarchical context encoding pattern useful for long-horizon tasks",
+          "Adaptive retrieval strategies could improve agent context selection"
+        ]
+      }
+    },
+    {
+      "name": "DeepInnovator",
+      "url": "https://github.com/HKUDS/DeepInnovator",
+      "architecture": "Three-layer knowledge synthesis pipeline (paper analysis → grouping → cross-disciplinary synthesis) with decoupled reward-comment RL architecture",
+      "agents": {
+        "autonomy": "Agentic reasoning with discriminator-based validation",
+        "coordination": "Sequential idea generation with independent feedback streams",
+        "tools": ["Paper analysis engine", "Discriminator (authenticity validator)", "Reward computation", "PPO policy optimizer"]
+      },
+      "workflows": {
+        "phases": ["Download/Analyze Papers", "Extract Ideas", "Generate Training Data", "Multi-turn Agent Loop", "Discriminator Validation", "Policy Update (PPO)"],
+        "trigger": "Batch or continuous learning",
+        "automation": "Full autonomous generation with validation"
+      },
+      "tech_stack": ["LLM (idea generation)", "Reinforcement Learning (PPO)", "Discriminator (classification)", "arXiv API", "Python"],
+      "diferenciais": [
+        "Decoupled reward-comment architecture (prevents reward hacking)",
+        "Recursive multi-turn interactions (5 user turns, 6 assistant turns)",
+        "Cross-disciplinary discovery of research fusion opportunities",
+        "Matches GPT-4o/Gemini-2.5 performance at smaller scale"
+      ],
+      "para_aiox": {
+        "applicability": "High (agent autonomy patterns)",
+        "insights": [
+          "Decoupled reward system could improve agent decision validation",
+          "Discriminator pattern useful for story/spec quality validation",
+          "Multi-turn interaction model matches AIOX story development cycle",
+          "Separation of guidance from scoring prevents task gaming"
+        ]
+      }
+    },
+    {
+      "name": "Superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "architecture": "Plugin-based skills framework with seven-phase development methodology, subagent dispatching, and dual-stage review system",
+      "agents": {
+        "autonomy": "High (autonomous for 2+ hours without deviation)",
+        "coordination": "Subagent-driven with parallel workflows and parent-child review",
+        "tools": ["Brainstorming dialog", "Git worktrees", "Task breakdown", "Code review", "Test framework", "Merge orchestration"]
+      },
+      "workflows": {
+        "phases": ["Brainstorming", "Git Worktrees (isolation)", "Granular Planning (2-5min tasks)", "Execution (subagent dispatch)", "RED-GREEN-REFACTOR TDD", "Severity-Based Code Review", "Merge/PR Decision"],
+        "trigger": "User initiates work request",
+        "automation": "Autonomous execution with checkpoints"
+      },
+      "tech_stack": ["Shell (57.8%)", "JavaScript (30.1%)", "Python", "TypeScript", "Multi-platform CLI (Claude Code, Cursor, Codex)"],
+      "diferenciais": [
+        "Seven-phase systematic methodology (not ad-hoc)",
+        "Mandatory skills-as-workflows philosophy",
+        "Pre-test code deletion enforcement (RED-GREEN-REFACTOR)",
+        "Plan compliance tracking at every review stage",
+        "Multi-platform CLI support (Claude Code, Cursor, Gemini CLI)"
+      ],
+      "para_aiox": {
+        "applicability": "Very High (directly applicable)",
+        "insights": [
+          "Seven-phase workflow aligns with AIOX SDC phases",
+          "Git worktree isolation pattern matches AIOX branching strategy",
+          "Granular task breakdown (2-5min) improves agent focus",
+          "Dual-stage review (spec compliance + code quality) reduces rework",
+          "Multi-platform CLI approach enables broader tool support",
+          "Plan deviation detection prevents scope creep"
+        ]
+      }
+    },
+    {
+      "name": "Hermes Agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "architecture": "Self-improving agent with modular design (agent loop → terminal backends → gateway system → memory layer → skills system)",
+      "agents": {
+        "autonomy": "High with self-improvement mechanisms",
+        "coordination": "Parallel subagents for distributed workstreams",
+        "tools": ["40+ integrated tools", "Terminal backends (6 types: local/Docker/SSH/Daytona/Singularity/Modal)", "Memory search (FTS5)", "Skill creation engine", "Cron scheduler"]
+      },
+      "workflows": {
+        "phases": ["User Input", "Memory Search", "Tool Selection", "Execution (multi-backend)", "Learning Loop", "Skill Creation", "Session Summarization"],
+        "trigger": "User message or cron schedule",
+        "automation": "Autonomous skill creation from experience"
+      },
+      "tech_stack": ["Python (agent loop)", "Multiple LLM providers (OpenRouter 200+ models, Nous, OpenAI)", "Terminal emulation (6 backends)", "FTS5 (full-text search)", "MCP servers", "Gateway integrations (CLI/Telegram/Discord/Slack/WhatsApp/Signal/Email)"],
+      "diferenciais": [
+        "200+ model support via OpenRouter",
+        "Self-improvement through skill creation",
+        "Persistent memory with LLM-driven summarization",
+        "Multi-gateway deployment (7+ platforms)",
+        "Serverless execution (Modal, Daytona) with cost efficiency",
+        "Honcho dialectic user modeling for agent personalization"
+      ],
+      "para_aiox": {
+        "applicability": "High (multi-backend and persistent memory)",
+        "insights": [
+          "Terminal backend abstraction enables future AIOX executor plugins",
+          "Skill persistence and self-improvement pattern useful for agent learning",
+          "Memory search + summarization could enhance agent context retrieval",
+          "Gateway pattern enables multi-channel agent activation",
+          "Cron scheduling matches AIOX workflow automation needs",
+          "User modeling across sessions supports agent personalization"
+        ]
+      }
+    },
+    {
+      "name": "Agency-Agents",
+      "url": "https://github.com/msitarzewski/agency-agents",
+      "architecture": "Specialized agent personas organized into 12+ functional divisions (Engineering, Design, Marketing, Sales, Product, Testing) with distinctive specialization, personality, and deliverables",
+      "agents": {
+        "autonomy": "Medium (specialized but rule-bound)",
+        "coordination": "Role-based organization with clear divisions",
+        "tools": ["Domain-specific templates", "Multi-tool deployment (Claude Code, Cursor, Aider, Gemini CLI)", "Personality/voice definition", "Deliverable specifications"]
+      },
+      "workflows": {
+        "phases": ["Agent selection by domain", "Task hand-off with personality/specs", "Autonomous execution within specialization", "Deliverable generation"],
+        "trigger": "User selects agent by domain/role",
+        "automation": "Execution per agent specialization"
+      },
+      "tech_stack": ["Claude Code (primary)", "Cursor", "Aider", "Gemini CLI", "OpenCode", "Markdown (agent definitions)"],
+      "diferenciais": [
+        "12+ specialized agent roles (not generic)",
+        "Deep domain expertise per agent (not templated personalities)",
+        "Distinctive voice/communication style per agent",
+        "Multi-tool deployment with conversion scripts",
+        "Well-defined success metrics and deliverables per agent",
+        "Organizational structure mirrors real enterprise teams"
+      ],
+      "para_aiox": {
+        "applicability": "Medium-High (agent specialization patterns)",
+        "insights": [
+          "12-division model could expand AIOX from 10 to 15+ specialized agents",
+          "Persona + deliverables pattern matches AIOX agent design",
+          "Success metrics definition improves agent accountability",
+          "Multi-tool deployment approach useful for AIOX multi-IDE support",
+          "Enterprise functional division structure applicable to larger teams"
+        ]
+      }
+    },
+    {
+      "name": "Squad",
+      "url": "https://github.com/bradygaster/squad",
+      "architecture": "Persistent AI team framework with SDK-based routing, individual agent sessions, knowledge persistence in `.squad/` directory, and custom team tools",
+      "agents": {
+        "autonomy": "High with persistent knowledge across sessions",
+        "coordination": "Parallel execution with automatic task chaining based on results",
+        "tools": ["squad_route (handoff)", "squad_decide (decision recording)", "squad_memory (learning persistence)", "squad_status (session query)", "squad_skill (compressed learnings)"]
+      },
+      "workflows": {
+        "phases": ["Parallel Agent Launch", "Autonomous Work", "Result Aggregation", "Automatic Follow-up Chaining", "Knowledge Persistence", "Cross-Session Resume"],
+        "trigger": "User task or previous session breadcrumbs",
+        "automation": "Full autonomous with persistent state"
+      },
+      "tech_stack": ["TypeScript (SDK)", "Markdown (agent state)", ".squad/ directory (persistent storage)", "GitHub Copilot (execution)", "Routing rules (compiled code)"],
+      "diferenciais": [
+        "Persistent team state in `.squad/` (inherited on repo clone)",
+        "Individual session histories per agent (no single context window)",
+        "SDK-first mode with TypeScript compilation",
+        "Automatic task chaining based on result analysis",
+        "Breadcrumb trails for session resumption",
+        "Compiled routing rules (not prompt-based selection)",
+        "Knowledge compounding across time with skill system"
+      ],
+      "para_aiox": {
+        "applicability": "Very High (directly aligned with AIOX multi-agent model)",
+        "insights": [
+          "`.squad/` pattern directly applicable to AIOX agent persistence",
+          "SDK-based routing eliminates agent selection ambiguity",
+          "Persistent session approach solves context window explosion",
+          "Automatic task chaining reduces manual handoff overhead",
+          "Individual agent history files enable knowledge compounding",
+          "Breadcrumb trails support interrupted work resumption",
+          "Compiled routing rules improve governance and auditability"
+        ]
+      }
+    }
+  ],
+  "gaps_identified": [
+    "AIOX lacks persistent agent session storage (Squad.squad pattern)",
+    "No automatic task chaining based on result analysis (Squad feature)",
+    "Agent knowledge doesn't compound across sessions (Squad/Hermes learnings)",
+    "Limited multi-terminal backend support (Hermes has 6, AIOX has 1)",
+    "No skill auto-creation from successful executions (Hermes pattern)",
+    "Story validation uses checklist, not discriminator validation (DeepInnovator pattern)",
+    "Plan deviation detection not implemented (Superpowers feature)",
+    "Agent specialization taxonomy incomplete (Agency-Agents has 12+ divisions)",
+    "No cross-session breadcrumb trails for resumption (Squad feature)",
+    "Context encoding for long-horizon tasks limited (VideoRAG hierarchical pattern)"
+  ],
+  "recommendations": {
+    "priority_1_high_impact": [
+      {
+        "feature": "Persistent Agent Sessions (.aiox/sessions/)",
+        "source": "Squad",
+        "effort": "Medium",
+        "impact": "Eliminates context window explosion, enables knowledge compounding",
+        "implementation": "Store agent session history in `.aiox/sessions/{agentId}/` with auto-load on activation"
+      },
+      {
+        "feature": "Automatic Task Chaining",
+        "source": "Squad",
+        "effort": "Medium",
+        "impact": "Reduces manual handoffs, enables parallel agent workflows",
+        "implementation": "Analyze task outputs, automatically identify dependent tasks, dispatch to relevant agents"
+      },
+      {
+        "feature": "Discriminator-Based Validation",
+        "source": "DeepInnovator",
+        "effort": "Low",
+        "impact": "Replaces manual checklist review with ML-based quality gates",
+        "implementation": "Train lightweight discriminator for story/spec quality, integrate into @po validation gate"
+      },
+      {
+        "feature": "Seven-Phase SDC (from Superpowers)",
+        "source": "Superpowers",
+        "effort": "Medium",
+        "impact": "Improves consistency, reduces rework through stricter phase gates",
+        "implementation": "Add Brainstorming phase before Planning, add explicit Code Review phase with severity-based blocking"
+      }
+    ],
+    "priority_2_medium_impact": [
+      {
+        "feature": "Multi-Terminal Backend Abstraction",
+        "source": "Hermes",
+        "effort": "High",
+        "impact": "Enables Docker, SSH, serverless execution",
+        "implementation": "Abstract executor interface, implement backends: Local, Docker, SSH, Modal (serverless)"
+      },
+      {
+        "feature": "Skill Persistence & Learning",
+        "source": "Hermes + Squad",
+        "effort": "Medium",
+        "impact": "Enables agents to improve through experience",
+        "implementation": "Store successful task solutions in `.aiox/skills/`, auto-load on similar tasks"
+      },
+      {
+        "feature": "Cross-Session Breadcrumb Trails",
+        "source": "Squad",
+        "effort": "Low",
+        "impact": "Enables resumption of interrupted work",
+        "implementation": "Maintain `decisions.md`, orchestration logs, session checkpoints per story"
+      },
+      {
+        "feature": "Expanded Agent Specialization (12+ divisions)",
+        "source": "Agency-Agents",
+        "effort": "Medium",
+        "impact": "Enables broader task delegation",
+        "implementation": "Add agents: @compliance, @security, @infra-architect, @cost-optimizer, etc."
+      }
+    ],
+    "priority_3_nice_to_have": [
+      {
+        "feature": "Plan Deviation Detection",
+        "source": "Superpowers",
+        "effort": "Low",
+        "impact": "Prevents scope creep during implementation",
+        "implementation": "Compare execution against initial plan, alert @sm on deviations"
+      },
+      {
+        "feature": "Hierarchical Context Encoding",
+        "source": "VideoRAG",
+        "effort": "High",
+        "impact": "Improves long-horizon task understanding",
+        "implementation": "Encode task dependencies, sub-task relationships in vector space for better retrieval"
+      },
+      {
+        "feature": "Multi-Gateway Activation",
+        "source": "Hermes",
+        "effort": "Medium",
+        "impact": "Enables workflows via Slack, Discord, Email",
+        "implementation": "Implement gateway adapters for Slack, Discord, Email; route to agent system"
+      }
+    ],
+    "architectural_principles": [
+      "Agent sessions should be persistent objects (Squad model), not ephemeral",
+      "Task chaining should be automatic based on result analysis (Squad pattern)",
+      "Validation should use discriminators, not manual checklists (DeepInnovator)",
+      "Routing rules should be compiled code, not prompt-based (Squad advantages)",
+      "Knowledge should compound across sessions via skill persistence (Hermes/Squad)",
+      "Terminal backends should be abstracted for extensibility (Hermes pattern)",
+      "Agent specialization should be granular and deep (Agency-Agents model)",
+      "Work interruption should be resumable via breadcrumb trails (Squad feature)"
+    ],
+    "quick_wins": [
+      "Implement `.aiox/sessions/{agentId}/history.md` persistence (~1 day)",
+      "Add discriminator validation to @po story gate (~3 days)",
+      "Create breadcrumb trails for interrupted work (~1 day)",
+      "Expand to 12+ agent roles with specialization taxonomy (~2 days)"
+    ]
+  }
+}
