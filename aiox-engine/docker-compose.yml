@@ -1,0 +1,103 @@
+version: '3.9'
+
+services:
+  # Ollama - LLM Models (qwen2.5:7b, qwen2.5:14b, deepseek-coder:6.7b)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: aiox-ollama
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - aiox-network
+
+  # Redis - Cache Layer (24h TTL)
+  redis:
+    image: redis:7-alpine
+    container_name: aiox-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --maxmemory 512mb --maxmemory-policy allkeys-lru --appendonly yes
+    volumes:
+      - redis_data:/data
+    restart: always
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - aiox-network
+
+  # Qdrant - Vector Memory DB
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: aiox-qdrant
+    ports:
+      - "6333:6333"
+    environment:
+      - QDRANT_API_KEY=aiox-secret-key
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - aiox-network
+
+  # FastAPI Application
+  aiox-api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: aiox-api
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_URL=http://ollama:11434
+      - REDIS_URL=redis://redis:6379
+      - QDRANT_URL=http://qdrant:6333
+      - QDRANT_API_KEY=aiox-secret-key
+      - ENV=production
+    depends_on:
+      ollama:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    volumes:
+      - ./api:/app/api
+      - ./router:/app/router
+      - ./cache:/app/cache
+      - ./memory:/app/memory
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - aiox-network
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+
+volumes:
+  ollama_data:
+  redis_data:
+  qdrant_storage:
+
+networks:
+  aiox-network:
+    driver: bridge

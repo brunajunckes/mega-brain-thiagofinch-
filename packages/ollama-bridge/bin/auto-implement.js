@@ -11,16 +11,32 @@
 const { AutoImplementer } = require('../index');
 
 const args = process.argv.slice(2);
-const mode = args[0] || 'continuous'; // Default: contínuo
-const maxTasks = args[1] ? parseInt(args[1]) : null;
+
+// Parse mode from first positional argument (not a flag)
+let mode = 'continuous'; // Default
+if (args.length > 0 && !args[0].startsWith('-')) {
+  mode = args[0];
+}
+
+// Parse flags
+const autoCommit = args.includes('--commit') || args.includes('-c');
+const autoPush = args.includes('--push') || args.includes('-p');
+const verbose = args.includes('--verbose') || args.includes('-v');
+
+// Parse max tasks
+let maxTasks = null;
+const maxTasksArg = args.find(arg => arg.startsWith('--max-tasks'));
+if (maxTasksArg) {
+  maxTasks = parseInt(maxTasksArg.split('=')[1]) || maxTasks;
+}
 
 async function main() {
   const options = {
-    continuous: mode === 'continuous' || mode === 'c' || !mode,
-    autoCommit: args.includes('--commit') || args.includes('-c'),
-    autoPush: args.includes('--push') || args.includes('-p'),
+    continuous: mode === 'continuous' || mode === 'c' || mode === 'contínuo',
+    autoCommit,
+    autoPush,
     maxTasksPerSession: maxTasks,
-    verbose: args.includes('--verbose') || args.includes('-v'),
+    verbose,
   };
 
   if (mode === '-h' || mode === '--help' || args.includes('--help')) {
