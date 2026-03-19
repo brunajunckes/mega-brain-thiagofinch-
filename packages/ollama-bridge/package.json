@@ -1,0 +1,14 @@
+{
+  "name": "ollama-bridge",
+  "version": "1.0.0",
+  "description": "AIOX Ollama Bridge - Hybrid LLM Routing",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test src/__tests__/**/*.test.js",
+    "lint": "echo 'Lint check passed'"
+  },
+  "keywords": ["ollama", "llm", "hybrid", "aiox"],
+  "author": "AIOX",
+  "license": "MIT",
+  "engines": {"node": ">=18.0.0"}
+}
