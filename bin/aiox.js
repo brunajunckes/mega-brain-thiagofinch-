@@ -91,6 +91,14 @@ CONFIGURATION:
   aiox config validate                   # Validate config files
   aiox config init-local                 # Create local-config.yaml
 
+SESSIONS:
+  aiox session list                      # List all active sessions
+  aiox session list --agent dev          # Filter by agent
+  aiox session create <agent-id>         # Create new session
+  aiox session resume <agent-id>         # Resume most recent session
+  aiox session archive <agent> <id>      # Archive a session
+  aiox session snapshot <agent> <id>     # Create session snapshot
+
 SERVICE DISCOVERY:
   aiox workers search <query>            # Search for workers
   aiox workers search "json" --category=data
@@ -367,6 +375,29 @@ async function runDoctor(options = {}) {
 
   // Exit with code 1 if any FAIL results
   if (result.data && result.data.summary && result.data.summary.fail > 0) {
+    process.exit(1);
+  }
+}
+
+// Helper: Run session management commands (Story 1.1)
+async function runSession() {
+  try {
+    const { registerSessionCommand } = require(path.join(__dirname, '..', '.aiox-core', 'cli', 'commands', 'session.js'));
+    const { Command } = require('commander');
+
+    const program = new Command();
+    registerSessionCommand(program);
+
+    // Parse with argv slice (node, script are already consumed)
+    // process.argv = ['node', 'aiox.js', 'session', ...subcommandArgs]
+    // We need [...subcommandArgs]
+    const subcommandArgs = process.argv.slice(3);
+    await program.parseAsync(['node', 'session', ...subcommandArgs]);
+  } catch (error) {
+    console.error(`❌ Session command error: ${error.message}`);
+    if (args.includes('--verbose') || args.includes('-v')) {
+      console.error(error.stack);
+    }
     process.exit(1);
   }
 }
@@ -821,6 +852,11 @@ async function main() {
         console.error(`❌ Config command error: ${error.message}`);
         process.exit(1);
       }
+      break;
+
+    case 'session':
+      // Session Management CLI - Story 1.1
+      await runSession();
       break;
 
     case 'pro':
