@@ -130,12 +130,18 @@ const server = http.createServer(async (req, res) => {
 
     // API config - tell UI where to call back
     if (pathname === '/config.json') {
+      const apiBase = process.env.API_BASE || `http://${req.headers.host}`;
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
-        apiBase: `http://localhost:${PORT}`,
-        wsBase: `ws://localhost:${PORT}`,
+        apiBase: apiBase,
+        wsBase: apiBase.replace('http', 'ws'),
         timeout: 30000,
         environment: 'production',
+        ollama: {
+          url: process.env.OLLAMA_URL || 'http://localhost:11434',
+          model: process.env.OLLAMA_MODEL || 'qwen2.5:7b',
+          fallbacks: process.env.OLLAMA_FALLBACKS?.split(',') || ['qwen2.5:14b', 'deepseek-coder:6.7b']
+        }
       }));
       return;
     }
