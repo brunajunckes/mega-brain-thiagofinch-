@@ -271,45 +271,55 @@ COMECE!`;
     return completedCount;
   }
 
-  // Executar task individual
-  async executeTask(task, verbose = false) {
+  // Executar task individual com retry
+  async executeTask(task, verbose = false, retries = 2) {
     console.log(`\n📌 ${task.description}`);
     console.log(`🏷️  ${task.phase} | 🎯 ${task.priority}`);
-    console.log(`🔄 Processando com Ollama...\n`);
 
-    try {
-      const prompt = await this.generateImplementationPrompt(task);
+    for (let attempt = 1; attempt <= retries; attempt++) {
+      try {
+        console.log(`🔄 Processando com Ollama (tentativa ${attempt}/${retries})...\n`);
+        const prompt = await this.generateImplementationPrompt(task);
 
-      // Timeout de 60 segundos para a requisição
-      const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Timeout ao processar task (60s)')), 60000)
-      );
+        // Timeout de 180 segundos (3 min) por tentativa
+        const timeoutPromise = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Timeout ao processar task (180s)')), 180000)
+        );
 
-      const response = await Promise.race([
-        this.client.chat(
-          this.model,
-          [{ role: 'user', content: prompt }],
-          (chunk) => {
-            if (verbose && chunk.message?.content) {
-              process.stdout.write(chunk.message.content);
+        const response = await Promise.race([
+          this.client.chat(
+            this.model,
+            [{ role: 'user', content: prompt }],
+            (chunk) => {
+              if (verbose && chunk.message?.content) {
+                process.stdout.write(chunk.message.content);
+              }
             }
-          }
-        ),
-        timeoutPromise,
-      ]);
+          ),
+          timeoutPromise,
+        ]);
 
-      console.log('\n✅ Task completada!');
-      this.taskHistory.push({
-        taskId: task.id,
-        completedAt: new Date().toISOString(),
-        result: response.response ? response.response.substring(0, 200) : 'Executada',
-      });
+        console.log('\n✅ Task completada!');
+        this.taskHistory.push({
+          taskId: task.id,
+          completedAt: new Date().toISOString(),
+          result: response.response ? response.response.substring(0, 200) : 'Executada',
+        });
 
-      return true;
-    } catch (error) {
-      console.error(`❌ Erro: ${error.message}`);
-      return false;
+        return true;
+      } catch (error) {
+        if (attempt < retries) {
+          console.error(`⚠️  Tentativa ${attempt} falhou: ${error.message}`);
+          console.log(`⏳ Aguardando 10s antes de retry...\n`);
+          await this.sleep(10000);
+        } else {
+          console.error(`❌ Falha final após ${retries} tentativas: ${error.message}`);
+          return false;
+        }
+      }
     }
+
+    return false;
   }
 
   // Sleep helper
