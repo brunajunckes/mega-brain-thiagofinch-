@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+#
+# OLLAMA HEALTH CHECK
+# Monitora se Ollama está respondendo, reinicia se travado
+#
+
+set -e
+
+OLLAMA_URL="http://localhost:11434/api/tags"
+CHECK_INTERVAL=30  # A cada 30 segundos
+TIMEOUT=5  # timeout de 5 segundos
+FAIL_THRESHOLD=3  # Reinicia após 3 falhas consecutivas
+LOG_FILE="/root/.aiox/ollama-health.log"
+
+log() {
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"
+}
+
+log "🏥 Ollama Health Check iniciado"
+
+FAIL_COUNT=0
+
+while true; do
+  sleep "$CHECK_INTERVAL"
+
+  if curl -s -m "$TIMEOUT" "$OLLAMA_URL" > /dev/null 2>&1; then
+    if [ $FAIL_COUNT -gt 0 ]; then
+      log "✅ Ollama respondendo novamente (era $FAIL_COUNT falhas)"
+      FAIL_COUNT=0
+    fi
+  else
+    FAIL_COUNT=$((FAIL_COUNT + 1))
+    log "⚠️  Ollama não respondeu (falha $FAIL_COUNT/$FAIL_THRESHOLD)"
+
+    if [ $FAIL_COUNT -ge $FAIL_THRESHOLD ]; then
+      log "🚨 Ollama não responde! Reiniciando..."
+      pkill -9 ollama 2>/dev/null || true
+      sleep 2
+      log "🚀 Iniciando Ollama..."
+      nohup ollama serve > /root/.aiox/ollama.log 2>&1 &
+      echo $! > /root/.aiox/ollama.pid
+      sleep 5
+
+      # Testar se reiniciou com sucesso
+      if curl -s -m "$TIMEOUT" "$OLLAMA_URL" > /dev/null 2>&1; then
+        log "✅ Ollama reiniciado com sucesso"
+        FAIL_COUNT=0
+      else
+        log "❌ Ollama falhou ao reiniciar"
+      fi
+    fi
+  fi
+done
