@@ -171,10 +171,17 @@ COMECE!`;
       // Pre-flight checks
       console.log('🔍 Executando security checks...\n');
       const preFlightResults = await this.executor.runPreFlightChecks();
-      const allChecksPassed = Object.values(preFlightResults).every(r => r.status === 'PASS');
+      const allChecksPassed = Object.values(preFlightResults).every(r => r && r.status === 'PASS');
+
+      // DEBUG
+      if (process.env.DEBUG_AUTO) {
+        console.log('DEBUG: preFlightResults:', JSON.stringify(preFlightResults, null, 2));
+        console.log('DEBUG: allChecksPassed:', allChecksPassed);
+      }
 
       if (!allChecksPassed) {
-        console.log('⚠️  Alguns checks falharam. Aguardando próximo ciclo...');
+        console.log('⚠️  Alguns checks falharam. Resultados:', JSON.stringify(Object.entries(preFlightResults).map(([k,v]) => ({[k]: v.status})), null, 2));
+        console.log('⏳ Aguardando próximo ciclo...');
         await this.sleep(60000); // Aguarda 1 minuto
         continue;
       }

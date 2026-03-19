@@ -80,7 +80,7 @@ class AuthorizedExecutor {
 
       const backup = {
         timestamp,
-        gitStatus: this.getGitStatus(),
+        gitStatus: this.checkGitStatus(),
         filesModified: this.getModifiedFiles(),
         gitLog: this.getGitLog(5),
       };
@@ -98,26 +98,29 @@ class AuthorizedExecutor {
   async runPreFlightChecks() {
     console.log('\n🔍 Executando pre-flight checks...\n');
 
-    const checks = {
-      gitStatus: () => this.checkGitStatus(),
-      diskSpace: () => this.checkDiskSpace(),
-      nodeVersion: () => this.checkNodeVersion(),
-      lint: () => this.runLint(),
-      typecheck: () => this.runTypecheck(),
-      tests: () => this.runTests(),
+    const availableChecks = {
+      checkGitStatus: () => this.checkGitStatus(),
+      checkDiskSpace: () => this.checkDiskSpace(),
+      checkNodeVersion: () => this.checkNodeVersion(),
+      runLint: () => this.runLint(),
+      runTypecheck: () => this.runTypecheck(),
+      runTests: () => this.runTests(),
     };
 
     const results = {};
 
-    for (const [name, check] of Object.entries(checks)) {
+    // Use only the enabled checks from this.preFlightChecks array
+    for (const checkName of this.preFlightChecks) {
+      if (!availableChecks[checkName]) continue;
+
       try {
-        console.log(`⏳ ${name}...`);
-        const result = await check();
-        results[name] = { status: 'PASS', ...result };
-        console.log(`✅ ${name} passou\n`);
+        console.log(`⏳ ${checkName}...`);
+        const result = await availableChecks[checkName]();
+        results[checkName] = { status: 'PASS', ...result };
+        console.log(`✅ ${checkName} passou\n`);
       } catch (error) {
-        results[name] = { status: 'FAIL', error: error.message };
-        console.error(`❌ ${name} falhou: ${error.message}\n`);
+        results[checkName] = { status: 'FAIL', error: error.message };
+        console.error(`❌ ${checkName} falhou: ${error.message}\n`);
       }
     }
 
@@ -186,7 +189,7 @@ class AuthorizedExecutor {
         throw new Error(`Disco quase cheio: ${used}%`);
       }
 
-      return { diskUsage: used, status: 'OK' };
+      return { diskUsage: used };
     } catch (error) {
       throw new Error(`Erro ao verificar disco: ${error.message}`);
     }
