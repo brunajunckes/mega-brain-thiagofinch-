@@ -3,6 +3,7 @@ const OllamaClient = require('./client');
 const ConfigManager = require('./config');
 const Classifier = require('./classifier');
 const Router = require('./router');
+const AutoImplementer = require('./auto-implementer');
 
 class InteractiveChat {
   constructor() {
@@ -16,7 +17,7 @@ class InteractiveChat {
   async start() {
     console.log('\n🤖 AIOX Ollama Bridge — Interactive Chat');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-    console.log('Commands: /help, /models, /threshold, /force-ollama, /force-claude, /exit\n');
+    console.log('Commands: /help, /models, /threshold, /force-ollama, /force-claude, /auto, /exit\n');
 
     const health = await this.client.healthCheck();
     if (!health.available) {
@@ -80,6 +81,9 @@ class InteractiveChat {
         this.history = [];
         console.log('✅ History cleared');
         break;
+      case '/auto':
+        await this.startAutoImplementation(args);
+        break;
       case '/exit':
         console.log('\n👋 Goodbye!');
         this.rl.close();
@@ -142,6 +146,27 @@ class InteractiveChat {
     }
   }
 
+  async startAutoImplementation(args) {
+    const autoImpl = new AutoImplementer();
+    const mode = args[0] || 'auto';
+
+    console.log('\n⏸️  Encerrando chat interativo...\n');
+    this.rl.close();
+
+    if (mode === 'interactive' || mode === 'i') {
+      await autoImpl.startInteractiveMode();
+    } else {
+      const options = {
+        interactive: true,
+        verbose: true,
+        maxTasks: args[1] ? parseInt(args[1]) : null,
+      };
+      await autoImpl.startAutoImplementation(options);
+    }
+
+    process.exit(0);
+  }
+
   showHelp() {
     console.log(`
 Commands:
@@ -150,6 +175,7 @@ Commands:
   /threshold <1-5>   Set threshold
   /force-ollama      Always use Ollama
   /force-claude      Always use Claude
+  /auto [i|auto]     Auto-implementação (i=interativo, auto=automático)
   /clear             Clear history
   /exit              Exit
 `);

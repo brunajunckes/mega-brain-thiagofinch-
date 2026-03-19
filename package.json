@@ -7,7 +7,9 @@
     "aiox-core": "bin/aiox.js",
     "aiox-minimal": "bin/aiox-minimal.js",
     "aiox-graph": "bin/aiox-graph.js",
-    "aiox-analyze": "bin/aiox-analyze.js"
+    "aiox-analyze": "bin/aiox-analyze.js",
+    "aiox-ollama": "aiox-ollama",
+    "aiox-auto": "packages/ollama-bridge/bin/auto-implement.js"
   },
   "preferGlobal": false,
   "workspaces": [
