@@ -1,9 +1,14 @@
 #!/usr/bin/env node
 const http = require('http');
+const https = require('https');
 const url = require('url');
+const fs = require('fs');
+const path = require('path');
 const SwarmOrchestrator = require('/srv/openclaw/swarm/swarm-orchestrator');
 
 const PORT = process.env.PORT || 3000;
+const UI_URL = process.env.UI_URL || 'https://openclaw.hubme.tech';
+const UI_CACHE = new Map(); // Simple cache for UI files
 
 // Env setup
 process.env.AIOX_OFFLINE_MODE = 'true';
@@ -11,6 +16,53 @@ process.env.OLLAMA_URL = process.env.OLLAMA_URL || 'http://localhost:11434';
 process.env.OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'qwen2.5:7b';
 
 const orchestrator = new SwarmOrchestrator({ backendType: 'ollama' });
+
+/**
+ * Proxy UI request to openclaw.hubme.tech
+ */
+async function proxyUI(req, res, pathname) {
+  const urlPath = pathname === '/' ? '/' : pathname;
+  const proxyUrl = new URL(UI_URL + urlPath);
+
+  try {
+    const protocol = proxyUrl.protocol === 'https:' ? https : http;
+
+    const proxyReq = protocol.get({
+      hostname: proxyUrl.hostname,
+      port: proxyUrl.port || (proxyUrl.protocol === 'https:' ? 443 : 80),
+      path: proxyUrl.pathname + proxyUrl.search,
+      method: req.method,
+      headers: {
+        ...req.headers,
+        'host': proxyUrl.hostname,
+        'x-forwarded-for': req.socket.remoteAddress,
+        'x-forwarded-proto': 'https',
+      },
+    }, (proxyRes) => {
+      // Copy headers (except problematic ones)
+      const headers = { ...proxyRes.headers };
+      delete headers['transfer-encoding'];
+      delete headers['content-encoding'];
+
+      res.writeHead(proxyRes.statusCode, headers);
+      proxyRes.pipe(res);
+    });
+
+    proxyReq.on('error', (error) => {
+      res.writeHead(503);
+      res.end(JSON.stringify({ error: 'UI unavailable: ' + error.message }));
+    });
+
+    if (req.method !== 'GET' && req.method !== 'HEAD') {
+      req.pipe(proxyReq);
+    } else {
+      proxyReq.end();
+    }
+  } catch (error) {
+    res.writeHead(503);
+    res.end(JSON.stringify({ error: 'Proxy error: ' + error.message }));
+  }
+}
 
 const server = http.createServer(async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
@@ -69,10 +121,32 @@ const server = http.createServer(async (req, res) => {
   }
 
   try {
-    // Health
+    // API health check
     if (pathname === '/health') {
       res.writeHead(200);
       res.end(JSON.stringify({ status: 'ok', timestamp: new Date().toISOString() }));
+      return;
+    }
+
+    // API config - tell UI where to call back
+    if (pathname === '/config.json') {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        apiBase: `http://localhost:${PORT}`,
+        wsBase: `ws://localhost:${PORT}`,
+        timeout: 30000,
+        environment: 'production',
+      }));
+      return;
+    }
+
+    // API routes - serve directly
+    if (pathname.startsWith('/api/')) {
+      // Route API requests to swarm/status endpoints
+      // (already handled below in separate if statements)
+    } else {
+      // All other routes - proxy to UI
+      await proxyUI(req, res, pathname);
       return;
     }
 
