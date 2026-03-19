@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+#
+# AIOX Auto-Implementador Daemon
+# Mantém aiox-auto rodando continuamente com auto-restart
+# Uso: aiox-auto-daemon [--log-file LOG_PATH]
+#
+
+set -e
+
+LOG_FILE="${LOG_FILE:-/root/.aiox/auto-implement-daemon.log}"
+PID_FILE="${PID_FILE:-/root/.aiox/auto-implement.pid}"
+RESTART_DELAY=5  # segundos antes de reiniciar
+CYCLE_DURATION=300  # 5 minutos por ciclo esperado
+
+# Criar diretório se não existir
+mkdir -p "$(dirname "$LOG_FILE")"
+mkdir -p "$(dirname "$PID_FILE")"
+
+log() {
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"
+}
+
+log "🚀 AIOX Auto-Implementador Daemon iniciado"
+log "📍 Log: $LOG_FILE"
+log "📍 PID: $$"
+
+# Trap para limpeza
+trap 'log "⏹️  Daemon finalizado"; rm -f "$PID_FILE"; exit 0' SIGINT SIGTERM
+
+# Escrever PID
+echo "$$" > "$PID_FILE"
+
+RESTART_COUNT=0
+
+while true; do
+  RESTART_COUNT=$((RESTART_COUNT + 1))
+  log "🔄 Ciclo #$RESTART_COUNT: iniciando aiox-auto -c"
+
+  START_TIME=$(date +%s)
+
+  if aiox-auto -c >> "$LOG_FILE" 2>&1; then
+    END_TIME=$(date +%s)
+    DURATION=$((END_TIME - START_TIME))
+    log "✅ aiox-auto completou com sucesso (duração: ${DURATION}s)"
+    break  # Saiu normalmente
+  else
+    EXIT_CODE=$?
+    END_TIME=$(date +%s)
+    DURATION=$((END_TIME - START_TIME))
+
+    if [ $DURATION -lt 30 ]; then
+      log "⚠️  aiox-auto saiu com erro rapidamente (${DURATION}s, exit code: $EXIT_CODE)"
+      log "⏳ Aguardando ${RESTART_DELAY}s antes de reiniciar..."
+      sleep "$RESTART_DELAY"
+    else
+      log "✅ aiox-auto rodou por ${DURATION}s, reiniciando ciclo"
+      sleep 2
+    fi
+  fi
+done
+
+log "✅ Daemon completou com sucesso"
+rm -f "$PID_FILE"

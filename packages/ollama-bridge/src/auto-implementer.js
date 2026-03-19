@@ -275,24 +275,34 @@ COMECE!`;
   async executeTask(task, verbose = false) {
     console.log(`\n📌 ${task.description}`);
     console.log(`🏷️  ${task.phase} | 🎯 ${task.priority}`);
+    console.log(`🔄 Processando com Ollama...\n`);
 
     try {
       const prompt = await this.generateImplementationPrompt(task);
-      const response = await this.client.chat(
-        this.model,
-        [{ role: 'user', content: prompt }],
-        (chunk) => {
-          if (verbose && chunk.message?.content) {
-            process.stdout.write(chunk.message.content);
-          }
-        }
+
+      // Timeout de 60 segundos para a requisição
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Timeout ao processar task (60s)')), 60000)
       );
+
+      const response = await Promise.race([
+        this.client.chat(
+          this.model,
+          [{ role: 'user', content: prompt }],
+          (chunk) => {
+            if (verbose && chunk.message?.content) {
+              process.stdout.write(chunk.message.content);
+            }
+          }
+        ),
+        timeoutPromise,
+      ]);
 
       console.log('\n✅ Task completada!');
       this.taskHistory.push({
         taskId: task.id,
         completedAt: new Date().toISOString(),
-        result: response.response.substring(0, 200),
+        result: response.response ? response.response.substring(0, 200) : 'Executada',
       });
 
       return true;

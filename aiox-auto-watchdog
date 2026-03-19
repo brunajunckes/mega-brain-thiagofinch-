@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+#
+# AIOX Auto-Implementador Watchdog
+# Monitora o processo aiox-auto e reinicia se inativo por 30+ segundos
+#
+
+LOG_FILE="/root/.aiox/aiox-auto.log"
+PID_FILE="/root/.aiox/aiox-auto.pid"
+CHECK_INTERVAL=10  # Verifica a cada 10 segundos
+INACTIVITY_THRESHOLD=30  # Reinicia se 30s sem novo log
+
+log_watchdog() {
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] [WATCHDOG] $*" >> "$LOG_FILE"
+}
+
+log_watchdog "🐕 Watchdog iniciado (PID: $$)"
+log_watchdog "📍 Monitorando: $LOG_FILE"
+log_watchdog "⏱️  Inatividade limite: ${INACTIVITY_THRESHOLD}s"
+
+# Trap para limpeza
+trap 'log_watchdog "⏹️  Watchdog finalizado"; exit 0' SIGINT SIGTERM
+
+LAST_LOG_TIME=$(stat -c %Y "$LOG_FILE" 2>/dev/null || echo 0)
+
+while true; do
+  sleep "$CHECK_INTERVAL"
+
+  # Verificar se arquivo log existe
+  if [ ! -f "$LOG_FILE" ]; then
+    log_watchdog "⚠️  Log file não encontrado: $LOG_FILE"
+    continue
+  fi
+
+  # Get current timestamp e timestamp do último log
+  NOW=$(date +%s)
+  CURRENT_LOG_TIME=$(stat -c %Y "$LOG_FILE" 2>/dev/null || echo 0)
+  TIME_SINCE_LOG=$((NOW - CURRENT_LOG_TIME))
+
+  # Se o log foi atualizado, reset the inactivity counter
+  if [ "$CURRENT_LOG_TIME" -gt "$LAST_LOG_TIME" ]; then
+    LAST_LOG_TIME="$CURRENT_LOG_TIME"
+    TIME_SINCE_LOG=0
+  fi
+
+  # Se inativo por muito tempo, reiniciar
+  if [ "$TIME_SINCE_LOG" -gt "$INACTIVITY_THRESHOLD" ]; then
+    if [ -f "$PID_FILE" ]; then
+      OLD_PID=$(cat "$PID_FILE")
+      log_watchdog "⚠️  Inatividade detectada por ${TIME_SINCE_LOG}s (PID: $OLD_PID)"
+
+      # Verificar se processo ainda existe
+      if ! ps -p "$OLD_PID" > /dev/null 2>&1; then
+        log_watchdog "❌ Processo morreu (PID: $OLD_PID não existe)"
+      else
+        log_watchdog "🔄 Matando processo inativo $OLD_PID"
+        kill -9 "$OLD_PID" 2>/dev/null || true
+      fi
+
+      # Aguardar um pouco
+      sleep 2
+
+      # Reiniciar
+      log_watchdog "🚀 Reiniciando aiox-auto -c"
+      nohup aiox-auto -c >> "$LOG_FILE" 2>&1 &
+      NEW_PID=$!
+      echo "$NEW_PID" > "$PID_FILE"
+      log_watchdog "✅ Novo processo iniciado (PID: $NEW_PID)"
+
+      # Reset log time
+      LAST_LOG_TIME=$(date +%s)
+    fi
+  fi
+
+  # Log de status a cada 60 segundos
+  if [ $((CURRENT_LOG_TIME % 60)) -lt "$CHECK_INTERVAL" ]; then
+    if [ -f "$PID_FILE" ]; then
+      PID=$(cat "$PID_FILE")
+      if ps -p "$PID" > /dev/null 2>&1; then
+        TASK_COUNT=$(grep -c "✅ Task completada!" "$LOG_FILE" || echo "0")
+        log_watchdog "📊 Status: PID=$PID, tasks completadas=$TASK_COUNT, inatividade=${TIME_SINCE_LOG}s"
+      fi
+    fi
+  fi
+done
