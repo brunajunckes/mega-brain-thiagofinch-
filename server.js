@@ -196,17 +196,12 @@ const requestHandler = async (req, res) => {
   }
 };
 
-// Create HTTPS server with self-signed cert
-const options = {
-  key: fs.readFileSync('/srv/aiox/server.key'),
-  cert: fs.readFileSync('/srv/aiox/server.crt')
-};
-
-const server = https.createServer(options, requestHandler);
+// Create HTTP server
+const server = http.createServer(requestHandler);
 
 server.listen(PORT, () => {
-  console.log(`\n🚀 Server running on port ${PORT} (HTTPS)`);
-  console.log(`📊 OpenClaw API: https://localhost:${PORT}/api/openclaw/`);
-  console.log(`⚙️  AIOX API: https://localhost:${PORT}/api/aiox/`);
-  console.log(`🏥 Health: https://localhost:${PORT}/health\n`);
+  console.log(`\n🚀 Server running on port ${PORT}`);
+  console.log(`📊 OpenClaw API: http://localhost:${PORT}/api/openclaw/`);
+  console.log(`⚙️  AIOX API: http://localhost:${PORT}/api/aiox/`);
+  console.log(`🏥 Health: http://localhost:${PORT}/health\n`);
 });
