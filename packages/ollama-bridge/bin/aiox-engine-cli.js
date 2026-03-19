@@ -14,6 +14,8 @@ const HISTORY_SIZE = 50;
 
 class AIOXEngineCLI {
   constructor() {
+    // Generate unique session ID (UUID v4)
+    this.sessionId = this.generateUUID();
     this.history = [];
     this.rl = readline.createInterface({
       input: process.stdin,
@@ -21,6 +23,14 @@ class AIOXEngineCLI {
       historySize: HISTORY_SIZE
     });
     this.isRunning = true;
+  }
+
+  generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
   }
 
   async init() {
@@ -39,8 +49,10 @@ class AIOXEngineCLI {
     }
 
     console.log('✅ AIOX Engine conectado\n');
+    console.log(`📊 Session ID: ${this.sessionId.substring(0, 8)}...\n`);
     console.log('Commands:');
     console.log('  /help     - Show commands');
+    console.log('  /session  - Show session info');
     console.log('  /clear    - Clear history');
     console.log('  /history  - Show chat history');
     console.log('  /exit     - Exit\n');
@@ -65,7 +77,9 @@ class AIOXEngineCLI {
     return new Promise((resolve, reject) => {
       const data = JSON.stringify({
         prompt: prompt,
-        model: null // Let engine choose
+        model: null, // Let engine choose
+        session_id: this.sessionId,
+        use_rag: true
       });
 
       const url = new URL(`${ENGINE_URL}/agent`);
@@ -90,14 +104,28 @@ class AIOXEngineCLI {
 
         res.on('end', () => {
           try {
-            const parsed = JSON.parse(responseData);
+            // Trim whitespace and check if empty
+            const trimmed = responseData.trim();
+            if (!trimmed) {
+              reject(new Error('Empty response from engine'));
+              return;
+            }
+
+            // Try parsing JSON
+            const parsed = JSON.parse(trimmed);
+
+            // Check for error detail in response
             if (parsed.detail) {
               reject(new Error(parsed.detail));
+            } else if (!parsed.response) {
+              reject(new Error('Invalid response format: missing "response" field'));
             } else {
               resolve(parsed);
             }
           } catch (e) {
-            reject(new Error('Invalid response from engine'));
+            // Better error message with actual response preview
+            const preview = responseData.substring(0, 200);
+            reject(new Error(`Invalid JSON response (${e.message}): ${preview}`));
           }
         });
       });
@@ -115,9 +143,10 @@ class AIOXEngineCLI {
 
   formatResponse(result) {
     const cached = result.cached ? ' (📦 cached)' : '';
+    const contextInfo = result.context_used > 0 ? ` 📚 ${result.context_used} context(s)` : '';
     const lines = [
       '',
-      `[${result.model}${cached}]`,
+      `[${result.model}${cached}${contextInfo}]`,
       '─'.repeat(50),
       result.response,
       ''
@@ -132,9 +161,17 @@ class AIOXEngineCLI {
       case '/help':
         console.log('\n📋 Commands:');
         console.log('  /help     - Show this message');
+        console.log('  /session  - Show session info');
         console.log('  /clear    - Clear history');
         console.log('  /history  - Show conversation history');
         console.log('  /exit     - Exit terminal\n');
+        return true;
+
+      case '/session':
+        console.log('\n📊 Session Info:');
+        console.log(`  ID: ${this.sessionId}`);
+        console.log(`  Messages: ${this.history.length}`);
+        console.log(`  Status: Active\n`);
         return true;
 
       case '/clear':
@@ -166,7 +203,18 @@ class AIOXEngineCLI {
   }
 
   async prompt() {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
+      if (!this.rl) {
+        reject(new Error('readline closed'));
+        return;
+      }
+
+      // Handle close event
+      this.rl.once('close', () => {
+        this.isRunning = false;
+        reject(new Error('readline was closed'));
+      });
+
       this.rl.question('> ', (input) => {
         resolve(input);
       });
@@ -193,10 +241,26 @@ class AIOXEngineCLI {
           continue;
         }
 
-        // Process with engine
-        process.stdout.write('⏳ Processing...');
-        const result = await this.callEngine(input);
-        process.stdout.write('\r          \r'); // Clear loading
+        // Process with engine (with 1 retry on failure)
+        let result;
+        let retries = 1;
+        while (retries >= 0) {
+          try {
+            process.stdout.write('⏳ Processing...');
+            result = await this.callEngine(input);
+            process.stdout.write('\r          \r'); // Clear loading
+            break;
+          } catch (err) {
+            process.stdout.write('\r          \r'); // Clear loading
+            if (retries > 0 && err.message.includes('timeout')) {
+              console.log(`⚠️  ${err.message} - retrying...\n`);
+              retries--;
+              await new Promise(resolve => setTimeout(resolve, 1000));
+            } else {
+              throw err;
+            }
+          }
+        }
 
         // Store in history
         this.history.push({
@@ -211,7 +275,25 @@ class AIOXEngineCLI {
         console.log(this.formatResponse(result));
 
       } catch (error) {
-        console.error(`\n❌ Error: ${error.message}\n`);
+        // Handle readline closed event
+        if (error.message.includes('readline') || error.message.includes('closed')) {
+          break;
+        }
+
+        console.error(`\n❌ Error: ${error.message}`);
+
+        // Helpful suggestions based on error type
+        if (error.message.includes('ECONNREFUSED')) {
+          console.error('   → AIOX Engine não está rodando');
+          console.error('   → Execute: docker compose up -d (em /srv/aiox/aiox-engine)');
+        } else if (error.message.includes('timeout') || error.message.includes('TIMEOUT')) {
+          console.error('   → Ollama está demorando muito');
+          console.error('   → Verifique: docker ps | grep ollama');
+        } else if (error.message.includes('Invalid')) {
+          console.error('   → Engine retornou resposta inválida');
+          console.error('   → Verifique os logs: docker logs aiox-api');
+        }
+        console.log('');
       }
     }
 

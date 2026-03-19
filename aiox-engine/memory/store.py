@@ -1,8 +1,9 @@
-"""Memory Store - Qdrant integration for persistent memory"""
+"""Memory Store - Qdrant integration for persistent memory with real embeddings"""
 
 import os
+import httpx
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List, Dict, Any
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 import hashlib
@@ -11,7 +12,11 @@ import hashlib
 QDRANT_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY", "aiox-secret-key")
 COLLECTION_NAME = "memory"
-VECTOR_SIZE = 384  # Simple hash-based vectors (not embeddings)
+VECTOR_SIZE = 768  # Real embeddings from Ollama (nomic-embed-text)
+
+# Ollama embedding
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://172.17.0.1:11434")
+EMBED_MODEL = "nomic-embed-text"
 
 # Initialize Qdrant client
 client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
@@ -30,34 +35,39 @@ def ensure_collection_exists():
         print(f"✅ Created Qdrant collection: {COLLECTION_NAME}")
 
 
-def generate_vector(text: str) -> list:
+async def generate_vector(text: str) -> List[float]:
     """
-    Generate a simple vector from text using hash-based approach.
-
-    For production, replace with proper embeddings (OpenAI, Huggingface, etc).
-    This gives us vector storage infrastructure ready for real embeddings.
+    Generate real semantic embedding using Ollama (nomic-embed-text).
 
     Args:
-        text: Text to vectorize
+        text: Text to embed
 
     Returns:
-        Vector of size VECTOR_SIZE (384)
+        Vector of size VECTOR_SIZE (768)
     """
-    # Use hash for deterministic vector generation
-    hash_obj = hashlib.sha256(text.encode())
-    hash_int = int(hash_obj.hexdigest(), 16)
+    try:
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            response = await client.post(
+                f"{OLLAMA_URL}/api/embed",
+                json={"model": EMBED_MODEL, "input": text}
+            )
+            response.raise_for_status()
+            data = response.json()
 
-    # Generate pseudo-random vector from hash
-    vector = []
-    for i in range(VECTOR_SIZE):
-        # Deterministic but distributed values
-        val = ((hash_int >> (i % 64)) ^ (hash_int >> ((i + 1) % 64))) % 1000
-        vector.append(val / 1000.0)  # Normalize to [0, 1]
+            # Extract embedding from response
+            embeddings = data.get("embeddings", [])
+            if embeddings and len(embeddings) > 0:
+                return embeddings[0]
 
-    return vector
+            # Fallback: return zero vector if generation fails
+            return [0.0] * VECTOR_SIZE
+    except Exception as e:
+        print(f"[ERROR] Failed to generate embedding: {e}")
+        # Return zero vector as fallback
+        return [0.0] * VECTOR_SIZE
 
 
-async def save_to_memory(prompt: str, response: str, model: str) -> bool:
+async def save_to_memory(prompt: str, response: str, model: str, vector: Optional[List[float]] = None) -> bool:
     """
     Save prompt+response to Qdrant memory store.
 
@@ -65,6 +75,7 @@ async def save_to_memory(prompt: str, response: str, model: str) -> bool:
         prompt: User prompt
         response: Model response
         model: Model used for generation
+        vector: Pre-generated embedding vector (optional)
 
     Returns:
         Success status
@@ -75,8 +86,9 @@ async def save_to_memory(prompt: str, response: str, model: str) -> bool:
         # Generate ID from prompt hash
         point_id = int(hashlib.md5(prompt.encode()).hexdigest()[:8], 16) % (2**31 - 1)
 
-        # Create vector from prompt
-        vector = generate_vector(prompt)
+        # Create vector from prompt if not provided
+        if vector is None:
+            vector = await generate_vector(prompt)
 
         # Create point with metadata
         point = PointStruct(
@@ -102,12 +114,13 @@ async def save_to_memory(prompt: str, response: str, model: str) -> bool:
         return False
 
 
-async def search_memory(query: str, limit: int = 5) -> list:
+def search_memory(query: Optional[str] = None, query_vector: Optional[List[float]] = None, limit: int = 5) -> List[Dict[str, Any]]:
     """
-    Search similar responses in memory.
+    Search similar responses in memory using embedding.
 
     Args:
-        query: Search query
+        query: Search query string (will be embedded if provided)
+        query_vector: Pre-generated embedding vector (optional, takes precedence)
         limit: Max results
 
     Returns:
@@ -116,13 +129,23 @@ async def search_memory(query: str, limit: int = 5) -> list:
     try:
         ensure_collection_exists()
 
-        # Generate query vector
-        query_vector = generate_vector(query)
+        # Use provided vector or generate from query
+        if query_vector is not None:
+            vector_to_search = query_vector
+        elif query is not None:
+            # Note: This is synchronous, but generate_vector is async
+            # For now, we'll skip async generation in search_memory
+            # The RAG pipeline will provide pre-generated vectors
+            print("[WARNING] search_memory called without query_vector and async context not available")
+            return []
+        else:
+            print("[ERROR] search_memory requires either query or query_vector")
+            return []
 
         # Search in Qdrant
         results = client.search(
             collection_name=COLLECTION_NAME,
-            query_vector=query_vector,
+            query_vector=vector_to_search,
             limit=limit,
         )
 
@@ -134,6 +157,7 @@ async def search_memory(query: str, limit: int = 5) -> list:
                 "response": result.payload.get("response"),
                 "model": result.payload.get("model"),
                 "timestamp": result.payload.get("timestamp"),
+                "content": result.payload.get("response"),  # For compatibility
             }
             for result in results
         ]

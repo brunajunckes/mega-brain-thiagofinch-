@@ -58,6 +58,8 @@ services:
       - ./router:/app/router
       - ./cache:/app/cache
       - ./memory:/app/memory
+      - ./session:/app/session
+      - ./rag:/app/rag
     restart: always
     networks:
       - aiox-network
