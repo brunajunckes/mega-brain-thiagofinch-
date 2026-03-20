@@ -1,0 +1,14 @@
+{
+  "name": "@aiox-fullstack/bookme-engine",
+  "version": "1.0.0",
+  "description": "Transform any file into a structured, editable book with PDF/EPUB export",
+  "main": "src/index.js",
+  "keywords": ["book", "generator", "pdf", "epub", "editor", "aiox"],
+  "author": "AIOX Team",
+  "license": "MIT",
+  "files": ["src"],
+  "scripts": {
+    "test": "jest --testMatch='**/__tests__/**/*.test.js'"
+  },
+  "engines": {"node": ">=18.0.0"}
+}
