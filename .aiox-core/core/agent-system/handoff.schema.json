@@ -1,0 +1,166 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Agent Handoff Artifact",
+  "description": "Structured handoff between agents for context preservation and task continuation",
+  "type": "object",
+  "required": [
+    "id",
+    "from_agent",
+    "to_agent",
+    "story_id",
+    "created_at",
+    "decisions"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique handoff identifier (UUID format)"
+    },
+    "from_agent": {
+      "type": "string",
+      "description": "Agent ID passing control (e.g., 'dev', 'qa', 'architect')",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "to_agent": {
+      "type": "string",
+      "description": "Agent ID receiving control",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "story_context": {
+      "type": "object",
+      "description": "Current story context",
+      "properties": {
+        "story_id": {
+          "type": "string",
+          "description": "Story identifier (e.g., '8.1', '2.3.1')"
+        },
+        "story_path": {
+          "type": "string",
+          "description": "Full path to story file"
+        },
+        "story_status": {
+          "type": "string",
+          "enum": ["Draft", "Ready for Dev", "In Progress", "In Review", "Done"],
+          "description": "Current story status"
+        },
+        "current_task": {
+          "type": "string",
+          "description": "Last task being worked on"
+        },
+        "branch": {
+          "type": "string",
+          "description": "Current git branch"
+        },
+        "commit_hash": {
+          "type": "string",
+          "description": "Current HEAD commit SHA"
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "description": "Key architectural and implementation decisions made",
+      "minItems": 0,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "properties": {
+          "decision": {
+            "type": "string",
+            "description": "What was decided"
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Why this choice was made"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When decision was made"
+          }
+        }
+      }
+    },
+    "files_modified": {
+      "type": "array",
+      "description": "Files created, modified, or deleted",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "File path"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["created", "modified", "deleted"],
+            "description": "Change type"
+          },
+          "lines_added": {
+            "type": "integer",
+            "description": "Lines added (for created/modified)"
+          },
+          "lines_removed": {
+            "type": "integer",
+            "description": "Lines removed (for deleted/modified)"
+          }
+        }
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "description": "Active blockers or issues encountered",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "properties": {
+          "blocker": {
+            "type": "string",
+            "description": "What is blocking progress"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"],
+            "description": "Impact severity"
+          },
+          "workaround": {
+            "type": "string",
+            "description": "Suggested workaround or next steps"
+          }
+        }
+      }
+    },
+    "next_action": {
+      "type": "string",
+      "description": "What the incoming agent should do next (e.g., '*run-tests', 'Review PRs', 'Implement Task X')"
+    },
+    "context_summary": {
+      "type": "string",
+      "description": "Brief summary of current state (500 chars max)"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When handoff was created"
+    },
+    "consumed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When handoff was consumed by receiving agent"
+    },
+    "consumed": {
+      "type": "boolean",
+      "description": "Whether this handoff has been consumed",
+      "default": false
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional agent-specific metadata",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

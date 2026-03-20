@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-20T23:19:54.799Z"
+generated_at: "2026-03-20T23:46:27.079Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1177
+file_count: 1186
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -220,6 +220,22 @@ files:
     hash: sha256:850cd849648a623b6b3e2c9a8eb937abc9df2b15ed433e7568c7597661d6681a
     type: config
     size: 2805
+  - path: core/agent-system/__tests__/handoff.test.js
+    hash: sha256:8ae93a8fe54d2ed014d483ae3978ede84d25e70682d9cd281b193c9d06aca424
+    type: core
+    size: 13863
+  - path: core/agent-system/handoff-store.js
+    hash: sha256:0bcfbce9cd3da88429a08de04c501d9bcc6e49b8c8a9d6729e0653f91debe9a1
+    type: core
+    size: 7072
+  - path: core/agent-system/handoff.js
+    hash: sha256:99b78f46a894cc9a836eaa8003e2f27eed29cbb1ca33e8cf1ccdfa5dc381af22
+    type: core
+    size: 4587
+  - path: core/agent-system/handoff.schema.json
+    hash: sha256:891876d9d3ce39c4889b358e595025173b7bb865023eba3a55fed6bcee332ee9
+    type: core
+    size: 4608
   - path: core/analytics-engine/__tests__/insight-generator.test.js
     hash: sha256:83027eded75716b36eb93354668e871199d564f664cf4a5db4a534c4f61358e6
     type: core
@@ -604,6 +620,22 @@ files:
     hash: sha256:4e2324edb37ae0729062b5ac029f2891e050e7efd3a48d0f4a1dc4f227a6716b
     type: core
     size: 11060
+  - path: core/gates/__tests__/constitutional-gates.test.js
+    hash: sha256:7cf5e011346c0582a7724ea028645342d8af0ef191ba0503733523e033cc61e3
+    type: core
+    size: 14384
+  - path: core/gates/__tests__/pre-commit-hook.test.js
+    hash: sha256:032c15d7503512449d1e79c99b099fc9f38303acb6685c9b929bd37e184b8950
+    type: core
+    size: 6526
+  - path: core/gates/constitutional-gates.js
+    hash: sha256:52df3957f3557a1a0caa100e83ae3f13b85ab10baacfde7a48d77c1a26149308
+    type: core
+    size: 6525
+  - path: core/gates/pre-commit-hook.js
+    hash: sha256:cdf36513548b989ef5b2b4dbc34597ff6e553290237cdba9c18c7afd646eb324
+    type: core
+    size: 4378
   - path: core/graph-dashboard/cli.js
     hash: sha256:1f2fd6c6b5ace42f3bddc89695fe32d01949321d96057bbf50e2e48892f2c8f5
     type: core
@@ -996,6 +1028,10 @@ files:
     hash: sha256:2986f24388132df711fc134a8069b6f2b54b2e03123f1257a3e1c5e75f33fdf5
     type: core
     size: 236
+  - path: core/orchestration/__tests__/checkpoint-manager.test.js
+    hash: sha256:830ebf646b71fab8070fdbb74c045269a51f223eed34610a43d016f2eb68fab8
+    type: core
+    size: 13381
   - path: core/orchestration/__tests__/dependency-graph.test.js
     hash: sha256:fb48407cc51de3a2896b655efe6609d359c08db09ab4e7367c78ad2f7eba2aa9
     type: core
@@ -1033,9 +1069,9 @@ files:
     type: core
     size: 10094
   - path: core/orchestration/checkpoint-manager.js
-    hash: sha256:e8d9fdac736d14136e99a3210042aab2b0b719327182231a95ce9bea05e4b612
+    hash: sha256:b5a0f1b9a45474d57810d4df721156e93ae8bf0dd620f6162145a4e0a9d66b6f
     type: core
-    size: 1824
+    size: 10389
   - path: core/orchestration/cli-commands.js
     hash: sha256:cedd09f6938b3e1e0e19c06f4763de00281ddb31529d16ab9e4f74d194a3bd3b
     type: core
@@ -1577,9 +1613,9 @@ files:
     type: data
     size: 9575
   - path: data/entity-registry.yaml
-    hash: sha256:1722d34e596d137ca4a50af764293c241d59a5c9623ad2e2f1e73c46c3f4429d
+    hash: sha256:b9349086fd2f302e5b6563c775248be86e69dc4a27d5f5a9955b86095f85a353
     type: data
-    size: 558487
+    size: 563531
   - path: data/learned-patterns.yaml
     hash: sha256:24ac0b160615583a0ff783d3da8af80b7f94191575d6db2054ec8e10a3f945dc
     type: data
