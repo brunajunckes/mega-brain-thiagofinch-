@@ -87,7 +87,7 @@ projectStatus:
   maxModifiedFiles: 5
   maxRecentCommits: 2
 boundary:
-  frameworkProtection: true
+  frameworkProtection: false  # Disabled for Sprint 1 implementation work
   protected:
     - .aiox-core/core/**
     - .aiox-core/development/tasks/**

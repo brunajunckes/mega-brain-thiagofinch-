@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-20T22:14:15.413Z"
+generated_at: "2026-03-20T23:09:17.087Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1170
+file_count: 1174
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -217,9 +217,9 @@ files:
     type: cli
     size: 5907
   - path: core-config.yaml
-    hash: sha256:83936bd6af26f16797e37dfbb5979618fbe76ed01d4aa15d8f8136b333f9afa2
+    hash: sha256:850cd849648a623b6b3e2c9a8eb937abc9df2b15ed433e7568c7597661d6681a
     type: config
-    size: 2759
+    size: 2805
   - path: core/analytics-engine/__tests__/insight-generator.test.js
     hash: sha256:83027eded75716b36eb93354668e871199d564f664cf4a5db4a534c4f61358e6
     type: core
@@ -1020,6 +1020,10 @@ files:
     hash: sha256:40f17b74c2fe6746f45aa5750c0b85b5af22221e010951eb6e93f5796fb70a8f
     type: core
     size: 10094
+  - path: core/orchestration/checkpoint-manager.js
+    hash: sha256:e8d9fdac736d14136e99a3210042aab2b0b719327182231a95ce9bea05e4b612
+    type: core
+    size: 1824
   - path: core/orchestration/cli-commands.js
     hash: sha256:cedd09f6938b3e1e0e19c06f4763de00281ddb31529d16ab9e4f74d194a3bd3b
     type: core
@@ -1040,6 +1044,10 @@ files:
     hash: sha256:031c351aa28e96eb232db709741eb3474fbe8c25bfc834f607834fdddd8cb632
     type: core
     size: 10867
+  - path: core/orchestration/dependency-graph.js
+    hash: sha256:d6553d771990ca0fcb96696428fd7d500fbdb3d6ade6d08a7e416eb119d99def
+    type: core
+    size: 2018
   - path: core/orchestration/epic-context-accumulator.js
     hash: sha256:4f342f7fc05f404de2b899358f86143106737b56d6c486c98e988a67d420078b
     type: core
@@ -1097,9 +1105,9 @@ files:
     type: core
     size: 8663
   - path: core/orchestration/master-orchestrator.js
-    hash: sha256:61b874d74fae62e9307861b02b7505538f1c94362fe638fc3941b0665dcbbdf6
+    hash: sha256:b970675d49512d56703484de003c958e4f040a0576c071a9cb7efbab8ddf1928
     type: core
-    size: 54417
+    size: 55034
   - path: core/orchestration/message-formatter.js
     hash: sha256:b7413c04fa22db1c5fc2f5c2aa47bb8ca0374e079894a44df21b733da6c258ae
     type: core
@@ -1132,6 +1140,14 @@ files:
     hash: sha256:33b3b7c349352d607c156e0018c508f0869a1c7d233d107bed194a51bc608c93
     type: core
     size: 3365
+  - path: core/orchestration/task-executor.js
+    hash: sha256:7a5146491cbd0730fa502985cc22a1bf19e46a19e49ac77e34f898cf79d1f994
+    type: core
+    size: 2177
+  - path: core/orchestration/task-loader.js
+    hash: sha256:298d3bf4925afa344340c882604446810d80aea9b99c75dbaae4d00440cd7641
+    type: core
+    size: 1683
   - path: core/orchestration/tech-stack-detector.js
     hash: sha256:074c52757e181cc1e344b26ae191ac67488d18e9da2b06b5def23abb6c64c056
     type: core
@@ -1549,9 +1565,9 @@ files:
     type: data
     size: 9575
   - path: data/entity-registry.yaml
-    hash: sha256:f9fba989ce23ba5bcc1141d0a2d10082fb063cd1d981e90b795f8257a916be19
+    hash: sha256:549e056dd76558c91af0e167319d192d231f5d8314b1289f50705d0f7c28a324
     type: data
-    size: 554121
+    size: 556425
   - path: data/learned-patterns.yaml
     hash: sha256:24ac0b160615583a0ff783d3da8af80b7f94191575d6db2054ec8e10a3f945dc
     type: data

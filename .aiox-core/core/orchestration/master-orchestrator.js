@@ -667,7 +667,7 @@ class MasterOrchestrator extends EventEmitter {
         this.executors[epicNum] = createExecutor(epicNum, this);
       } else {
         // Fallback to stub for unknown epics
-        this.executors[epicNum] = new StubEpicExecutor(this, epicNum);
+        throw new Error(`No executor found for Epic ${epicNum}`);
       }
     }
     return this.executors[epicNum];
@@ -1503,8 +1503,13 @@ class MasterOrchestrator extends EventEmitter {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════════
-//                              STUB EXECUTOR (placeholder)
+//                              REAL EXECUTOR (Task Executor)
 // ═══════════════════════════════════════════════════════════════════════════════════
+
+// Imported at top: TaskExecutor is now the real executor
+// See: .aiox-core/core/orchestration/task-executor.js
+
+// ═══════════════════════════════════════════════════════════════════════════════════// ═══════════════════════════════════════════════════════════════════════════════════
 
 /**
  * Stub Epic Executor - placeholder for Story 0.3
