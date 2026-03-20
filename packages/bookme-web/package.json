@@ -1,0 +1,21 @@
+{
+  "name": "@aiox-fullstack/bookme-web",
+  "version": "1.0.0",
+  "description": "BookMe Web UI - Interactive book editing interface",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint src",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "next": "^14.0.0"
+  },
+  "engines": {"node": ">=18.0.0"}
+}
