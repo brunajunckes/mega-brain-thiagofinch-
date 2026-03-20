@@ -11,7 +11,8 @@
       "WebSearch(*)",
       "mcp__*",
       "Task(*)",
-      "Agent(*)"
+      "Agent(*)",
+      "Skill(update-config)"
     ],
     "deny": []
   },

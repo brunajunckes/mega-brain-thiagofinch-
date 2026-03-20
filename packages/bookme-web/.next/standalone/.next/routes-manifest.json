@@ -72,23 +72,23 @@
   "dataRoutes": [
     {
       "page": "/",
-      "dataRouteRegex": "^/_next/data/gm1nkCVacdjXmQuNEAmNU/index.json$"
+      "dataRouteRegex": "^/_next/data/1\\-filef7gyOMhNPghC4rA/index.json$"
     },
     {
       "page": "/create",
-      "dataRouteRegex": "^/_next/data/gm1nkCVacdjXmQuNEAmNU/create.json$"
+      "dataRouteRegex": "^/_next/data/1\\-filef7gyOMhNPghC4rA/create.json$"
     },
     {
       "page": "/dashboard",
-      "dataRouteRegex": "^/_next/data/gm1nkCVacdjXmQuNEAmNU/dashboard.json$"
+      "dataRouteRegex": "^/_next/data/1\\-filef7gyOMhNPghC4rA/dashboard.json$"
     },
     {
       "page": "/editor/[id]",
       "routeKeys": {
         "nxtPid": "nxtPid"
       },
-      "dataRouteRegex": "^/_next/data/gm1nkCVacdjXmQuNEAmNU/editor/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/gm1nkCVacdjXmQuNEAmNU/editor/(?<nxtPid>[^/]+?)\\.json$"
+      "dataRouteRegex": "^/_next/data/1\\-filef7gyOMhNPghC4rA/editor/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/1\\-filef7gyOMhNPghC4rA/editor/(?<nxtPid>[^/]+?)\\.json$"
     }
   ],
   "rsc": {
