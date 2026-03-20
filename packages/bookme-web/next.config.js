@@ -17,6 +17,10 @@ const nextConfig = {
     ],
   }),
   output: 'standalone',
+  // Disable API routes middleware/auth
+  api: {
+    externalResolver: true,
+  },
 };
 
 module.exports = nextConfig;
