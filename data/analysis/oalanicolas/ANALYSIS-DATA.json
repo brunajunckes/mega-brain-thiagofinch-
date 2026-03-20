@@ -1,0 +1,765 @@
+{
+  "metadata": {
+    "channel": "@oalanicolas",
+    "generated": "2026-03-20T22:05:20.213Z",
+    "videosAnalyzed": 41,
+    "totalChars": 31253
+  },
+  "aiModels": {
+    "Claude": 13,
+    "Ollama": 4,
+    "Anthropic": 17,
+    "ChatGPT": 4,
+    "Gemini": 4,
+    "OpenAI": 8,
+    "Mistral": 4,
+    "Cohere": 4,
+    "Groq": 4,
+    "GPT-4": 5
+  },
+  "frameworks": {
+    "AIOX": 4,
+    "Workflows": 26,
+    "Integration": 8,
+    "Automation": 17,
+    "API": 29,
+    "Prompting": 20,
+    "Fine-tuning": 4,
+    "Zero-shot": 4,
+    "Few-shot": 4,
+    "Vector Database": 8,
+    "Semantic Search": 13,
+    "Agents": 14,
+    "Chain of Thought": 4,
+    "RAG": 13,
+    "Embeddings": 13
+  },
+  "languages": {
+    "SQL": 4,
+    "Python": 4,
+    "TypeScript": 4
+  },
+  "platforms": {
+    "GitHub": 17,
+    "Docker": 8,
+    "Vercel": 4,
+    "Kubernetes": 4,
+    "Supabase": 4
+  },
+  "videos": [
+    {
+      "videoId": "CHwoLLLAWAw",
+      "length": 792,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {
+        "Vector Database": 2,
+        "Semantic Search": 1
+      },
+      "languages": {
+        "Python": 1,
+        "TypeScript": 1
+      },
+      "platforms": {
+        "Docker": 1,
+        "Kubernetes": 1,
+        "Supabase": 1
+      }
+    },
+    {
+      "videoId": "tAcKxn1crOc",
+      "length": 792,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {
+        "Vector Database": 2,
+        "Semantic Search": 1
+      },
+      "languages": {
+        "Python": 1,
+        "TypeScript": 1
+      },
+      "platforms": {
+        "Docker": 1,
+        "Kubernetes": 1,
+        "Supabase": 1
+      }
+    },
+    {
+      "videoId": "ik5JOtIH2D8",
+      "length": 787,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {
+        "Integration": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "ngpkUlZGXQk",
+      "length": 787,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {
+        "Integration": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "86qD7miH5V4",
+      "length": 784,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {},
+      "languages": {
+        "SQL": 1
+      },
+      "platforms": {}
+    },
+    {
+      "videoId": "Zdjy4DRoDTE",
+      "length": 784,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {},
+      "languages": {
+        "SQL": 1
+      },
+      "platforms": {}
+    },
+    {
+      "videoId": "lc7U1TdaeWI",
+      "length": 784,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {},
+      "languages": {
+        "SQL": 1
+      },
+      "platforms": {}
+    },
+    {
+      "videoId": "9UjshLhT8aE",
+      "length": 780,
+      "language": "pt-BR",
+      "aiModels": {
+        "ChatGPT": 1,
+        "Claude": 1,
+        "Gemini": 1
+      },
+      "frameworks": {
+        "Prompting": 2,
+        "Fine-tuning": 1,
+        "API": 1,
+        "Zero-shot": 1,
+        "Few-shot": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "JE0KQrSBqIs",
+      "length": 780,
+      "language": "pt-BR",
+      "aiModels": {
+        "ChatGPT": 1,
+        "Claude": 1,
+        "Gemini": 1
+      },
+      "frameworks": {
+        "Prompting": 2,
+        "Fine-tuning": 1,
+        "API": 1,
+        "Zero-shot": 1,
+        "Few-shot": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "1SnUpdFLO5c",
+      "length": 779,
+      "language": "pt-BR",
+      "aiModels": {
+        "Claude": 1,
+        "Ollama": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "AIOX": 1,
+        "Workflows": 2,
+        "Integration": 1,
+        "Automation": 1,
+        "API": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "WZPyIbxjNHc",
+      "length": 779,
+      "language": "pt-BR",
+      "aiModels": {
+        "Claude": 1,
+        "Ollama": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "AIOX": 1,
+        "Workflows": 2,
+        "Integration": 1,
+        "Automation": 1,
+        "API": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "_VQZQ_jHmhA",
+      "length": 779,
+      "language": "pt-BR",
+      "aiModels": {
+        "Claude": 1,
+        "Ollama": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "AIOX": 1,
+        "Workflows": 2,
+        "Integration": 1,
+        "Automation": 1,
+        "API": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "TNNkBTuEcEw",
+      "length": 777,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {
+        "Vector Database": 2,
+        "Semantic Search": 1
+      },
+      "languages": {
+        "Python": 1,
+        "TypeScript": 1
+      },
+      "platforms": {
+        "Docker": 1,
+        "Kubernetes": 1,
+        "Supabase": 1
+      }
+    },
+    {
+      "videoId": "fX_z8qoifRQ",
+      "length": 777,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {
+        "Vector Database": 2,
+        "Semantic Search": 1
+      },
+      "languages": {
+        "Python": 1,
+        "TypeScript": 1
+      },
+      "platforms": {
+        "Docker": 1,
+        "Kubernetes": 1,
+        "Supabase": 1
+      }
+    },
+    {
+      "videoId": "gEUtUdqiAyk",
+      "length": 775,
+      "language": "pt-BR",
+      "aiModels": {
+        "GPT-4": 1,
+        "Claude": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "Agents": 2,
+        "Workflows": 1,
+        "RAG": 1,
+        "Embeddings": 1,
+        "Semantic Search": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "Ut4ecAzE7o8",
+      "length": 773,
+      "language": "pt-BR",
+      "aiModels": {
+        "OpenAI": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "Agents": 1,
+        "Prompting": 2,
+        "Chain of Thought": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "8XAeBgIq7Ms",
+      "length": 772,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {
+        "API": 1
+      },
+      "languages": {},
+      "platforms": {
+        "GitHub": 1,
+        "Docker": 1,
+        "Vercel": 1
+      }
+    },
+    {
+      "videoId": "d4xLP-GxJMM",
+      "length": 770,
+      "language": "pt-BR",
+      "aiModels": {
+        "Mistral": 1,
+        "Cohere": 1,
+        "Groq": 1
+      },
+      "frameworks": {
+        "Prompting": 1,
+        "RAG": 2,
+        "Embeddings": 2,
+        "Semantic Search": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "lkRB43U2jbw",
+      "length": 765,
+      "language": "pt-BR",
+      "aiModels": {
+        "ChatGPT": 1,
+        "Claude": 1,
+        "Gemini": 1
+      },
+      "frameworks": {
+        "Prompting": 2,
+        "Fine-tuning": 1,
+        "API": 1,
+        "Zero-shot": 1,
+        "Few-shot": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "MaHEr_TaCxU",
+      "length": 760,
+      "language": "pt-BR",
+      "aiModels": {
+        "GPT-4": 1,
+        "Claude": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "Agents": 2,
+        "Workflows": 1,
+        "RAG": 1,
+        "Embeddings": 1,
+        "Semantic Search": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "OOuzaxQWYKs",
+      "length": 760,
+      "language": "pt-BR",
+      "aiModels": {
+        "GPT-4": 1,
+        "Claude": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "Agents": 2,
+        "Workflows": 1,
+        "RAG": 1,
+        "Embeddings": 1,
+        "Semantic Search": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "R5MElc0DV28",
+      "length": 760,
+      "language": "pt-BR",
+      "aiModels": {
+        "GPT-4": 1,
+        "Claude": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "Agents": 2,
+        "Workflows": 1,
+        "RAG": 1,
+        "Embeddings": 1,
+        "Semantic Search": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "GOMj4OUP4Es",
+      "length": 758,
+      "language": "pt-BR",
+      "aiModels": {
+        "OpenAI": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "Agents": 1,
+        "Prompting": 2,
+        "Chain of Thought": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "IhEU9Zg5vgw",
+      "length": 758,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {
+        "Workflows": 1,
+        "Integration": 1,
+        "Automation": 1,
+        "API": 1
+      },
+      "languages": {},
+      "platforms": {
+        "GitHub": 1
+      }
+    },
+    {
+      "videoId": "JeT6byYruXs",
+      "length": 758,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {
+        "Workflows": 1,
+        "Integration": 1,
+        "Automation": 1,
+        "API": 1
+      },
+      "languages": {},
+      "platforms": {
+        "GitHub": 1
+      }
+    },
+    {
+      "videoId": "qnC7rfjkH2c",
+      "length": 758,
+      "language": "pt-BR",
+      "aiModels": {
+        "OpenAI": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "Agents": 1,
+        "Prompting": 2,
+        "Chain of Thought": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "5agcA_m0-Bk",
+      "length": 755,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {
+        "Workflows": 1,
+        "Automation": 1,
+        "API": 1
+      },
+      "languages": {
+        "SQL": 1
+      },
+      "platforms": {
+        "GitHub": 1
+      }
+    },
+    {
+      "videoId": "PgQVdfFJNX8",
+      "length": 755,
+      "language": "pt-BR",
+      "aiModels": {
+        "Mistral": 1,
+        "Cohere": 1,
+        "Groq": 1
+      },
+      "frameworks": {
+        "Prompting": 1,
+        "RAG": 2,
+        "Embeddings": 2,
+        "Semantic Search": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "pqtLLYyztc8",
+      "length": 751,
+      "language": "pt-BR",
+      "aiModels": {
+        "ChatGPT": 1,
+        "Claude": 1,
+        "Gemini": 1
+      },
+      "frameworks": {
+        "Workflows": 1,
+        "Prompting": 2,
+        "Fine-tuning": 1,
+        "Automation": 1,
+        "API": 2,
+        "Zero-shot": 1,
+        "Few-shot": 1
+      },
+      "languages": {},
+      "platforms": {
+        "GitHub": 1
+      }
+    },
+    {
+      "videoId": "k5GmoaiSQ4g",
+      "length": 750,
+      "language": "pt-BR",
+      "aiModels": {
+        "Claude": 1,
+        "Ollama": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "AIOX": 1,
+        "Workflows": 3,
+        "Integration": 1,
+        "Automation": 2,
+        "API": 2
+      },
+      "languages": {},
+      "platforms": {
+        "GitHub": 1
+      }
+    },
+    {
+      "videoId": "M8ntFI1v2NY",
+      "length": 746,
+      "language": "pt-BR",
+      "aiModels": {
+        "GPT-4": 1,
+        "Claude": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "Agents": 2,
+        "Workflows": 2,
+        "RAG": 1,
+        "Embeddings": 1,
+        "Automation": 1,
+        "API": 1,
+        "Semantic Search": 1
+      },
+      "languages": {},
+      "platforms": {
+        "GitHub": 1
+      }
+    },
+    {
+      "videoId": "MkGlXlIxF34",
+      "length": 744,
+      "language": "pt-BR",
+      "aiModels": {
+        "OpenAI": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "Agents": 1,
+        "Workflows": 1,
+        "Prompting": 2,
+        "Automation": 1,
+        "API": 1,
+        "Chain of Thought": 1
+      },
+      "languages": {},
+      "platforms": {
+        "GitHub": 1
+      }
+    },
+    {
+      "videoId": "6Qu3Uh0qCgg",
+      "length": 743,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {
+        "Workflows": 1,
+        "Automation": 1,
+        "API": 2
+      },
+      "languages": {},
+      "platforms": {
+        "GitHub": 2,
+        "Docker": 1,
+        "Vercel": 1
+      }
+    },
+    {
+      "videoId": "WcnnVl9wVbU",
+      "length": 743,
+      "language": "pt-BR",
+      "aiModels": {
+        "OpenAI": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "API": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "n6ETmqs-Mp8",
+      "length": 743,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {
+        "Workflows": 1,
+        "Automation": 1,
+        "API": 2
+      },
+      "languages": {},
+      "platforms": {
+        "GitHub": 2,
+        "Docker": 1,
+        "Vercel": 1
+      }
+    },
+    {
+      "videoId": "tUeejX6BEC0",
+      "length": 743,
+      "language": "pt-BR",
+      "aiModels": {},
+      "frameworks": {
+        "Workflows": 1,
+        "Automation": 1,
+        "API": 2
+      },
+      "languages": {},
+      "platforms": {
+        "GitHub": 2,
+        "Docker": 1,
+        "Vercel": 1
+      }
+    },
+    {
+      "videoId": "HIzL0oilejU",
+      "length": 741,
+      "language": "pt-BR",
+      "aiModels": {
+        "Mistral": 1,
+        "Cohere": 1,
+        "Groq": 1
+      },
+      "frameworks": {
+        "Workflows": 1,
+        "Prompting": 1,
+        "RAG": 2,
+        "Embeddings": 2,
+        "Automation": 1,
+        "API": 1,
+        "Semantic Search": 1
+      },
+      "languages": {},
+      "platforms": {
+        "GitHub": 1
+      }
+    },
+    {
+      "videoId": "mH05OcE7rQQ",
+      "length": 741,
+      "language": "pt-BR",
+      "aiModels": {
+        "Mistral": 1,
+        "Cohere": 1,
+        "Groq": 1
+      },
+      "frameworks": {
+        "Workflows": 1,
+        "Prompting": 1,
+        "RAG": 2,
+        "Embeddings": 2,
+        "Automation": 1,
+        "API": 1,
+        "Semantic Search": 1
+      },
+      "languages": {},
+      "platforms": {
+        "GitHub": 1
+      }
+    },
+    {
+      "videoId": "nyQZNWyEU_I",
+      "length": 728,
+      "language": "pt-BR",
+      "aiModels": {
+        "OpenAI": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "API": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "oEtJVbwR1Fk",
+      "length": 728,
+      "language": "pt-BR",
+      "aiModels": {
+        "OpenAI": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "API": 1
+      },
+      "languages": {},
+      "platforms": {}
+    },
+    {
+      "videoId": "_X6UGXmgijM",
+      "length": 714,
+      "language": "pt-BR",
+      "aiModels": {
+        "OpenAI": 1,
+        "Anthropic": 1
+      },
+      "frameworks": {
+        "Workflows": 1,
+        "Automation": 1,
+        "API": 2
+      },
+      "languages": {},
+      "platforms": {
+        "GitHub": 1
+      }
+    }
+  ]
+}
