@@ -1,0 +1,30 @@
+{
+  "name": "@aiox-fullstack/project-manager",
+  "version": "1.0.0",
+  "description": "Project manager with auto-save and Google Drive integration",
+  "main": "src/index.js",
+  "keywords": [
+    "project",
+    "management",
+    "auto-save",
+    "google-drive",
+    "aiox"
+  ],
+  "author": "AIOX Team",
+  "license": "MIT",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "test": "jest --testMatch='**/__tests__/**/*.test.js'"
+  },
+  "dependencies": {
+    "@aiox-fullstack/google-drive-worker": "workspace:*"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

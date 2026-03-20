@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-20T17:32:05.201Z"
+generated_at: "2026-03-20T17:40:56.367Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1171
+file_count: 1172
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -128,6 +128,10 @@ files:
     hash: sha256:3e26f15119719a7be374f3db1935e6bd35fc2c14a66a2a30175979b5731bb29b
     type: cli
     size: 21940
+  - path: cli/commands/project.js
+    hash: sha256:b3fb2b1568450271309c4b0f5dbbe86735a449a76cd15673d506b4f88694a091
+    type: cli
+    size: 9278
   - path: cli/commands/qa/index.js
     hash: sha256:3a9e30419a66e56781f9b5dcddc8f4dd0ed24dabf8fe8c3005cd26f5cb02558f
     type: cli
@@ -1541,7 +1545,7 @@ files:
     type: data
     size: 9590
   - path: data/entity-registry.yaml
-    hash: sha256:4035f688dc4c23d90d00f70e676b9183298695bd67f1cbd3846892a7bffa50dc
+    hash: sha256:ff15c744e4980fe624a7558b01e6c08a179dae98f70b14a08604b32b931dafa0
     type: data
     size: 554121
   - path: data/learned-patterns.yaml
