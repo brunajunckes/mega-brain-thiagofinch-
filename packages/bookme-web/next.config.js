@@ -6,7 +6,7 @@ const nextConfig = {
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   eslint: {
-    dirs: ['src', 'pages', 'components'],
+    dirs: ['src', 'components'],
   },
   rewrites: async () => ({
     beforeFiles: [
@@ -16,11 +16,6 @@ const nextConfig = {
       },
     ],
   }),
-  output: 'standalone',
-  // Disable API routes middleware/auth
-  api: {
-    externalResolver: true,
-  },
 };
 
 module.exports = nextConfig;

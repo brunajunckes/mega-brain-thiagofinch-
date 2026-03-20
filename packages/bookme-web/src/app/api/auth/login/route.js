@@ -10,8 +10,13 @@ export async function POST(request) {
       );
     }
 
-    // Proxy to Python backend (use container hostname when in Docker)
-    const backendUrl = process.env.NEXT_PUBLIC_API_URL || process.env.BACKEND_URL || 'http://bookme-backend:8000';
+    // Proxy to Python backend
+    // - Explicit env var for flexibility (used in Docker)
+    // - Default to Docker network hostname when running in container
+    // - Fall back to localhost for local development
+    const isDocker = process.env.DOCKER_ENV === 'true' || process.env.BACKEND_URL?.includes('bookme-backend');
+    const backendUrl = process.env.BACKEND_URL ||
+                      (isDocker ? 'http://bookme-backend:8000' : 'http://localhost:8002');
 
     const response = await fetch(`${backendUrl}/auth/login`, {
       method: 'POST',

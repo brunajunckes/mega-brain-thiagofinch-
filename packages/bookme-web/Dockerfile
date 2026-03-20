@@ -19,4 +19,5 @@ RUN npm run build 2>&1
 EXPOSE 3000
 
 # Start app in production mode
+ENV DOCKER_ENV=true
 CMD ["npm", "run", "dev"]
