@@ -1,8 +1,9 @@
 /* Brain Factory CLI tests */
 
-jest.mock('../bin/modules/brain/http-client.js');
-const { ingest } = require('../bin/modules/brain/ingest.js');
-const { status } = require('../bin/modules/brain/status.js');
+jest.mock('../../bin/modules/brain/http-client.js');
+const { ingest } = require('../../bin/modules/brain/ingest.js');
+const { status } = require('../../bin/modules/brain/status.js');
+const { ask } = require('../../bin/modules/brain/ask.js');
 
 describe('Brain Factory CLI', () => {
   beforeEach(() => {
@@ -28,7 +29,7 @@ describe('Brain Factory CLI', () => {
   });
 
   test('dry-run mode should not call HTTP', async () => {
-    const { request } = require('../bin/modules/brain/http-client.js');
+    const { request } = require('../../bin/modules/brain/http-client.js');
 
     await ingest({
       clone: 'test_user',
@@ -40,7 +41,7 @@ describe('Brain Factory CLI', () => {
   });
 
   test('status command lists clones', async () => {
-    const { request } = require('../bin/modules/brain/http-client.js');
+    const { request } = require('../../bin/modules/brain/http-client.js');
     request.mockResolvedValue({
       status: 200,
       data: {
@@ -55,5 +56,104 @@ describe('Brain Factory CLI', () => {
     await status({});
 
     expect(request).toHaveBeenCalledWith('GET', '/brain/clones');
+  });
+
+  test('ask requires --clone argument', async () => {
+    const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+    await ask('test question', {});
+
+    expect(exitSpy).toHaveBeenCalledWith(1);
+    exitSpy.mockRestore();
+  });
+
+  test('ask command queries clone', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockClear();
+    request.mockResolvedValue({
+      data: {
+        slug: 'alex_hormozi',
+        question: 'How to scale?',
+        response: 'Here is my advice...',
+        session_id: 'sess_123',
+        chunks_used: 3,
+        cache_hit: false,
+        model: 'qwen2.5:7b',
+        input_tokens: 50,
+        output_tokens: 30,
+        timestamp: '2026-03-20T00:00:00',
+      },
+    });
+
+    const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+    await ask('How to scale?', { clone: 'alex_hormozi', rag: true });
+
+    expect(request).toHaveBeenCalledWith('POST', '/brain/ask', {
+      slug: 'alex_hormozi',
+      question: 'How to scale?',
+      session_id: undefined,
+      use_rag: true,
+      model: undefined,
+    });
+
+    exitSpy.mockRestore();
+  });
+
+  test('ask --history shows conversation', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockClear();
+    request.mockResolvedValue({
+      data: {
+        slug: 'alex_hormozi',
+        session_id: 'sess_123',
+        messages: [
+          { role: 'user', content: 'Q1', timestamp: '2026-03-20T00:00:00' },
+          { role: 'assistant', content: 'A1', timestamp: '2026-03-20T00:01:00' },
+        ],
+        count: 2,
+      },
+    });
+
+    const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+    await ask('ignored', { clone: 'alex_hormozi', history: true, rag: true });
+
+    expect(request).toHaveBeenCalledWith('GET', expect.stringContaining('/brain/ask/alex_hormozi/history'));
+
+    exitSpy.mockRestore();
+  });
+
+  test('ask with --session maintains conversation context', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockClear();
+    request.mockResolvedValue({
+      data: {
+        slug: 'alex_hormozi',
+        question: 'Next question?',
+        response: 'Based on our previous discussion...',
+        session_id: 'sess_456',
+        chunks_used: 2,
+        cache_hit: false,
+        model: 'qwen2.5:7b',
+        input_tokens: 100,
+        output_tokens: 50,
+        timestamp: '2026-03-20T00:02:00',
+      },
+    });
+
+    const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+    await ask('Next question?', { clone: 'alex_hormozi', session: 'sess_456', rag: true });
+
+    expect(request).toHaveBeenCalledWith('POST', '/brain/ask', {
+      slug: 'alex_hormozi',
+      question: 'Next question?',
+      session_id: 'sess_456',
+      use_rag: true,
+      model: undefined,
+    });
+
+    exitSpy.mockRestore();
   });
 });

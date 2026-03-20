@@ -1,6 +1,7 @@
 const { Command } = require('commander');
 const { ingest } = require('./ingest');
 const { status } = require('./status');
+const { ask } = require('./ask');
 
 const program = new Command('aiox-brain');
 
@@ -25,5 +26,15 @@ program
   .description('Show all clones and chunk counts')
   .option('--json', 'Output as JSON', false)
   .action(status);
+
+program
+  .command('ask <question>')
+  .description('Ask a clone a question')
+  .option('--clone <slug>', 'Target clone slug (required)', null)
+  .option('--session <id>', 'Session ID for multi-turn conversation', null)
+  .option('--history', 'Show conversation history instead of asking', false)
+  .option('--model <name>', 'Model to use (default: qwen2.5:7b)', null)
+  .option('--no-rag', 'Disable RAG context')
+  .action(ask);
 
 module.exports = { run: (argv) => program.parse(argv) };

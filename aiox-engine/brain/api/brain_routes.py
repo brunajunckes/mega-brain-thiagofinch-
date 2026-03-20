@@ -9,6 +9,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 from brain.clone.store import BrainStore
+from brain.clone.agent import CloneAgent
 from brain.ingestion.doc import ingest_document
 from brain.ingestion.pdf import ingest_pdf
 from brain.ingestion.youtube import ingest_youtube
@@ -31,6 +32,27 @@ class IngestRequest(BaseModel):
 class IngestResponse(BaseModel):
   job_id: str
   status: str
+
+
+class AskRequest(BaseModel):
+  slug: str
+  question: str
+  session_id: Optional[str] = None
+  use_rag: bool = True
+  model: Optional[str] = None
+
+
+class AskResponse(BaseModel):
+  slug: str
+  question: str
+  response: str
+  session_id: str
+  chunks_used: int
+  cache_hit: bool
+  model: str
+  input_tokens: int
+  output_tokens: int
+  timestamp: str
 
 
 @router.post('/ingest')
@@ -130,6 +152,41 @@ async def clone_stats(slug: str):
   try:
     store = BrainStore(slug)
     return store.get_stats()
+  except ValueError as e:
+    raise HTTPException(status_code=400, detail=str(e))
+  except Exception as e:
+    raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post('/ask')
+async def ask_clone(req: AskRequest) -> AskResponse:
+  """Query clone with RAG context"""
+  try:
+    agent = CloneAgent(req.slug, req.session_id)
+    result = await agent.ask(
+      question=req.question,
+      use_rag=req.use_rag,
+      model=req.model
+    )
+    return AskResponse(**result)
+  except ValueError as e:
+    raise HTTPException(status_code=400, detail=str(e))
+  except Exception as e:
+    raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get('/ask/{slug}/history')
+async def clone_history(slug: str, session_id: Optional[str] = None, last_n: int = 10):
+  """Get conversation history for clone"""
+  try:
+    agent = CloneAgent(slug, session_id)
+    history = agent.get_session_history(last_n)
+    return {
+      'slug': slug,
+      'session_id': agent.session_id,
+      'messages': history,
+      'count': len(history)
+    }
   except ValueError as e:
     raise HTTPException(status_code=400, detail=str(e))
   except Exception as e:
