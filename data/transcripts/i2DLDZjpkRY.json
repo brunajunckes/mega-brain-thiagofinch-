@@ -1,5 +1,6 @@
 {
   "success": false,
   "videoId": "i2DLDZjpkRY",
-  "error": "Command failed: yt-dlp       --write-subs       --sub-langs pt,en       --skip-unavailable-fragments"
+  "error": "No captions found",
+  "timestamp": "2026-03-20T21:50:14.475Z"
 }

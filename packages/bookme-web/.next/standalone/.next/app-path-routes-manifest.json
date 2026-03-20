@@ -1,0 +1,4 @@
+{
+  "/api/auth/login/route": "/api/auth/login",
+  "/api/auth/signup/route": "/api/auth/signup"
+}

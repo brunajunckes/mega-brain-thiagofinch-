@@ -45,3 +45,4 @@
 {"timestamp":"2026-03-20T01:36:08.591Z","action":"add","path":".aiox-core/core/webhook-integration/event-schema.js","trigger":"watcher"}
 {"timestamp":"2026-03-20T01:36:08.591Z","action":"add","path":".aiox-core/core/webhook-integration/index.js","trigger":"watcher"}
 {"timestamp":"2026-03-20T01:36:08.592Z","action":"add","path":".aiox-core/core/webhook-integration/webhook-manager.js","trigger":"watcher"}
+{"timestamp":"2026-03-20T20:50:24.096Z","action":"add","path":".aiox-core/development/agents/squad-advisor.yaml","trigger":"watcher"}

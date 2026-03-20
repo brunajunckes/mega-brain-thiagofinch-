@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-20T20:50:10.942Z"
+generated_at: "2026-03-20T21:58:30.395Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1173
+file_count: 1170
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1549,7 +1549,7 @@ files:
     type: data
     size: 9575
   - path: data/entity-registry.yaml
-    hash: sha256:d2ce14ef1d3c881aa8311ac522d915fe278fab23e66d9bd774f5735ca6b57cf9
+    hash: sha256:f118be7b2e30f041abe8528d27bdf3cfcd2232bcff7414abccbca35d14997a60
     type: data
     size: 554121
   - path: data/learned-patterns.yaml
@@ -3120,18 +3120,6 @@ files:
     hash: sha256:a21eeeae3f41e0eee262243fa1ac4f8d65d3b586db9f92fb441d4c8647c19b45
     type: documentation
     size: 34473
-  - path: elicitation/agent-elicitation.js
-    hash: sha256:ef13ebff1375279e7b8f0f0bbd3699a0d201f9a67127efa64c4142159a26f417
-    type: elicitation
-    size: 9482
-  - path: elicitation/task-elicitation.js
-    hash: sha256:cc44ad635e60cbdb67d18209b4b50d1fb2824de2234ec607a6639eb1754bfc75
-    type: elicitation
-    size: 8296
-  - path: elicitation/workflow-elicitation.js
-    hash: sha256:1107b7328b8694047e32eee17328241ce51d061e5c15ffdab9d1aa3340f3cd5d
-    type: elicitation
-    size: 9677
   - path: index.esm.js
     hash: sha256:b1fde57016b99aa9a21ef71909489c6e43e5a0b646be79629e7d014d32d04b1b
     type: code

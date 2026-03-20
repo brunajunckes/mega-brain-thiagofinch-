@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 COPY packages/ ./packages/
 
-# Install dependencies (skip hooks for production)
+# Install dependencies (skip hooks)
 RUN npm ci --ignore-scripts 2>&1 | grep -v "husky"
 
 # Build Next.js from bookme-web workspace
@@ -18,5 +18,5 @@ RUN npm run build 2>&1
 # Expose port
 EXPOSE 3000
 
-# Start app using standalone server
-CMD ["node", ".next/standalone/server.js"]
+# Start app in production mode
+CMD ["npm", "run", "dev"]
