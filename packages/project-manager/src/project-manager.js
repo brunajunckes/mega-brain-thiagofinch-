@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { DriveExtractor } = require('@aiox-fullstack/core/google-drive-worker');
+const { DriveExtractor } = require('../../../packages/google-drive-worker/src');
 
 /**
  * ProjectManager — Auto-save project state with Drive integration
@@ -53,6 +53,7 @@ class ProjectManager {
     }
 
     this.save(project);
+    this.projects.push(project);
     return project;
   }
 
