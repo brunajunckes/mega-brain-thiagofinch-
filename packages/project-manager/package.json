@@ -19,7 +19,7 @@
     "test": "jest --testMatch='**/__tests__/**/*.test.js'"
   },
   "dependencies": {
-    "@aiox-fullstack/google-drive-worker": "workspace:*"
+    "@aiox-fullstack/google-drive-worker": "file:../google-drive-worker"
   },
   "devDependencies": {
     "jest": "^29.0.0"

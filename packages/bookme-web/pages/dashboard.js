@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 
+export async function getServerSideProps() {
+  return { props: {} };
+}
+
 export default function Dashboard() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);

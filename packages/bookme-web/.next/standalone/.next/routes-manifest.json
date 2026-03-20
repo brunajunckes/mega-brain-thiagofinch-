@@ -1,0 +1,114 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "dynamicRoutes": [
+    {
+      "page": "/api/books/[id]",
+      "regex": "^/api/books/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/books/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/books/[id]/chapters/[chapterId]/sections/[sectionId]",
+      "regex": "^/api/books/([^/]+?)/chapters/([^/]+?)/sections/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid",
+        "nxtPchapterId": "nxtPchapterId",
+        "nxtPsectionId": "nxtPsectionId"
+      },
+      "namedRegex": "^/api/books/(?<nxtPid>[^/]+?)/chapters/(?<nxtPchapterId>[^/]+?)/sections/(?<nxtPsectionId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/books/[id]/export",
+      "regex": "^/api/books/([^/]+?)/export(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/books/(?<nxtPid>[^/]+?)/export(?:/)?$"
+    },
+    {
+      "page": "/editor/[id]",
+      "regex": "^/editor/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/editor/(?<nxtPid>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/create",
+      "regex": "^/create(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/create(?:/)?$"
+    },
+    {
+      "page": "/dashboard",
+      "regex": "^/dashboard(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard(?:/)?$"
+    }
+  ],
+  "dataRoutes": [
+    {
+      "page": "/",
+      "dataRouteRegex": "^/_next/data/gm1nkCVacdjXmQuNEAmNU/index.json$"
+    },
+    {
+      "page": "/create",
+      "dataRouteRegex": "^/_next/data/gm1nkCVacdjXmQuNEAmNU/create.json$"
+    },
+    {
+      "page": "/dashboard",
+      "dataRouteRegex": "^/_next/data/gm1nkCVacdjXmQuNEAmNU/dashboard.json$"
+    },
+    {
+      "page": "/editor/[id]",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "dataRouteRegex": "^/_next/data/gm1nkCVacdjXmQuNEAmNU/editor/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/gm1nkCVacdjXmQuNEAmNU/editor/(?<nxtPid>[^/]+?)\\.json$"
+    }
+  ],
+  "rsc": {
+    "header": "RSC",
+    "varyHeader": "RSC, Next-Router-State-Tree, Next-Router-Prefetch",
+    "prefetchHeader": "Next-Router-Prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc"
+  },
+  "rewrites": {
+    "beforeFiles": [
+      {
+        "source": "/api/:path*",
+        "destination": "/api/:path*",
+        "regex": "^/api(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+      }
+    ],
+    "afterFiles": [],
+    "fallback": []
+  }
+}

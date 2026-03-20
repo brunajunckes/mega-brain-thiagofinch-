@@ -1,4 +1,4 @@
-import { BookIntegrator } from '@aiox-fullstack/bookme-engine';
+const { BookIntegrator } = require('@aiox-fullstack/bookme-engine');
 
 const integrator = new BookIntegrator('/var/lib/bookme');
 

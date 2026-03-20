@@ -1,3 +1,13 @@
+export async function getServerSideProps(context) {
+  // Redirect to dashboard on server side
+  return {
+    redirect: {
+      destination: '/dashboard',
+      permanent: false,
+    },
+  };
+}
+
 export default function Home() {
   return (
     <div style={{ padding: '40px', textAlign: 'center' }}>

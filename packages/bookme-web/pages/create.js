@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
+export async function getServerSideProps() {
+  return { props: {} };
+}
+
 export default function Create() {
   const router = useRouter();
   const [form, setForm] = useState({

@@ -1,0 +1,13 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/api/books": "pages/api/books.js",
+  "/api/books/[id]/export": "pages/api/books/[id]/export.js",
+  "/api/books/[id]/chapters/[chapterId]/sections/[sectionId]": "pages/api/books/[id]/chapters/[chapterId]/sections/[sectionId].js",
+  "/api/books/[id]": "pages/api/books/[id].js",
+  "/": "pages/index.js",
+  "/create": "pages/create.js",
+  "/dashboard": "pages/dashboard.js",
+  "/editor/[id]": "pages/editor/[id].js"
+}

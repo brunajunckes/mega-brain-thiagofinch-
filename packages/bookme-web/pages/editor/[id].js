@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
+export async function getServerSideProps() {
+  return { props: {} };
+}
+
 export default function Editor() {
   const router = useRouter();
   const { id } = router.query;

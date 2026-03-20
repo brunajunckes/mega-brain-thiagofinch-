@@ -8,9 +8,6 @@ const nextConfig = {
   eslint: {
     dirs: ['src', 'pages', 'components'],
   },
-  redirects: async () => [
-    { source: '/', destination: '/dashboard', permanent: false },
-  ],
   rewrites: async () => ({
     beforeFiles: [
       {
@@ -19,6 +16,7 @@ const nextConfig = {
       },
     ],
   }),
+  output: 'standalone',
 };
 
 module.exports = nextConfig;

@@ -1,5 +1,5 @@
-import { BookIntegrator } = require('@aiox-fullstack/bookme-engine');
-import { ProjectManager } = require('@aiox-fullstack/project-manager');
+const { BookIntegrator } = require('@aiox-fullstack/bookme-engine');
+const { ProjectManager } = require('@aiox-fullstack/project-manager');
 
 const integrator = new BookIntegrator('/var/lib/bookme');
 const pm = new ProjectManager('/var/lib/projects');
