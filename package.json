@@ -8,6 +8,7 @@
     "aiox-minimal": "bin/aiox-minimal.js",
     "aiox-graph": "bin/aiox-graph.js",
     "aiox-analyze": "bin/aiox-analyze.js",
+    "aiox-squad-advisor": "bin/aiox-squad-advisor.js",
     "aiox-ollama": "aiox-ollama",
     "aiox-auto": "packages/ollama-bridge/bin/auto-implement.js"
   },
@@ -157,6 +158,7 @@
     "lint-staged": "^16.1.1",
     "mocha": "^11.7.5",
     "prettier": "^3.5.3",
+    "puppeteer": "^24.40.0",
     "semantic-release": "^25.0.2",
     "typescript": "^5.9.3",
     "yaml-lint": "^1.7.0"

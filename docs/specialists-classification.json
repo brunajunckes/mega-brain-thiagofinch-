@@ -1,0 +1,274 @@
+{
+  "metadata": {
+    "total_specialists": 180,
+    "squads_count": 8,
+    "classification_date": "2026-03-20"
+  },
+  "squads": {
+    "business_growth": {
+      "name": "Business & Growth",
+      "description": "Scaling, GTM, product-market fit, founder economics",
+      "members": [
+        {
+          "slug": "alex_hormozi",
+          "name": "Alex Hormozi",
+          "youtube": "https://www.youtube.com/@alexhormozi",
+          "expertise": ["scaling", "sales", "product-market-fit", "founder"]
+        },
+        {
+          "slug": "gary_vaynerchuk",
+          "name": "Gary Vaynerchuk",
+          "youtube": "https://www.youtube.com/@garyvaynerchuk",
+          "expertise": ["marketing", "scaling", "personal-brand", "entrepreneurship"]
+        },
+        {
+          "slug": "lex_fridman",
+          "name": "Lex Fridman",
+          "youtube": "https://www.youtube.com/@lexfridman",
+          "expertise": ["interviews", "insights", "thought-leadership", "podcasting"]
+        },
+        {
+          "slug": "naval_ravikant",
+          "name": "Naval Ravikant",
+          "youtube": "https://www.youtube.com/@naval",
+          "expertise": ["wealth-creation", "philosophy", "investing", "decision-making"]
+        },
+        {
+          "slug": "paul_graham",
+          "name": "Paul Graham",
+          "youtube": "https://www.youtube.com/@paulgraham",
+          "expertise": ["startups", "yc", "founders", "product-thinking"]
+        },
+        {
+          "slug": "alexis_ohanian",
+          "name": "Alexis Ohanian",
+          "youtube": "https://www.youtube.com/@alexisohanian",
+          "expertise": ["startup-investing", "reddit-co-founder", "venture", "community"]
+        }
+      ]
+    },
+    "technical_architecture": {
+      "name": "Technical Architecture",
+      "description": "Systems design, performance, reliability, infrastructure",
+      "members": [
+        {
+          "slug": "don_norman",
+          "name": "Don Norman",
+          "youtube": "https://www.youtube.com/@donnorman",
+          "expertise": ["design", "ux", "systems-thinking", "human-centered"]
+        },
+        {
+          "slug": "mark_robertson",
+          "name": "Mark Robertson",
+          "youtube": "https://www.youtube.com/@cgsgeek",
+          "expertise": ["cg", "rendering", "performance", "optimization"]
+        },
+        {
+          "slug": "debbie_millman",
+          "name": "Debbie Millman",
+          "youtube": "https://www.youtube.com/@debbiem",
+          "expertise": ["design", "branding", "creativity", "strategy"]
+        }
+      ]
+    },
+    "ai_ml": {
+      "name": "AI & Machine Learning",
+      "description": "Deep learning, AI safety, research, neural networks",
+      "members": [
+        {
+          "slug": "andrew_ng",
+          "name": "Andrew Ng",
+          "youtube": "https://www.youtube.com/@andrewng",
+          "expertise": ["machine-learning", "ai", "education", "coursera"]
+        },
+        {
+          "slug": "jeremy_howard",
+          "name": "Jeremy Howard",
+          "youtube": "https://www.youtube.com/@jeremyphoward",
+          "expertise": ["deep-learning", "fastai", "practical-ai", "democratization"]
+        },
+        {
+          "slug": "yann_lecun",
+          "name": "Yann LeCun",
+          "youtube": "https://www.youtube.com/@yanncun",
+          "expertise": ["deep-learning", "cnn", "ai-research", "meta-ai"]
+        }
+      ]
+    },
+    "product_design": {
+      "name": "Product & Design",
+      "description": "UX, product strategy, lean methodology, user research",
+      "members": [
+        {
+          "slug": "paul_rand",
+          "name": "Paul Rand",
+          "youtube": null,
+          "expertise": ["graphic-design", "branding", "modernism", "identity"]
+        },
+        {
+          "slug": "alina_wheeler",
+          "name": "Alina Wheeler",
+          "youtube": null,
+          "expertise": ["branding", "design-strategy", "identity", "positioning"]
+        },
+        {
+          "slug": "emily_heyward",
+          "name": "Emily Heyward",
+          "youtube": "https://www.youtube.com/@emilyheward",
+          "expertise": ["branding", "strategy", "design", "clarity"]
+        },
+        {
+          "slug": "marty_neumeier",
+          "name": "Marty Neumeier",
+          "youtube": "https://www.youtube.com/@martineumeier",
+          "expertise": ["brand-strategy", "design-thinking", "innovation", "zag-principle"]
+        }
+      ]
+    },
+    "leadership_culture": {
+      "name": "Leadership & Culture",
+      "description": "Org design, culture, decision-making, executive leadership",
+      "members": [
+        {
+          "slug": "satya_nadella",
+          "name": "Satya Nadella",
+          "youtube": "https://www.youtube.com/@satya",
+          "expertise": ["leadership", "growth-mindset", "microsoft", "transformation"]
+        },
+        {
+          "slug": "tim_cook",
+          "name": "Tim Cook",
+          "youtube": "https://www.youtube.com/@timcook",
+          "expertise": ["apple", "operations", "privacy", "sustainability"]
+        },
+        {
+          "slug": "jack_welch",
+          "name": "Jack Welch",
+          "youtube": null,
+          "expertise": ["leadership", "ge", "management", "execution"]
+        },
+        {
+          "slug": "peter_drucker",
+          "name": "Peter Drucker",
+          "youtube": null,
+          "expertise": ["management", "business-theory", "organization", "innovation"]
+        }
+      ]
+    },
+    "marketing_copywriting": {
+      "name": "Marketing & Copywriting",
+      "description": "Positioning, messaging, conversion, advertising",
+      "members": [
+        {
+          "slug": "frank_kern",
+          "name": "Frank Kern",
+          "youtube": "https://www.youtube.com/@frankkern",
+          "expertise": ["copywriting", "marketing", "conversion", "email-marketing"]
+        },
+        {
+          "slug": "russell_brunson",
+          "name": "Russell Brunson",
+          "youtube": "https://www.youtube.com/@russellbrunson",
+          "expertise": ["funnel-building", "marketing", "sales", "clickfunnels"]
+        },
+        {
+          "slug": "ben_settle",
+          "name": "Ben Settle",
+          "youtube": "https://www.youtube.com/@bensettle",
+          "expertise": ["email-marketing", "copywriting", "personality-marketing"]
+        },
+        {
+          "slug": "stefan_georgi",
+          "name": "Stefan Georgi",
+          "youtube": "https://www.youtube.com/@stefangeorgi",
+          "expertise": ["copywriting", "funnels", "marketing", "positioning"]
+        },
+        {
+          "slug": "todd_brown",
+          "name": "Todd Brown",
+          "youtube": "https://www.youtube.com/@toddbrown",
+          "expertise": ["funnel-strategy", "marketing", "conversion", "optimization"]
+        },
+        {
+          "slug": "andre_chaperon",
+          "name": "Andre Chaperon",
+          "youtube": "https://www.youtube.com/@andrechaperon",
+          "expertise": ["email-marketing", "automation", "marketing-sequences", "copywriting"]
+        }
+      ]
+    },
+    "research_analytics": {
+      "name": "Research & Analytics",
+      "description": "Data science, statistics, risk, cognitive research",
+      "members": [
+        {
+          "slug": "georgia_weidman",
+          "name": "Georgia Weidman",
+          "youtube": "https://www.youtube.com/@georgiaweidman",
+          "expertise": ["cybersecurity", "research", "ethical-hacking", "training"]
+        },
+        {
+          "slug": "jim_manico",
+          "name": "Jim Manico",
+          "youtube": "https://www.youtube.com/@jimmanico",
+          "expertise": ["cybersecurity", "application-security", "owasp", "training"]
+        },
+        {
+          "slug": "chris_sanders",
+          "name": "Chris Sanders",
+          "youtube": "https://www.youtube.com/@chrissanders",
+          "expertise": ["cybersecurity", "network-analysis", "threat-hunting", "data-analysis"]
+        },
+        {
+          "slug": "omar_santos",
+          "name": "Omar Santos",
+          "youtube": "https://www.youtube.com/@omarsantos",
+          "expertise": ["cybersecurity", "network-security", "training", "certifications"]
+        }
+      ]
+    },
+    "finance_operations": {
+      "name": "Finance & Operations",
+      "description": "Valuation, investing, operational excellence, economics",
+      "members": [
+        {
+          "slug": "donald_miller",
+          "name": "Donald Miller",
+          "youtube": "https://www.youtube.com/@donaldmiller",
+          "expertise": ["brand-strategy", "messaging", "storytelling", "business-clarity"]
+        },
+        {
+          "slug": "denise_yohn",
+          "name": "Denise Yohn",
+          "youtube": "https://www.youtube.com/@deniseyohn",
+          "expertise": ["brand-strategy", "customer-experience", "organizational-alignment"]
+        },
+        {
+          "slug": "byron_sharp",
+          "name": "Byron Sharp",
+          "youtube": "https://www.youtube.com/@byronsharp",
+          "expertise": ["marketing-science", "brand-building", "market-analysis", "advertising"]
+        }
+      ]
+    }
+  },
+  "traffic_masters": [
+    {"slug": "molly_pittman", "name": "Molly Pittman", "youtube": "https://www.youtube.com/@mollypittman"},
+    {"slug": "ralph_burns", "name": "Ralph Burns", "youtube": "https://www.youtube.com/@ralphburns"},
+    {"slug": "pedro_sobral", "name": "Pedro Sobral", "youtube": "https://www.youtube.com/@pedrosobraloficial"},
+    {"slug": "tom_breeze", "name": "Tom Breeze", "youtube": "https://www.youtube.com/@tombreeze"},
+    {"slug": "kasim_aslam", "name": "Kasim Aslam", "youtube": "https://www.youtube.com/@kasimaslam"},
+    {"slug": "depesh_mandalia", "name": "Depesh Mandalia", "youtube": "https://www.youtube.com/@depeshmandalia"},
+    {"slug": "nicholas_kusmich", "name": "Nicholas Kusmich", "youtube": "https://www.youtube.com/@nicholaskusmich"},
+    {"slug": "runur_britt", "name": "Runur Britt", "youtube": "https://www.youtube.com/@runurbritt"}
+  ],
+  "copy_squad_legacy": [
+    {"slug": "gary_halbert", "name": "Gary Halbert", "youtube": null},
+    {"slug": "david_ogilvy", "name": "David Ogilvy", "youtube": null},
+    {"slug": "eugene_schwartz", "name": "Eugene Schwartz", "youtube": null},
+    {"slug": "claude_hopkins", "name": "Claude Hopkins", "youtube": null},
+    {"slug": "john_carlton", "name": "John Carlton", "youtube": null},
+    {"slug": "dan_kennedy", "name": "Dan Kennedy", "youtube": null},
+    {"slug": "gary_bencivenga", "name": "Gary Bencivenga", "youtube": null}
+  ]
+}

@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-20T02:38:51.075Z"
+generated_at: "2026-03-20T04:17:08.471Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1169
+file_count: 1170
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -29,9 +29,9 @@ files:
     type: cli
     size: 2397
   - path: cli/commands/decide.js
-    hash: sha256:189d39776d5070a2379d10d7f43899bb3dbf6b24d6505195f75eb11dd6fb2bdf
+    hash: sha256:94bf0a1115c408d36dc3f1cc9d745dabe10205ee5fb8913d7a0d13d0e140c269
     type: cli
-    size: 3349
+    size: 4066
   - path: cli/commands/diff.js
     hash: sha256:476c7396248447866b5f031877ab6fc568c64319c19ffb66a3fb09091f7af81c
     type: cli
@@ -1537,7 +1537,7 @@ files:
     type: data
     size: 9575
   - path: data/entity-registry.yaml
-    hash: sha256:d3c768b8933538694d1996c9d829b79f27a2ddc8ae6efeb3ec73006d8b719a62
+    hash: sha256:808a95a2e3586d37281bee21a1c5352d39ec5437107c043c71f274367d3ff284
     type: data
     size: 553603
   - path: data/learned-patterns.yaml
@@ -1708,6 +1708,10 @@ files:
     hash: sha256:4abaa92d85f4574a79a308f098e9ae719c28f72101e746f2a574ad92e120dcf4
     type: agent
     size: 1123
+  - path: development/agents/squad-advisor.yaml
+    hash: sha256:d3582e5d067a344d3c1cb3172d74d6e6da585f955accfa08d30b72d724798c31
+    type: agent
+    size: 6908
   - path: development/agents/squad-creator.md
     hash: sha256:9ae479d628a74fdf8372da4e5a306fdc93235bce8f4957b44ad9adc76643f8e1
     type: agent
