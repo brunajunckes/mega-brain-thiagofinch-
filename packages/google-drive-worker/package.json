@@ -1,0 +1,35 @@
+{
+  "name": "@aiox-fullstack/google-drive-worker",
+  "version": "1.0.0",
+  "description": "Access and download files from Google Drive URLs without requiring official API keys",
+  "main": "src/index.js",
+  "keywords": [
+    "google-drive",
+    "download",
+    "automation",
+    "file-access",
+    "aiox"
+  ],
+  "author": "AIOX Team",
+  "license": "MIT",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "test": "jest --testMatch='**/__tests__/**/*.test.js'",
+    "lint": "eslint src --fix"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "eslint": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aiox-fullstack/core.git",
+    "directory": "packages/google-drive-worker"
+  }
+}
