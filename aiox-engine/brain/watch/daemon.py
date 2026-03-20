@@ -1,72 +1,134 @@
 """
-Watcher Daemon — Background service for YouTube channel polling
+Watcher Daemon — Background process for auto-ingestion of new videos
 """
 
 import asyncio
-import os
 import signal
+import os
 from typing import List
-from datetime import datetime
+from datetime import datetime, timedelta
+import yt_dlp
+
 from brain.watch.manager import WatchManager
 from brain.ingestion.youtube import ingest_youtube
 
-WATCH_INTERVAL = int(os.getenv("BRAIN_WATCH_INTERVAL", "21600"))  # 6h default
+WATCH_INTERVAL = int(os.getenv("BRAIN_WATCH_INTERVAL", "21600"))  # 6 hours default
+MAX_RETRIES = 3
 
 
 class WatcherDaemon:
-    """Background daemon that polls YouTube channels"""
+    """Daemon that monitors channels and auto-ingests new videos"""
 
     def __init__(self):
+        self.manager = WatchManager()
+        self.running = True
+        self.pending_retries = {}
+
+        signal.signal(signal.SIGTERM, self._handle_sigterm)
+        signal.signal(signal.SIGINT, self._handle_sigterm)
+
+    def _handle_sigterm(self, signum, frame):
+        """Handle graceful shutdown"""
+        print("🛑 SIGTERM received, graceful shutdown...")
         self.running = False
-        self.watches = []
 
     async def start(self):
-        """Start the watching daemon"""
-        self.running = True
-        signal.signal(signal.SIGTERM, self._shutdown_handler)
-
-        print("[✓] Watcher Daemon started")
-
+        """Start the daemon"""
+        print("🚀 Watcher daemon started")
         while self.running:
-            await self._poll_all_channels()
+            await self.poll_channels()
             await asyncio.sleep(WATCH_INTERVAL)
 
-    async def _poll_all_channels(self):
-        """Poll all registered channels"""
-        watches = WatchManager.list_watches()
+    async def poll_channels(self):
+        """Poll all watched channels"""
+        watches = self.manager.list_watches()
 
         for watch in watches:
-            if watch.get("active") == "true":
-                try:
-                    await self._check_channel(watch)
-                except Exception as e:
-                    print(f"[✗] Error watching {watch['slug']}: {e}")
+            if watch.get("paused"):
+                continue
 
-    async def _check_channel(self, watch: dict):
-        """Check single channel for new videos"""
-        slug = watch["slug"]
-        channel_url = watch["channel_url"]
+            slug = watch.get("slug")
+            channel_url = watch.get("channel_url")
 
-        print(f"[→] Checking {slug}...")
+            try:
+                await self.check_channel(channel_url, slug)
+            except Exception as e:
+                await self._retry_channel(slug, str(e))
 
-        # Use yt-dlp to list latest videos
+    async def check_channel(self, channel_url: str, slug: str):
+        """Check channel for new videos"""
         try:
-            chunks = await ingest_youtube(channel_url, slug, last_n=1)
-            if chunks:
-                print(f"[+] Ingested {len(chunks)} chunks for {slug}")
-                WatchManager.add_to_history(slug, "auto", "auto_ingest", len(chunks))
+            ydl_opts = {
+                'quiet': True,
+                'no_warnings': True,
+                'extract_flat': 'in_playlist',
+            }
+
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                info = ydl.extract_info(channel_url, download=False)
+
+                if 'entries' in info:
+                    videos = info['entries'][:10]  # Check last 10 videos
+
+                    seen = self.manager.get_seen_videos(slug)
+                    new_count = 0
+
+                    for video in videos:
+                        video_id = video.get('id')
+                        if video_id not in seen:
+                            # Ingest new video
+                            video_url = f"https://www.youtube.com/watch?v={video_id}"
+                            try:
+                                await ingest_youtube(video_url, slug)
+                                self.manager.mark_seen(slug, video_id)
+                                self.manager.add_history(
+                                    slug,
+                                    video_id,
+                                    video.get('title', 'Unknown'),
+                                    chunks=1
+                                )
+                                new_count += 1
+                            except Exception as e:
+                                self.manager.log_event(
+                                    slug,
+                                    "ingest_failed",
+                                    "error",
+                                    str(e)
+                                )
+
+                    self.manager.log_event(
+                        slug,
+                        "check_complete",
+                        "success"
+                    )
+
+                    print(f"✅ {slug}: Found {new_count} new videos")
+
         except Exception as e:
-            print(f"[✗] Failed to ingest {slug}: {e}")
+            self.manager.log_event(slug, "check_failed", "error", str(e))
+            raise
 
-        # Update last check
-        WatchManager.get_watch(slug)
-        watch_key = f"brain:watch:{slug}:config"
-        import redis
-        redis_client = redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379"),
-                                      decode_responses=True)
-        redis_client.hset(watch_key, "last_check", datetime.now().isoformat())
+    async def _retry_channel(self, slug: str, error: str):
+        """Retry with exponential backoff"""
+        if slug not in self.pending_retries:
+            self.pending_retries[slug] = 0
 
-    def _shutdown_handler(self, signum, frame):
-        """Handle graceful shutdown"""
-        print("\n[→] Shutting down gracefully...")
-        self.running = False
+        retry_count = self.pending_retries[slug]
+        if retry_count < MAX_RETRIES:
+            backoff = 2 ** retry_count
+            self.pending_retries[slug] += 1
+            print(f"⚠️ Retrying {slug} in {backoff}s (attempt {retry_count + 1}/{MAX_RETRIES})")
+            await asyncio.sleep(backoff)
+        else:
+            self.manager.log_event(slug, "max_retries_reached", "failed", error)
+            del self.pending_retries[slug]
+
+
+async def run_daemon():
+    """Run the daemon"""
+    daemon = WatcherDaemon()
+    await daemon.start()
+
+
+if __name__ == "__main__":
+    asyncio.run(run_daemon())

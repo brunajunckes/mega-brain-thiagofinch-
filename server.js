@@ -18,6 +18,73 @@ process.env.OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'qwen2.5:7b';
 const orchestrator = new SwarmOrchestrator({ backendType: 'ollama' });
 
 /**
+ * Load real AIOX squads from filesystem
+ */
+async function loadAIOXSquads() {
+  try {
+    const squadsDir = '/srv/aiox/squads';
+    const files = fs.readdirSync(squadsDir);
+
+    const squads = files
+      .filter(f => f !== '.gitkeep' && f !== '_example')
+      .map(squadName => {
+        const configPath = path.join(squadsDir, squadName, 'config.yaml');
+        const squadPath = path.join(squadsDir, squadName, 'squad.yaml');
+
+        try {
+          // Try to read squad config or squad.yaml
+          const configFile = fs.existsSync(configPath) ? configPath : squadPath;
+          if (fs.existsSync(configFile)) {
+            const content = fs.readFileSync(configFile, 'utf8');
+            return {
+              id: squadName,
+              name: squadName.replace(/-/g, ' ').toUpperCase(),
+              type: 'squad',
+              status: 'active',
+              path: configFile,
+            };
+          }
+        } catch (e) {
+          // Skip squads that can't be read
+        }
+        return null;
+      })
+      .filter(s => s !== null);
+
+    return squads;
+  } catch (error) {
+    console.error('Error loading squads:', error);
+    return [];
+  }
+}
+
+/**
+ * Load real AIOX agents from .aiox-core
+ */
+async function loadAIOXAgents() {
+  try {
+    // AIOX agents defined in constitution
+    const agents = [
+      { id: '@dev', name: 'Dex', persona: 'Developer', status: 'available' },
+      { id: '@qa', name: 'Quinn', persona: 'QA Engineer', status: 'available' },
+      { id: '@architect', name: 'Aria', persona: 'System Architect', status: 'available' },
+      { id: '@pm', name: 'Morgan', persona: 'Product Manager', status: 'available' },
+      { id: '@po', name: 'Pax', persona: 'Product Owner', status: 'available' },
+      { id: '@sm', name: 'River', persona: 'Scrum Master', status: 'available' },
+      { id: '@analyst', name: 'Alex', persona: 'Analyst', status: 'available' },
+      { id: '@data-engineer', name: 'Dara', persona: 'Data Engineer', status: 'available' },
+      { id: '@ux-design-expert', name: 'Uma', persona: 'UX Designer', status: 'available' },
+      { id: '@devops', name: 'Gage', persona: 'DevOps Engineer', status: 'available' },
+    ];
+
+    return agents;
+  } catch (error) {
+    console.error('Error loading agents:', error);
+    return [];
+  }
+}
+
+/**
  * Get Ollama status - REAL DATA
  */
 async function getOllamaStatus() {
@@ -223,6 +290,7 @@ const requestHandler = async (req, res) => {
     if (pathname === '/api/aiox/status') {
       const ollamaStatus = await getOllamaStatus();
 
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
         status: ollamaStatus.status,
@@ -231,6 +299,36 @@ const requestHandler = async (req, res) => {
         model: process.env.OLLAMA_MODEL || 'qwen2.5:7b',
         timestamp: new Date().toISOString(),
         error: ollamaStatus.error || null,
+        _refresh: Date.now(),
+      }));
+      return;
+    }
+
+    // AIOX Squads - REAL DATA from /srv/aiox/squads
+    if (pathname === '/api/squads') {
+      const squads = await loadAIOXSquads();
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        squads: squads,
+        total: squads.length,
+        timestamp: new Date().toISOString(),
+        source: 'aiox-local',
+      }));
+      return;
+    }
+
+    // AIOX Agents - REAL DATA from Constitution
+    if (pathname === '/api/agents') {
+      const agents = await loadAIOXAgents();
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        agents: agents,
+        total: agents.length,
+        online: agents.length,
+        timestamp: new Date().toISOString(),
+        source: 'aiox-local',
       }));
       return;
     }

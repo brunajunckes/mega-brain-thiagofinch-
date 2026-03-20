@@ -1,69 +1,82 @@
 """
-Watch Manager — Manage YouTube channel watching for auto-ingestion
+Watch Manager — Manages YouTube channel monitoring and auto-ingestion
 """
 
-import os
 import redis
 import json
-from typing import Optional, List, Dict
+from typing import List, Dict, Optional
 from datetime import datetime
 
-REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
+REDIS_URL = "redis://localhost:6379"
 redis_client = redis.from_url(REDIS_URL, decode_responses=True)
 
 
 class WatchManager:
-    """Manage all active channel watches"""
+    """Manages watch configuration and state"""
 
-    @staticmethod
-    def add_watch(channel_url: str, slug: str) -> bool:
-        """Register a channel to watch"""
-        watch_key = f"brain:watch:{slug}:config"
-        redis_client.hset(watch_key, mapping={
+    def __init__(self):
+        self.redis = redis_client
+
+    def add_watch(self, channel_url: str, slug: str) -> Dict:
+        """Add new channel watch"""
+        watch_key = f"brain:watch:{slug}"
+        watch_data = {
             "channel_url": channel_url,
             "slug": slug,
-            "active": "true",
             "created_at": datetime.now().isoformat(),
-            "last_check": None
-        })
-        return True
+            "paused": False,
+            "last_check": None,
+            "next_check": None
+        }
+        self.redis.hset(watch_key, mapping=watch_data)
+        self.redis.sadd("brain:watch:active", slug)
+        return watch_data
 
-    @staticmethod
-    def list_watches() -> List[Dict]:
+    def list_watches(self) -> List[Dict]:
         """List all active watches"""
+        active_watches = self.redis.smembers("brain:watch:active")
         watches = []
-        for key in redis_client.scan_iter("brain:watch:*:config"):
-            data = redis_client.hgetall(key)
-            if data.get("active") == "true":
-                watches.append(data)
+
+        for slug in active_watches:
+            watch_key = f"brain:watch:{slug}"
+            watch_data = self.redis.hgetall(watch_key)
+            if watch_data:
+                watches.append(watch_data)
+
         return watches
 
-    @staticmethod
-    def get_watch(slug: str) -> Optional[Dict]:
+    def pause_watch(self, slug: str) -> bool:
+        """Pause watching a channel"""
+        watch_key = f"brain:watch:{slug}"
+        self.redis.hset(watch_key, "paused", True)
+        self.redis.hset(watch_key, "paused_at", datetime.now().isoformat())
+        return True
+
+    def resume_watch(self, slug: str) -> bool:
+        """Resume watching a channel"""
+        watch_key = f"brain:watch:{slug}"
+        self.redis.hset(watch_key, "paused", False)
+        self.redis.hset(watch_key, "resumed_at", datetime.now().isoformat())
+        return True
+
+    def get_watch(self, slug: str) -> Optional[Dict]:
         """Get watch configuration"""
-        key = f"brain:watch:{slug}:config"
-        data = redis_client.hgetall(key)
-        return data if data else None
+        watch_key = f"brain:watch:{slug}"
+        return self.redis.hgetall(watch_key)
 
-    @staticmethod
-    def pause_watch(slug: str) -> bool:
-        """Pause a watch"""
-        key = f"brain:watch:{slug}:config"
-        redis_client.hset(key, "active", "false")
-        redis_client.hset(key, "paused_at", datetime.now().isoformat())
-        return True
+    def log_event(self, slug: str, event_type: str, status: str, error: Optional[str] = None):
+        """Log watch event"""
+        log_key = f"brain:watch:logs:{slug}"
+        event = {
+            "timestamp": datetime.now().isoformat(),
+            "event_type": event_type,
+            "status": status,
+            "error": error or ""
+        }
+        self.redis.rpush(log_key, json.dumps(event))
 
-    @staticmethod
-    def resume_watch(slug: str) -> bool:
-        """Resume a paused watch"""
-        key = f"brain:watch:{slug}:config"
-        redis_client.hset(key, "active", "true")
-        redis_client.hdel(key, "paused_at")
-        return True
-
-    @staticmethod
-    def add_to_history(slug: str, video_id: str, title: str, chunks: int) -> bool:
-        """Add entry to watch history"""
+    def add_history(self, slug: str, video_id: str, title: str, chunks: int):
+        """Record ingestion history"""
         history_key = f"brain:watch:{slug}:history"
         entry = {
             "video_id": video_id,
@@ -71,25 +84,14 @@ class WatchManager:
             "chunks_added": chunks,
             "timestamp": datetime.now().isoformat()
         }
-        redis_client.lpush(history_key, json.dumps(entry))
-        return True
+        self.redis.rpush(history_key, json.dumps(entry))
 
-    @staticmethod
-    def get_history(slug: str, limit: int = 50) -> List[Dict]:
-        """Get ingestion history for a clone"""
-        history_key = f"brain:watch:{slug}:history"
-        entries = redis_client.lrange(history_key, 0, limit - 1)
-        return [json.loads(e) for e in entries]
-
-    @staticmethod
-    def mark_video_seen(slug: str, video_id: str) -> bool:
-        """Mark video as already ingested"""
+    def get_seen_videos(self, slug: str) -> set:
+        """Get set of already-seen video IDs"""
         seen_key = f"brain:watch:seen_videos:{slug}"
-        redis_client.sadd(seen_key, video_id)
-        return True
+        return self.redis.smembers(seen_key)
 
-    @staticmethod
-    def is_video_seen(slug: str, video_id: str) -> bool:
-        """Check if video already ingested"""
+    def mark_seen(self, slug: str, video_id: str):
+        """Mark video as seen"""
         seen_key = f"brain:watch:seen_videos:{slug}"
-        return redis_client.sismember(seen_key, video_id)
+        self.redis.sadd(seen_key, video_id)

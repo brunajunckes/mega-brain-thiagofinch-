@@ -1,139 +1,64 @@
 """
-Debate System — Multi-round debate between expert clones
+Debate System — Executes multi-round debates between clones
 """
 
-import asyncio
 import json
-import os
-from typing import List, Dict
-from datetime import datetime
-from brain.clone.agent import CloneAgent
-import redis
-
-REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
-redis_client = redis.from_url(REDIS_URL, decode_responses=True)
-
-DEBATE_PROMPTS = {
-    1: "Answer this question clearly and concisely: {question}",
-    2: "Other experts have given these perspectives:\n{other_perspectives}\n\nRespond with your perspective, addressing any disagreements: {question}",
-    3: "Consider all previous perspectives and provide a synthesized response: {question}"
-}
+import hashlib
+from typing import Dict, List
+from collections import Counter
 
 
-class DebateManager:
-    """Manage multi-round debate between clones"""
+class DebateRound:
+    """Represents a single debate round"""
 
-    def __init__(self, question: str, clones: List[str]):
+    def __init__(self, round_num: int, question: str, previous_responses: Dict = None):
+        self.round_num = round_num
         self.question = question
-        self.clones = clones
-        self.debate_id = f"debate_{datetime.now().timestamp()}"
-        self.rounds = {}
+        self.previous_responses = previous_responses or {}
+        self.responses = {}
 
-    async def execute(self, num_rounds: int = 3) -> Dict:
-        """Execute debate for specified number of rounds"""
-        debate_results = {
-            "debate_id": self.debate_id,
-            "question": self.question,
-            "clones": self.clones,
-            "rounds": [],
-            "timestamp": datetime.now().isoformat()
-        }
-
-        for round_num in range(1, num_rounds + 1):
-            round_result = await self._execute_round(round_num, debate_results)
-            debate_results["rounds"].append(round_result)
-
-        # Save to Redis
-        redis_client.setex(
-            f"brain:squad:debate:{self.debate_id}",
-            86400,  # 24h TTL
-            json.dumps(debate_results)
-        )
-
-        return debate_results
-
-    async def _execute_round(self, round_num: int, debate_results: Dict) -> Dict:
-        """Execute a single debate round"""
-        round_data = {
-            "round": round_num,
-            "responses": {},
-            "timestamp": datetime.now().isoformat()
-        }
-
-        # Build prompts for this round
-        if round_num == 1:
-            prompts = {clone: DEBATE_PROMPTS[1].format(question=self.question)
-                      for clone in self.clones}
+    def get_prompt(self) -> str:
+        """Get prompt for this round"""
+        if self.round_num == 1:
+            return f"Answer this question: {self.question}"
+        elif self.round_num == 2:
+            prev_text = json.dumps(self.previous_responses, indent=2)
+            return f"Considering these perspectives:\n{prev_text}\n\nProvide your response: {self.question}"
         else:
-            # Include previous responses in prompt
-            prev_responses = debate_results["rounds"][-1]["responses"]
-            other_perspectives = "\n".join([
-                f"- {slug}: {resp.get('response', 'No response')[:200]}..."
-                for slug, resp in prev_responses.items()
-            ])
-            prompts = {clone: DEBATE_PROMPTS[round_num].format(
-                question=self.question,
-                other_perspectives=other_perspectives
-            ) for clone in self.clones}
-
-        # Query all clones in parallel for this round
-        tasks = []
-        for slug in self.clones:
-            agent = CloneAgent(slug)
-            # Use the debate prompt instead of the normal question
-            tasks.append(agent.ask(prompts[slug], use_rag=False))
-
-        results = await asyncio.gather(*tasks, return_exceptions=True)
-
-        for slug, result in zip(self.clones, results):
-            if isinstance(result, Exception):
-                round_data["responses"][slug] = {"error": str(result)}
-            else:
-                round_data["responses"][slug] = result
-
-        return round_data
-
-    @staticmethod
-    def score_consensus(debate_results: Dict) -> Dict:
-        """Score agreement between clones"""
-        # Extract all responses from final round
-        final_round = debate_results["rounds"][-1]
-        responses = final_round["responses"]
-
-        # Simple keyword-based consensus scoring
-        keywords_mentioned = {}
-        for slug, resp in responses.items():
-            text = resp.get("response", "").lower()
-            # Count key consensus words (would be more sophisticated in production)
-            consensus_words = ["agree", "consensus", "important", "key", "critical"]
-            for word in consensus_words:
-                if word in text:
-                    keywords_mentioned[word] = keywords_mentioned.get(word, 0) + 1
-
-        consensus_score = [
-            {
-                "word": keyword,
-                "clones_mentioned": count,
-                "agreement_percentage": (count / len(responses)) * 100
-            } for keyword, count in keywords_mentioned.items()
-        ]
-
-        return {
-            "consensus_analysis": consensus_score,
-            "total_agreement_score": sum(c["agreement_percentage"] for c in consensus_score) / len(
-                consensus_score) if consensus_score else 0
-        }
+            return f"Synthesize all perspectives on: {self.question}"
 
 
-if __name__ == "__main__":
-    import sys
+def score_consensus(responses: Dict[str, str]) -> Dict:
+    """Score consensus across responses using keyword overlap"""
+    if not responses:
+        return {"consensus_score": 0, "agreement_level": "none"}
 
-    async def test():
-        if len(sys.argv) > 1:
-            question = sys.argv[1]
-            clones = sys.argv[2].split(",") if len(sys.argv) > 2 else ["test_clone"]
-            manager = DebateManager(question, clones)
-            result = await manager.execute(3)
-            print(json.dumps(result, indent=2))
+    # Extract key terms from responses
+    all_terms = []
+    for response in responses.values():
+        if isinstance(response, str):
+            terms = response.lower().split()
+            all_terms.extend([t for t in terms if len(t) > 3])
 
-    asyncio.run(test())
+    # Count term frequency
+    term_counts = Counter(all_terms)
+    top_terms = [term for term, count in term_counts.most_common(10) if count > 1]
+
+    # Calculate consensus score
+    if not all_terms:
+        return {"consensus_score": 0, "agreement_level": "none"}
+
+    consensus_score = len(top_terms) / len(set(all_terms)) if all_terms else 0
+
+    if consensus_score > 0.7:
+        agreement_level = "high"
+    elif consensus_score > 0.4:
+        agreement_level = "medium"
+    else:
+        agreement_level = "low"
+
+    return {
+        "consensus_score": round(consensus_score, 2),
+        "agreement_level": agreement_level,
+        "common_themes": top_terms[:5]
+    }
