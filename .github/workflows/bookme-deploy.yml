@@ -1,0 +1,249 @@
+name: BookMe Deploy
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'packages/bookme-engine/**'
+      - 'packages/bookme-web/**'
+      - 'packages/project-manager/**'
+      - 'packages/google-drive-worker/**'
+      - '.github/workflows/bookme-deploy.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint BookMe packages
+        run: |
+          npm run lint -- packages/bookme-engine
+          npm run lint -- packages/bookme-web
+          npm run lint -- packages/project-manager
+          npm run lint -- packages/google-drive-worker
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Test BookMe Engine
+        run: npm test -- packages/bookme-engine
+
+      - name: Test Project Manager
+        run: npm test -- packages/project-manager
+
+      - name: Test Google Drive Worker
+        run: npm test -- packages/google-drive-worker
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build BookMe packages
+        run: npm run build -- packages/bookme-engine packages/bookme-web
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: bookme-build
+          path: |
+            packages/bookme-*/dist
+            packages/bookme-web/.next
+
+  integration-test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run integration tests
+        run: npm test -- --testPathPattern=integration
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage/lcov.info
+
+  deploy-staging:
+    needs: [test, build, integration-test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    environment:
+      name: staging
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: bookme-build
+
+      - name: Deploy to staging
+        env:
+          DEPLOY_KEY: ${{ secrets.STAGING_DEPLOY_KEY }}
+          DEPLOY_HOST: ${{ secrets.STAGING_DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.STAGING_DEPLOY_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts
+          ssh -i ~/.ssh/deploy_key $DEPLOY_USER@$DEPLOY_HOST "cd /opt/bookme && git pull && npm install && npm run build && systemctl restart bookme"
+
+      - name: Health check staging
+        run: |
+          sleep 10
+          curl -f https://staging.bookme.yourdomain.com/api/health || exit 1
+
+  deploy-production:
+    needs: [test, build, integration-test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: production
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: bookme-build
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            -t bookme-web:${{ github.sha }} \
+            -t bookme-web:latest \
+            -f packages/bookme-web/Dockerfile .
+
+      - name: Push to registry
+        env:
+          REGISTRY: ${{ secrets.REGISTRY }}
+          REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
+          REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+        run: |
+          echo $REGISTRY_PASSWORD | docker login -u $REGISTRY_USER --password-stdin $REGISTRY
+          docker tag bookme-web:latest $REGISTRY/bookme-web:latest
+          docker tag bookme-web:latest $REGISTRY/bookme-web:${{ github.sha }}
+          docker push $REGISTRY/bookme-web:latest
+          docker push $REGISTRY/bookme-web:${{ github.sha }}
+
+      - name: Deploy to production
+        env:
+          DEPLOY_KEY: ${{ secrets.PROD_DEPLOY_KEY }}
+          DEPLOY_HOST: ${{ secrets.PROD_DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.PROD_DEPLOY_USER }}
+          REGISTRY: ${{ secrets.REGISTRY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts
+
+          # Deploy via Docker
+          ssh -i ~/.ssh/deploy_key $DEPLOY_USER@$DEPLOY_HOST << 'DEPLOY_SCRIPT'
+            docker pull $REGISTRY/bookme-web:latest
+            docker-compose -f /opt/bookme/docker-compose.yml up -d
+            docker exec bookme-web npm run migrate || true
+          DEPLOY_SCRIPT
+
+      - name: Health check production
+        run: |
+          sleep 15
+          curl -f https://bookme.yourdomain.com/api/health || exit 1
+
+      - name: Slack notification
+        if: always()
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": "BookMe deployment ${{ job.status }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*BookMe Deployment* ${{ job.status }}\nCommit: ${{ github.sha }}\nBranch: ${{ github.ref }}"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  rollback:
+    needs: [deploy-production]
+    runs-on: ubuntu-latest
+    if: failure()
+    environment:
+      name: production
+    steps:
+      - name: Rollback production
+        env:
+          DEPLOY_KEY: ${{ secrets.PROD_DEPLOY_KEY }}
+          DEPLOY_HOST: ${{ secrets.PROD_DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.PROD_DEPLOY_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts
+
+          ssh -i ~/.ssh/deploy_key $DEPLOY_USER@$DEPLOY_HOST << 'ROLLBACK_SCRIPT'
+            cd /opt/bookme
+            git checkout HEAD~1
+            docker-compose down
+            docker-compose up -d
+          ROLLBACK_SCRIPT
+
+      - name: Alert on rollback
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": "⚠️ BookMe ROLLBACK executed",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*⚠️ BookMe ROLLBACK*\nDeployment failed, rolled back to previous version\nCommit: ${{ github.sha }}"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
