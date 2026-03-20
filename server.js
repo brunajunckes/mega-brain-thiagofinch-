@@ -18,6 +18,44 @@ process.env.OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'qwen2.5:7b';
 const orchestrator = new SwarmOrchestrator({ backendType: 'ollama' });
 
 /**
+ * Get Ollama status - REAL DATA
+ */
+async function getOllamaStatus() {
+  return new Promise((resolve) => {
+    const ollamaUrl = process.env.OLLAMA_URL || 'http://localhost:11434';
+    const ollamaUrlObj = new URL(ollamaUrl + '/api/tags');
+    const protocol = ollamaUrlObj.protocol === 'https:' ? https : http;
+
+    const req = protocol.get({
+      hostname: ollamaUrlObj.hostname,
+      port: ollamaUrlObj.port || (ollamaUrlObj.protocol === 'https:' ? 443 : 80),
+      path: ollamaUrlObj.pathname + ollamaUrlObj.search,
+    }, (res) => {
+      let data = '';
+      res.on('data', chunk => { data += chunk; });
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          resolve({
+            status: 'online',
+            models: parsed.models || [],
+            statusCode: res.statusCode,
+          });
+        } catch (e) {
+          resolve({ status: 'offline', models: [], error: e.message });
+        }
+      });
+    });
+
+    req.on('error', (err) => {
+      resolve({ status: 'offline', models: [], error: err.message });
+    });
+
+    req.end();
+  });
+}
+
+/**
  * Proxy UI request to openclaw.hubme.tech
  */
 async function proxyUI(req, res, pathname) {
@@ -162,26 +200,37 @@ const requestHandler = async (req, res) => {
       return;
     }
 
-    // OpenClaw status
+    // OpenClaw status - REAL DATA
     if (pathname === '/api/openclaw/status') {
-      res.writeHead(200);
+      const ollamaStatus = await getOllamaStatus();
+      const model = process.env.OLLAMA_MODEL || 'qwen2.5:7b';
+      const modelExists = ollamaStatus.models.some(m => m.name === model);
+
+      res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
-        status: 'online',
+        status: ollamaStatus.status,
         backend: 'ollama',
-        model: process.env.OLLAMA_MODEL,
+        model: model,
+        modelAvailable: modelExists,
+        availableModels: ollamaStatus.models.map(m => ({ name: m.name, size: m.size })),
         timestamp: new Date().toISOString(),
+        error: ollamaStatus.error || null,
       }));
       return;
     }
 
-    // AIOX status
+    // AIOX status - REAL DATA
     if (pathname === '/api/aiox/status') {
-      res.writeHead(200);
+      const ollamaStatus = await getOllamaStatus();
+
+      res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
-        status: 'online',
+        status: ollamaStatus.status,
         system: 'aiox-ollama',
         backend: 'ollama',
-        model: process.env.OLLAMA_MODEL,
+        model: process.env.OLLAMA_MODEL || 'qwen2.5:7b',
+        timestamp: new Date().toISOString(),
+        error: ollamaStatus.error || null,
       }));
       return;
     }
