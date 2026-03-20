@@ -200,11 +200,13 @@ class DiffAnalyzer {
     const currentMap = {};
 
     baseline.forEach((dep) => {
+      if (typeof dep !== 'string') return;
       const name = dep.replace(/@[^@]*$/, '');
       baseMap[name] = dep;
     });
 
     current.forEach((dep) => {
+      if (typeof dep !== 'string') return;
       const name = dep.replace(/@[^@]*$/, '');
       currentMap[name] = dep;
     });
