@@ -36,7 +36,11 @@ class ImpactCalculator {
     const languageImpact = this._scoreLanguageChange(changes.languages);
 
     const scores = [architectureImpact, dependencyImpact, metricsImpact, languageImpact];
-    const overallScore = Math.round((scores.reduce((a, b) => a + b, 0) / scores.length) * 10) / 10;
+
+    // Weighted score: architecture has 50% weight (structural changes are critical)
+    const overallScore = Math.round(
+      (architectureImpact * 0.5 + dependencyImpact * 0.2 + metricsImpact * 0.15 + languageImpact * 0.15) * 10
+    ) / 10;
 
     return {
       overallScore,

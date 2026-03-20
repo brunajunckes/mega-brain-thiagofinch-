@@ -7,6 +7,8 @@ module.exports = {
     '**/tests/**/*.test.js',
     '**/tests/**/*.spec.js',
     '**/.aiox-core/**/__tests__/**/*.test.js',
+    '**/packages/**/__tests__/**/*.test.js',
+    '**/packages/**/src/__tests__/**/*.test.js',
     // Pro tests run via pro-integration.yml CI workflow (not in local npm test)
     // '**/pro/**/__tests__/**/*.test.js',
   ],
