@@ -23,6 +23,7 @@ try:
   from rag.pipeline import execute_rag_pipeline
   from router.selector import select_model
   from memory.store import save_to_memory
+  from brain.api.brain_routes import router as brain_router
 except ImportError as e:
   print(f"[ERROR] Import failed: {e}")
   sys.exit(1)
@@ -32,6 +33,9 @@ OLLAMA_URL = os.getenv("OLLAMA_URL", "http://172.17.0.1:11434")
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
 
 app = FastAPI(title="AIOX Engine", version="2.0.0")
+
+# Include Brain Factory router
+app.include_router(brain_router)
 
 # Redis connection
 redis_client = redis.from_url(REDIS_URL, decode_responses=True)
