@@ -1,0 +1,26 @@
+{
+  "name": "diff-engine",
+  "version": "1.0.0",
+  "description": "Repository diff analysis and impact assessment engine",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest --config jest.config.js",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": [
+    "diff",
+    "analysis",
+    "repository",
+    "impact",
+    "changelog"
+  ],
+  "author": "AIOX",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^11.1.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
