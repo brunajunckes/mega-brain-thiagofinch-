@@ -31,6 +31,35 @@ class SessionManager {
     this.baseDir = baseDir || path.join(process.cwd(), '.aiox', 'sessions');
     this.sessionIndexFile = path.join(this.baseDir, 'index.json');
     this.initialized = false;
+    // Lock map to prevent concurrent modifications to same session
+    this._sessionLocks = new Map();
+  }
+
+  /**
+   * Acquire lock for a session to prevent race conditions
+   * @private
+   * @param {string} sessionKey - Session identifier (agentId/sessionId)
+   * @returns {Promise<Function>} Release function to call when done
+   */
+  async _acquireLock(sessionKey) {
+    if (!this._sessionLocks.has(sessionKey)) {
+      this._sessionLocks.set(sessionKey, { locked: false, queue: [] });
+    }
+
+    const lockEntry = this._sessionLocks.get(sessionKey);
+    if (lockEntry.locked) {
+      // Wait for lock to be released
+      await new Promise((resolve) => {
+        lockEntry.queue.push(resolve);
+      });
+    }
+
+    lockEntry.locked = true;
+    return () => {
+      lockEntry.locked = false;
+      const next = lockEntry.queue.shift();
+      if (next) next();
+    };
   }
 
   /**
@@ -205,24 +234,35 @@ class SessionManager {
   async addMessage(agentId, sessionId, role, content) {
     await this.initialize();
 
-    const sessionDir = path.join(this.baseDir, agentId, sessionId);
-    const conversationFile = path.join(sessionDir, 'conversation.jsonl');
+    const sessionKey = `${agentId}/${sessionId}`;
+    const releaseLock = await this._acquireLock(sessionKey);
 
-    const message = {
-      role,
-      content,
-      timestamp: new Date().toISOString(),
-    };
+    try {
+      const sessionDir = path.join(this.baseDir, agentId, sessionId);
+      const conversationFile = path.join(sessionDir, 'conversation.jsonl');
 
-    // Append to conversation file
-    await fs.appendFile(conversationFile, JSON.stringify(message) + '\n');
+      const message = {
+        role,
+        content,
+        timestamp: new Date().toISOString(),
+      };
 
-    // Update session metadata
-    const metadataFile = path.join(sessionDir, 'metadata.json');
-    const metadata = await fs.readJson(metadataFile);
-    metadata.conversationLength = (metadata.conversationLength || 0) + 1;
-    metadata.lastActivity = new Date().toISOString();
-    await fs.writeJson(metadataFile, metadata, { spaces: 2 });
+      // Append to conversation file
+      await fs.appendFile(conversationFile, JSON.stringify(message) + '\n');
+
+      // Update session metadata atomically
+      const metadataFile = path.join(sessionDir, 'metadata.json');
+      const metadata = await fs.readJson(metadataFile);
+      metadata.conversationLength = (metadata.conversationLength || 0) + 1;
+      metadata.lastActivity = new Date().toISOString();
+
+      // Atomic write: write to temp, then rename
+      const tempFile = metadataFile + '.tmp';
+      await fs.writeJson(tempFile, metadata, { spaces: 2 });
+      await fs.rename(tempFile, metadataFile);
+    } finally {
+      releaseLock();
+    }
   }
 
   /**
@@ -235,21 +275,35 @@ class SessionManager {
   async updateSessionState(agentId, sessionId, stateUpdate) {
     await this.initialize();
 
-    const sessionDir = path.join(this.baseDir, agentId, sessionId);
-    const stateFile = path.join(sessionDir, 'state.json');
+    const sessionKey = `${agentId}/${sessionId}`;
+    const releaseLock = await this._acquireLock(sessionKey);
 
-    const currentState = await fs.readJson(stateFile);
-    const newState = { ...currentState, ...stateUpdate };
-    await fs.writeJson(stateFile, newState, { spaces: 2 });
+    try {
+      const sessionDir = path.join(this.baseDir, agentId, sessionId);
+      const stateFile = path.join(sessionDir, 'state.json');
 
-    // Update session metadata
-    const metadataFile = path.join(sessionDir, 'metadata.json');
-    const metadata = await fs.readJson(metadataFile);
-    metadata.lastActivity = new Date().toISOString();
-    if (stateUpdate.contextTokens) {
-      metadata.contextTokens = stateUpdate.contextTokens;
+      const currentState = await fs.readJson(stateFile);
+      const newState = { ...currentState, ...stateUpdate };
+
+      // Atomic write: write to temp, then rename
+      const stateTemp = stateFile + '.tmp';
+      await fs.writeJson(stateTemp, newState, { spaces: 2 });
+      await fs.rename(stateTemp, stateFile);
+
+      // Update session metadata atomically
+      const metadataFile = path.join(sessionDir, 'metadata.json');
+      const metadata = await fs.readJson(metadataFile);
+      metadata.lastActivity = new Date().toISOString();
+      if (stateUpdate.contextTokens) {
+        metadata.contextTokens = stateUpdate.contextTokens;
+      }
+
+      const metadataTemp = metadataFile + '.tmp';
+      await fs.writeJson(metadataTemp, metadata, { spaces: 2 });
+      await fs.rename(metadataTemp, metadataFile);
+    } finally {
+      releaseLock();
     }
-    await fs.writeJson(metadataFile, metadata, { spaces: 2 });
   }
 
   /**
@@ -261,13 +315,24 @@ class SessionManager {
   async archiveSession(agentId, sessionId) {
     await this.initialize();
 
-    const sessionDir = path.join(this.baseDir, agentId, sessionId);
-    const metadataFile = path.join(sessionDir, 'metadata.json');
+    const sessionKey = `${agentId}/${sessionId}`;
+    const releaseLock = await this._acquireLock(sessionKey);
 
-    const metadata = await fs.readJson(metadataFile);
-    metadata.status = 'archived';
-    metadata.archivedAt = new Date().toISOString();
-    await fs.writeJson(metadataFile, metadata, { spaces: 2 });
+    try {
+      const sessionDir = path.join(this.baseDir, agentId, sessionId);
+      const metadataFile = path.join(sessionDir, 'metadata.json');
+
+      const metadata = await fs.readJson(metadataFile);
+      metadata.status = 'archived';
+      metadata.archivedAt = new Date().toISOString();
+
+      // Atomic write
+      const tempFile = metadataFile + '.tmp';
+      await fs.writeJson(tempFile, metadata, { spaces: 2 });
+      await fs.rename(tempFile, metadataFile);
+    } finally {
+      releaseLock();
+    }
   }
 
   /**
@@ -279,13 +344,24 @@ class SessionManager {
   async deleteSession(agentId, sessionId) {
     await this.initialize();
 
-    const sessionDir = path.join(this.baseDir, agentId, sessionId);
-    await fs.remove(sessionDir);
+    const sessionKey = `${agentId}/${sessionId}`;
+    const releaseLock = await this._acquireLock(sessionKey);
 
-    // Update index
-    const index = await fs.readJson(this.sessionIndexFile);
-    delete index.sessions[sessionId];
-    await fs.writeJson(this.sessionIndexFile, index, { spaces: 2 });
+    try {
+      const sessionDir = path.join(this.baseDir, agentId, sessionId);
+      // Remove session directory
+      await fs.remove(sessionDir);
+
+      // Update index atomically
+      const index = await fs.readJson(this.sessionIndexFile);
+      delete index.sessions[sessionId];
+
+      const indexTemp = this.sessionIndexFile + '.tmp';
+      await fs.writeJson(indexTemp, index, { spaces: 2 });
+      await fs.rename(indexTemp, this.sessionIndexFile);
+    } finally {
+      releaseLock();
+    }
   }
 
   /**
