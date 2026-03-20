@@ -314,7 +314,7 @@ class DecisionFormatter {
 
     return `Repository is in ${healthLevel} health (${analysis.healthScore}/10) with ${analysis.debtLevel} technical debt. ` +
       `Recommend focusing on ${topRecs.length} high-impact areas requiring approximately ${totalDays} days of effort. ` +
-      `Following this roadmap will improve code quality, reduce maintenance burden, and accelerate feature delivery.`;
+      'Following this roadmap will improve code quality, reduce maintenance burden, and accelerate feature delivery.';
   }
 
   /**

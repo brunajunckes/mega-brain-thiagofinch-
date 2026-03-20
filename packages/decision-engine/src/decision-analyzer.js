@@ -355,4 +355,4 @@ class DecisionAnalyzer {
   }
 }
 
-module.exports = { DecisionAnalyzer };
+module.exports = DecisionAnalyzer;
