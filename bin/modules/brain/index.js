@@ -2,6 +2,7 @@ const { Command } = require('commander');
 const { ingest } = require('./ingest');
 const { status } = require('./status');
 const { ask } = require('./ask');
+const { squad } = require('./squad');
 
 const program = new Command('aiox-brain');
 
@@ -36,5 +37,15 @@ program
   .option('--model <name>', 'Model to use (default: qwen2.5:7b)', null)
   .option('--no-rag', 'Disable RAG context')
   .action(ask);
+
+program
+  .command('squad')
+  .description('Query multiple clones in squad')
+  .option('--ask <question>', 'Question to ask the squad', null)
+  .option('--list', 'List all available clones', false)
+  .option('--synthesize', 'Synthesize responses into unified answer', false)
+  .option('--debate <rounds>', 'Enable multi-round debate (number of rounds)', null)
+  .option('--json', 'Output as JSON', false)
+  .action(squad);
 
 module.exports = { run: (argv) => program.parse(argv) };

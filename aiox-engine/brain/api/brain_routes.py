@@ -10,6 +10,7 @@ from pydantic import BaseModel
 
 from brain.clone.store import BrainStore
 from brain.clone.agent import CloneAgent
+from brain.squad.coordinator import SquadCoordinator
 from brain.ingestion.doc import ingest_document
 from brain.ingestion.pdf import ingest_pdf
 from brain.ingestion.youtube import ingest_youtube
@@ -53,6 +54,15 @@ class AskResponse(BaseModel):
   input_tokens: int
   output_tokens: int
   timestamp: str
+
+
+class SquadRequest(BaseModel):
+  question: str
+  clones: Optional[List[str]] = None
+  use_rag: bool = True
+  synthesize: bool = False
+  debate_rounds: Optional[int] = None
+  timeout: int = 30
 
 
 @router.post('/ingest')
@@ -189,5 +199,37 @@ async def clone_history(slug: str, session_id: Optional[str] = None, last_n: int
     }
   except ValueError as e:
     raise HTTPException(status_code=400, detail=str(e))
+  except Exception as e:
+    raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post('/squad/ask')
+async def squad_ask(req: SquadRequest):
+  """Query multiple clones and optionally synthesize"""
+  try:
+    coordinator = SquadCoordinator(req.question, req.clones, req.timeout)
+    result = await coordinator.ask_all(req.use_rag)
+
+    if req.debate_rounds:
+      debate_result = await coordinator.debate(req.debate_rounds)
+      result['debate'] = debate_result
+
+    if req.synthesize:
+      synthesis = await coordinator.synthesize(result['all_responses'])
+      result['synthesis'] = synthesis
+
+    return result
+
+  except Exception as e:
+    raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get('/squad/clones')
+async def squad_list_clones():
+  """List all available clones for squad"""
+  try:
+    coordinator = SquadCoordinator('')
+    clones = coordinator.get_clones()
+    return {'clones': clones, 'count': len(clones)}
   except Exception as e:
     raise HTTPException(status_code=500, detail=str(e))
