@@ -1,23 +1,23 @@
 # Repository Analysis Report
-**Generated:** 2026-03-19T02:00:29.278Z
+**Generated:** 2026-03-20T00:07:11.401Z
 **Repository:** aiox
 
 ## Executive Summary
-This repository contains **755212 lines of code** across **2614 files** in **11 languages**.
+This repository contains **801842 lines of code** across **3119 files** in **11 languages**.
 
 ## Language Breakdown
 | Language | Files | LOC | % |
 |----------|-------|-----|---|
-| Markdown | 1215 | 337654 | 45% |
-| JSON | 65 | 48770 | 6% |
-| YAML | 190 | 52947 | 7% |
-| JavaScript | 1054 | 305739 | 40% |
-| Shell | 32 | 3492 | 0% |
-| Python | 25 | 3203 | 0% |
+| Markdown | 1554 | 348336 | 43% |
+| JSON | 68 | 65922 | 8% |
+| YAML | 191 | 57390 | 7% |
+| JavaScript | 1152 | 318157 | 40% |
+| Shell | 35 | 3725 | 0% |
+| Python | 50 | 4672 | 1% |
 | TypeScript | 1 | 91 | 0% |
-| HTML | 2 | 458 | 0% |
+| HTML | 34 | 687 | 0% |
 | SQL | 15 | 1465 | 0% |
-| CSS | 14 | 1371 | 0% |
+| CSS | 18 | 1375 | 0% |
 | XML | 1 | 22 | 0% |
 
 ## Frameworks & Runtimes
@@ -33,10 +33,10 @@ This repository contains **755212 lines of code** across **2614 files** in **11 
 ## Code Quality Metrics
 | Metric | Value |
 |--------|-------|
-| Test Coverage | 36% |
+| Test Coverage | 35% |
 | Code Quality Score | 0/10 |
-| Complexity | high |
-| Documentation | 16% |
+| Complexity | medium |
+| Documentation | 15% |
 | Avg Function Length | 10 lines |
 
 ## Dependencies
@@ -45,8 +45,7 @@ This repository contains **755212 lines of code** across **2614 files** in **11 
 - **Outdated Packages:** 4
 
 ## Recommendations
-- Increase test coverage to 70%+ (currently 36%)
-- Reduce cyclomatic complexity in complex functions
+- Increase test coverage to 70%+ (currently 35%)
 - Update 4 outdated dependencies
 
 ---

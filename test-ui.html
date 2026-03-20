@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AIOX Test UI</title>
+    <style>
+        body { font-family: monospace; padding: 20px; background: #1e1e1e; color: #0f0; }
+        #output { white-space: pre-wrap; background: #000; padding: 10px; margin: 10px 0; }
+        button { padding: 10px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🧠 AIOX Test Interface</h1>
+
+    <button onclick="testHealth()">Test /health</button>
+    <button onclick="testStatus()">Test /api/openclaw/status</button>
+    <button onclick="testSwarm()">Test Swarm</button>
+    <button onclick="testConfig()">Test Config</button>
+
+    <div id="output">Output here...</div>
+
+    <script>
+        const API = 'http://localhost:3000';
+        const out = (msg) => document.getElementById('output').textContent = msg;
+
+        async function testHealth() {
+            try {
+                const res = await fetch(`${API}/health`);
+                out('✅ /health\n' + JSON.stringify(await res.json(), null, 2));
+            } catch(e) { out('❌ ' + e.message); }
+        }
+
+        async function testStatus() {
+            try {
+                const res = await fetch(`${API}/api/openclaw/status`);
+                out('✅ /api/openclaw/status\n' + JSON.stringify(await res.json(), null, 2));
+            } catch(e) { out('❌ ' + e.message); }
+        }
+
+        async function testConfig() {
+            try {
+                const res = await fetch(`${API}/config.json`);
+                out('✅ /config.json\n' + JSON.stringify(await res.json(), null, 2));
+            } catch(e) { out('❌ ' + e.message); }
+        }
+
+        async function testSwarm() {
+            try {
+                const res = await fetch(`${API}/api/openclaw/swarm/planning`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: '{}'
+                });
+                out('✅ Swarm Planning\n' + JSON.stringify(await res.json(), null, 2));
+            } catch(e) { out('❌ ' + e.message); }
+        }
+    </script>
+</body>
+</html>

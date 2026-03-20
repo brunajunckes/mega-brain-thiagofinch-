@@ -1,41 +1,41 @@
 {
   "metadata": {
-    "generatedAt": "2026-03-19T02:00:29.277Z",
+    "generatedAt": "2026-03-20T00:07:11.397Z",
     "repository": {
       "path": "/srv/aiox",
       "name": "aiox"
     }
   },
   "summary": {
-    "totalFiles": 2614,
-    "totalLoc": 755212,
+    "totalFiles": 3119,
+    "totalLoc": 801842,
     "languages": 11,
     "frameworks": 4,
     "dependencies": 38
   },
   "languages": {
     "Markdown": {
-      "files": 1215,
-      "loc": 337654,
-      "bytes": 13255177,
-      "percentage": 45,
+      "files": 1554,
+      "loc": 348336,
+      "bytes": 13675469,
+      "percentage": 43,
       "extensions": [
         ".md"
       ]
     },
     "JSON": {
-      "files": 65,
-      "loc": 48770,
-      "bytes": 1575711,
-      "percentage": 6,
+      "files": 68,
+      "loc": 65922,
+      "bytes": 1940925,
+      "percentage": 8,
       "extensions": [
         ".json"
       ]
     },
     "YAML": {
-      "files": 190,
-      "loc": 52947,
-      "bytes": 1899370,
+      "files": 191,
+      "loc": 57390,
+      "bytes": 2082308,
       "percentage": 7,
       "extensions": [
         ".yaml",
@@ -43,9 +43,9 @@
       ]
     },
     "JavaScript": {
-      "files": 1054,
-      "loc": 305739,
-      "bytes": 11253135,
+      "files": 1152,
+      "loc": 318157,
+      "bytes": 11679749,
       "percentage": 40,
       "extensions": [
         ".js",
@@ -53,19 +53,19 @@
       ]
     },
     "Shell": {
-      "files": 32,
-      "loc": 3492,
-      "bytes": 133961,
+      "files": 35,
+      "loc": 3725,
+      "bytes": 141348,
       "percentage": 0,
       "extensions": [
         ".sh"
       ]
     },
     "Python": {
-      "files": 25,
-      "loc": 3203,
-      "bytes": 134208,
-      "percentage": 0,
+      "files": 50,
+      "loc": 4672,
+      "bytes": 188140,
+      "percentage": 1,
       "extensions": [
         ".py"
       ]
@@ -80,9 +80,9 @@
       ]
     },
     "HTML": {
-      "files": 2,
-      "loc": 458,
-      "bytes": 17038,
+      "files": 34,
+      "loc": 687,
+      "bytes": 2349485,
       "percentage": 0,
       "extensions": [
         ".html"
@@ -98,9 +98,9 @@
       ]
     },
     "CSS": {
-      "files": 14,
-      "loc": 1371,
-      "bytes": 30915,
+      "files": 18,
+      "loc": 1375,
+      "bytes": 275773,
       "percentage": 0,
       "extensions": [
         ".css"
@@ -254,7 +254,7 @@
       },
       {
         "name": "js-yaml",
-        "version": "^4.1.0",
+        "version": "^4.1.1",
         "type": "npm",
         "manager": "npm",
         "isDev": false,
@@ -548,7 +548,7 @@
         {
           "id": "js-yaml",
           "name": "js-yaml",
-          "version": "^4.1.0",
+          "version": "^4.1.1",
           "type": "npm",
           "isDev": false
         },
@@ -709,8 +709,8 @@
       "score": 0.8,
       "evidence": [
         "found packages directory",
-        "61 index.js files (module pattern)",
-        "8 package.json files (monorepo)"
+        "73 index.js files (module pattern)",
+        "9 package.json files (monorepo)"
       ]
     },
     "api": {},
@@ -718,9 +718,9 @@
   },
   "metrics": {
     "avgFunctionLength": 10,
-    "complexityScore": "high",
-    "testCoverage": 36,
-    "documentationRatio": 0.16,
+    "complexityScore": "medium",
+    "testCoverage": 35,
+    "documentationRatio": 0.15,
     "codeQuality": 0
   }
 }
