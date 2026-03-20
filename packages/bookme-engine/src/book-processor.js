@@ -141,7 +141,18 @@ class BookProcessor {
         matches.forEach((match, idx) => {
           const startIdx = match.index;
           const endIdx = idx < matches.length - 1 ? matches[idx + 1].index : content.length;
-          const chapterContent = content.substring(startIdx, endIdx).trim();
+
+          // Get the chapter content, excluding the chapter header line itself
+          let chapterContent = content.substring(startIdx, endIdx).trim();
+
+          // Remove the chapter header line from the content (keep content after it)
+          const headerEndIdx = chapterContent.indexOf('\n');
+          if (headerEndIdx !== -1) {
+            chapterContent = chapterContent.substring(headerEndIdx + 1).trim();
+          } else {
+            // No newline, so there's no content after the header
+            chapterContent = '';
+          }
 
           chapters.push({
             title: match[1]?.trim() || `Chapter ${chapters.length + 1}`,
@@ -174,7 +185,7 @@ class BookProcessor {
     };
 
     lines.forEach(line => {
-      if (line.startsWith('###') || line.startsWith('- ')) {
+      if (line.startsWith('##') || line.startsWith('- ')) {
         if (currentSection.content.length > 0) {
           sections.push({
             title: currentSection.title,

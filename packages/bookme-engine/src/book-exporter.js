@@ -139,7 +139,7 @@ class BookExporter {
   static exportText(book) {
     let text = '';
 
-    text += `${book.title.toUpperCase()}\n`;
+    text += `${book.title}\n`;
     text += `By ${book.author}\n\n`;
 
     if (book.description) {
@@ -149,7 +149,7 @@ class BookExporter {
     text += `${'='.repeat(60)}\n\n`;
 
     // Table of Contents
-    text += `TABLE OF CONTENTS\n\n`;
+    text += `Table of Contents\n\n`;
     book.tableOfContents.forEach(toc => {
       text += `${toc.chapterNumber}. ${toc.chapterTitle}\n`;
       toc.sections.forEach(sec => {
@@ -163,7 +163,7 @@ class BookExporter {
 
     // Chapters
     book.chapters.forEach(chapter => {
-      text += `CHAPTER ${chapter.number}: ${chapter.title}\n\n`;
+      text += `Chapter ${chapter.number}: ${chapter.title}\n\n`;
 
       chapter.sections.forEach(section => {
         if (section.title) {

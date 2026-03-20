@@ -47,13 +47,17 @@ class ProjectManager {
       metadata: {},
     };
 
+    // Add to projects array first
+    this.projects.push(project);
+
     // Process Drive URL if provided
     if (data.driveUrl) {
       this.updateProject(projectId, { driveUrl: data.driveUrl });
+    } else {
+      // Save if no Drive URL (updateProject saves internally)
+      this.save(project);
     }
 
-    this.save(project);
-    this.projects.push(project);
     return project;
   }
 
