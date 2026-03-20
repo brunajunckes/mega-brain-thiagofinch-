@@ -1,6 +1,6 @@
 metadata:
   version: 1.0.0
-  lastUpdated: '2026-03-20T01:35:40.134Z'
+  lastUpdated: '2026-03-20T01:36:08.600Z'
   entityCount: 797
   checksumAlgorithm: sha256
   resolutionRate: 100
@@ -8253,7 +8253,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:94b8ef766c9dfce330946115907d964810c8bfa8c2e3205fc8d59bd31c501646
-      lastVerified: '2026-03-20T01:35:40.127Z'
+      lastVerified: '2026-03-20T01:36:08.591Z'
     insight-generator:
       path: .aiox-core/core/analytics-engine/insight-generator.js
       layer: L1
@@ -8270,7 +8270,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:e71bdad9499524ac72b3b09f3710da619cd8eef1c3e65657cfe7354fc04f370a
-      lastVerified: '2026-03-20T01:35:40.117Z'
+      lastVerified: '2026-03-20T01:36:08.573Z'
     action-executor:
       path: .aiox-core/core/automation-engine/action-executor.js
       layer: L1
@@ -8287,7 +8287,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:7f0092cff12f5ea2accde71962549ce4d60142f787829b7e4c686d1f05734dae
-      lastVerified: '2026-03-20T01:35:40.117Z'
+      lastVerified: '2026-03-20T01:36:08.574Z'
     code-intel-client:
       path: .aiox-core/core/code-intel/code-intel-client.js
       layer: L1
@@ -8386,7 +8386,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:296fa7d7490995b5e93cee8cc9efccb09466c0fe19a9b26d0db3017824f8015b
-      lastVerified: '2026-03-20T01:35:40.118Z'
+      lastVerified: '2026-03-20T01:36:08.575Z'
     config-cache:
       path: .aiox-core/core/config/config-cache.js
       layer: L1
@@ -8550,7 +8550,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:c971af68099f2a34c84e945c7f2e8f3f8543f6a4ae06833803e8948ff56093c3
-      lastVerified: '2026-03-20T01:35:40.119Z'
+      lastVerified: '2026-03-20T01:36:08.576Z'
     decision-formatter:
       path: .aiox-core/core/decision-engine/decision-formatter.js
       layer: L1
@@ -8567,7 +8567,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:9cd4c866c99a465f644a7324559abb54d81f104ec7c37aa98edcabb8d1e18755
-      lastVerified: '2026-03-20T01:35:40.120Z'
+      lastVerified: '2026-03-20T01:36:08.576Z'
     recommendation-generator:
       path: .aiox-core/core/decision-engine/recommendation-generator.js
       layer: L1
@@ -8584,7 +8584,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:63dd8a9876f23ee614ab14b3faad82329016636d97fe0fdd3bb6f0201a988749
-      lastVerified: '2026-03-20T01:35:40.121Z'
+      lastVerified: '2026-03-20T01:36:08.577Z'
     diff-analyzer:
       path: .aiox-core/core/diff-engine/diff-analyzer.js
       layer: L1
@@ -8601,7 +8601,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:ea9a96fe8cb79d2055f1427808c39bbe80debd83c6c84e368ecada854bbd47bd
-      lastVerified: '2026-03-20T01:35:40.121Z'
+      lastVerified: '2026-03-20T01:36:08.578Z'
     diff-reporter:
       path: .aiox-core/core/diff-engine/diff-reporter.js
       layer: L1
@@ -8618,7 +8618,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:f3f63f004ad00e95b1fe178f08b67688ff422e7db84022f2f0894e2ed612ba19
-      lastVerified: '2026-03-20T01:35:40.121Z'
+      lastVerified: '2026-03-20T01:36:08.578Z'
     impact-calculator:
       path: .aiox-core/core/diff-engine/impact-calculator.js
       layer: L1
@@ -8635,7 +8635,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:14bc482cdd78ea6fa4459f51325ff4e01dc16a6767661c40732b0ba763824237
-      lastVerified: '2026-03-20T01:35:40.122Z'
+      lastVerified: '2026-03-20T01:36:08.579Z'
     fix-handler:
       path: .aiox-core/core/doctor/fix-handler.js
       layer: L1
@@ -8719,7 +8719,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:ae0e4c54bf85c5fc99af8fb377456664b78bd6c3c74b7e2c97f76aa8cba6c191
-      lastVerified: '2026-03-20T01:35:40.126Z'
+      lastVerified: '2026-03-20T01:36:08.590Z'
     task-elicitation:
       path: .aiox-core/core/elicitation/task-elicitation.js
       layer: L1
@@ -8817,7 +8817,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:26faafefe4d2a966e714bcb49aca29b1c4bfb4f18af6c1ec57a1e88bae5c075b
-      lastVerified: '2026-03-20T01:35:40.122Z'
+      lastVerified: '2026-03-20T01:36:08.579Z'
     timeline-manager:
       path: .aiox-core/core/evolution-dashboard/timeline-manager.js
       layer: L1
@@ -8834,7 +8834,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:92b158e272a0ab05cb60037785fedceb887d9d0c0f4b30c16a1237856ec65195
-      lastVerified: '2026-03-20T01:35:40.122Z'
+      lastVerified: '2026-03-20T01:36:08.580Z'
     autonomous-build-loop:
       path: .aiox-core/core/execution/autonomous-build-loop.js
       layer: L1
@@ -9220,7 +9220,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:cb845e929e067326dcb6e919f64053e87ae8f1d23f776d4fbf3942f7cba9a84a
-      lastVerified: '2026-03-20T01:35:40.123Z'
+      lastVerified: '2026-03-20T01:36:08.585Z'
     report-generator:
       path: .aiox-core/core/repo-analyzer/report-generator.js
       layer: L1
@@ -9237,7 +9237,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:85d1aaa694627996e57349a92cd9b391b0c271b85be188dbf75f1da33f1dd5d9
-      lastVerified: '2026-03-20T01:35:40.124Z'
+      lastVerified: '2026-03-20T01:36:08.588Z'
     risk-assessment:
       path: .aiox-core/core/health-reporter/risk-assessment.js
       layer: L1
@@ -9253,7 +9253,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:88aae2bc0d4da0f96637c47932dd6a5404bdd23c2074ddb4514cbabcee54f977
-      lastVerified: '2026-03-20T01:35:40.123Z'
+      lastVerified: '2026-03-20T01:36:08.586Z'
     ideation-engine:
       path: .aiox-core/core/ideation/ideation-engine.js
       layer: L1
@@ -9605,7 +9605,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:ccd49166ca392c02397dbe5dcb3769e5c8440ba5a28c8ddf8210496e83b7dcd8
-      lastVerified: '2026-03-20T01:35:40.123Z'
+      lastVerified: '2026-03-20T01:36:08.586Z'
     agent-invoker:
       path: .aiox-core/core/orchestration/agent-invoker.js
       layer: L1
@@ -10309,7 +10309,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:e35462d6aad79c8ad1624286cae167ea7d95bbd8a7ae99a821de33670fa26ff4
-      lastVerified: '2026-03-20T01:35:40.124Z'
+      lastVerified: '2026-03-20T01:36:08.587Z'
     base-layer:
       path: .aiox-core/core/quality-gates/base-layer.js
       layer: L1
@@ -10561,7 +10561,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:742ff27a0f8cebe58442c8c5b197314c53cbf75515a270348e5a7c338dafd9b8
-      lastVerified: '2026-03-20T01:35:40.124Z'
+      lastVerified: '2026-03-20T01:36:08.587Z'
     metrics-collector:
       path: .aiox-core/core/repo-analyzer/metrics-collector.js
       layer: L1
@@ -10578,7 +10578,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:be9b7429e5e0a7a9d5ef34eb0f593f2284f241567881ac5648d3f61d74f58dd2
-      lastVerified: '2026-03-20T01:35:40.124Z'
+      lastVerified: '2026-03-20T01:36:08.588Z'
     pattern-detector:
       path: .aiox-core/core/repo-analyzer/pattern-detector.js
       layer: L1
@@ -10595,7 +10595,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:b525d7e42b1059485958cd7013dc636961b596907796d5102f22e08fcd987f0e
-      lastVerified: '2026-03-20T01:35:40.124Z'
+      lastVerified: '2026-03-20T01:36:08.588Z'
     scanner:
       path: .aiox-core/core/repo-analyzer/scanner.js
       layer: L1
@@ -10611,7 +10611,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:f1860faaaa34da0c384bc49ce8594a0d09d2dbfaff62fe7535cf1d4de9e59f57
-      lastVerified: '2026-03-20T01:35:40.125Z'
+      lastVerified: '2026-03-20T01:36:08.588Z'
     report-exporter:
       path: .aiox-core/core/scheduled-reports/report-exporter.js
       layer: L1
@@ -10627,7 +10627,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:9acda1bac3c52f6e2f1007b36434ea953f17bf7c6ee87cf36194ff92c3d9d601
-      lastVerified: '2026-03-20T01:35:40.125Z'
+      lastVerified: '2026-03-20T01:36:08.589Z'
     report-types:
       path: .aiox-core/core/scheduled-reports/report-types.js
       layer: L1
@@ -10643,7 +10643,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:c70b61b802e45b5269b908f778fa23a78a1656c8c6a12f22c0dd414db73e61ae
-      lastVerified: '2026-03-20T01:35:40.125Z'
+      lastVerified: '2026-03-20T01:36:08.589Z'
     scheduler:
       path: .aiox-core/core/scheduled-reports/scheduler.js
       layer: L1
@@ -10658,7 +10658,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:2864c5ebe71f56a443e3fc4f6c09e936373187284ef2cfe7bc85e76388cc0194
-      lastVerified: '2026-03-20T01:35:40.126Z'
+      lastVerified: '2026-03-20T01:36:08.589Z'
     context-detector:
       path: .aiox-core/core/session/context-detector.js
       layer: L1
@@ -10723,7 +10723,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:519779153b81ff2f505a3e85553176a991fca40610bf4607a422a718c6b4250e
-      lastVerified: '2026-03-20T01:35:40.126Z'
+      lastVerified: '2026-03-20T01:36:08.590Z'
     task-dispatcher:
       path: .aiox-core/core/task-chaining/task-dispatcher.js
       layer: L1
@@ -10740,7 +10740,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:2761c922e28648457d46ad61dcf809fe8750db0bda2df8cf32080b8931481534
-      lastVerified: '2026-03-20T01:35:40.126Z'
+      lastVerified: '2026-03-20T01:36:08.591Z'
     observability-panel:
       path: .aiox-core/core/ui/observability-panel.js
       layer: L1
@@ -10856,7 +10856,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:535450e18da1f2a496ace5cf2bab6d8dd935b2247abc33141f380202b9906ebf
-      lastVerified: '2026-03-20T01:35:40.127Z'
+      lastVerified: '2026-03-20T01:36:08.591Z'
     event-schema:
       path: .aiox-core/core/webhook-integration/event-schema.js
       layer: L1
@@ -10874,7 +10874,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:0df13d8dc38bc34f44f10aac3287a242650de2df4eee77248644272c03d5abe0
-      lastVerified: '2026-03-20T01:35:40.127Z'
+      lastVerified: '2026-03-20T01:36:08.591Z'
     webhook-manager:
       path: .aiox-core/core/webhook-integration/webhook-manager.js
       layer: L1
@@ -10891,7 +10891,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:5dd2a93406582f566c32ad5d4db7130d7f50303203e8f597fee6ae20259833e9
-      lastVerified: '2026-03-20T01:35:40.127Z'
+      lastVerified: '2026-03-20T01:36:08.591Z'
     insight-generator.test:
       path: .aiox-core/core/analytics-engine/__tests__/insight-generator.test.js
       layer: L1
@@ -11398,7 +11398,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:83936bd6af26f16797e37dfbb5979618fbe76ed01d4aa15d8f8136b333f9afa2
-      lastVerified: '2026-03-20T01:35:40.113Z'
+      lastVerified: '2026-03-20T01:36:08.567Z'
     entity-registry:
       path: .aiox-core/core/doctor/checks/entity-registry.js
       layer: L1
