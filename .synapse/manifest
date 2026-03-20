@@ -54,3 +54,8 @@ WORKFLOW_EPIC_CREATE_STATE=active
 WORKFLOW_EPIC_CREATE_WORKFLOW_TRIGGER=epic_creation
 WORKFLOW_ARCH_REVIEW_STATE=active
 WORKFLOW_ARCH_REVIEW_WORKFLOW_TRIGGER=architecture_review
+
+# Layer 6: Custom domains — Comparative Analysis
+COMPARATIVE_GIT_ANALYSIS_STATE=active
+COMPARATIVE_GIT_ANALYSIS_RECALL=git,repo,analysis,external,comparative,squads,agents,skills,workflows,tasks,workers,infrastructure
+COMPARATIVE_GIT_ANALYSIS_EXCLUDE=

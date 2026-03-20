@@ -107,3 +107,22 @@ COMMANDS_RULE_SYNAPSE_DIAGNOSE_0=Run SYNAPSE diagnostic report comparing expecte
 COMMANDS_RULE_SYNAPSE_DIAGNOSE_1=Execute the diagnostics module and display the full markdown report
 COMMANDS_RULE_SYNAPSE_DIAGNOSE_2=Highlight FAIL and WARN items with recommended fixes
 COMMANDS_RULE_SYNAPSE_DIAGNOSE_3=Check hook registration, session state, manifest integrity, pipeline layers, and UAP bridge
+
+# ============================================================
+# [*analyze-external-repo] COMMAND:
+#   0. Deep comparative analysis of external git repos against AIOX
+#   1. Analyze squads/, agents/, skills/, workflows/, tasks/, workers/, infrastructure/
+#   2. Create side-by-side comparison tables with recommendations
+#   3. Identify NEW CAPABILITIES, ENHANCEMENTS, and AIOX ADVANTAGES
+#   4. Provide implementation roadmap with effort estimates
+# ============================================================
+COMMANDS_RULE_ANALYZE_EXTERNAL_REPO_0=Deep comparative analysis of external git repos vs AIOX
+COMMANDS_RULE_ANALYZE_EXTERNAL_REPO_1=Analyze all directories: squads, agents, skills, workflows, tasks, workers, infrastructure, packages, memory, constitution, data, templates, tests, docs, .claude
+COMMANDS_RULE_ANALYZE_EXTERNAL_REPO_2=Create side-by-side comparison tables: Feature | External Repo | AIOX | Recommendation
+COMMANDS_RULE_ANALYZE_EXTERNAL_REPO_3=Identify novel patterns as NEW CAPABILITY with priority and effort estimate
+COMMANDS_RULE_ANALYZE_EXTERNAL_REPO_4=Identify improvements as ENHANCEMENT with exact file paths and line numbers
+COMMANDS_RULE_ANALYZE_EXTERNAL_REPO_5=Identify missing AIOX patterns as AIOX ADVANTAGE
+COMMANDS_RULE_ANALYZE_EXTERNAL_REPO_6=Document technology stack differences and compatibility considerations
+COMMANDS_RULE_ANALYZE_EXTERNAL_REPO_7=Create detailed implementation roadmap with dependencies and ordering
+COMMANDS_RULE_ANALYZE_EXTERNAL_REPO_8=Provide handoff document ready for developer implementation
+COMMANDS_RULE_ANALYZE_EXTERNAL_REPO_9=NEVER skip any directory—be exhaustive and complete in analysis

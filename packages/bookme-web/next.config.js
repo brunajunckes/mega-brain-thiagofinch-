@@ -6,7 +6,7 @@ const nextConfig = {
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   eslint: {
-    dirs: ['src', 'components'],
+    dirs: ['src', 'pages', 'components'],
   },
   rewrites: async () => ({
     beforeFiles: [
@@ -16,6 +16,7 @@ const nextConfig = {
       },
     ],
   }),
+  output: 'standalone',
 };
 
 module.exports = nextConfig;

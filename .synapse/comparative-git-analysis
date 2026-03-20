@@ -1,0 +1,33 @@
+# ==========================================
+# SYNAPSE Domain: Comparative Git Analysis
+# Created: 2026-03-21
+# Description: Deep comparative analysis of external git repos against AIOX
+# ==========================================
+
+# Analysis Checklist Rules
+COMPARATIVE_GIT_ANALYSIS_RULE_0=MUST analyze squads/ directory structure, identify all squads, compare against /srv/aiox/squads/
+COMPARATIVE_GIT_ANALYSIS_RULE_1=MUST analyze agents/ definitions (YAML/Markdown), extract personas, capabilities, commands, compare against /srv/aiox/.claude/agents/
+COMPARATIVE_GIT_ANALYSIS_RULE_2=MUST analyze skills/ registration, identify skill domains, tool integrations, compare against /srv/aiox/.claude/skills/
+COMPARATIVE_GIT_ANALYSIS_RULE_3=MUST analyze workflows/ definitions (multi-step orchestration), state machines, task dependencies, compare against /srv/aiox/.aiox-core/development/workflows/
+COMPARATIVE_GIT_ANALYSIS_RULE_4=MUST analyze tasks/ definitions (205+ in AIOX), extract execution patterns, pre/post conditions, elicitation points, identify novel tasks not in AIOX
+COMPARATIVE_GIT_ANALYSIS_RULE_5=MUST analyze workers/ (background jobs, evolution engine, automation), extract execution models, scheduling patterns, compare against evolution-engine patterns
+COMPARATIVE_GIT_ANALYSIS_RULE_6=MUST analyze infrastructure/ definitions (Docker, CI/CD, Kubernetes, monitoring, logging), extract IaC patterns, compare against /srv/aiox infrastructure/
+COMPARATIVE_GIT_ANALYSIS_RULE_7=MUST analyze packages/ (NPM modules, utilities, types), identify architectural patterns, exports, dependency trees, compare against /srv/aiox/packages/
+COMPARATIVE_GIT_ANALYSIS_RULE_8=MUST analyze memory/ or agent-memory/ (cloned minds, personality data), extract Voice DNA and Thinking DNA patterns, compare against /srv/aiox/.claude/agent-memory/
+COMPARATIVE_GIT_ANALYSIS_RULE_9=MUST analyze constitution/ or governance documents, extract non-negotiable principles, gates, enforcement mechanisms, compare against /srv/aiox/.aiox-core/constitution.md
+COMPARATIVE_GIT_ANALYSIS_RULE_10=MUST analyze data/ directory (entity-registry, tool-registry, config templates), identify reference structures, compare against /srv/aiox/.aiox-core/data/
+COMPARATIVE_GIT_ANALYSIS_RULE_11=MUST analyze templates/ (document, code, checklist), extract generation patterns, compare against /srv/aiox/.aiox-core/development/templates/
+COMPARATIVE_GIT_ANALYSIS_RULE_12=MUST analyze tests/ (unit, integration, e2e), identify testing patterns, coverage strategies, compare against /srv/aiox/tests/
+COMPARATIVE_GIT_ANALYSIS_RULE_13=MUST analyze docs/ (stories, PRD, architecture guides), identify documentation patterns, extract acceptance criteria templates
+COMPARATIVE_GIT_ANALYSIS_RULE_14=MUST analyze .claude/ directory (settings, rules, hooks), extract context management patterns, tool definitions
+COMPARATIVE_GIT_ANALYSIS_RULE_15=MUST analyze package.json and build system (webpack/vite/next.js config), extract optimization patterns, CLI tool definitions
+COMPARATIVE_GIT_ANALYSIS_RULE_16=MUST create side-by-side comparison table: Feature | External Repo | AIOX | Recommendation
+COMPARATIVE_GIT_ANALYSIS_RULE_17=MUST identify novel patterns NOT in AIOX and mark as "NEW CAPABILITY"
+COMPARATIVE_GIT_ANALYSIS_RULE_18=MUST identify improvements to existing AIOX patterns and mark as "ENHANCEMENT"
+COMPARATIVE_GIT_ANALYSIS_RULE_19=MUST identify missing AIOX patterns in external repo and mark as "AIOX ADVANTAGE"
+COMPARATIVE_GIT_ANALYSIS_RULE_20=MUST estimate implementation effort (hours) for each recommendation and priority (HIGH/MEDIUM/LOW)
+COMPARATIVE_GIT_ANALYSIS_RULE_21=MUST document exact file paths and line numbers for reference
+COMPARATIVE_GIT_ANALYSIS_RULE_22=MUST create implementation roadmap with dependencies and ordering
+COMPARATIVE_GIT_ANALYSIS_RULE_23=MUST never skip analysis of any directory—be exhaustive and complete
+COMPARATIVE_GIT_ANALYSIS_RULE_24=MUST identify technology stack differences and compatibility considerations
+COMPARATIVE_GIT_ANALYSIS_RULE_25=MUST create a detailed handoff document for developer implementation
