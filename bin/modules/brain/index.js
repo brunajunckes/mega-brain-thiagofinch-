@@ -3,6 +3,7 @@ const { ingest } = require('./ingest');
 const { status } = require('./status');
 const { ask } = require('./ask');
 const { squad } = require('./squad');
+const { watch } = require('./watch');
 
 const program = new Command('aiox-brain');
 
@@ -47,5 +48,16 @@ program
   .option('--debate <rounds>', 'Enable multi-round debate (number of rounds)', null)
   .option('--json', 'Output as JSON', false)
   .action(squad);
+
+program
+  .command('watch')
+  .description('Watch YouTube channels for auto-ingestion')
+  .option('--channel <url>', 'YouTube channel URL to watch', null)
+  .option('--clone <slug>', 'Target clone slug', null)
+  .option('--list', 'List all watched channels', false)
+  .option('--history', 'Show ingestion history', false)
+  .option('--pause', 'Pause watching', false)
+  .option('--resume', 'Resume watching', false)
+  .action(watch);
 
 module.exports = { run: (argv) => program.parse(argv) };
