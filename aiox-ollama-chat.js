@@ -352,7 +352,7 @@ ${COLORS.cyan}Features:${COLORS.reset}
     }
 
     console.log(
-      `${COLORS.yellow}⏳ Executing story ${subcommand}...${COLORS.reset}`
+      `${COLORS.yellow}⏳ Executing story ${subcommand}...${COLORS.reset}`,
     );
     this.tasksExecuted++;
 
@@ -422,7 +422,7 @@ ${COLORS.dim}${COLORS.cyan}[Ollama • Offline]${COLORS.reset} ${COLORS.dim}│$
           { timeout: 2000 },
           (res) => {
             resolve({ healthy: res.statusCode === 200 });
-          }
+          },
         );
 
         req.on('error', () => resolve({ healthy: false }));

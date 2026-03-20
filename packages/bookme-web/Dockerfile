@@ -2,18 +2,18 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Install dependencies
-COPY package*.json ./
-RUN npm ci --only=production
+# Copy monorepo structure
+COPY package.json package-lock.json ./
+COPY packages/ ./packages/
 
-# Copy source
-COPY . .
+# Install dependencies (skip hooks for production)
+RUN npm ci --ignore-scripts 2>&1 | grep -v "husky"
 
-# Build Next.js
-RUN npm run build
+# Build Next.js from bookme-web workspace
+WORKDIR /app/packages/bookme-web
 
 # Expose port
 EXPOSE 3000
 
-# Start app
-CMD ["npm", "start"]
+# Start app using standalone server
+CMD ["node", ".next/standalone/server.js"]

@@ -7,7 +7,7 @@ test('Classifier - Simple tasks score 1-2', () => {
     'ler arquivo',
     'list files',
     'summarize this',
-    'explain concept'
+    'explain concept',
   ];
   
   simpleTexts.forEach(text => {
@@ -21,7 +21,7 @@ test('Classifier - Complex tasks score 4-5', () => {
     'implementar webhook com retry logic',
     'design scalable database schema',
     'debug circular dependency issue',
-    'refactor authentication module'
+    'refactor authentication module',
   ];
   
   complexTexts.forEach(text => {

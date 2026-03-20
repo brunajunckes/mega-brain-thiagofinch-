@@ -147,7 +147,7 @@ function generateMarkdownReport(result) {
           lines.push(`- **Priority:** ${item.priority}`);
           lines.push(`- **Description:** ${item.description}`);
           if (item.metrics) {
-            lines.push(`- **Metrics:**`);
+            lines.push('- **Metrics:**');
             for (const [key, value] of Object.entries(item.metrics)) {
               lines.push(`  - ${key}: ${value}`);
             }

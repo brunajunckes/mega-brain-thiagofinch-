@@ -20,7 +20,7 @@ async function ask(question, options) {
       const sessionId = session ? `&session_id=${session}` : '';
       const { data: response } = await request(
         'GET',
-        `/brain/ask/${clone}/history?last_n=10${sessionId}`
+        `/brain/ask/${clone}/history?last_n=10${sessionId}`,
       );
 
       spinner.stop();
@@ -74,8 +74,8 @@ async function ask(question, options) {
     if (data.chunks_used > 0) {
       console.log(
         chalk.gray(
-          `📊 Context: ${data.chunks_used} chunks | Tokens: ${data.input_tokens}→${data.output_tokens}`
-        )
+          `📊 Context: ${data.chunks_used} chunks | Tokens: ${data.input_tokens}→${data.output_tokens}`,
+        ),
       );
     }
 

@@ -12,9 +12,9 @@ describe('RoundtableOrchestrator', () => {
       id: 'test-roundtable',
       question: 'How should we approach MVP?',
       experts: [
-        { slug: 'alex_hormozi', name: 'Alex Hormozi', expertise: ['scaling'] }
+        { slug: 'alex_hormozi', name: 'Alex Hormozi', expertise: ['scaling'] },
       ],
-      rounds: 2
+      rounds: 2,
     });
 
     expect(result.id).toBe('test-roundtable');
@@ -29,9 +29,9 @@ describe('RoundtableOrchestrator', () => {
       id: 'test-roundtable-md',
       question: 'What is the core problem?',
       experts: [
-        { slug: 'don_norman', name: 'Don Norman', expertise: ['design', 'ux'] }
+        { slug: 'don_norman', name: 'Don Norman', expertise: ['design', 'ux'] },
       ],
-      rounds: 1
+      rounds: 1,
     });
 
     expect(result.markdown).toContain('Expert Roundtable Discussion');
@@ -45,9 +45,9 @@ describe('RoundtableOrchestrator', () => {
       question: 'Should we scale or optimize?',
       experts: [
         { slug: 'alex_hormozi', name: 'Alex Hormozi', expertise: ['scaling'] },
-        { slug: 'andrew_ng', name: 'Andrew Ng', expertise: ['ML'] }
+        { slug: 'andrew_ng', name: 'Andrew Ng', expertise: ['ML'] },
       ],
-      rounds: 1
+      rounds: 1,
     });
 
     expect(result.synthesis.consensus).toBeDefined();

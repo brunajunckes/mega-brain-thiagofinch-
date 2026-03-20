@@ -11,7 +11,7 @@ const { ReportScheduler, ReportTypes, ReportExporter } = require('../.aiox-core/
  */
 
 const CONFIG_FILE = path.join(process.cwd(), '.aiox-reports.json');
-let scheduler = new ReportScheduler();
+const scheduler = new ReportScheduler();
 
 function loadConfig() {
   if (fs.existsSync(CONFIG_FILE)) {
@@ -153,8 +153,8 @@ function run(args) {
   }
 
   const output = format === 'json' ? ReportExporter.toJSON(report) :
-                 format === 'markdown' ? ReportExporter.toMarkdown(report) :
-                 ReportExporter.toCSV(report);
+    format === 'markdown' ? ReportExporter.toMarkdown(report) :
+      ReportExporter.toCSV(report);
 
   console.log(output);
   scheduler.markExecuted(args[1], true);

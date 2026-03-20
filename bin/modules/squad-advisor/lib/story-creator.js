@@ -10,7 +10,7 @@ class StoryCreator {
       this.createPhase2Story(projectName),
       this.createPhase3Story(projectName),
       this.createQAGateStory(projectName),
-      this.createEvolutionMonitoringStory(projectName)
+      this.createEvolutionMonitoringStory(projectName),
     ];
 
     // Save stories to files
@@ -90,7 +90,7 @@ This story focuses on validating core assumptions with real users.
     return {
       id: '1.1',
       title: 'MVP Phase',
-      markdown
+      markdown,
     };
   }
 
@@ -139,7 +139,7 @@ Implement caching, optimize database, prepare for growth.
     return {
       id: '1.2',
       title: 'Phase 2: Scaling (Triggered)',
-      markdown
+      markdown,
     };
   }
 
@@ -188,7 +188,7 @@ Multi-region deployment, CDN, advanced security.
     return {
       id: '1.3',
       title: 'Phase 3: Enterprise Scale (Triggered)',
-      markdown
+      markdown,
     };
   }
 
@@ -250,7 +250,7 @@ Automatically flag when phase transitions should occur.
     return {
       id: '2.1',
       title: 'Quality Gates & Evolution Triggers',
-      markdown
+      markdown,
     };
   }
 
@@ -292,7 +292,7 @@ based on real-world metrics and user feedback.
     return {
       id: '2.2',
       title: 'Continuous Evolution Monitoring',
-      markdown
+      markdown,
     };
   }
 }

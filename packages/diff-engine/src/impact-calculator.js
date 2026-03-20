@@ -39,7 +39,7 @@ class ImpactCalculator {
 
     // Weighted score: architecture has 50% weight (structural changes are critical)
     const overallScore = Math.round(
-      (architectureImpact * 0.5 + dependencyImpact * 0.2 + metricsImpact * 0.15 + languageImpact * 0.15) * 10
+      (architectureImpact * 0.5 + dependencyImpact * 0.2 + metricsImpact * 0.15 + languageImpact * 0.15) * 10,
     ) / 10;
 
     return {

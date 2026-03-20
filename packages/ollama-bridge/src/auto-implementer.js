@@ -155,17 +155,17 @@ COMECE!`;
   async startContinuousImplementation(options = {}) {
     const { interactive = true, verbose = false } = options;
 
-    console.log(`\n🤖 AUTO-IMPLEMENTADOR AIOX — MODO CONTÍNUO`);
-    console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
-    console.log(`⚠️  Este modo rodará CONTINUAMENTE`);
-    console.log(`🛑 Use Ctrl+C para interromper\n`);
+    console.log('\n🤖 AUTO-IMPLEMENTADOR AIOX — MODO CONTÍNUO');
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    console.log('⚠️  Este modo rodará CONTINUAMENTE');
+    console.log('🛑 Use Ctrl+C para interromper\n');
 
     let cycleCount = 0;
 
     while (this.isRunning) {
       cycleCount++;
       console.log(`\n\n🔄 CICLO ${cycleCount}`);
-      console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
       console.log(`⏰ ${new Date().toLocaleString()}\n`);
 
       // Pre-flight checks
@@ -283,7 +283,7 @@ COMECE!`;
 
         // Timeout de 180 segundos (3 min) por tentativa
         const timeoutPromise = new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Timeout ao processar task (180s)')), 180000)
+          setTimeout(() => reject(new Error('Timeout ao processar task (180s)')), 180000),
         );
 
         const response = await Promise.race([
@@ -294,7 +294,7 @@ COMECE!`;
               if (verbose && chunk.message?.content) {
                 process.stdout.write(chunk.message.content);
               }
-            }
+            },
           ),
           timeoutPromise,
         ]);
@@ -310,7 +310,7 @@ COMECE!`;
       } catch (error) {
         if (attempt < retries) {
           console.error(`⚠️  Tentativa ${attempt} falhou: ${error.message}`);
-          console.log(`⏳ Aguardando 10s antes de retry...\n`);
+          console.log('⏳ Aguardando 10s antes de retry...\n');
           await this.sleep(10000);
         } else {
           console.error(`❌ Falha final após ${retries} tentativas: ${error.message}`);
@@ -356,12 +356,12 @@ COMECE!`;
     const allTasks = await this.parseChecklist();
     const pendingTasks = allTasks.filter(t => !progress.completed.includes(t.id));
 
-    console.log(`\n🤖 MODO INTERATIVO - AUTO-IMPLEMENTADOR`);
-    console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+    console.log('\n🤖 MODO INTERATIVO - AUTO-IMPLEMENTADOR');
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     console.log(`Tarefas pendentes: ${pendingTasks.length}`);
-    console.log(`Tipo /status para ver progresso`);
-    console.log(`Tipo /next para implementar próxima tarefa`);
-    console.log(`Tipo /exit para sair\n`);
+    console.log('Tipo /status para ver progresso');
+    console.log('Tipo /next para implementar próxima tarefa');
+    console.log('Tipo /exit para sair\n');
 
     const prompt = () => {
       rl.question('auto-impl> ', async (input) => {
@@ -369,7 +369,7 @@ COMECE!`;
           rl.close();
           process.exit(0);
         } else if (input === '/status') {
-          console.log(`\n📊 Status:`);
+          console.log('\n📊 Status:');
           console.log(`  Completadas: ${progress.completed.length}`);
           console.log(`  Pendentes: ${pendingTasks.length}`);
           console.log(`  Última execução: ${progress.lastRun || 'Nunca'}\n`);
@@ -402,7 +402,7 @@ COMECE!`;
           if (chunk.message?.content) {
             process.stdout.write(chunk.message.content);
           }
-        }
+        },
       );
       console.log('\n\n✅ Completado!\n');
     } catch (error) {

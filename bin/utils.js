@@ -21,10 +21,10 @@ const colors = {
   dim: chalk.dim,
   bold: chalk.bold,
   cyan: chalk.cyan,
-  gray: chalk.gray
+  gray: chalk.gray,
 };
 
 module.exports = {
   spinner,
-  colors
+  colors,
 };

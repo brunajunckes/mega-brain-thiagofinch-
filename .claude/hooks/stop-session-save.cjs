@@ -84,4 +84,4 @@ ${historico}`;
 const timer = setTimeout(() => process.exit(0), 9000);
 timer.unref();
 main().then(() => { clearTimeout(timer); process.exitCode = 0; })
-      .catch(() => { clearTimeout(timer); process.exitCode = 0; });
+  .catch(() => { clearTimeout(timer); process.exitCode = 0; });

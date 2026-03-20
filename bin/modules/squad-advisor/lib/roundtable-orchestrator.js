@@ -7,7 +7,7 @@ class RoundtableOrchestrator {
   async orchestrate(config) {
     const { id, projectName, projectDescription, question, experts, rounds = 3 } = config;
 
-    console.log(`📋 Roundtable Setup:`);
+    console.log('📋 Roundtable Setup:');
     console.log(`   ID: ${id}`);
     console.log(`   Participants: ${experts.length}`);
     console.log(`   Rounds: ${rounds}\n`);
@@ -20,14 +20,14 @@ class RoundtableOrchestrator {
 
       const roundData = {
         round: r,
-        responses: []
+        responses: [],
       };
 
       for (const expert of experts) {
         const response = await this.getExpertResponse(expert, projectDescription || question, r, roundResults);
         roundData.responses.push({
           expert: expert.name,
-          response
+          response,
         });
       }
 
@@ -47,7 +47,7 @@ class RoundtableOrchestrator {
       rounds: roundResults,
       synthesis,
       markdown,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -58,7 +58,7 @@ class RoundtableOrchestrator {
       'andrew_ng': 'Consider data requirements and ML feasibility',
       'don_norman': 'Prioritize user problem clarity before technical decisions',
       'frank_kern': 'Lead with clear value proposition and messaging',
-      'satya_nadella': 'Think about organizational readiness and culture'
+      'satya_nadella': 'Think about organizational readiness and culture',
     };
 
     const defaultPerspective = `As an expert, I recommend focusing on the core value delivery.
@@ -74,19 +74,19 @@ Don't over-engineer in the beginning.`;
       agreements: [
         'Focus on user validation before scaling',
         'Implement metrics from day 1',
-        'Keep architecture simple until proven need'
+        'Keep architecture simple until proven need',
       ],
       disagreements: [],
-      recommendation: 'Build lean MVP, measure, then evolve based on data'
+      recommendation: 'Build lean MVP, measure, then evolve based on data',
     };
   }
 
   generateMarkdown(id, question, experts, roundResults, synthesis) {
-    let md = `# Expert Roundtable Discussion\n\n`;
+    let md = '# Expert Roundtable Discussion\n\n';
     md += `**ID:** ${id}\n`;
     md += `**Date:** ${new Date().toISOString()}\n\n`;
 
-    md += `## Participants\n`;
+    md += '## Participants\n';
     experts.forEach(expert => {
       md += `- **${expert.name}** — ${(expert.expertise || []).join(', ')}\n`;
     });
@@ -100,9 +100,9 @@ Don't over-engineer in the beginning.`;
       });
     });
 
-    md += `## Consensus\n`;
+    md += '## Consensus\n';
     md += `**Agreement:** ${synthesis.consensus}\n\n`;
-    md += `**Key Points:**\n`;
+    md += '**Key Points:**\n';
     synthesis.agreements.forEach(pt => {
       md += `- ${pt}\n`;
     });

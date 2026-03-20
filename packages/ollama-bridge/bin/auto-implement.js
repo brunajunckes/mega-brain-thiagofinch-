@@ -105,7 +105,7 @@ AUTORIZAÇÕES ATIVAS:
       await autoImpl.startInteractiveMode();
     } else {
       console.log(`\n🤖 Iniciando modo ${options.continuous ? 'CONTÍNUO' : 'ÚNICO'}...\n`);
-      console.log(`Opções:`);
+      console.log('Opções:');
       console.log(`  Contínuo: ${options.continuous}`);
       console.log(`  Auto-commit: ${options.autoCommit}`);
       console.log(`  Auto-push: ${options.autoPush}\n`);

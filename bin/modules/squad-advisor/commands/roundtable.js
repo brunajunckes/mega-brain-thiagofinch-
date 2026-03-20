@@ -15,7 +15,7 @@ class RoundtableHandler {
         id: roundtableId,
         question: options.question,
         experts,
-        rounds
+        rounds,
       });
 
       console.log('Roundtable discussion complete!\n');

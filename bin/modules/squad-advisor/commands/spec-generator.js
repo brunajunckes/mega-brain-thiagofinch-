@@ -16,9 +16,9 @@ class SpecGeneratorHandler {
         description: 'Project from roundtable',
         roundtableOutput: {
           synthesis: {
-            recommendation: 'Build lean MVP, validate assumptions'
-          }
-        }
+            recommendation: 'Build lean MVP, validate assumptions',
+          },
+        },
       });
 
       const outputFile = options.outputFile || `spec-${roundtableId}.md`;

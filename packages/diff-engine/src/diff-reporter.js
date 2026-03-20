@@ -266,7 +266,7 @@ class DiffReporter {
 
     for (const [key, metric] of Object.entries(metricsDiff)) {
       const statusBadge = metric.status === 'improved' ? '✅' :
-                         metric.status === 'regressed' ? '❌' : '➡️';
+        metric.status === 'regressed' ? '❌' : '➡️';
       const changeStr = metric.change !== undefined
         ? `${metric.change >= 0 ? '+' : ''}${metric.change}`
         : (metric.before === metric.after ? 'no change' : 'changed');
@@ -287,8 +287,8 @@ class DiffReporter {
 
     impact.recommendations.forEach((rec) => {
       const icon = rec.priority === 'critical' ? '🔴' :
-                   rec.priority === 'high' ? '🟠' :
-                   rec.priority === 'medium' ? '🟡' : '🟢';
+        rec.priority === 'high' ? '🟠' :
+          rec.priority === 'medium' ? '🟡' : '🟢';
 
       section += `${icon} **[${rec.category}]** ${rec.message}\n`;
     });

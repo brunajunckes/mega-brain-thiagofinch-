@@ -21,7 +21,7 @@ class ProjectKickoffHandler {
       const stories = await storyCreator.createStories({
         projectName,
         spec,
-        outputDir
+        outputDir,
       });
 
       console.log(`✓ Created ${stories.length} stories:\n`);
@@ -33,7 +33,7 @@ class ProjectKickoffHandler {
       });
 
       console.log('\n✅ Project kickoff complete!\n');
-      console.log(`Next: Assign stories to @dev for implementation.\n`);
+      console.log('Next: Assign stories to @dev for implementation.\n');
 
     } catch (error) {
       console.error('Error:', error.message);

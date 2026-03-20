@@ -9,7 +9,7 @@ const main = async () => {
   config.chat.maxHistory = 20;
   config.memory = {
     path: `${process.env.HOME}/.claude/projects/-srv-aiox/memory`,
-    enabled: true
+    enabled: true,
   };
   ConfigManager.save(config);
 

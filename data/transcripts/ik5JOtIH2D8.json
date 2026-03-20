@@ -1,0 +1,5 @@
+{
+  "success": false,
+  "videoId": "ik5JOtIH2D8",
+  "error": "Command failed: yt-dlp       --write-subs       --sub-langs pt,en       --skip-unavailable-fragments"
+}

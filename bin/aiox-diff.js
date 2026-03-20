@@ -118,7 +118,7 @@ async function main() {
     console.log('📊 Change Summary:');
     console.log(`  Baseline: ${baseline.metadata?.repository?.name || 'unknown'} (${baseline.summary?.totalFiles || 0} files)`);
     console.log(`  Current:  ${current.metadata?.repository?.name || 'unknown'} (${current.summary?.totalFiles || 0} files)`);
-    console.log(`\n🎯 Impact Assessment:`);
+    console.log('\n🎯 Impact Assessment:');
     console.log(`  Overall Score:  ${impact.overallScore}/10`);
     console.log(`  Severity:       ${impact.severity.toUpperCase()}`);
     console.log(`  Breaking:       ${impact.breaking ? 'YES ⚠️' : 'NO ✅'}`);
@@ -138,16 +138,16 @@ async function main() {
       console.log(`🏗️  Architecture: ${diff.changes.architecture.before.name} → ${diff.changes.architecture.after.name}`);
     }
 
-    console.log(`\n📄 Reports Generated:`);
+    console.log('\n📄 Reports Generated:');
     console.log(`  - ${path.relative(process.cwd(), reports.json)}`);
     console.log(`  - ${path.relative(process.cwd(), reports.markdown)}`);
     console.log(`  - ${path.relative(process.cwd(), reports.impact)}`);
 
     if (impact.recommendations.length > 0) {
-      console.log(`\n💡 Top Recommendations:`);
+      console.log('\n💡 Top Recommendations:');
       impact.recommendations.slice(0, 3).forEach((rec, idx) => {
         const icon = rec.priority === 'critical' ? '🔴' :
-                     rec.priority === 'high' ? '🟠' : '🟡';
+          rec.priority === 'high' ? '🟠' : '🟡';
         console.log(`  ${idx + 1}. ${icon} [${rec.category}] ${rec.message}`);
       });
     }

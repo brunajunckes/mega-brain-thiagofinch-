@@ -30,7 +30,7 @@ class SquadManager {
         squads[squadDir] = {
           id: squadDir,
           members,
-          path: path.join(squadsDir, squadDir)
+          path: path.join(squadsDir, squadDir),
         };
       }
     });
@@ -69,7 +69,7 @@ class SquadManager {
             squad: squad.id,
             expertise: member.expertise_tags || [],
             collection: member.qdrant_collection,
-            role: member.role
+            role: member.role,
           });
         }
       });

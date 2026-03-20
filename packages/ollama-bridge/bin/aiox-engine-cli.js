@@ -20,7 +20,7 @@ class AIOXEngineCLI {
     this.rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
-      historySize: HISTORY_SIZE
+      historySize: HISTORY_SIZE,
     });
     this.isRunning = true;
   }
@@ -79,7 +79,7 @@ class AIOXEngineCLI {
         prompt: prompt,
         model: null, // Let engine choose
         session_id: this.sessionId,
-        use_rag: true
+        use_rag: true,
       });
 
       const url = new URL(`${ENGINE_URL}/agent`);
@@ -90,9 +90,9 @@ class AIOXEngineCLI {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Content-Length': data.length
+          'Content-Length': data.length,
         },
-        timeout: 120000
+        timeout: 120000,
       };
 
       const req = http.request(options, (res) => {
@@ -149,7 +149,7 @@ class AIOXEngineCLI {
       `[${result.model}${cached}${contextInfo}]`,
       '─'.repeat(50),
       result.response,
-      ''
+      '',
     ];
     return lines.join('\n');
   }
@@ -171,7 +171,7 @@ class AIOXEngineCLI {
         console.log('\n📊 Session Info:');
         console.log(`  ID: ${this.sessionId}`);
         console.log(`  Messages: ${this.history.length}`);
-        console.log(`  Status: Active\n`);
+        console.log('  Status: Active\n');
         return true;
 
       case '/clear':
@@ -268,7 +268,7 @@ class AIOXEngineCLI {
           response: result.response,
           model: result.model,
           cached: result.cached,
-          timestamp: result.timestamp
+          timestamp: result.timestamp,
         });
 
         // Display result

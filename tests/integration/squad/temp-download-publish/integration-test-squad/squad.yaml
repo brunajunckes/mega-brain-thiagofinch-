@@ -1,0 +1,8 @@
+name: integration-test-squad
+version: 1.0.0
+description: Squad created for integration testing
+author: Test Suite
+license: MIT
+components:
+  tasks:
+    - sample-task.md

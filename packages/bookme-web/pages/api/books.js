@@ -1,8 +1,15 @@
 const { BookIntegrator } = require('@aiox-fullstack/bookme-engine');
 const { ProjectManager } = require('@aiox-fullstack/project-manager');
 
-const integrator = new BookIntegrator('/var/lib/bookme');
-const pm = new ProjectManager('/var/lib/projects');
+// Create a custom integrator that knows where projects are stored
+const bookmeDataDir = '/var/lib/bookme';
+const projectsDir = '/var/lib/projects';
+
+// Create integrator with base dir pointing to bookme storage
+// Then pass project manager separately
+const integrator = new BookIntegrator(bookmeDataDir);
+integrator.pm = new ProjectManager(projectsDir);
+const pm = integrator.pm;
 
 export default function handler(req, res) {
   try {

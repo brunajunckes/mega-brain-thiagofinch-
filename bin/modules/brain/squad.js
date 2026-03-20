@@ -15,7 +15,7 @@ async function askSquad(options) {
     question,
     use_rag: true,
     synthesize: synthesize || false,
-    debate_rounds: debate ? parseInt(debate) : 0
+    debate_rounds: debate ? parseInt(debate) : 0,
   };
 
   const sp = spinner(`🧠 Querying squad on: "${question}"`);
@@ -86,7 +86,7 @@ async function execute(args, options) {
       question: options.ask,
       synthesize: options.synthesize,
       debate: options.debate,
-      json: options.json
+      json: options.json,
     });
   } else {
     console.error('❌ Use --ask <question> or --list');

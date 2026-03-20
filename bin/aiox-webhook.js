@@ -20,7 +20,7 @@ const { WebhookManager, EventSchema, EventDispatcher } = require('../.aiox-core/
 
 const CONFIG_FILE = path.join(process.cwd(), '.aiox-webhooks.json');
 
-let webhookManager = new WebhookManager();
+const webhookManager = new WebhookManager();
 
 function loadConfig() {
   if (fs.existsSync(CONFIG_FILE)) {

@@ -28,7 +28,7 @@ class CloneExpertHandler {
       return {
         slug,
         systemPrompt,
-        ready: true
+        ready: true,
       };
 
     } catch (error) {

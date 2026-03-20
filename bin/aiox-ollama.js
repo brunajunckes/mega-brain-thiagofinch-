@@ -134,17 +134,17 @@ const runSetup = async () => {
     const config = ConfigManager.load();
 
     const host = await question(
-      `Ollama Host [${config.ollama.host}]: `
+      `Ollama Host [${config.ollama.host}]: `,
     );
     if (host) config.ollama.host = host;
 
     const model = await question(
-      `Model [${config.ollama.model}]: `
+      `Model [${config.ollama.model}]: `,
     );
     if (model) config.ollama.model = model;
 
     const thresholdStr = await question(
-      `Complexity Threshold [${config.ollama.complexityThreshold}]: `
+      `Complexity Threshold [${config.ollama.complexityThreshold}]: `,
     );
     if (thresholdStr) {
       const threshold = parseInt(thresholdStr);

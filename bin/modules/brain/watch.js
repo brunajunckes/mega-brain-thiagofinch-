@@ -16,7 +16,7 @@ async function addWatch(options) {
   try {
     const response = await axios.post('http://localhost:8000/brain/watch', {
       channel_url: channel,
-      slug: clone
+      slug: clone,
     });
     sp.succeed('✅ Watch configured');
     console.log(`  Channel: ${channel}`);
@@ -67,7 +67,7 @@ async function pauseWatch(options) {
 
   try {
     await axios.patch(`http://localhost:8000/brain/watch/${clone}`, {
-      action: 'pause'
+      action: 'pause',
     });
     sp.succeed('✅ Watch paused');
   } catch (error) {

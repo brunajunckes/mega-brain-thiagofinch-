@@ -8,54 +8,54 @@ class SpecGenerator {
     return {
       markdown,
       evolutionYaml,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
   generateSpecMarkdown(projectName, description, roundtable, experts) {
-    let spec = `# Auto-Evolved Specification\n\n`;
+    let spec = '# Auto-Evolved Specification\n\n';
     spec += `**Project:** ${projectName}\n`;
     spec += `**Generated:** ${new Date().toISOString()}\n`;
-    spec += `**By:** Squad Advisor (Expert Consensus)\n\n`;
+    spec += '**By:** Squad Advisor (Expert Consensus)\n\n';
 
-    spec += `## Executive Summary\n\n`;
+    spec += '## Executive Summary\n\n';
     spec += `${description}\n\n`;
 
-    spec += `### Expert Consensus\n`;
-    spec += `**Question:** What's the MVP that validates core assumptions?\n\n`;
+    spec += '### Expert Consensus\n';
+    spec += '**Question:** What\'s the MVP that validates core assumptions?\n\n';
     spec += `**Answer:** ${roundtable.synthesis.recommendation}\n\n`;
 
-    spec += `### Key Agreements\n`;
+    spec += '### Key Agreements\n';
     roundtable.synthesis.agreements.forEach(pt => {
       spec += `- ${pt}\n`;
     });
 
-    spec += `\n## MVP Phase\n\n`;
-    spec += `**Target:** Launch with minimum viable product\n\n`;
+    spec += '\n## MVP Phase\n\n';
+    spec += '**Target:** Launch with minimum viable product\n\n';
 
-    spec += `### Acceptance Criteria\n`;
-    spec += `- [ ] **AC1:** Core user problem solved\n`;
-    spec += `- [ ] **AC2:** Metrics instrumentation complete\n`;
-    spec += `- [ ] **AC3:** User testing validated (5+ beta users)\n`;
-    spec += `- [ ] **AC4:** 80%+ test coverage\n\n`;
+    spec += '### Acceptance Criteria\n';
+    spec += '- [ ] **AC1:** Core user problem solved\n';
+    spec += '- [ ] **AC2:** Metrics instrumentation complete\n';
+    spec += '- [ ] **AC3:** User testing validated (5+ beta users)\n';
+    spec += '- [ ] **AC4:** 80%+ test coverage\n\n';
 
-    spec += `## Phase 2 — Scale\n\n`;
-    spec += `**Triggered when:** Daily Active Users reaches 500\n`;
-    spec += `**Timeline:** 4-6 weeks after MVP launch\n\n`;
+    spec += '## Phase 2 — Scale\n\n';
+    spec += '**Triggered when:** Daily Active Users reaches 500\n';
+    spec += '**Timeline:** 4-6 weeks after MVP launch\n\n';
 
-    spec += `### New Requirements\n`;
-    spec += `- Implement caching layer\n`;
-    spec += `- Optimize database queries\n`;
-    spec += `- Load testing at 5000 CCU\n\n`;
+    spec += '### New Requirements\n';
+    spec += '- Implement caching layer\n';
+    spec += '- Optimize database queries\n';
+    spec += '- Load testing at 5000 CCU\n\n';
 
-    spec += `## Phase 3 — Enterprise\n\n`;
-    spec += `**Triggered when:** Daily Active Users reaches 5000\n`;
-    spec += `**Timeline:** 8-12 weeks after Phase 2\n\n`;
+    spec += '## Phase 3 — Enterprise\n\n';
+    spec += '**Triggered when:** Daily Active Users reaches 5000\n';
+    spec += '**Timeline:** 8-12 weeks after Phase 2\n\n';
 
-    spec += `### New Requirements\n`;
-    spec += `- Implement CDN for static assets\n`;
-    spec += `- Multi-region deployment\n`;
-    spec += `- Advanced security features\n\n`;
+    spec += '### New Requirements\n';
+    spec += '- Implement CDN for static assets\n';
+    spec += '- Multi-region deployment\n';
+    spec += '- Advanced security features\n\n';
 
     return spec;
   }

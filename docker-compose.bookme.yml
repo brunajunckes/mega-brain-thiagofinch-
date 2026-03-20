@@ -2,25 +2,24 @@ version: '3.8'
 
 services:
   bookme-web:
-    build:
-      context: ./packages/bookme-web
-      dockerfile: Dockerfile
+    image: bookme-web:latest
     container_name: bookme-web
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - BOOKME_DATA_DIR=/data/bookme
-      - PROJECT_DATA_DIR=/data/projects
     volumes:
-      - bookme-data:/data
+      - bookme-data:/var/lib/bookme
+      - bookme-projects:/var/lib/projects
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health || true"]
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/books"]
       interval: 30s
       timeout: 10s
       retries: 3
 
 volumes:
   bookme-data:
+    driver: local
+  bookme-projects:
     driver: local

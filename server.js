@@ -251,8 +251,8 @@ const requestHandler = async (req, res) => {
         ollama: {
           url: process.env.OLLAMA_URL || 'http://localhost:11434',
           model: process.env.OLLAMA_MODEL || 'qwen2.5:7b',
-          fallbacks: process.env.OLLAMA_FALLBACKS?.split(',') || ['qwen2.5:14b', 'deepseek-coder:6.7b']
-        }
+          fallbacks: process.env.OLLAMA_FALLBACKS?.split(',') || ['qwen2.5:14b', 'deepseek-coder:6.7b'],
+        },
       }));
       return;
     }

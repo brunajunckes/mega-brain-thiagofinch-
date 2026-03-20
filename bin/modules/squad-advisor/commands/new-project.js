@@ -49,7 +49,7 @@ class NewProjectHandler {
         projectName,
         projectDescription: description,
         experts: clonedExperts,
-        rounds: 3
+        rounds: 3,
       });
 
       console.log('✓ Roundtable completed\n');
@@ -61,7 +61,7 @@ class NewProjectHandler {
         projectName,
         description,
         roundtableOutput,
-        experts: clonedExperts
+        experts: clonedExperts,
       });
 
       console.log('✓ Spec generated\n');
@@ -76,7 +76,7 @@ class NewProjectHandler {
       const stories = await storyCreator.createStories({
         projectName,
         spec,
-        outputDir
+        outputDir,
       });
 
       console.log(`✓ Created ${stories.length} stories:\n`);
@@ -89,7 +89,7 @@ class NewProjectHandler {
       console.log(`  1. Review spec: ${path.join(outputDir, 'spec-auto-evolved.md')}`);
       console.log(`  2. Review roundtable: ${path.join(outputDir, 'roundtable-discussion.md')}`);
       console.log(`  3. Review evolution rules: ${path.join(outputDir, 'project-evolution.yaml')}`);
-      console.log(`  4. Assign stories to @dev for implementation\n`);
+      console.log('  4. Assign stories to @dev for implementation\n');
 
     } catch (error) {
       console.error('\n❌ Error:', error.message);
@@ -107,7 +107,7 @@ class NewProjectHandler {
       'leadership_culture': ['team', 'culture', 'organization', 'leadership', 'people', 'structure'],
       'marketing_copywriting': ['marketing', 'messaging', 'positioning', 'funnel', 'copy', 'conversion'],
       'research_analytics': ['data', 'analytics', 'metrics', 'research', 'measurement', 'kpi'],
-      'finance_operations': ['economics', 'pricing', 'operations', 'finance', 'cost', 'unit']
+      'finance_operations': ['economics', 'pricing', 'operations', 'finance', 'cost', 'unit'],
     };
 
     const lowerDesc = description.toLowerCase();
@@ -135,7 +135,7 @@ class NewProjectHandler {
     return {
       description,
       domains: identifiedDomains.slice(0, 3),
-      slug: slug || 'project'
+      slug: slug || 'project',
     };
   }
 
@@ -166,7 +166,7 @@ class NewProjectHandler {
         Respond from your unique perspective and expertise.
         Be direct, practical, and highlight non-obvious insights.`,
       collection: `brain_clone_${expert.slug}`,
-      ready: true
+      ready: true,
     }));
   }
 
