@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T00:28:50.710Z"
+generated_at: "2026-03-21T00:30:58.619Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1196
+file_count: 1202
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1044,6 +1044,10 @@ files:
     hash: sha256:00269a7f4706d39f6cd295e99325242e2d0b75e36e274cd35d61534066a42124
     type: core
     size: 12326
+  - path: core/orchestration/__tests__/load-balancer.test.js
+    hash: sha256:ced881ee4cc47caae8d8a499889e608cf8bcb77262dd0aa5a0b96b473093bb53
+    type: core
+    size: 5029
   - path: core/orchestration/__tests__/performance-profiler.test.js
     hash: sha256:d6210b5570b19a3745108ded25f4a4053ab4b7c62a3cb18e072399b36d0f2dd0
     type: core
@@ -1064,6 +1068,14 @@ files:
     hash: sha256:cfa2a20f811182ecd5e17b01c46c3dcd61aab8fa60a3c2ce439f894056d4d6db
     type: core
     size: 6046
+  - path: core/orchestration/__tests__/task-queue.test.js
+    hash: sha256:0aaa8d54d3a9d99f61258302c6f075629b12cba711fabb3dcaa30e11cdf216a8
+    type: core
+    size: 6520
+  - path: core/orchestration/__tests__/worker-pool.test.js
+    hash: sha256:92bcde29673851682d078e30f3245b89f787885237a5243e6803be5097e0248e
+    type: core
+    size: 3157
   - path: core/orchestration/agent-invoker.js
     hash: sha256:5e1e3428163c35b0c91f694b76a5ca1e520249de1f7f65aae87e6723c01a45e7
     type: core
@@ -1172,6 +1184,10 @@ files:
     hash: sha256:8baea00058c1dcae86328fff06b04c52cfad8ad9a77e3f49458f062609aa478a
     type: core
     size: 8835
+  - path: core/orchestration/load-balancer.js
+    hash: sha256:78425c6138e6cf94f8aacbbac38d09e9af9e574ceb3c738a6193bf9f0d3f69c6
+    type: core
+    size: 3716
   - path: core/orchestration/lock-manager.js
     hash: sha256:3917ef9443f8a0e0de0c79715de54fe1e9451faa9860ee2f0c0f588dfaaf7a09
     type: core
@@ -1236,6 +1252,10 @@ files:
     hash: sha256:298d3bf4925afa344340c882604446810d80aea9b99c75dbaae4d00440cd7641
     type: core
     size: 1683
+  - path: core/orchestration/task-queue.js
+    hash: sha256:690edab3642a4f3ca85a24e1cc8d857be7fb81e7476cb21babec2d26d8323e4c
+    type: core
+    size: 4872
   - path: core/orchestration/tech-stack-detector.js
     hash: sha256:074c52757e181cc1e344b26ae191ac67488d18e9da2b06b5def23abb6c64c056
     type: core
@@ -1244,6 +1264,10 @@ files:
     hash: sha256:a6453c6acf0ff007444adeaa5e4620890fff38f0b31b058a2da04d790fb098ab
     type: core
     size: 31469
+  - path: core/orchestration/worker-pool.js
+    hash: sha256:0310587ffbece62c3d3cc7cf42c2bdcbf7e4d667bc3be822cd8dc4bbce47cd23
+    type: core
+    size: 5477
   - path: core/orchestration/workflow-executor.js
     hash: sha256:49372791e5729fd7987c80efe1400168e8d59eac000a009b88d9fde6735cf4db
     type: core
