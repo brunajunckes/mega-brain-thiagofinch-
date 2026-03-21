@@ -74,7 +74,7 @@ function EditorContent() {
     try {
       await fetch(`/api/projects/${projectId}`, {
         method: 'PUT', headers,
-        body: JSON.stringify({ status: 'in_progress' })
+        body: JSON.stringify({ status: 'writing' })
       });
     } catch {}
     setSaving(false);

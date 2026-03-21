@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T01:11:55.745Z"
+generated_at: "2026-03-21T01:22:03.496Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1386
+file_count: 1391
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1080,6 +1080,10 @@ files:
     hash: sha256:76fdda94d284d946404f279801bda7f82d63a15c67c7c609fdaa28ce5aa66d1b
     type: core
     size: 7120
+  - path: core/orchestration/__tests__/self-healing.test.js
+    hash: sha256:80b36453abc8a4ab44234f1fcc35e2c8524240797e1e8fe316ec1d994f16e1cc
+    type: core
+    size: 24384
   - path: core/orchestration/__tests__/task-executor-integration.test.js
     hash: sha256:3ac78b75178e4d434474601056d85295dad8e49a02ceb8d2ff265367e84b2b32
     type: core
@@ -1112,6 +1116,10 @@ files:
     hash: sha256:5e1e3428163c35b0c91f694b76a5ca1e520249de1f7f65aae87e6723c01a45e7
     type: core
     size: 16573
+  - path: core/orchestration/anomaly-detector.js
+    hash: sha256:244779710ccb5f5b466d55c3437bf6a62e33dd903d6d9755a8d62e6d65ce74b6
+    type: core
+    size: 7127
   - path: core/orchestration/bob-orchestrator.js
     hash: sha256:35219c5113c262a39f249866e66c76f9f1206465dd68a66eb27d82c623b46048
     type: core
@@ -1232,6 +1240,10 @@ files:
     hash: sha256:e4e951e1347f846f4df0af2a7692838a734418030331cb25ce6fa86721beafdf
     type: core
     size: 35270
+  - path: core/orchestration/health-monitor.js
+    hash: sha256:9a5868f419854a1c5ec098532463d44e0156a7c81a9964d4e632ea3b9bcfbab5
+    type: core
+    size: 8794
   - path: core/orchestration/index.js
     hash: sha256:8baea00058c1dcae86328fff06b04c52cfad8ad9a77e3f49458f062609aa478a
     type: core
@@ -1284,6 +1296,10 @@ files:
     hash: sha256:5cef7051a4c521fd279d3d8f62cb114b1f0bfdaa548c90b20c1199188b1afdfd
     type: core
     size: 2817
+  - path: core/orchestration/self-healer.js
+    hash: sha256:e08f724cb5edefc981c153b7c2fa253758ecff26db5f1c7a381c874f7b3178fc
+    type: core
+    size: 7301
   - path: core/orchestration/session-state.js
     hash: sha256:72aa24d7a7a256a56973d7b4e7b03c968eabeb0d22be23af75f65f2e45ac88b3
     type: core
@@ -1793,9 +1809,9 @@ files:
     type: data
     size: 16853
   - path: data/entity-registry.yaml
-    hash: sha256:bf6794ec8bd8293a6958b197860bff1315edd68adf9b62bcba1b3c4a73314805
+    hash: sha256:cb4dccdd0b059856a6565a4fe8b3ba03ce8816d8d3394d1f5f292dd08e55efdb
     type: data
-    size: 576411
+    size: 653136
   - path: data/go.md
     hash: sha256:e0851caecbdc2cea6531359fe640427685cd6ed664dbf991ccb135917c4d1ec2
     type: data
@@ -4388,6 +4404,10 @@ files:
     hash: sha256:118d4cdbc64cf3238065f2fb98958305ae81e1384bc68f5a6c7b768f1232cd1e
     type: script
     size: 34686
+  - path: infrastructure/scripts/repo-analyzer-worker.js
+    hash: sha256:3f738cce89526095ed0f398c2e182fbd8b55b1ea37876f00d5b53f512d3f572e
+    type: script
+    size: 7078
   - path: infrastructure/scripts/repository-detector.js
     hash: sha256:10ffca7f57d24d3729c71a9104a154500a3c72328d67884e26e38d22199af332
     type: script

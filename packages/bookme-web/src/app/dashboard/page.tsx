@@ -18,10 +18,10 @@ interface Project {
 
 const statusColors: Record<string, string> = {
   'draft': '#f59e0b',
-  'in_progress': '#3b82f6',
-  'review': '#8b5cf6',
+  'planning': '#8b5cf6',
+  'writing': '#3b82f6',
+  'reviewing': '#06b6d4',
   'completed': '#22c55e',
-  'published': '#06b6d4',
 };
 
 export default function DashboardPage() {

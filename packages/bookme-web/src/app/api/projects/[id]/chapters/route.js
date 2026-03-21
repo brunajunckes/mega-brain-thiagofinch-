@@ -4,7 +4,7 @@ export async function GET(request, { params }) {
   try {
     const { id } = await params;
     const token = request.headers.get('authorization');
-    const r = await fetch(`${BACKEND}/projects/${id}/chapters`, { headers: { 'Authorization': token || '', 'Content-Type': 'application/json' } });
+    const r = await fetch(`${BACKEND}/api/projects/${id}/chapters`, { headers: { 'Authorization': token || '', 'Content-Type': 'application/json' } });
     const data = await r.json();
     return new Response(JSON.stringify(data), { status: r.status, headers: { 'Content-Type': 'application/json' } });
   } catch (e) {
@@ -17,7 +17,7 @@ export async function POST(request, { params }) {
     const { id } = await params;
     const token = request.headers.get('authorization');
     const body = await request.json();
-    const r = await fetch(`${BACKEND}/projects/${id}/chapters`, { method: 'POST', headers: { 'Authorization': token || '', 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    const r = await fetch(`${BACKEND}/api/projects/${id}/chapters`, { method: 'POST', headers: { 'Authorization': token || '', 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
     const data = await r.json();
     return new Response(JSON.stringify(data), { status: r.status, headers: { 'Content-Type': 'application/json' } });
   } catch (e) {

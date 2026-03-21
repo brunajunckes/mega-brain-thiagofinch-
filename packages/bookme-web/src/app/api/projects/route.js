@@ -3,7 +3,7 @@ const BACKEND = process.env.BACKEND_URL || (process.env.DOCKER_ENV === 'true' ? 
 export async function GET(request) {
   try {
     const token = request.headers.get('authorization');
-    const r = await fetch(`${BACKEND}/projects`, { headers: { 'Authorization': token || '', 'Content-Type': 'application/json' } });
+    const r = await fetch(`${BACKEND}/api/projects`, { headers: { 'Authorization': token || '', 'Content-Type': 'application/json' } });
     const data = await r.json();
     return new Response(JSON.stringify(data), { status: r.status, headers: { 'Content-Type': 'application/json' } });
   } catch (e) {
@@ -15,7 +15,7 @@ export async function POST(request) {
   try {
     const token = request.headers.get('authorization');
     const body = await request.json();
-    const r = await fetch(`${BACKEND}/projects`, { method: 'POST', headers: { 'Authorization': token || '', 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    const r = await fetch(`${BACKEND}/api/projects`, { method: 'POST', headers: { 'Authorization': token || '', 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
     const data = await r.json();
     return new Response(JSON.stringify(data), { status: r.status, headers: { 'Content-Type': 'application/json' } });
   } catch (e) {
