@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T01:33:40.951Z"
+generated_at: "2026-03-21T01:40:25.151Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1396
+file_count: 1397
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1821,9 +1821,9 @@ files:
     type: data
     size: 16853
   - path: data/entity-registry.yaml
-    hash: sha256:40ddd118b72aa073d72cf2c0e0940539de2ff3502570f5d359072e904d9056d9
+    hash: sha256:acdf7a964898ad39cb034363f17f81d9506516e9860ccdd29356d30b98beff2c
     type: data
-    size: 655818
+    size: 655891
   - path: data/go.md
     hash: sha256:e0851caecbdc2cea6531359fe640427685cd6ed664dbf991ccb135917c4d1ec2
     type: data
@@ -3652,6 +3652,10 @@ files:
     hash: sha256:6125a3545e9a8550582d7d6ea640bbd5b0e4747b80e7c67ebf60ce284591220e
     type: workflow
     size: 8010
+  - path: docs/SPRINT-1-COMPLETION-REPORT.md
+    hash: sha256:4fb49431f9363d28adfadf327d2e28baa42965d520714b6b3f365b260b7a2d26
+    type: documentation
+    size: 18860
   - path: docs/standards/AGENT-PERSONALIZATION-STANDARD-V1.md
     hash: sha256:6915ac1894f076fe2f04c7e30b2f88dee3323c52f49f78c6cb628f6d508e3d5c
     type: documentation
