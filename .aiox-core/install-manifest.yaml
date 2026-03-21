@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-20T23:46:27.079Z"
+generated_at: "2026-03-21T00:08:09.563Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1186
+file_count: 1192
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1036,6 +1036,14 @@ files:
     hash: sha256:fb48407cc51de3a2896b655efe6609d359c08db09ab4e7367c78ad2f7eba2aa9
     type: core
     size: 8711
+  - path: core/orchestration/__tests__/retry-rollback-recovery.test.js
+    hash: sha256:76fdda94d284d946404f279801bda7f82d63a15c67c7c609fdaa28ce5aa66d1b
+    type: core
+    size: 7120
+  - path: core/orchestration/__tests__/task-executor-integration.test.js
+    hash: sha256:3ac78b75178e4d434474601056d85295dad8e49a02ceb8d2ff265367e84b2b32
+    type: core
+    size: 8898
   - path: core/orchestration/__tests__/task-executor.test.js
     hash: sha256:91b275b9bd4deb37c0c841c1685b2b27102119e8fde988f3adb5f7d7f1c65e91
     type: core
@@ -1072,6 +1080,10 @@ files:
     hash: sha256:b5a0f1b9a45474d57810d4df721156e93ae8bf0dd620f6162145a4e0a9d66b6f
     type: core
     size: 10389
+  - path: core/orchestration/checkpoint-recovery.js
+    hash: sha256:502badb0b4d7b801f481b559a6d6aabc40a8b6655da4b1aae64b94e3c26590b8
+    type: core
+    size: 2877
   - path: core/orchestration/cli-commands.js
     hash: sha256:cedd09f6938b3e1e0e19c06f4763de00281ddb31529d16ab9e4f74d194a3bd3b
     type: core
@@ -1168,6 +1180,14 @@ files:
     hash: sha256:6a9ef025f95885849aa893188299aca698cea2ea428cc302012833032c9e106e
     type: core
     size: 24355
+  - path: core/orchestration/retry-manager.js
+    hash: sha256:185a54cd0c9edf4287767de82a04ba743f70cf73e5f6ca6594544a5c17a9890a
+    type: core
+    size: 2302
+  - path: core/orchestration/rollback-manager.js
+    hash: sha256:5cef7051a4c521fd279d3d8f62cb114b1f0bfdaa548c90b20c1199188b1afdfd
+    type: core
+    size: 2817
   - path: core/orchestration/session-state.js
     hash: sha256:72aa24d7a7a256a56973d7b4e7b03c968eabeb0d22be23af75f65f2e45ac88b3
     type: core
@@ -1176,6 +1196,10 @@ files:
     hash: sha256:5ebee66973a1df5d9dfed195ac6d83765a92023ba504e1814674345094fb8117
     type: core
     size: 10490
+  - path: core/orchestration/story-executor.js
+    hash: sha256:6ba097664bd6e339380aba6771076e1eb25a4862ce3a8ed025af7c56331e2035
+    type: core
+    size: 5549
   - path: core/orchestration/subagent-prompt-builder.js
     hash: sha256:c014eaae229e6c84742273701a6ef21a19343e34ef8be38d5d6a9bc59ecd8b02
     type: core
@@ -1613,9 +1637,9 @@ files:
     type: data
     size: 9575
   - path: data/entity-registry.yaml
-    hash: sha256:b9349086fd2f302e5b6563c775248be86e69dc4a27d5f5a9955b86095f85a353
+    hash: sha256:33195bb14e0d00508a93f3b1b34ac1e7292440260613fb771933b17cce4dc7b6
     type: data
-    size: 563531
+    size: 567685
   - path: data/learned-patterns.yaml
     hash: sha256:24ac0b160615583a0ff783d3da8af80b7f94191575d6db2054ec8e10a3f945dc
     type: data

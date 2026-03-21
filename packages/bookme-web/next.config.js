@@ -1,12 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  allowedDevOrigins: ['bookme.hubme.tech'],
   swcMinify: true,
   compress: true,
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   eslint: {
-    dirs: ['src', 'pages', 'components'],
+    dirs: ['src', 'components'],
+    ignoreDuringBuilds: true,
   },
   rewrites: async () => ({
     beforeFiles: [

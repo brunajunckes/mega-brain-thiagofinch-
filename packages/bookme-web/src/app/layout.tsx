@@ -6,16 +6,10 @@ export const metadata: Metadata = {
   description: 'Professional AI-powered writing and content creation platform',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-gray-50 text-gray-900">
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

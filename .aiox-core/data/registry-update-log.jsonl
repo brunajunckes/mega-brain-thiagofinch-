@@ -46,3 +46,15 @@
 {"timestamp":"2026-03-20T01:36:08.591Z","action":"add","path":".aiox-core/core/webhook-integration/index.js","trigger":"watcher"}
 {"timestamp":"2026-03-20T01:36:08.592Z","action":"add","path":".aiox-core/core/webhook-integration/webhook-manager.js","trigger":"watcher"}
 {"timestamp":"2026-03-20T20:50:24.096Z","action":"add","path":".aiox-core/development/agents/squad-advisor.yaml","trigger":"watcher"}
+{"timestamp":"2026-03-20T23:09:17.504Z","action":"change","path":".aiox-core/core-config.yaml","trigger":"watcher"}
+{"timestamp":"2026-03-20T23:09:17.505Z","action":"add","path":".aiox-core/core/orchestration/checkpoint-manager.js","trigger":"watcher"}
+{"timestamp":"2026-03-20T23:09:17.505Z","action":"add","path":".aiox-core/core/orchestration/dependency-graph.js","trigger":"watcher"}
+{"timestamp":"2026-03-20T23:09:17.506Z","action":"change","path":".aiox-core/core/orchestration/master-orchestrator.js","trigger":"watcher"}
+{"timestamp":"2026-03-20T23:09:17.506Z","action":"add","path":".aiox-core/core/orchestration/task-executor.js","trigger":"watcher"}
+{"timestamp":"2026-03-20T23:09:17.506Z","action":"add","path":".aiox-core/core/orchestration/task-loader.js","trigger":"watcher"}
+{"timestamp":"2026-03-20T23:19:55.144Z","action":"change","path":".aiox-core/core/session-manager/session-manager.js","trigger":"watcher"}
+{"timestamp":"2026-03-20T23:46:27.417Z","action":"add","path":".aiox-core/core/agent-system/handoff-store.js","trigger":"watcher"}
+{"timestamp":"2026-03-20T23:46:27.418Z","action":"add","path":".aiox-core/core/agent-system/handoff.js","trigger":"watcher"}
+{"timestamp":"2026-03-20T23:46:27.418Z","action":"add","path":".aiox-core/core/gates/constitutional-gates.js","trigger":"watcher"}
+{"timestamp":"2026-03-20T23:46:27.419Z","action":"add","path":".aiox-core/core/gates/pre-commit-hook.js","trigger":"watcher"}
+{"timestamp":"2026-03-20T23:46:27.419Z","action":"change","path":".aiox-core/core/orchestration/checkpoint-manager.js","trigger":"watcher"}
