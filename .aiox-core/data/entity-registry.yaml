@@ -1,6 +1,6 @@
 metadata:
   version: 1.0.0
-  lastUpdated: '2026-03-21T00:17:44.544Z'
+  lastUpdated: '2026-03-21T00:18:01.082Z'
   entityCount: 823
   checksumAlgorithm: sha256
   resolutionRate: 100
@@ -10253,15 +10253,12 @@ entities:
       usedBy:
         - performance-profiler.test
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.4
         constraints: []
         extensionPoints: []
       checksum: sha256:1ae9d42b22a2b80d1480c14eaaeb010e98f0ffdcb6e0e1a135a2c072a8f3b9e2
-      lastVerified: '2026-03-21T00:17:42.857Z'
+      lastVerified: '2026-03-21T00:18:01.059Z'
     recovery-handler:
       path: .aiox-core/core/orchestration/recovery-handler.js
       layer: L1

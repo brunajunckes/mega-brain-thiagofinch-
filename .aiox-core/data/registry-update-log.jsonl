@@ -66,3 +66,4 @@
 {"timestamp":"2026-03-21T00:13:28.622Z","action":"change","path":".aiox-core/core/gates/constitutional-gates.js","trigger":"watcher"}
 {"timestamp":"2026-03-21T00:13:28.622Z","action":"change","path":".aiox-core/core/orchestration/story-executor.js","trigger":"watcher"}
 {"timestamp":"2026-03-21T00:13:28.623Z","action":"change","path":".aiox-core/development/tasks/create-workflow.md","trigger":"watcher"}
+{"timestamp":"2026-03-21T00:18:01.059Z","action":"add","path":".aiox-core/core/orchestration/performance-profiler.js","trigger":"watcher"}
