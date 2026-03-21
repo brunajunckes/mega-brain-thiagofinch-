@@ -11,7 +11,28 @@ export async function POST(request, { params }) {
       body: JSON.stringify(body)
     });
     const text = await r.text();
-    return new Response(text, { status: r.status, headers: { 'Content-Type': 'application/json' } });
+
+    // Try JSON first
+    try {
+      JSON.parse(text);
+      return new Response(text, { status: r.status, headers: { 'Content-Type': 'application/json' } });
+    } catch {
+      // If SSE, extract final_content from generation_completed event
+      let generatedText = '';
+      for (const line of text.split('\n')) {
+        if (line.startsWith('data: ')) {
+          try {
+            const evt = JSON.parse(line.slice(6));
+            if (evt.event === 'generation_completed' && evt.data?.final_content) {
+              generatedText = evt.data.final_content;
+            }
+          } catch {}
+        }
+      }
+      return new Response(JSON.stringify({ generated_text: generatedText, status: 'ok' }), {
+        status: 200, headers: { 'Content-Type': 'application/json' }
+      });
+    }
   } catch (e) {
     return new Response(JSON.stringify({ error: 'Generation failed', message: e.message }), { status: 500, headers: { 'Content-Type': 'application/json' } });
   }
