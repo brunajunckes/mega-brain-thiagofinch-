@@ -8,7 +8,7 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T01:53:14.366Z"
+generated_at: "2026-03-21T01:53:39.504Z"
 generator: scripts/generate-install-manifest.js
 file_count: 1400
 files:
@@ -1833,7 +1833,7 @@ files:
     type: data
     size: 16853
   - path: data/entity-registry.yaml
-    hash: sha256:71120c48f7fe06f5cce6b92e17f51a2764504af77e17e2695f10ef62f6a596ef
+    hash: sha256:13763b1c6ddd05acd090efb70c3a71f01413cb364bec5f739aab11b6e4eb6937
     type: data
     size: 657959
   - path: data/go.md
@@ -3665,9 +3665,9 @@ files:
     type: workflow
     size: 8010
   - path: docs/SPRINT-1-COMPLETION-REPORT.md
-    hash: sha256:4fb49431f9363d28adfadf327d2e28baa42965d520714b6b3f365b260b7a2d26
+    hash: sha256:d8a13100052752c56e407ff151e8fa8df70480936bcd247051976ff1e74a4c2d
     type: documentation
-    size: 18860
+    size: 20615
   - path: docs/standards/AGENT-PERSONALIZATION-STANDARD-V1.md
     hash: sha256:6915ac1894f076fe2f04c7e30b2f88dee3323c52f49f78c6cb628f6d508e3d5c
     type: documentation
