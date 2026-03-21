@@ -1,0 +1,276 @@
+'use strict';
+
+const fs = require('fs-extra');
+const path = require('path');
+
+/**
+ * Report Generator — Generates analysis reports in multiple formats
+ *
+ * Outputs:
+ * - repo.json (structured machine-readable format)
+ * - REPO-ANALYSIS.md (human-readable markdown)
+ * - ARCHITECTURE.md (system overview)
+ * - deps.json (dependency graph)
+ *
+ * @class ReportGenerator
+ * @version 1.0.0
+ * @story 2.1
+ */
+class ReportGenerator {
+  constructor(options = {}) {
+    this.rootPath = options.rootPath || process.cwd();
+    this.outputPath = options.outputPath || this.rootPath;
+  }
+
+  /**
+   * Generate all report formats
+   * @param {Object} analysisData Complete analysis data from RepoScanner + DependencyAnalyzer + PatternDetector + MetricsCollector
+   * @returns {Promise<Object>} Generated report paths
+   */
+  async generate(analysisData) {
+    try {
+      const jsonReport = await this._generateJSON(analysisData);
+      const mdReport = await this._generateMarkdown(analysisData);
+      const archReport = await this._generateArchitecture(analysisData);
+
+      return {
+        json: jsonReport,
+        markdown: mdReport,
+        architecture: archReport,
+        timestamp: new Date().toISOString(),
+      };
+    } catch (error) {
+      throw new Error(`Report generation failed: ${error.message}`);
+    }
+  }
+
+  /**
+   * Generate JSON report (machine-readable)
+   * @private
+   */
+  async _generateJSON(data) {
+    const reportPath = path.join(this.outputPath, 'repo.json');
+
+    const report = {
+      metadata: {
+        generatedAt: new Date().toISOString(),
+        repository: {
+          path: this.rootPath,
+          name: path.basename(this.rootPath),
+        },
+      },
+      summary: {
+        totalFiles: data.scanner?.summary?.totalFiles || 0,
+        totalLoc: data.scanner?.summary?.totalLoc || 0,
+        languages: data.scanner?.summary?.languages || 0,
+        frameworks: data.scanner?.summary?.frameworks || 0,
+        dependencies: data.deps?.summary?.totalDependencies || 0,
+      },
+      languages: data.scanner?.languages || {},
+      frameworks: data.scanner?.frameworks || [],
+      dependencies: {
+        production: data.deps?.dependencies?.production || [],
+        development: data.deps?.dependencies?.development || [],
+        graph: data.deps?.graph || { nodes: [], edges: [] },
+      },
+      architecture: {
+        pattern: data.patterns?.architecture || {},
+        api: data.patterns?.api || {},
+        database: data.patterns?.database || {},
+      },
+      metrics: {
+        avgFunctionLength: data.metrics?.avgFunctionLength || 0,
+        complexityScore: data.metrics?.complexityScore || 'unknown',
+        testCoverage: data.metrics?.testCoverage || 0,
+        documentationRatio: data.metrics?.documentationRatio || 0,
+        codeQuality: data.metrics?.codeQuality || 0,
+      },
+    };
+
+    await fs.writeFile(reportPath, JSON.stringify(report, null, 2));
+    return reportPath;
+  }
+
+  /**
+   * Generate markdown report (human-readable)
+   * @private
+   */
+  async _generateMarkdown(data = {}) {
+    const reportPath = path.join(this.outputPath, 'REPO-ANALYSIS.md');
+    const scanner = data.scanner || {};
+    const deps = data.deps || {};
+    const patterns = data.patterns || {};
+    const metrics = data.metrics || {};
+
+    const sections = [
+      `# Repository Analysis Report\n`,
+      `**Generated:** ${new Date().toISOString()}\n`,
+      `**Repository:** ${path.basename(this.rootPath)}\n\n`,
+
+      `## Executive Summary\n`,
+      `This repository contains **${scanner.summary?.totalLoc || 0} lines of code** across `,
+      `**${scanner.summary?.totalFiles || 0} files** in **${scanner.summary?.languages || 0} languages**.\n\n`,
+
+      `## Language Breakdown\n`,
+      this._generateLanguageTable(scanner.languages),
+
+      `## Frameworks & Runtimes\n`,
+      this._generateFrameworksList(scanner.frameworks),
+
+      `## Architecture Pattern\n`,
+      `**Detected:** ${patterns.architecture?.name || 'Unknown'}\n`,
+      `**Confidence:** ${Math.round((patterns.architecture?.score || 0) * 100)}%\n\n`,
+
+      `## Code Quality Metrics\n`,
+      `| Metric | Value |\n`,
+      `|--------|-------|\n`,
+      `| Test Coverage | ${metrics.testCoverage || 0}% |\n`,
+      `| Code Quality Score | ${metrics.codeQuality || 0}/10 |\n`,
+      `| Complexity | ${metrics.complexityScore || 'unknown'} |\n`,
+      `| Documentation | ${Math.round((metrics.documentationRatio || 0) * 100)}% |\n`,
+      `| Avg Function Length | ${metrics.avgFunctionLength || 0} lines |\n\n`,
+
+      `## Dependencies\n`,
+      `- **Production Dependencies:** ${deps.summary?.productionDeps || 0}\n`,
+      `- **Development Dependencies:** ${deps.summary?.developmentDeps || 0}\n`,
+      `- **Outdated Packages:** ${deps.summary?.outdatedCount || 0}\n\n`,
+
+      `## Recommendations\n`,
+      this._generateRecommendations(data),
+
+      `---\n`,
+      `*Analysis report generated by AIOX Repo Analyzer*\n`,
+    ];
+
+    const markdown = sections.join('');
+    await fs.writeFile(reportPath, markdown);
+    return reportPath;
+  }
+
+  /**
+   * Generate architecture overview
+   * @private
+   */
+  async _generateArchitecture(data = {}) {
+    const reportPath = path.join(this.outputPath, 'ARCHITECTURE.md');
+    const scanner = data.scanner || {};
+    const patterns = data.patterns || {};
+    const metrics = data.metrics || {};
+
+    const archName = patterns.architecture?.name || 'Unknown';
+    const evidence = patterns.architecture?.evidence || [];
+    const languages = scanner.languages || {};
+    const frameworks = scanner.frameworks || [];
+    const apiDetected = patterns.api?.rest?.detected || false;
+    const dbDetected = patterns.database && Object.values(patterns.database).some((db) => db.detected);
+    const cliDetected = patterns.cli?.detected || false;
+
+    const sections = [
+      `# Architecture Overview\n\n`,
+
+      `## System Pattern\n`,
+      `**${archName} Architecture**\n\n`,
+
+      `### Evidence\n`,
+      evidence.length > 0 ? evidence.map((e) => `- ${e}`).join('\n') : '- No specific patterns detected\n',
+      '\n\n',
+
+      `## Technology Stack\n`,
+      `### Languages\n`,
+      Object.keys(languages).length > 0
+        ? Object.entries(languages)
+            .map(([lang, stats]) => `- **${lang}:** ${stats.files} files (${stats.loc} LOC)`)
+            .join('\n')
+        : '- No files analyzed\n',
+      '\n\n',
+
+      `### Frameworks\n`,
+      frameworks.length > 0 ? frameworks.map((f) => `- ${f}`).join('\n') : '- No frameworks detected\n',
+      '\n\n',
+
+      `## Layers & Components\n`,
+      `- API Pattern: ${apiDetected ? 'REST' : 'Not detected'}\n`,
+      `- Database: ${dbDetected ? 'Detected' : 'Not detected'}\n`,
+      `- CLI: ${cliDetected ? 'Yes' : 'No'}\n\n`,
+
+      `## Code Quality\n`,
+      `- Test Coverage: ${metrics.testCoverage || 0}%\n`,
+      `- Documentation: ${Math.round((metrics.documentationRatio || 0) * 100)}%\n`,
+      `- Complexity: ${metrics.complexityScore || 'unknown'}\n\n`,
+
+      `---\n`,
+      `*Generated by AIOX Repo Analyzer*\n`,
+    ];
+
+    const markdown = sections.join('');
+    await fs.writeFile(reportPath, markdown);
+    return reportPath;
+  }
+
+  /**
+   * Generate language breakdown table
+   * @private
+   */
+  _generateLanguageTable(languages) {
+    if (!languages || Object.keys(languages).length === 0) {
+      return '| Language | Files | LOC | % |\n|----------|-------|-----|---|\n| (none) | 0 | 0 | 0% |\n\n';
+    }
+
+    const rows = Object.entries(languages)
+      .map(([lang, stats]) => `| ${lang} | ${stats.files} | ${stats.loc} | ${stats.percentage}% |`)
+      .join('\n');
+
+    return `| Language | Files | LOC | % |\n|----------|-------|-----|---|\n${rows}\n\n`;
+  }
+
+  /**
+   * Generate frameworks list
+   * @private
+   */
+  _generateFrameworksList(frameworks) {
+    if (!frameworks || frameworks.length === 0) {
+      return '- No frameworks detected\n\n';
+    }
+
+    return frameworks.map((f) => `- ${f}`).join('\n') + '\n\n';
+  }
+
+  /**
+   * Generate recommendations
+   * @private
+   */
+  _generateRecommendations(data = {}) {
+    const metrics = data.metrics || {};
+    const deps = data.deps || {};
+    const recs = [];
+
+    if ((metrics.testCoverage || 0) < 70) {
+      recs.push('- Increase test coverage to 70%+ (currently ' + (metrics.testCoverage || 0) + '%)');
+    }
+    if ((metrics.documentationRatio || 0) < 0.15) {
+      recs.push('- Add more code documentation and JSDoc comments');
+    }
+    if (metrics.complexityScore === 'high') {
+      recs.push('- Reduce cyclomatic complexity in complex functions');
+    }
+    if ((deps.summary?.outdatedCount || 0) > 0) {
+      recs.push('- Update ' + deps.summary.outdatedCount + ' outdated dependencies');
+    }
+    if (!recs.length) {
+      recs.push('- Code quality looks good! Keep it up.');
+    }
+
+    return recs.join('\n') + '\n\n';
+  }
+
+  /**
+   * Export dependency graph for visualization
+   */
+  async exportDependencyGraph(depsData) {
+    const graphPath = path.join(this.outputPath, 'deps.json');
+    await fs.writeFile(graphPath, JSON.stringify(depsData || { nodes: [], edges: [] }, null, 2));
+    return graphPath;
+  }
+}
+
+module.exports = { ReportGenerator };

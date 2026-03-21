@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T00:54:39.812Z"
+generated_at: "2026-03-21T00:58:27.716Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1212
+file_count: 1214
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1080,6 +1080,10 @@ files:
     hash: sha256:91b275b9bd4deb37c0c841c1685b2b27102119e8fde988f3adb5f7d7f1c65e91
     type: core
     size: 5640
+  - path: core/orchestration/__tests__/task-generator.test.js
+    hash: sha256:a257e64fcdd2cbdb1e3c29cdfef1ad5c411a128776fdcf0fa8c68c50c1af8e9f
+    type: core
+    size: 27825
   - path: core/orchestration/__tests__/task-loader.test.js
     hash: sha256:cfa2a20f811182ecd5e17b01c46c3dcd61aab8fa60a3c2ce439f894056d4d6db
     type: core
@@ -1284,6 +1288,10 @@ files:
     hash: sha256:7a5146491cbd0730fa502985cc22a1bf19e46a19e49ac77e34f898cf79d1f994
     type: core
     size: 2177
+  - path: core/orchestration/task-generator.js
+    hash: sha256:144471159f570826111541d90cc2890a515f4ed729d2e9a1e46c75c2d7b14535
+    type: core
+    size: 9209
   - path: core/orchestration/task-loader.js
     hash: sha256:298d3bf4925afa344340c882604446810d80aea9b99c75dbaae4d00440cd7641
     type: core
@@ -1717,9 +1725,9 @@ files:
     type: data
     size: 9575
   - path: data/entity-registry.yaml
-    hash: sha256:3e8d18692eef4d2d0fcbc90a242a425bb9d016b63edfa3b5e424de4d26dd898e
+    hash: sha256:22f84d7194e58ff4d2048301908045bf485cf255932daa172e4956976ccb2793
     type: data
-    size: 577375
+    size: 582137
   - path: data/learned-patterns.yaml
     hash: sha256:24ac0b160615583a0ff783d3da8af80b7f94191575d6db2054ec8e10a3f945dc
     type: data

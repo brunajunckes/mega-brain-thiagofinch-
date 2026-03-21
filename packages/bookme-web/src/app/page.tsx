@@ -3,11 +3,12 @@ import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-function useOnScreen(ref: React.RefObject<HTMLElement | null>, threshold = 0.15) {
-  const [visible, setVisible] = useState(false);
+function useOnScreen(ref: React.RefObject<HTMLElement | null>, threshold = 0.1) {
+  const [visible, setVisible] = useState(true);
   useEffect(() => {
     if (!ref.current) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold });
+    setVisible(false);
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } }, { threshold, rootMargin: '50px' });
     obs.observe(ref.current);
     return () => obs.disconnect();
   }, [ref, threshold]);
@@ -34,9 +35,9 @@ export default function HomePage() {
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     const ud = localStorage.getItem('user');
-    if (token && ud) { setIsLoggedIn(true); try { setUser(JSON.parse(ud)); } catch {} }
+    if (token && ud) { router.push('/dashboard'); return; }
     setLoading(false);
-  }, []);
+  }, [router]);
 
   const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -145,7 +146,7 @@ export default function HomePage() {
             {icon:'📚',title:'Book Creator',desc:'Structure your book with chapters, organize content, and export to multiple formats including PDF and EPUB.'},
             {icon:'🎨',title:'Smart Templates',desc:'Choose from dozens of professional templates for articles, blogs, books, marketing copy, and more.'},
             {icon:'🤝',title:'Real-time Collaboration',desc:'Work together with your team. Share documents, leave comments, and track changes in real-time.'},
-            {icon:'🔒',title:'Secure & Private',desc:'Your content is encrypted and protected. We never use your writing to train AI models.'},
+            {icon:'\u{1F6E1}\u{FE0F}',title:'Secure & Private',desc:'Your content is encrypted and protected. We never use your writing to train AI models.'},
             {icon:'⚡',title:'Lightning Fast',desc:'Generate drafts in seconds, not hours. Our AI understands context and delivers quality content instantly.'}
           ].map((f,i)=>(
             <div key={i} style={{background:'#111',borderRadius:16,padding:32,border:'1px solid #222',opacity:featVis?1:0,transform:featVis?'translateY(0)':'translateY(30px)',transition:`all 0.6s ease ${0.1*i}s`,cursor:'pointer'}} onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.transform='translateY(-8px)';(e.currentTarget as HTMLElement).style.borderColor='#2563eb';(e.currentTarget as HTMLElement).style.boxShadow='0 12px 40px rgba(37,99,235,0.15)'}} onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.transform='translateY(0)';(e.currentTarget as HTMLElement).style.borderColor='#222';(e.currentTarget as HTMLElement).style.boxShadow='none'}}>

@@ -22,7 +22,7 @@ export default function SignupPage() {
       if(!r.ok){setErr(d.error||d.detail||'Signup failed');setBusy(false);return;}
       localStorage.setItem('access_token',d.access_token);
       localStorage.setItem('user',JSON.stringify({id:d.user_id,email:d.email}));
-      router.push('/');
+      router.push('/dashboard');
     } catch{setErr('Network error');setBusy(false);}
   };
 
