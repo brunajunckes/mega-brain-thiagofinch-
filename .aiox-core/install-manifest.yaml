@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T01:28:18.434Z"
+generated_at: "2026-03-21T01:32:31.019Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1395
+file_count: 1396
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1064,6 +1064,10 @@ files:
     hash: sha256:1f6d5641a93871f38dd6a6c5a403614f04a9251c58af3482eff070202c10fad6
     type: core
     size: 18744
+  - path: core/orchestration/__tests__/integration.test.js
+    hash: sha256:b5fd411bd2edf34862f4f8bad16b9f30e2ea8b8ec205481eb1275e275935ebcf
+    type: core
+    size: 17581
   - path: core/orchestration/__tests__/load-balancer.test.js
     hash: sha256:ced881ee4cc47caae8d8a499889e608cf8bcb77262dd0aa5a0b96b473093bb53
     type: core

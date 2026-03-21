@@ -41,6 +41,7 @@ export default function DashboardPage() {
   const fetchProjects = async (token: string) => {
     try {
       const r = await fetch('/api/projects', { headers: { 'Authorization': `Bearer ${token}` } });
+      if (r.status === 401) { localStorage.removeItem('access_token'); localStorage.removeItem('user'); window.location.href = '/auth/login'; return; }
       if (r.ok) { const data = await r.json(); setProjects(Array.isArray(data) ? data : []); }
     } catch {}
     setLoading(false);

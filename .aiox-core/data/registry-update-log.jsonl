@@ -209,3 +209,8 @@
 {"timestamp":"2026-03-21T01:11:40.055Z","action":"add","path":".aiox-core/infrastructure/scripts/development/workflow-state-manager.js","trigger":"watcher"}
 {"timestamp":"2026-03-21T01:11:40.055Z","action":"add","path":".aiox-core/infrastructure/scripts/development/workflow-validator.js","trigger":"watcher"}
 {"timestamp":"2026-03-21T01:11:40.056Z","action":"add","path":".aiox-core/infrastructure/scripts/development/yaml-validator.js","trigger":"watcher"}
+{"timestamp":"2026-03-21T01:22:04.405Z","action":"add","path":".aiox-core/core/orchestration/anomaly-detector.js","trigger":"watcher"}
+{"timestamp":"2026-03-21T01:22:04.407Z","action":"add","path":".aiox-core/core/orchestration/health-monitor.js","trigger":"watcher"}
+{"timestamp":"2026-03-21T01:22:04.408Z","action":"add","path":".aiox-core/core/orchestration/self-healer.js","trigger":"watcher"}
+{"timestamp":"2026-03-21T01:22:04.408Z","action":"add","path":".aiox-core/infrastructure/scripts/repo-analyzer-worker.js","trigger":"watcher"}
+{"timestamp":"2026-03-21T01:22:47.519Z","action":"add","path":".aiox-core/infrastructure/scripts/token-efficient-analyzer.js","trigger":"watcher"}

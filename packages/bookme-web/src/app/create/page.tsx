@@ -36,6 +36,7 @@ export default function CreatePage() {
         body: JSON.stringify({ title: form.title, topic: form.topic, genre: form.genre, target_audience: form.target_audience, description: form.description || undefined })
       });
       const data = await r.json();
+      if (r.status === 401) { localStorage.removeItem('access_token'); localStorage.removeItem('user'); router.push('/auth/login'); return; }
       if (!r.ok) { setErr(data.detail || data.error || 'Failed to create project'); setBusy(false); return; }
       router.push(`/editor?id=${data.id}`);
     } catch {
