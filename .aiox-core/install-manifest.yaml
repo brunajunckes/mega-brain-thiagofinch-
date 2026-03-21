@@ -8,7 +8,7 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T00:13:01.183Z"
+generated_at: "2026-03-21T00:13:28.309Z"
 generator: scripts/generate-install-manifest.js
 file_count: 1193
 files:
@@ -1201,9 +1201,9 @@ files:
     type: core
     size: 10490
   - path: core/orchestration/story-executor.js
-    hash: sha256:6ba097664bd6e339380aba6771076e1eb25a4862ce3a8ed025af7c56331e2035
+    hash: sha256:9069ae0f117454d7bc03aa2c15d5b9b299aeb88a98ff098e87c0595812586486
     type: core
-    size: 5549
+    size: 5545
   - path: core/orchestration/subagent-prompt-builder.js
     hash: sha256:c014eaae229e6c84742273701a6ef21a19343e34ef8be38d5d6a9bc59ecd8b02
     type: core
@@ -1641,7 +1641,7 @@ files:
     type: data
     size: 9575
   - path: data/entity-registry.yaml
-    hash: sha256:fd1a7fa9d6982ec31e88a52310349e87b1299cc8a89b66e5c14449cddb7eaa3c
+    hash: sha256:76f252df01ec2e464fcede5c0d31dc824d86a1b1eff345bce71728ea0e539199
     type: data
     size: 567393
   - path: data/learned-patterns.yaml
@@ -2317,9 +2317,9 @@ files:
     type: task
     size: 9952
   - path: development/tasks/create-workflow.md
-    hash: sha256:64abe2114fc3ab6b0494375c6401aa6a8213c63b1dc18ffac729d2acf1161a2c
+    hash: sha256:76f47a9fa54b9690a10ddf4544c96f8d732c658550fd8487f9defd2339b8e222
     type: task
-    size: 11492
+    size: 11767
   - path: development/tasks/create-worktree.md
     hash: sha256:143b9bdf87a4eed0faac612e137965483dec1224a7579399a68b68b6bc0689b7
     type: task

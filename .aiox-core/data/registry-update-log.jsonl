@@ -58,3 +58,8 @@
 {"timestamp":"2026-03-20T23:46:27.418Z","action":"add","path":".aiox-core/core/gates/constitutional-gates.js","trigger":"watcher"}
 {"timestamp":"2026-03-20T23:46:27.419Z","action":"add","path":".aiox-core/core/gates/pre-commit-hook.js","trigger":"watcher"}
 {"timestamp":"2026-03-20T23:46:27.419Z","action":"change","path":".aiox-core/core/orchestration/checkpoint-manager.js","trigger":"watcher"}
+{"timestamp":"2026-03-21T00:08:09.919Z","action":"add","path":".aiox-core/core/orchestration/checkpoint-recovery.js","trigger":"watcher"}
+{"timestamp":"2026-03-21T00:08:09.920Z","action":"add","path":".aiox-core/core/orchestration/retry-manager.js","trigger":"watcher"}
+{"timestamp":"2026-03-21T00:08:09.921Z","action":"add","path":".aiox-core/core/orchestration/rollback-manager.js","trigger":"watcher"}
+{"timestamp":"2026-03-21T00:08:09.922Z","action":"add","path":".aiox-core/core/orchestration/story-executor.js","trigger":"watcher"}
+{"timestamp":"2026-03-21T00:13:01.836Z","action":"change","path":".aiox-core/development/workflows/development-cycle.yaml","trigger":"watcher"}

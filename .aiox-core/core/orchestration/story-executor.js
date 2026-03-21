@@ -8,7 +8,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const { TaskExecutor } = require('./task-executor');
 const { CheckpointManager } = require('./checkpoint-manager');
-const { ConstitutionalGates } = require('../gates/constitutional-gates');
+const ConstitutionalGates = require('../gates/constitutional-gates');
 
 /**
  * StoryExecutor - Execute all tasks for a story with checkpointing

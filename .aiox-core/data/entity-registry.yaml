@@ -1,6 +1,6 @@
 metadata:
   version: 1.0.0
-  lastUpdated: '2026-03-21T00:07:23.838Z'
+  lastUpdated: '2026-03-21T00:13:01.846Z'
   entityCount: 819
   checksumAlgorithm: sha256
   resolutionRate: 100
@@ -9910,15 +9910,12 @@ entities:
         - retry-rollback-recovery.test
       dependencies:
         - checkpoint-manager
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.4
         constraints: []
         extensionPoints: []
       checksum: sha256:502badb0b4d7b801f481b559a6d6aabc40a8b6655da4b1aae64b94e3c26590b8
-      lastVerified: '2026-03-21T00:07:22.448Z'
+      lastVerified: '2026-03-21T00:08:09.918Z'
     cli-commands:
       path: .aiox-core/core/orchestration/cli-commands.js
       layer: L1
@@ -10273,15 +10270,12 @@ entities:
       usedBy:
         - retry-rollback-recovery.test
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.4
         constraints: []
         extensionPoints: []
       checksum: sha256:185a54cd0c9edf4287767de82a04ba743f70cf73e5f6ca6594544a5c17a9890a
-      lastVerified: '2026-03-21T00:07:22.456Z'
+      lastVerified: '2026-03-21T00:08:09.920Z'
     rollback-manager:
       path: .aiox-core/core/orchestration/rollback-manager.js
       layer: L1
@@ -10293,15 +10287,12 @@ entities:
       usedBy:
         - dev
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.4
         constraints: []
         extensionPoints: []
       checksum: sha256:5cef7051a4c521fd279d3d8f62cb114b1f0bfdaa548c90b20c1199188b1afdfd
-      lastVerified: '2026-03-21T00:07:22.456Z'
+      lastVerified: '2026-03-21T00:08:09.921Z'
     session-state:
       path: .aiox-core/core/orchestration/session-state.js
       layer: L1
@@ -10361,15 +10352,12 @@ entities:
         - task-executor
         - checkpoint-manager
         - constitutional-gates
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.4
         constraints: []
         extensionPoints: []
       checksum: sha256:6ba097664bd6e339380aba6771076e1eb25a4862ce3a8ed025af7c56331e2035
-      lastVerified: '2026-03-21T00:07:22.457Z'
+      lastVerified: '2026-03-21T00:08:09.922Z'
     subagent-prompt-builder:
       path: .aiox-core/core/orchestration/subagent-prompt-builder.js
       layer: L1
@@ -15780,8 +15768,8 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:e882daca473a95807e5c480c9b1c3d7b428277b075232cb907f9a253468a17c1
-      lastVerified: '2026-03-21T00:07:23.182Z'
+      checksum: sha256:c22f2700d6c3dcd227efec711ab206b4fa9e268768a15be86eea0405e2c82c4d
+      lastVerified: '2026-03-21T00:13:01.836Z'
     epic-orchestration:
       path: .aiox-core/development/workflows/epic-orchestration.yaml
       layer: L2
