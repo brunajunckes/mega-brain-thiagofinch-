@@ -1,0 +1,248 @@
+# Workflow YAML Schema Standard
+# Version: 1.0.0
+# Purpose: Defines the canonical schema for workflow YAML files to ensure
+#          visual rendering compatibility in the AIOX Dashboard.
+# Enforcement: Dashboard diagram renderer (yaml-to-mermaid.ts)
+# Referenced by: checklists/create-workflow-checklist.md, templates/workflow-tmpl.yaml
+
+schema:
+  id: workflow-yaml-schema
+  version: "1.0.0"
+  severity: MUST  # for new workflows
+  created: "2026-02-19"
+
+# =============================================================================
+# CANONICAL SCHEMA (Pattern A) — USE THIS FOR ALL NEW WORKFLOWS
+# =============================================================================
+
+canonical:
+  description: |
+    The preferred format for all new workflow YAML files.
+    Ensures visual diagram rendering in the AIOX Dashboard.
+
+  required_top_level:
+    - field: id
+      format: "wf-{squad}-{name}"
+      example: "wf-hormozi-grand-slam-offer"
+    - field: name
+      format: "Human Readable Name"
+      example: "Grand Slam Offer"
+    - field: version
+      format: semver
+      example: "1.0"
+    - field: phases
+      type: array
+      min_items: 1
+
+  required_per_phase:
+    - field: id
+      type: string
+      format: "PHASE-{N} or descriptive kebab-case"
+      example: "PHASE-1"
+      description: "Unique identifier. Becomes node ID in diagram."
+    - field: name
+      type: string
+      example: "Foundation Research"
+      description: "Human-readable label. Displayed as first line in diagram node."
+    - field: agent
+      type: string
+      example: "claude-hopkins"
+      description: "Agent responsible. Displayed as @agent-name in diagram node."
+
+  optional_per_phase:
+    - field: depends_on
+      type: array[string]
+      description: "Phase IDs this phase depends on. Creates directed edges."
+    - field: checkpoint
+      type: object
+      description: "Validation gate. human_review: true renders diamond shape."
+    - field: steps
+      type: array
+      description: "Nested sub-steps. Inherit parent agent if not specified."
+    - field: description
+      type: string
+    - field: tier
+      type: integer
+      description: "0=foundation, 1=core, 2=advanced, 3=polish"
+
+  optional_top_level:
+    - field: orchestrator
+      type: string
+      description: |
+        Default agent for phases without explicit agent field.
+        Used as fallback when rendering diagrams.
+        Example: "copy-chief"
+    - field: transitions
+      type: array
+      description: "Explicit labeled edges between phases."
+    - field: description
+      type: string
+    - field: metadata
+      type: object
+
+  example: |
+    id: wf-copy-full-launch
+    name: "Full Product Launch"
+    version: "1.0"
+    orchestrator: copy-chief
+
+    phases:
+      - id: PHASE-1
+        name: "Foundation"
+        agent: claude-hopkins
+        description: "Scientific testing setup"
+
+      - id: PHASE-2
+        name: "Strategy"
+        agent: dan-kennedy
+        depends_on:
+          - "PHASE-1"
+        checkpoint:
+          human_review: true
+          criteria:
+            - "Avatar profile complete"
+
+      - id: PHASE-3
+        name: "Execution"
+        agent: gary-halbert
+        depends_on:
+          - "PHASE-2"
+
+    transitions:
+      - from: PHASE-2
+        to: PHASE-1
+        condition: "VETO - Strategy rejected"
+
+# =============================================================================
+# DIAGRAM RENDERING RULES
+# =============================================================================
+
+rendering:
+  node_shapes:
+    - condition: "default"
+      shape: rectangle
+      syntax: 'id["label"]'
+    - condition: "checkpoint.human_review == true"
+      shape: diamond
+      syntax: 'id{"label"}'
+    - condition: "type == 'elicit' OR elicit field present"
+      shape: hexagon
+      syntax: 'id{{"label"}}'
+
+  edge_types:
+    - condition: "depends_on reference"
+      type: solid_arrow
+      syntax: "A --> B"
+    - condition: "transitions[].condition"
+      type: labeled_solid_arrow
+      syntax: "A -->|condition| B"
+    - condition: "condition contains VETO or NO-GO"
+      type: dotted_arrow
+      syntax: "A -.->|condition| B"
+    - condition: "no dependencies defined"
+      type: sequential_fallback
+      syntax: "A --> B (by array order)"
+
+  agent_coloring:
+    description: |
+      Each unique agent gets a distinct color from a 7-color palette.
+      Nodes with the same agent share color. Legend shown below diagram.
+    palette:
+      - "#4CAF50"
+      - "#2196F3"
+      - "#FF9800"
+      - "#9C27B0"
+      - "#F44336"
+      - "#00BCD4"
+      - "#795548"
+
+# =============================================================================
+# BACKWARD-COMPATIBLE PATTERNS (DO NOT USE FOR NEW WORKFLOWS)
+# =============================================================================
+
+legacy_patterns:
+  - id: workflow_phases
+    description: "phases nested under workflow key"
+    used_by: "copy squad (wf-1 through wf-7)"
+    structure: "workflow.phases[]"
+    migration: "Move workflow.phases to top-level phases"
+
+  - id: executor_field
+    description: "executor instead of agent"
+    used_by: "brand squad"
+    structure: "phases[].executor"
+    migration: "Rename executor to agent"
+
+  - id: steps_numeric
+    description: "steps with step: N numeric ID"
+    used_by: "franchise squad"
+    structure: "steps[].step: N"
+    migration: "Convert to phases[] with id: step_N"
+
+  - id: workflow_steps
+    description: "steps nested under workflow key"
+    used_by: "db-sage, design, movimento squads"
+    structure: "workflow.steps[]"
+    migration: "Convert to top-level phases[]"
+
+  - id: workflow_sequence
+    description: "sequence array under workflow key"
+    used_by: "squad-creator"
+    structure: "workflow.sequence[]"
+    migration: "Rename to phases, move to top level"
+
+  - id: stage_keys
+    description: "stage_N as top-level keys"
+    used_by: "copy wf-9/10/11"
+    structure: "stage_1: {}, stage_2: {}"
+    migration: "Convert to phases[] array"
+
+  - id: phases_dict
+    description: "phases as dict keyed by name"
+    used_by: "rules-extractor"
+    structure: "phases: { phase_0_name: {} }"
+    migration: "Convert to phases[] array, use key as id"
+
+  - id: agents_array
+    description: "agents as array instead of single agent"
+    used_by: "rules-extractor"
+    structure: "phases[].agents: [a, b]"
+    migration: "Use first agent as primary: agents[0]"
+
+# =============================================================================
+# NON-RENDERABLE PATTERNS (Show raw YAML)
+# =============================================================================
+
+non_renderable:
+  - id: trigger_action
+    description: "Event-driven trigger/action patterns"
+    used_by: "c-level workspace-governance, design self-healing"
+    reason: "No linear flow — governance/CI pipelines, not agent orchestrations"
+
+  - id: module
+    description: "Workflow sub-modules for composition"
+    used_by: "squad-creator/modules/"
+    reason: "Building blocks, not standalone workflows"
+
+# =============================================================================
+# VALIDATION CHECKLIST
+# =============================================================================
+
+validation:
+  blocking:
+    - "YAML syntax is valid"
+    - "Has top-level id, name, version fields"
+    - "Uses phases[] array (preferred) or supported legacy pattern"
+    - "Every phase has id, name fields"
+    - "Every phase has agent OR workflow has orchestrator as fallback"
+    - "Phase IDs are unique across the file"
+    - "depends_on references only valid phase IDs"
+    - "transitions[].from and transitions[].to reference valid phase IDs"
+
+  recommended:
+    - "Uses canonical Pattern A (top-level phases[])"
+    - "File is in squads/{squad-name}/workflows/ directory"
+    - "Filename follows wf-{name}.yaml convention"
+    - "Agent names match actual agent definitions in the squad"
+    - "At least one checkpoint with human_review: true"
+    - "3+ phases for complex workflows"

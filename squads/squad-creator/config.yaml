@@ -1,0 +1,56 @@
+name: squad-creator
+version: 4.0.0
+tested: true
+updated_at: "2026-03-06"
+short-title: Squad Creator
+description: >-
+  Base meta-squad para criar squads de agentes via templates e validacao estrutural.
+  Orchestrator: @squad-chief (triage, routing, criacao template-driven de squads).
+  Base mode: 24 tasks, 3 workflows, 1 agent.
+  Pro mode: auto-detected via squad-creator-pro/ (adds mind cloning, DNA extraction,
+  multi-agent orchestration, model routing, advanced optimization).
+  v4.0: Base/Pro split — template-driven base, mind-cloning pro.
+author: AIOX Team
+entry_agent: squad-chief
+slashPrefix: squadCreator
+
+settings:
+  activation:
+    show_ecosystem_report: true   # Display stats on activation
+    show_greeting: true           # Display agent greeting
+    show_quick_commands: true     # Display command shortcuts
+
+  ecosystem_report:
+    show_totals: true             # Total squads, agents, tasks
+    show_top_squads: true         # Table of largest squads
+    show_quality_refs: true       # Gold standard references
+    show_gaps: false              # Identified domain gaps
+    top_squads_limit: 5           # How many squads to display
+
+workspace_integration:
+  level: read_write
+  rationale: >-
+    O squad-creator consome contexto do workspace para scaffolding e validacao,
+    e pode publicar artefatos em namespaces de templates/dominios durante setup.
+  read_paths:
+    - workspace/
+    - workspace/_templates/
+    - workspace/domains/
+  write_paths:
+    - workspace/_templates/
+    - workspace/domains/
+  template_namespace: squad-governance
+
+metadata:
+  version: "4.0.0"
+  type: "base"
+  pro_detection: true
+  pro_path: "squads/squad-creator-pro/config.yaml"
+  score: 9.0
+  base_stats:
+    agents: 1
+    tasks: 24
+    workflows: 3
+    configs: 2
+    checklists: 9
+    data_files: 10

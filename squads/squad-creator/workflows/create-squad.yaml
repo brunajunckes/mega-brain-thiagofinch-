@@ -1,0 +1,339 @@
+# Squad Creation Pipeline (Base)
+# PRO DETECTION: If squads/squad-creator-pro/workflows/wf-create-squad.yaml exists,
+# the pro version overrides this base workflow with mind-research, DNA extraction,
+# and multi-agent orchestration.
+
+workflow:
+  id: create-squad
+  name: Squad Creation Pipeline (Base)
+  version: 1.0.0
+  description: >-
+    Base pipeline for creating AIOX squads from templates. Covers template
+    selection, architecture, agent creation, integration, and validation.
+    For advanced creation (mind-cloning, DNA extraction, multi-agent
+    orchestration), install squad-creator-pro.
+  governance_protocol: "squads/squad-creator/protocols/ai-first-governance.md"
+
+  # ========================================================================
+  # AGENT MAPPING
+  # ========================================================================
+  # GOVERNANCE: When a squad has >1 agent, validation phases MUST use a
+  # different agent than the creator to avoid single-point-of-failure.
+  # In the base pipeline (single agent: squad-chief), roles are declared
+  # explicitly so that a multi-agent upgrade only requires remapping agents.
+  agent_mapping:
+    agents:
+      squad-chief:
+        roles:
+          - orchestrator   # Creation phases (template_selection → integration)
+          - validator       # Validation phases (validation, fix_cycle, smoke_test)
+
+    phase_ownership:
+      template_selection: squad-chief   # role: orchestrator
+      architecture: squad-chief         # role: orchestrator
+      creation: squad-chief             # role: orchestrator
+      integration: squad-chief          # role: orchestrator
+      validation: squad-chief           # role: validator
+      fix_cycle: squad-chief            # role: validator
+      smoke_test: squad-chief           # role: validator
+
+  # ========================================================================
+  # STATE MACHINE DEFINITION
+  # ========================================================================
+  state_machine:
+    states:
+      - init
+      - template_selection
+      - architecture
+      - creation
+      - integration
+      - validation
+      - fix_cycle
+      - smoke_test
+      - complete
+      - failed
+
+    transitions:
+      - trigger: start
+        source: init
+        dest: template_selection
+
+      - trigger: template_selected
+        source: template_selection
+        dest: architecture
+
+      - trigger: architecture_defined
+        source: architecture
+        dest: creation
+
+      - trigger: creation_complete
+        source: creation
+        dest: integration
+
+      - trigger: integration_complete
+        source: integration
+        dest: validation
+
+      - trigger: validation_passed
+        source: validation
+        dest: smoke_test
+
+      - trigger: validation_failed
+        source: validation
+        dest: fix_cycle
+
+      - trigger: fix_succeeded
+        source: fix_cycle
+        dest: smoke_test
+
+      - trigger: fix_retries_exhausted
+        source: fix_cycle
+        dest: failed
+
+      - trigger: smoke_passed
+        source: smoke_test
+        dest: complete
+
+      - trigger: smoke_failed
+        source: smoke_test
+        dest: failed
+
+      - trigger: fail
+        source: '*'           # From any state
+        dest: failed
+        note: "failed is a terminal state — no recovery transitions"
+
+  # ========================================================================
+  # PIPELINE SEQUENCE
+  # ========================================================================
+  sequence:
+    # ------------------------------------------------------------------
+    # PHASE 0: Template Selection
+    # Agent: squad-chief
+    # ------------------------------------------------------------------
+    - phase: template_selection
+      phase_id: phase_0
+      agent: squad-chief
+      task: select-template
+      description: "Detect squad type and select appropriate templates"
+      inputs:
+        - squad_name
+        - domain
+        - squad_type_hint       # optional: expert|pipeline|hybrid|operational
+      outputs:
+        - outputs/{squad_slug}/template-selection.yaml
+        - outputs/{squad_slug}/squad-type-detection.md
+        - outputs/{squad_slug}/workspace-integration-level.yaml
+      steps:
+        - detect_squad_type     # Expert, Pipeline, Hybrid, Operational
+        - classify_workspace_integration  # none|read_only|read_write|workspace_first
+        - match_templates       # Find best-fit templates from library
+        - confirm_selection     # Validate template compatibility
+      scripts:
+        - "scripts/inventory.py"
+      trigger_on_complete: template_selected
+
+    # ------------------------------------------------------------------
+    # PHASE 1: Architecture
+    # Agent: squad-chief
+    # ------------------------------------------------------------------
+    - phase: architecture
+      phase_id: phase_1
+      agent: squad-chief
+      task: define-architecture
+      description: "Define agent structure, roles, and tier assignments"
+      inputs:
+        - outputs/{squad_slug}/template-selection.yaml
+      outputs:
+        - outputs/{squad_slug}/architecture/agent-roster.yaml
+        - outputs/{squad_slug}/architecture/tier-assignments.yaml
+        - outputs/{squad_slug}/architecture/dependency-map.yaml
+      steps:
+        - define_agents         # Names, roles, responsibilities
+        - assign_tiers          # Tier 1 (core), Tier 2 (support), Tier 3 (utility)
+        - map_dependencies      # Inter-agent dependencies and data flow
+        - define_entry_agent    # Which agent is the entry point
+      trigger_on_complete: architecture_defined
+
+    # ------------------------------------------------------------------
+    # PHASE 2: Creation
+    # Agent: squad-chief
+    # ------------------------------------------------------------------
+    - phase: creation
+      phase_id: phase_2
+      agent: squad-chief
+      task: create-squad-assets
+      description: "Create agents, tasks, and workflows from templates"
+      inputs:
+        - outputs/{squad_slug}/architecture/*.yaml
+        - outputs/{squad_slug}/template-selection.yaml
+      outputs:
+        - squads/{squad_slug}/agents/*.md
+        - squads/{squad_slug}/tasks/*.md
+        - squads/{squad_slug}/workflows/*.yaml
+        - squads/{squad_slug}/config.yaml
+      steps:
+        - create_agents         # Generate agent markdown files from templates
+        - create_tasks          # Generate task files with 8-field anatomy
+        - create_workflows      # Generate workflow YAMLs for squad operations
+        - create_config         # config.yaml with entry_agent and metadata
+      validation:
+        - all_agents_have_tasks
+        - config_has_entry_agent
+        - naming_conventions_met
+      trigger_on_complete: creation_complete
+
+    # ------------------------------------------------------------------
+    # PHASE 3: Integration
+    # Agent: squad-chief
+    # ------------------------------------------------------------------
+    - phase: integration
+      phase_id: phase_3
+      agent: squad-chief
+      task: integrate-squad
+      description: "Wire dependencies, generate docs, finalize config"
+      inputs:
+        - squads/{squad_slug}/**/*
+      outputs:
+        - squads/{squad_slug}/README.md
+        - squads/{squad_slug}/CHANGELOG.md
+        - squads/{squad_slug}/config.yaml      # Updated with full metadata
+        - squads/{squad_slug}/outputs/README.md # Bootstrap runtime outputs dir
+      steps:
+        - wire_dependencies     # Cross-references between agents and tasks
+        - generate_workspace_contract  # config + README integration contract
+        - generate_readme       # Squad README with usage instructions
+        - generate_changelog    # Initial CHANGELOG entry
+        - finalize_config       # Merge all metadata into config.yaml
+      post_actions:
+        - refresh-registry
+        - validate-dependencies
+      trigger_on_complete: integration_complete
+
+    # ------------------------------------------------------------------
+    # PHASE 4: Validation
+    # Agent: squad-chief
+    # ------------------------------------------------------------------
+    - phase: validation
+      phase_id: phase_4
+      agent: squad-chief
+      task: validate-squad
+      description: "Run validate-squad pipeline and quality scoring"
+      inputs:
+        - squads/{squad_slug}/**/*
+      outputs:
+        - outputs/{squad_slug}/validation/validation-report.md
+        - outputs/{squad_slug}/validation/quality-score.yaml
+      steps:
+        - run_structure_check   # config, agents, references exist
+        - run_workspace_integration_check # level + contract + required scripts
+        - run_coverage_check    # checklist coverage, orphan tasks
+        - run_quality_scoring   # 5-dimension scoring
+      threshold: 7.0
+      on_failure:
+        trigger: validation_failed
+        max_retries: 2
+      on_success:
+        trigger: validation_passed
+      scripts:
+        - "scripts/validate-squad.sh"
+        - "scripts/validate-squad-structure.py"
+
+    # ------------------------------------------------------------------
+    # PHASE 4b: Fix Cycle (conditional — entered on validation_failed)
+    # Agent: squad-chief
+    # ------------------------------------------------------------------
+    - phase: fix_cycle
+      phase_id: phase_4b
+      agent: squad-chief
+      task: fix-validation-issues
+      description: "Apply targeted fixes for validation failures and re-validate"
+      inputs:
+        - outputs/{squad_slug}/validation/validation-report.md
+        - squads/{squad_slug}/**/*
+      outputs:
+        - outputs/{squad_slug}/validation/fix-cycle-log.md
+      steps:
+        - analyze_failures       # Parse validation report for actionable items
+        - apply_fixes            # Targeted corrections to failing assets
+        - re_validate            # Run validate-squad again
+      max_retries: 2
+      on_success:
+        trigger: fix_succeeded
+      on_failure:
+        trigger: fix_retries_exhausted
+        message: "Fix cycle exhausted retries — pipeline terminates in failed state"
+
+    # ------------------------------------------------------------------
+    # PHASE 5: Smoke Test
+    # Agent: squad-chief
+    # ------------------------------------------------------------------
+    - phase: smoke_test
+      phase_id: phase_5
+      agent: squad-chief
+      task: smoke-test-agent
+      description: "Basic activation test for the created squad"
+      inputs:
+        - squads/{squad_slug}/agents/*.md
+        - squads/{squad_slug}/config.yaml
+      outputs:
+        - outputs/{squad_slug}/validation/smoke-test-report.md
+      test_scenarios:
+        - activation: "Entry agent responds with correct greeting"
+        - help: "Entry agent lists available commands"
+        - basic_task: "Entry agent executes a simple task correctly"
+      pass_threshold: 3/3
+      on_failure:
+        trigger: smoke_failed
+        message: "Smoke test failed — pipeline terminates in failed state"
+      on_success:
+        trigger: smoke_passed
+        message: "Squad created and validated successfully"
+
+  # ========================================================================
+  # METRICS
+  # ========================================================================
+  metrics:
+    track_per_phase:
+      - duration_seconds
+      - files_created
+      - files_modified
+
+    aggregations:
+      - total_duration
+      - total_files
+      - quality_score_final
+
+  # ========================================================================
+  # ERROR HANDLING
+  # ========================================================================
+  error_handling:
+    on_error:
+      - save_state
+      - log_error
+
+    recovery:
+      enabled: true
+      strategy: resume_from_last_complete
+      max_retries: 3
+      note: >-
+        Recovery resumes from the last completed phase. The 'failed' state
+        is a terminal dead-end — there are no transitions out of 'failed'.
+        If a pipeline reaches 'failed' (via fix_retries_exhausted, smoke_failed,
+        or explicit fail trigger), manual intervention is required to restart.
+
+  # ========================================================================
+  # RESUME CONFIGURATION
+  # ========================================================================
+  resume:
+    state_file: .state.json
+    supported: true
+    preserve_outputs: true
+    allowed_phases:
+      - template_selection
+      - architecture
+      - creation
+      - integration
+      - validation
+      - fix_cycle
+      - smoke_test

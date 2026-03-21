@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIOX Squads Header</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1280px;
+    height: 340px;
+    overflow: hidden;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .hero {
+    width: 1280px;
+    height: 340px;
+    background: #050505;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  /* Subtle radial gradient */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 45%, rgba(209, 255, 0, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Grid pattern overlay */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(209, 255, 0, 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(209, 255, 0, 0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Logo */
+  .logo-container {
+    margin-bottom: 32px;
+  }
+
+  .logo-container svg {
+    height: 85px;
+    width: auto;
+  }
+
+  /* Bottom tags */
+  .tags {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.03);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    color: #696969;
+    letter-spacing: 0.3px;
+  }
+
+  .tag-icon {
+    font-size: 14px;
+    opacity: 0.6;
+  }
+
+  /* Decorative corner accents */
+  .corner {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    z-index: 1;
+  }
+
+  .corner-tl {
+    top: 20px; left: 20px;
+    border-top: 1px solid rgba(209, 255, 0, 0.1);
+    border-left: 1px solid rgba(209, 255, 0, 0.1);
+  }
+
+  .corner-tr {
+    top: 20px; right: 20px;
+    border-top: 1px solid rgba(209, 255, 0, 0.1);
+    border-right: 1px solid rgba(209, 255, 0, 0.1);
+  }
+
+  .corner-bl {
+    bottom: 20px; left: 20px;
+    border-bottom: 1px solid rgba(209, 255, 0, 0.1);
+    border-left: 1px solid rgba(209, 255, 0, 0.1);
+  }
+
+  .corner-br {
+    bottom: 20px; right: 20px;
+    border-bottom: 1px solid rgba(209, 255, 0, 0.1);
+    border-right: 1px solid rgba(209, 255, 0, 0.1);
+  }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <!-- Corner decorations -->
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="content">
+      <!-- Full AIOX SQUAD logo from AIOX_negative.svg (without black rect) -->
+      <div class="logo-container">
+        <svg viewBox="130 90 990 230" xmlns="http://www.w3.org/2000/svg">
+          <!-- A -->
+          <path fill="#d8ff11" d="M155.41,279.39v-.61l108.42-172.53,108.35,173.24-216.77-.1ZM323.5,254.15l-59.71-95.49-59.72,95.49h119.44Z"/>
+          <!-- I -->
+          <rect fill="#d8ff11" x="391.19" y="109.47" width="30.08" height="170"/>
+          <!-- O -->
+          <path fill="#d8ff11" d="M532.02,106.25c-48.72,0-88.22,39.5-88.22,88.22s39.5,88.22,88.22,88.22,88.22-39.5,88.22-88.22-39.5-88.22-88.22-88.22ZM532.02,254.73c-33.28,0-60.26-26.98-60.26-60.26s26.98-60.26,60.26-60.26,60.26,26.98,60.26,60.26-26.98,60.26-60.26,60.26Z"/>
+          <!-- X -->
+          <polygon fill="#d8ff11" points="796.82 279.34 775.5 279.45 711.75 215.75 647.91 279.5 626.71 279.45 626.7 258.2 690.44 194.47 626.81 130.9 626.66 109.51 647.92 109.44 711.77 173.2 775.47 109.53 796.77 109.46 796.77 130.72 733.05 194.45 796.77 258.2 796.82 279.34"/>
+          <!-- S -->
+          <path fill="#d8ff11" d="M848.3,164.3c10.5,0,16.29,3.71,20.23,11.81.62,1.24.23,2.16-1.08,2.7l-3.24,1.47c-1.47.62-1.93.46-2.63-1-2.78-5.33-6.49-7.8-13.28-7.8-8.57,0-12.89,2.93-12.89,8.72,0,4.09,2.47,6.18,6.33,7.34,2.86.93,4.79,1.16,8.49,1.54,4.4.54,6.95.85,10.73,2.32,1.93.77,3.4,1.7,4.56,2.7,2.24,2.09,4.09,5.71,4.09,10.58,0,10.42-7.72,16.76-21.39,16.76-11.35,0-17.61-4.25-21.08-13.2-.54-1.47-.23-2.09,1.31-2.63l3.17-1.16c1.31-.54,2.01-.23,2.63,1.24,2.55,5.79,7.18,8.73,13.98,8.73,9.27,0,13.9-3.17,13.9-9.58,0-3.17-1.39-5.33-4.25-6.56-2.86-1.16-5.1-1.55-9.42-2.09-4.02-.39-5.87-.69-9.5-1.62-1.85-.39-3.32-1-4.48-1.7-3.55-1.93-7.03-5.71-6.72-12.2,0-9.88,7.49-16.37,20.54-16.37Z"/>
+          <!-- Q -->
+          <path fill="#d8ff11" d="M884.98,184.07c0-12.35,7.8-19.77,21.62-19.77s21.62,7.41,21.62,19.77v17.61c0,12.36-7.8,19.77-21.62,19.77s-21.62-7.41-21.62-19.77v-17.61ZM920.73,184.07c0-8.26-5.1-12.82-14.13-12.82s-14.13,4.56-14.13,12.82v17.61c0,8.26,5.1,12.82,14.13,12.82s14.13-4.56,14.13-12.82v-17.61Z"/>
+          <!-- U -->
+          <path fill="#d8ff11" d="M953.54,201.6c0,8.11,4.71,12.89,13.67,12.89s13.67-4.79,13.67-12.89v-34.13c0-1.47.54-2.01,2.08-2.01h3.4c1.47,0,2.01.54,2.01,2.01v34.05c0,12.35-7.34,19.92-21.16,19.92s-21.08-7.57-21.08-19.92v-34.05c0-1.47.46-2.01,2.01-2.01h3.4c1.54,0,2.01.54,2.01,2.01v34.13Z"/>
+          <!-- A (small) -->
+          <path fill="#d8ff11" d="M1050.99,218.28c.46,1.31,0,2.01-1.39,2.01h-3.01c-2.47,0-3.17-.31-3.71-1.78l-4.79-12.59h-22.86l-4.79,12.59c-.54,1.47-1.23,1.78-3.71,1.78h-2.7c-1.39,0-1.85-.69-1.39-2.01l20.08-51.27c.39-1.16,1.23-1.7,2.55-1.7h3.09c1.31,0,2.16.54,2.55,1.62l20.08,51.35ZM1028.29,179.51c-.93-2.7-1.39-5.17-1.39-7.26h-.46l-.08,1.08c-.08,1.31-.54,4.01-1.24,6.1l-7.8,20.39h18.69l-7.72-20.31Z"/>
+          <!-- D -->
+          <path fill="#d8ff11" d="M1084.27,165.46c14.21,0,22.39,7.72,22.39,20.39v14.05c0,12.66-8.18,20.39-22.39,20.39h-16.83c-1.47,0-2.01-.54-2.01-2.01v-50.81c0-1.47.54-2.01,2.01-2.01h16.83ZM1099.18,185.77c0-8.57-5.33-13.36-14.9-13.36h-11.35v40.92h11.35c9.58,0,14.9-4.79,14.9-13.36v-14.21Z"/>
+          <!-- Dash under Q -->
+          <path fill="#d8ff11" d="M931.66,213.95c1.47,0,2.01.54,2.01,2.01v3.4c0,1.54-.54,2.08-2.01,2.08h-24.62c-1.47,0-2.01-.54-2.01-2.08v-3.4c0-1.47,10.61-2.01,12.08-2.01h14.55Z"/>
+        </svg>
+      </div>
+
+      <!-- Bottom tags -->
+      <div class="tags">
+        <div class="tag">
+          <span class="tag-icon">&#9671;</span>
+          Claude Code
+        </div>
+        <div class="tag">
+          <span class="tag-icon">&#9651;</span>
+          AI Agents
+        </div>
+        <div class="tag">
+          <span class="tag-icon">&#9711;</span>
+          Expert Minds
+        </div>
+        <div class="tag">
+          <span class="tag-icon">&#9645;</span>
+          MIT License
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
