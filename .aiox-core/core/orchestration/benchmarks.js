@@ -91,7 +91,7 @@ class BenchmarkSuite {
       const result = {
         load,
         duration: end - start,
-        throughput: (load / ((end - start) / 1000)).toFixed(2),
+        throughput: Number((load / ((end - start) / 1000)).toFixed(2)),
         memoryDelta: {
           heapUsed: (endMem.heapUsed - startMem.heapUsed) / 1024 / 1024, // MB
           heapTotal: (endMem.heapTotal - startMem.heapTotal) / 1024 / 1024 // MB
