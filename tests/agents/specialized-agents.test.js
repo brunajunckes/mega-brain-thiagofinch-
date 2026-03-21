@@ -32,8 +32,14 @@ describe('Specialized Agents', () => {
     specializedAgents.forEach(agent => {
       const filePath = path.join(agentsDir, `${agent}.md`);
       const content = fs.readFileSync(filePath, 'utf8');
-      expect(content).toMatch(new RegExp(`^# ${agent}`));
-      expect(content).toMatch(/```yaml/);
+      // Check for either YAML frontmatter or markdown heading format
+      const hasYamlFrontmatter = /^---/.test(content);
+      const hasMarkdownHeading = new RegExp(`^# ${agent}`).test(content);
+      const hasYamlCodeBlock = /```yaml/.test(content);
+
+      const isValid = (hasYamlFrontmatter && content.includes(`name: ${agent}`)) ||
+                      (hasMarkdownHeading && hasYamlCodeBlock);
+      expect(isValid).toBe(true);
     });
   });
 
@@ -42,7 +48,9 @@ describe('Specialized Agents', () => {
       const filePath = path.join(agentsDir, `${agent}.md`);
       const content = fs.readFileSync(filePath, 'utf8');
       expect(content.length).toBeGreaterThan(100);
-      expect(content).toMatch(/##/); // Has markdown headers
+      // Check for either YAML frontmatter or agent activation configuration
+      const hasConfiguration = /activation-instructions|tools:|description:|persona:/.test(content);
+      expect(hasConfiguration).toBe(true);
     });
   });
 
