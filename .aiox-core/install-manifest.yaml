@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T00:49:54.298Z"
+generated_at: "2026-03-21T00:54:39.812Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1209
+file_count: 1212
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1036,6 +1036,14 @@ files:
     hash: sha256:830ebf646b71fab8070fdbb74c045269a51f223eed34610a43d016f2eb68fab8
     type: core
     size: 13381
+  - path: core/orchestration/__tests__/condition-evaluator.test.js
+    hash: sha256:27adf2eccba34efbe29ba3662b1f9657ae8923664eabf8b20f52842d7184b5e1
+    type: core
+    size: 8740
+  - path: core/orchestration/__tests__/conditional-executor.test.js
+    hash: sha256:818ceb468a99087c67654c09efcfdc52ad07f5690ece3f10d9774914faf564e9
+    type: core
+    size: 13755
   - path: core/orchestration/__tests__/dependency-graph.test.js
     hash: sha256:fb48407cc51de3a2896b655efe6609d359c08db09ab4e7367c78ad2f7eba2aa9
     type: core
@@ -1133,9 +1141,13 @@ files:
     type: core
     size: 19293
   - path: core/orchestration/condition-evaluator.js
-    hash: sha256:8bf565cf56194340ff4e1d642647150775277bce649411d0338faa2c96106745
+    hash: sha256:85355d6e56dd48b164bab592330d0c7ffb43aff076c45cbb2becc60c7be4bdf8
     type: core
-    size: 10845
+    size: 18495
+  - path: core/orchestration/conditional-executor.js
+    hash: sha256:474f69a22b078baa7d4c02abad2484b460a3e7444983f7bccb041abf7280cbe6
+    type: core
+    size: 7032
   - path: core/orchestration/context-manager.js
     hash: sha256:7bf273723a2c08cb84e670b9d4c55aacec51819b1fbd5f3b0c46c4ccfa2ec192
     type: core
@@ -1705,9 +1717,9 @@ files:
     type: data
     size: 9575
   - path: data/entity-registry.yaml
-    hash: sha256:a03f364260e2b36e744178af8ecfa02d0828f1fb8f521e3099182e66b25435ce
+    hash: sha256:3e8d18692eef4d2d0fcbc90a242a425bb9d016b63edfa3b5e424de4d26dd898e
     type: data
-    size: 576321
+    size: 577375
   - path: data/learned-patterns.yaml
     hash: sha256:24ac0b160615583a0ff783d3da8af80b7f94191575d6db2054ec8e10a3f945dc
     type: data

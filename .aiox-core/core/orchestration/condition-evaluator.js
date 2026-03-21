@@ -376,4 +376,304 @@ class ConditionEvaluator {
   }
 }
 
+/**
+ * Enhanced Condition Evaluator for boolean expressions and context variables
+ */
+class EnhancedConditionEvaluator {
+  constructor(options = {}) {
+    this.cache = new Map();
+    this.contextStack = [];
+    this.stats = {
+      evaluated: 0,
+      cacheHits: 0,
+      cacheMisses: 0,
+      errors: 0
+    };
+    this.enableCache = options.enableCache !== false;
+    this.cacheMaxSize = options.cacheMaxSize || 1000;
+  }
+
+  /**
+   * Push context onto stack
+   */
+  pushContext(context) {
+    this.contextStack.push(context || {});
+  }
+
+  /**
+   * Pop context from stack
+   */
+  popContext() {
+    if (this.contextStack.length > 0) {
+      return this.contextStack.pop();
+    }
+    return null;
+  }
+
+  /**
+   * Get current merged context
+   */
+  getCurrentContext() {
+    const merged = {};
+    for (const ctx of this.contextStack) {
+      Object.assign(merged, ctx);
+    }
+    return merged;
+  }
+
+  /**
+   * Evaluate a condition expression against context
+   */
+  evaluateExpression(condition, context) {
+    const ctx = context || this.getCurrentContext();
+    const cacheKey = this.generateCacheKey(condition, ctx);
+
+    if (this.enableCache && this.cache.has(cacheKey)) {
+      this.stats.cacheHits++;
+      return this.cache.get(cacheKey);
+    }
+
+    this.stats.cacheMisses++;
+
+    try {
+      const result = this._evaluateExpr(condition, ctx);
+      this.stats.evaluated++;
+
+      if (this.enableCache) {
+        this._setCache(cacheKey, result);
+      }
+
+      return result;
+    } catch (error) {
+      this.stats.errors++;
+      throw error;
+    }
+  }
+
+  /**
+   * Internal expression evaluation
+   */
+  _evaluateExpr(expr, context) {
+    if (expr === null || expr === undefined) {
+      return false;
+    }
+
+    if (typeof expr === 'boolean') {
+      return expr;
+    }
+
+    if (typeof expr === 'string') {
+      return this._evaluateStringExpr(expr, context);
+    }
+
+    if (typeof expr === 'object') {
+      return this._evaluateASTExpr(expr, context);
+    }
+
+    return Boolean(expr);
+  }
+
+  /**
+   * Evaluate string expression
+   */
+  _evaluateStringExpr(expr, context) {
+    const trimmed = expr.trim();
+
+    // Handle NOT
+    if (trimmed.startsWith('!')) {
+      return !this._evaluateExpr(trimmed.substring(1).trim(), context);
+    }
+
+    // Handle parentheses
+    if (trimmed.startsWith('(') && trimmed.endsWith(')')) {
+      return this._evaluateExpr(trimmed.substring(1, trimmed.length - 1), context);
+    }
+
+    // Handle OR
+    const orIdx = this._findOperator(trimmed, '||');
+    if (orIdx !== -1) {
+      const left = trimmed.substring(0, orIdx);
+      const right = trimmed.substring(orIdx + 2);
+      return this._evaluateExpr(left, context) || this._evaluateExpr(right, context);
+    }
+
+    // Handle AND
+    const andIdx = this._findOperator(trimmed, '&&');
+    if (andIdx !== -1) {
+      const left = trimmed.substring(0, andIdx);
+      const right = trimmed.substring(andIdx + 2);
+      return this._evaluateExpr(left, context) && this._evaluateExpr(right, context);
+    }
+
+    // Handle comparisons (check multi-char operators first)
+    const compOps = ['===', '!==', '==', '!=', '>=', '<=', '>', '<'];
+    for (const op of compOps) {
+      const opIdx = this._findOperator(trimmed, op);
+      if (opIdx !== -1) {
+        const left = trimmed.substring(0, opIdx).trim();
+        const right = trimmed.substring(opIdx + op.length).trim();
+        const leftVal = this._resolveValue(left, context);
+        const rightVal = this._resolveValue(right, context);
+
+        switch (op) {
+          case '==':
+            return leftVal == rightVal; // eslint-disable-line eqeqeq
+          case '!=':
+            return leftVal != rightVal; // eslint-disable-line eqeqeq
+          case '===':
+            return leftVal === rightVal;
+          case '!==':
+            return leftVal !== rightVal;
+          case '>=':
+            return leftVal >= rightVal;
+          case '<=':
+            return leftVal <= rightVal;
+          case '>':
+            return leftVal > rightVal;
+          case '<':
+            return leftVal < rightVal;
+        }
+      }
+    }
+
+    // Handle 'in' operator separately (requires word boundaries)
+    const inIdx = this._findOperator(trimmed, ' in ');
+    if (inIdx !== -1) {
+      const left = trimmed.substring(0, inIdx).trim();
+      const right = trimmed.substring(inIdx + 4).trim();
+      const leftVal = this._resolveValue(left, context);
+      const rightVal = this._resolveValue(right, context);
+      return rightVal && rightVal.includes ? rightVal.includes(leftVal) : false;
+    }
+
+    // Variable reference
+    return this._resolveValue(trimmed, context);
+  }
+
+  /**
+   * Evaluate AST expression
+   */
+  _evaluateASTExpr(expr, context) {
+    if (expr.type === 'and') {
+      return this._evaluateExpr(expr.left, context) && this._evaluateExpr(expr.right, context);
+    }
+    if (expr.type === 'or') {
+      return this._evaluateExpr(expr.left, context) || this._evaluateExpr(expr.right, context);
+    }
+    if (expr.type === 'not') {
+      return !this._evaluateExpr(expr.value, context);
+    }
+    if (expr.type === 'variable') {
+      return this._resolveValue(expr.name, context);
+    }
+    return Boolean(expr);
+  }
+
+  /**
+   * Resolve a value (variable or literal)
+   */
+  _resolveValue(value, context) {
+    if (typeof value === 'string') {
+      const trimmed = value.trim();
+
+      // String literal
+      if ((trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+          (trimmed.startsWith("'") && trimmed.endsWith("'"))) {
+        return trimmed.slice(1, -1);
+      }
+
+      // Number
+      if (!isNaN(trimmed) && trimmed !== '') {
+        return Number(trimmed);
+      }
+
+      // Booleans
+      if (trimmed === 'true') return true;
+      if (trimmed === 'false') return false;
+      if (trimmed === 'null') return null;
+      if (trimmed === 'undefined') return undefined;
+
+      // Variable
+      return this._getContextValue(trimmed, context);
+    }
+
+    return value;
+  }
+
+  /**
+   * Get context value by path
+   */
+  _getContextValue(path, context) {
+    const parts = path.split('.');
+    let current = context;
+
+    for (const part of parts) {
+      if (current === null || current === undefined) {
+        return undefined;
+      }
+      current = current[part];
+    }
+
+    return current;
+  }
+
+  /**
+   * Find operator position outside parentheses
+   */
+  _findOperator(expr, operator) {
+    let depth = 0;
+    for (let i = 0; i < expr.length; i++) {
+      if (expr[i] === '(') depth++;
+      else if (expr[i] === ')') depth--;
+      else if (depth === 0 && expr.substring(i, i + operator.length) === operator) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  /**
+   * Generate cache key
+   */
+  generateCacheKey(condition, context) {
+    const cond = typeof condition === 'string' ? condition : JSON.stringify(condition);
+    const ctx = JSON.stringify(context);
+    return `${cond}|${ctx}`;
+  }
+
+  /**
+   * Set cache with eviction
+   */
+  _setCache(key, value) {
+    if (this.cache.size >= this.cacheMaxSize) {
+      const first = this.cache.keys().next().value;
+      this.cache.delete(first);
+    }
+    this.cache.set(key, value);
+  }
+
+  /**
+   * Clear cache
+   */
+  clearCache() {
+    const cleared = this.cache.size;
+    this.cache.clear();
+    return cleared;
+  }
+
+  /**
+   * Get statistics
+   */
+  getStats() {
+    const total = this.stats.cacheHits + this.stats.cacheMisses;
+    return {
+      ...this.stats,
+      cacheSize: this.cache.size,
+      cacheHitRatio: total > 0 ? this.stats.cacheHits / total : 0,
+      contextStackSize: this.contextStack.length
+    };
+  }
+}
+
 module.exports = ConditionEvaluator;
+module.exports.EnhancedConditionEvaluator = EnhancedConditionEvaluator;
