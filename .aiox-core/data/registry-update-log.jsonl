@@ -77,3 +77,5 @@
 {"timestamp":"2026-03-21T00:54:40.089Z","action":"change","path":".aiox-core/core/orchestration/condition-evaluator.js","trigger":"watcher"}
 {"timestamp":"2026-03-21T00:54:40.090Z","action":"add","path":".aiox-core/core/orchestration/conditional-executor.js","trigger":"watcher"}
 {"timestamp":"2026-03-21T00:58:28.159Z","action":"add","path":".aiox-core/core/orchestration/task-generator.js","trigger":"watcher"}
+{"timestamp":"2026-03-21T01:09:12.653Z","action":"add","path":".aiox-core/core/orchestration/resource-allocator.js","trigger":"watcher"}
+{"timestamp":"2026-03-21T01:09:12.653Z","action":"add","path":".aiox-core/core/orchestration/resource-monitor.js","trigger":"watcher"}

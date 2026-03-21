@@ -1,0 +1,440 @@
+workflow:
+  id: pelicula-content-pipeline
+  name: "Pipeline de Conteudo Semanal — Pelicula Sideral"
+  version: "1.0.0"
+  description: >-
+    Pipeline de 8 agentes que automatiza a producao semanal do "Spoiler Astrologico
+    da Semana" para Pelicula Sideral. Recebe um periodo, consulta API astrologica,
+    analisa transitos, gera relatorio, cria conteudo (post, video, audios, curadoria,
+    ritual), valida qualidade e exporta para Substack.
+
+  orchestrator: "@aios-master"
+  type: pipeline
+  client: pelicula-sideral
+
+  triggers:
+    - type: manual
+      description: "Ativado via *workflow pelicula-content-pipeline"
+    - type: scheduled
+      description: "Quinta-feira (preparacao da semana seguinte)"
+      cron: "0 10 * * 4"
+
+  config:
+    defaultLocation:
+      city: "Sao Paulo"
+      nation: "BR"
+      longitude: -46.6333
+      latitude: -23.5505
+      timezone: "America/Sao_Paulo"
+    qualityThreshold: 7
+    maxRetries: 2
+    apiRateLimit: 500 # ms entre chamadas
+
+  # ─── Inputs do Pipeline ─────────────────────────────────────
+  inputs:
+    - name: periodo
+      type: object
+      required: true
+      description: "Periodo de analise { startDate: 'YYYY-MM-DD', endDate: 'YYYY-MM-DD' }"
+    - name: tema_override
+      type: string
+      required: false
+      description: "Tema manual (ignora ranking automatico)"
+
+  # ─── Fases do Pipeline ──────────────────────────────────────
+  phases:
+
+    # ═══════════════════════════════════════════════════════════
+    # FASE 1: ANALISE ASTROLOGICA (IMPLEMENTADA)
+    # ═══════════════════════════════════════════════════════════
+    fase_1_analise:
+      id: analise-astrologica
+      name: "Fase 1 — Analise Astrologica"
+      agent: "@astro-analyst"
+      task: "analise-astrologica-semanal.md"
+      status: implemented
+      description: >-
+        Coleta dados da API Astrologer, analisa transitos planetarios,
+        rankeia eventos por importancia, gera relatorio tecnico-pedagogico
+        com framework tripartite (Mecanica + Metafora + Vivencia).
+
+      inputs:
+        - periodo:
+            from: pipeline.inputs.periodo
+        - localizacao:
+            from: pipeline.config.defaultLocation
+            optional: true
+
+      outputs:
+        - relatorio_md:
+            type: string
+            description: "Relatorio Markdown completo"
+            persisted: true
+            location: "PELICULA SIDERAL/DATA/relatorio-{startDate}-{endDate}.md"
+        - dados_json:
+            type: object
+            description: "Dados brutos da API em JSON"
+            persisted: true
+            location: "PELICULA SIDERAL/DATA/astro-data-{startDate}-{endDate}.json"
+        - eventos_rankeados:
+            type: array
+            description: "Lista de eventos ordenados por peso"
+        - panorama_celeste:
+            type: string
+            description: "Resumo executivo da semana"
+        - materia_prima:
+            type: object
+            description: "Keywords, metaforas, referencias para agentes downstream"
+
+      validations:
+        - check: "relatorio_md nao vazio e contem 5 secoes (I-V)"
+          error: "Relatorio incompleto"
+        - check: "eventos_rankeados.length >= 3"
+          error: "Menos de 3 eventos identificados"
+        - check: "materia_prima contem campos para agentes 3, 4, 6, 7"
+          error: "Materia-prima incompleta"
+
+      on_success: fase_2_conferencia
+      on_failure: error_api
+
+    # ═══════════════════════════════════════════════════════════
+    # FASE 2: CONFERENCIA (STUB)
+    # ═══════════════════════════════════════════════════════════
+    fase_2_conferencia:
+      id: conferencia-qualidade
+      name: "Fase 2 — Conferencia de Qualidade"
+      agent: "@astro-conferencia"
+      task: "conferencia-astrologica.md"
+      status: implemented
+      description: >-
+        Confere se o relatorio do Agente 1 bate com os dados brutos da API.
+        Avalia de 0 a 10. Score >= 7: avanca. Score < 7: retorna ao Agente 1
+        com feedback especifico do que precisa ser corrigido.
+
+      inputs:
+        - relatorio_md:
+            from: fase_1_analise.relatorio_md
+        - dados_json:
+            from: fase_1_analise.dados_json
+        - eventos_rankeados:
+            from: fase_1_analise.eventos_rankeados
+
+      outputs:
+        - score:
+            type: number
+            description: "Nota de 0 a 10"
+        - feedback:
+            type: string
+            description: "Feedback detalhado para correcao"
+        - relatorio_validado:
+            type: string
+            description: "Relatorio com selo de qualidade"
+
+      gate: true
+      gate_condition: "score >= config.qualityThreshold"
+
+      on_success: fase_3_criador_post
+      on_failure: fase_1_analise  # Loop de retorno
+
+    # ═══════════════════════════════════════════════════════════
+    # FASE 3: CRIACAO DO POST/BLOG (IMPLEMENTADA)
+    # ═══════════════════════════════════════════════════════════
+    fase_3_criador_post:
+      id: criacao-post
+      name: "Fase 3 — Criacao do Spoiler da Semana"
+      agent: "@astro-writer"
+      task: "criar-spoiler-semanal.md"
+      status: implemented
+      description: >-
+        Usa o relatorio validado + template post-substack-semanal.md
+        para criar o "Spoiler Astrologico da Semana" (aula da semana).
+        Aplica estrategia de paywall (75% free / 25% paid).
+        Usa tecnicas: PAS Identitario, Open Loops, Ponte Pratica.
+        Responsavel pelas 12 interpretacoes por ascendente (conteudo pago).
+
+      inputs:
+        - relatorio_validado:
+            from: fase_2_conferencia.relatorio_validado
+        - materia_prima:
+            from: fase_1_analise.materia_prima
+        - panorama:
+            from: fase_1_analise.panorama_celeste
+        - eventos_rankeados:
+            from: fase_1_analise.eventos_rankeados
+        - template:
+            file: "templates/post-substack-semanal.md"
+        - exemplo:
+            file: "PELICULA SIDERAL/DOCS/spoiler-astrologico-22-02.md"
+
+      outputs:
+        - post_completo:
+            type: string
+            description: "Post Substack completo (free + paid)"
+            persisted: true
+            location: "PELICULA SIDERAL/DATA/spoiler-{startDate}-{endDate}.md"
+        - titulo:
+            type: string
+        - subtitulo:
+            type: string
+        - subject_line:
+            type: string
+            description: "Subject line do email"
+
+      validations:
+        - check: "post_completo contem paywall marker e 12 ascendentes"
+          error: "Post incompleto — faltam secoes pagas"
+        - check: "titulo e subject_line definidos e nao vazios"
+          error: "Titulo ou subject line ausentes"
+
+      on_success: fase_3b_feedback_usuario
+
+    # ═══════════════════════════════════════════════════════════
+    # FASE 3B: FEEDBACK DO USUARIO (STUB)
+    # ═══════════════════════════════════════════════════════════
+    fase_3b_feedback_usuario:
+      id: feedback-usuario
+      name: "Fase 3B — Feedback do Usuario"
+      agent: "@aios-master"
+      task: "feedback-usuario-post.md"
+      status: implemented
+      description: >-
+        Apresenta post ao usuario para revisao. 5 opcoes: aprovar,
+        ajustar tom, ajustar conteudo, mudar titulo, reescrever secao.
+        Loop ate aprovacao explicita. Max 5 iteracoes.
+
+      gate: true
+      gate_condition: "usuario_aprovou == true"
+      elicit: true
+
+      on_success: fase_4_paralela
+      on_failure: fase_3_criador_post
+
+    # ═══════════════════════════════════════════════════════════
+    # FASE 4: PRODUCAO PARALELA (STUB)
+    # Agentes 4, 5, 6, 7 executam em paralelo
+    # ═══════════════════════════════════════════════════════════
+    fase_4_paralela:
+      id: producao-paralela
+      name: "Fase 4 — Producao Paralela de Conteudo"
+      status: implemented
+      description: >-
+        Quatro agentes executam em paralelo para produzir os blocos
+        de conteudo que compoem a aula completa: roteiro video + reels
+        (Altair), 12 audios por ascendente (Polaris), curadoria cultural
+        (Spica) e ritual criativo (Antares).
+
+      parallel_steps:
+
+        # Agente 4: Roteiro do Video de Analise Geral
+        roteiro_video:
+          id: roteiro-video
+          name: "Agente 4 — Roteiro Video Analise Geral"
+          agent: "@astro-roteirista"
+          task: "criar-roteiro-video-analise.md"
+          status: implemented
+          description: >-
+            Cria roteiro para gravacao do video de analise geral (5-15min)
+            e Reels do Jornal Sideral (60-90s). Formato: talking points
+            + timing + direcao emocional + instrucoes de edicao para Gabriel.
+            Templates: roteiro-reels-jornal-sideral.md, roteiro-stories-spoiler-semanal.md.
+          inputs:
+            - post_aprovado:
+                from: fase_3_criador_post.post_completo
+            - materia_prima:
+                from: fase_1_analise.materia_prima
+          outputs:
+            - roteiro_video:
+                type: string
+
+        # Agente 5: 12 Roteiros de Audio por Casa
+        roteiros_12_casas:
+          id: roteiros-12-casas
+          name: "Agente 5 — 12 Roteiros de Audio por Casa"
+          agent: "@astro-casas"
+          task: "criar-roteiros-12-casas.md"
+          status: implemented
+          description: >-
+            Cria 12 roteiros de audio (60-90s cada, 120-180 palavras),
+            um para cada ascendente, explicando como o evento principal
+            afeta a casa especifica daquele mapa. Tom: intimo, pessoal,
+            como micro-consulta 1:1. Inclui conselho acionavel + dica.
+          inputs:
+            - relatorio_validado:
+                from: fase_2_conferencia.relatorio_validado
+            - eventos:
+                from: fase_1_analise.eventos_rankeados
+            - materia_prima:
+                from: fase_1_analise.materia_prima
+          outputs:
+            - roteiros_casas:
+                type: array
+                description: "12 roteiros de audio"
+
+        # Agente 6: Curadoria Cultural
+        curadoria_cultural:
+          id: curadoria-cultural
+          name: "Agente 6 — Curadoria Cultural"
+          agent: "@astro-curador"
+          task: "curadoria-cultural-semanal.md"
+          status: implemented
+          description: >-
+            Pesquisa e seleciona 4-8 obras culturais (artes visuais, teatro,
+            cinema, literatura, poesia, musica) que ressoam com o transito
+            da semana. Usa EXA MCP para eventos atuais em SP + classicos
+            atemporais. Cada obra tem mini-interpretacao conectando com o ceu.
+          inputs:
+            - materia_prima:
+                from: fase_1_analise.materia_prima
+            - panorama:
+                from: fase_1_analise.panorama_celeste
+          outputs:
+            - curadoria:
+                type: object
+                description: "Lista de recomendacoes culturais categorizadas"
+
+        # Agente 7: Ritual Criativo
+        ritual_criativo:
+          id: ritual-criativo
+          name: "Agente 7 — Criador de Ritual Criativo"
+          agent: "@astro-ritualista"
+          task: "criar-ritual-criativo.md"
+          status: implemented
+          description: >-
+            Cria ritual experiencial da semana em 5 camadas progressivas.
+            Versao gratuita (camadas 1-3, funciona sozinha) + paga (4-5).
+            Inclui script de narracao para Victor gravar audio guiado
+            (parcial 3-5min + completo 8-15min). Materiais simples.
+          inputs:
+            - materia_prima:
+                from: fase_1_analise.materia_prima
+            - evento_principal:
+                from: fase_1_analise.eventos_rankeados[0]
+          outputs:
+            - ritual:
+                type: object
+                description: "Descricao do ritual + roteiro de narracao"
+
+      on_success: fase_5_analise_final
+
+    # ═══════════════════════════════════════════════════════════
+    # FASE 5: ANALISE FINAL (STUB)
+    # ═══════════════════════════════════════════════════════════
+    fase_5_analise_final:
+      id: analise-final
+      name: "Fase 5 — Analise Final e Consolidacao"
+      agent: "@astro-editor"
+      task: "analise-final-conteudo.md"
+      status: implemented
+      description: >-
+        Recebe todos os outputs das Fases 3-4 e analisa como conjunto coeso.
+        6 dimensoes ponderadas: coerencia dados (25%), narrativa (20%),
+        completude (20%), tom/marca (15%), qualidade individual (10%),
+        experiencia usuario (10%). Gate: score >= 7 para aprovar.
+        Monta aula consolidada num unico documento para Fase 6.
+
+      inputs:
+        - post:
+            from: fase_3_criador_post.post_completo
+        - roteiro_video:
+            from: fase_4_paralela.roteiro_video.roteiro_video
+        - roteiros_casas:
+            from: fase_4_paralela.roteiros_12_casas.roteiros_casas
+        - curadoria:
+            from: fase_4_paralela.curadoria_cultural.curadoria
+        - ritual:
+            from: fase_4_paralela.ritual_criativo.ritual
+
+      outputs:
+        - analise_final:
+            type: object
+            description: "Score, melhorias sugeridas, erros encontrados"
+        - aula_consolidada:
+            type: string
+            description: "Aula completa consolidada"
+
+      gate: true
+      elicit: true
+      on_success: fase_6_export
+
+    # ═══════════════════════════════════════════════════════════
+    # FASE 6: EXPORT SUBSTACK (STUB)
+    # ═══════════════════════════════════════════════════════════
+    fase_6_export:
+      id: export-substack
+      name: "Fase 6 — Export para Substack"
+      agent: "@aios-master"
+      task: "export-substack.md"
+      status: implemented
+      description: >-
+        Formata aula aprovada em: (1) post Substack pronto para import
+        (paywall marker, Markdown limpo), (2) pacote de producao separado
+        por destinatario (Victor, Gabriel, Karol), (3) checklist de
+        publicacao com todas as etapas da semana.
+
+      inputs:
+        - aula_consolidada:
+            from: fase_5_analise_final.aula_consolidada
+        - titulo:
+            from: fase_3_criador_post.titulo
+        - subtitulo:
+            from: fase_3_criador_post.subtitulo
+        - subject_line:
+            from: fase_3_criador_post.subject_line
+
+      outputs:
+        - substack_post:
+            type: string
+            description: "Post Markdown formatado para Substack"
+            persisted: true
+            location: "PELICULA SIDERAL/DATA/substack-{startDate}-{endDate}.md"
+        - pacote_producao:
+            type: object
+            description: "Materiais separados por destinatario"
+            persisted: true
+        - checklist_publicacao:
+            type: string
+            description: "Checklist completa da semana"
+            persisted: true
+
+  # ─── Error Handlers ─────────────────────────────────────────
+  error_handlers:
+    error_api:
+      description: "API Astrologer indisponivel ou com erro"
+      actions:
+        - log: "Erro na API Astrologer"
+        - notify: "usuario"
+        - save_state: true
+      recovery: >-
+        Sugerir ao usuario tentar novamente em 5 minutos.
+        Se persistir, verificar chave RapidAPI e limites.
+
+    error_quality:
+      description: "Relatorio nao passou na conferencia apos 2 tentativas"
+      actions:
+        - log: "Relatorio rejeitado 2x pelo Agente 2"
+        - notify: "usuario"
+      recovery: >-
+        Apresentar o feedback ao usuario e pedir intervencao manual.
+
+  # ─── State Management ───────────────────────────────────────
+  state:
+    persistence:
+      enabled: true
+      location: "PELICULA SIDERAL/DATA/workflow-state/"
+      format: json
+    tracked_fields:
+      - current_phase
+      - periodo
+      - eventos_rankeados
+      - quality_score
+      - retry_count
+    recovery:
+      enabled: true
+      auto_resume: true
+
+metadata:
+  author: "@aios-master"
+  created_at: "2026-02-24"
+  tags: [pelicula, content-pipeline, astrologia, workflow]
+  clickup_task: "86afppdmv"
+  epic: "Maquina de Conteudo"

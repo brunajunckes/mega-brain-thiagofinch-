@@ -1,0 +1,289 @@
+# Squad: Jubileu OS
+# Purpose: Build and maintain the Jubileu OS platform — unified agency operating system
+# Created: 2026-03-12
+# Author: Orion (AIOS Master)
+
+squad:
+  name: jubileu-os
+  displayName: "Jubileu OS — Sistema Operacional da Agência"
+  version: "1.0.0"
+  description: |
+    Squad dedicado à construção do Jubileu OS, plataforma SaaS unificada da agência Jubileu.
+    Integra ClickUp, Notion, Google Drive, pagamentos e agentes IA em uma única interface.
+    Tech stack: Next.js 15, TypeScript, Tailwind CSS 4, Supabase, MercadoPago.
+  status: active
+
+  # PRD & Architecture References
+  references:
+    prd: docs/prd-sistema-operacional.md
+    architecture: docs/architecture-sistema-operacional.md
+    ux_spec: docs/ux-spec-sistema-operacional.md
+    codebase: pelicula-lps/
+
+  # Tech Stack
+  tech_stack:
+    framework: "Next.js 15.3 (App Router)"
+    language: "TypeScript 5.8"
+    styling: "Tailwind CSS 4.1"
+    database: "Supabase (PostgreSQL)"
+    auth: "Supabase Auth"
+    payments: "MercadoPago + Kiwify"
+    video: "Panda Video"
+    deploy: "Vercel"
+
+# ============================================================
+# AGENTS — 13 total (10 existing AIOX + 3 new)
+# ============================================================
+
+agents:
+
+  # --- CORE DEVELOPMENT ---
+
+  - id: architect
+    source: aiox  # Existing AIOX agent
+    role: "System Architect"
+    responsibilities:
+      - Decisões de arquitetura (API routes, server components, data flow)
+      - Design de integrações (ClickUp API, Notion API, MercadoPago)
+      - Padrões de segurança e performance
+      - Trade-off analysis para escolhas técnicas
+    smithery_skills: []
+
+  - id: frontend-lead
+    source: new  # Created for this squad
+    role: "Frontend Lead — Next.js 15 & Design System"
+    responsibilities:
+      - Arquitetura de componentes (Server vs Client Components)
+      - Design system com Tailwind CSS 4 tokens
+      - Acessibilidade (WCAG 2.1 AA)
+      - Performance (Core Web Vitals)
+      - Figma-to-code conversion
+    smithery_skills:
+      - davila7/senior-frontend        # ★19,892 — React/Next.js/TypeScript/Tailwind
+      - davila7/tailwind-patterns       # ★19,892 — Tailwind CSS v4 patterns
+      - affaan-m/frontend-patterns      # ★42,727 — React/Next.js state & performance
+      - wshobson/tailwind-design-system # ★28,185 — Design tokens & component library
+      - hoangnguyen0403/nextjs-server-actions  # ★167 — Server Actions patterns
+
+  - id: dev
+    source: aiox
+    role: "Fullstack Developer"
+    responsibilities:
+      - Implementação de stories (SM → Dev cycle)
+      - API routes e server actions
+      - Integração com serviços externos
+      - Testes unitários e de integração
+    smithery_skills:
+      - wshobson/tailwind-design-system # ★28,185 — Consistency in UI code
+
+  - id: supabase-eng
+    source: new
+    role: "Supabase Platform Engineer"
+    responsibilities:
+      - Auth configuration (email/password, OAuth, RBAC)
+      - RLS policies para todas as tabelas
+      - Edge Functions para lógica server-side
+      - Realtime subscriptions (community, notifications)
+      - Storage buckets (avatars, uploads)
+      - Typed client generation (server/client/middleware)
+    smithery_skills:
+      - jeremylongshore/supabase-advanced-troubleshooting  # ★1,221
+      - jeremylongshore/supabase-performance-tuning        # ★1,221
+      - jeremylongshore/supabase-reliability-patterns      # ★1,221
+      - jeremylongshore/supabase-common-errors             # ★1,221
+      - nth5693/supabase                                   # ★50
+      - composiohq/supabase-automation                     # ★32,976
+
+  - id: payments-eng
+    source: new
+    role: "Payments & Subscriptions Engineer"
+    responsibilities:
+      - MercadoPago SDK integration (checkout, PIX, webhooks)
+      - Kiwify webhook processing
+      - Subscription lifecycle (create, renew, cancel, dunning)
+      - Billing portal self-service
+      - Payment reconciliation
+      - Brazilian compliance (LGPD, tax)
+    smithery_skills:
+      - wshobson/billing-automation                      # ★28,185
+      - rafaelkamimura/brazilian-financial-integration    # ★4 — PIX, Boleto, CPF/CNPJ
+      - joseaprjunior/mercadopago-infrastructure         # MercadoPago patterns
+      - sickn33/payment-integration                      # ★8,021
+
+  - id: data-engineer
+    source: aiox
+    role: "Database Architect"
+    responsibilities:
+      - Domain modeling e schema design
+      - Migration strategy e execution
+      - Query optimization
+      - Data integrity e constraints
+    smithery_skills: []
+
+  # --- QUALITY & OPERATIONS ---
+
+  - id: qa
+    source: aiox
+    role: "Quality Assurance"
+    responsibilities:
+      - Code review (senior dev perspective)
+      - Testing strategy (unit, integration, E2E)
+      - Security audit (auth flows, RLS, payments)
+      - Accessibility testing
+    smithery_skills:
+      - openclaw/auth-auditor  # ★397 — Auth security audit
+
+  - id: devops
+    source: aiox
+    role: "Infrastructure & Deploy"
+    responsibilities:
+      - Vercel deployment configuration
+      - DNS management (subdomains)
+      - CI/CD pipeline
+      - MCP server management
+      - Environment variables
+    smithery_skills:
+      - davila7/vercel-deployment  # ★19,892 — Vercel + Next.js deploy
+
+  # --- PRODUCT & MANAGEMENT ---
+
+  - id: pm
+    source: aiox
+    role: "Product Manager"
+    responsibilities:
+      - PRD management e updates
+      - Feature prioritization
+      - Roadmap por fase (1, 2, 3)
+      - Stakeholder communication
+    smithery_skills: []
+
+  - id: sm
+    source: aiox
+    role: "Scrum Master"
+    responsibilities:
+      - Story creation (from PRD epics)
+      - Sprint planning
+      - Development cycle facilitation (SM → Dev → QA)
+    smithery_skills: []
+
+  - id: po
+    source: aiox
+    role: "Product Owner"
+    responsibilities:
+      - Backlog management
+      - Acceptance criteria validation
+      - Story approval
+      - Document consistency check
+    smithery_skills: []
+
+  - id: ux-design-expert
+    source: aiox
+    role: "UX/UI Designer"
+    responsibilities:
+      - Wireframes e protótipos
+      - Design system guidelines
+      - User research
+      - Accessibility standards
+    smithery_skills: []
+
+  - id: clickup-scrum
+    source: aiox
+    role: "ClickUp Task Manager"
+    responsibilities:
+      - Task creation com MTQS quality standard
+      - Sprint tracking no ClickUp
+      - Work reports
+      - Status sync
+    smithery_skills: []
+
+# ============================================================
+# WORKFLOWS — Development patterns for this squad
+# ============================================================
+
+workflows:
+
+  feature-development:
+    description: "Standard feature development cycle"
+    steps:
+      - agent: pm
+        action: "Define feature requirements, update PRD"
+      - agent: architect
+        action: "Design technical approach, define API contracts"
+      - agent: ux-design-expert
+        action: "Create wireframes/mockups (if UI feature)"
+      - agent: sm
+        action: "Create story with tasks and acceptance criteria"
+      - agent: clickup-scrum
+        action: "Create ClickUp task with MTQS standard"
+      - agent: supabase-eng
+        action: "Create migrations, RLS policies, auth config (if DB changes)"
+      - agent: frontend-lead
+        action: "Component architecture, design tokens (if UI feature)"
+      - agent: dev
+        action: "Implement story (code + tests)"
+      - agent: qa
+        action: "Code review, security audit, testing"
+      - agent: devops
+        action: "Deploy to Vercel, verify production"
+
+  payment-integration:
+    description: "Payment feature development (MercadoPago/Kiwify)"
+    steps:
+      - agent: payments-eng
+        action: "Design payment flow, webhook schema"
+      - agent: supabase-eng
+        action: "Create billing tables, RLS for financial data"
+      - agent: frontend-lead
+        action: "Checkout UI, pricing page, billing portal"
+      - agent: dev
+        action: "API routes for webhooks, server actions"
+      - agent: qa
+        action: "E2E checkout testing, edge cases, security"
+      - agent: devops
+        action: "Configure webhook URLs, env vars"
+
+  database-change:
+    description: "Schema changes and migrations"
+    steps:
+      - agent: data-engineer
+        action: "Domain modeling, schema design"
+      - agent: supabase-eng
+        action: "Migration files, RLS policies, typed client update"
+      - agent: dev
+        action: "Update application code for schema changes"
+      - agent: qa
+        action: "Test data integrity, RLS validation"
+
+# ============================================================
+# PHASES — Aligned with PRD phases
+# ============================================================
+
+phases:
+
+  phase-1:
+    name: "Core Platform"
+    status: in_progress
+    modules:
+      - "Auth & Permissões (FR1-FR5)"
+      - "ClickUp Integration (FR6-FR11)"
+      - "Gestão de Clientes (FR12-FR15)"
+      - "Notion Integration (FR16-FR20)"
+    primary_agents: [architect, frontend-lead, dev, supabase-eng, qa]
+
+  phase-2:
+    name: "Inteligência & Automação"
+    status: planned
+    modules:
+      - "Agentes IA (FR21-FR24)"
+      - "Workflows Inteligentes (FR25-FR28)"
+      - "Acesso Cliente (FR29-FR31)"
+    primary_agents: [architect, dev, frontend-lead, supabase-eng, payments-eng]
+
+  phase-3:
+    name: "Ecossistema Completo"
+    status: planned
+    modules:
+      - "Google Drive (FR32-FR35)"
+      - "Slack (FR36-FR38)"
+      - "Inbox & Calendário (FR39-FR41)"
+    primary_agents: [architect, dev, frontend-lead, devops]
