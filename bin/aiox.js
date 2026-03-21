@@ -18,6 +18,72 @@ const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 const args = process.argv.slice(2);
 const command = args[0];
 
+// Helper: Run mega-brain CLI router
+async function runMegaBrain() {
+  try {
+    const { MegaBrainRouter } = require(path.join(__dirname, '..', '.aiox-core', 'commands', 'mega-brain-router'));
+
+    // Check for help
+    if (args.length === 1 || args.includes('--help') || args.includes('-h')) {
+      MegaBrainRouter.showHelp();
+      return;
+    }
+
+    // Try to use commander if available for better subcommand handling
+    try {
+      const { Command } = require('commander');
+      const program = new Command();
+
+      program.name('aiox mega-brain').description('Mega-Brain Knowledge & Decision System');
+
+      // Register all mega-brain commands
+      MegaBrainRouter.registerCommands(program);
+
+      // Parse arguments (skip 'aiox' and 'mega-brain', start from subcommand)
+      const megaBrainArgs = args.slice(1);
+      await program.parseAsync(['node', 'mega-brain', ...megaBrainArgs]);
+    } catch (cmdError) {
+      // Fallback: Direct command execution without commander
+      const subcommand = args[1];
+
+      if (!subcommand) {
+        MegaBrainRouter.showHelp();
+        return;
+      }
+
+      // Map subcommands directly (simplified fallback)
+      const { ingestCommand } = require(path.join(__dirname, '..', '.aiox-core', 'commands', 'ingest'));
+      const { askCouncilCommand } = require(path.join(__dirname, '..', '.aiox-core', 'commands', 'ask-council'));
+      const { searchKnowledgeCommand } = require(path.join(__dirname, '..', '.aiox-core', 'commands', 'knowledge-search'));
+      const { generateAgentsFromDomain } = require(path.join(__dirname, '..', '.aiox-core', 'commands', 'generate-agents'));
+      const { orchestrateTask } = require(path.join(__dirname, '..', '.aiox-core', 'commands', 'orchestrate-task'));
+      const { makeDecision } = require(path.join(__dirname, '..', '.aiox-core', 'commands', 'make-decision'));
+
+      switch (subcommand) {
+        case 'ingest':
+          console.log(JSON.stringify(await ingestCommand({}), null, 2));
+          break;
+        case 'ask-council':
+          console.log(JSON.stringify(await askCouncilCommand({}), null, 2));
+          break;
+        case 'make-decision':
+          console.log(JSON.stringify(await makeDecision({}), null, 2));
+          break;
+        default:
+          console.error(`❌ Unknown mega-brain command: ${subcommand}`);
+          console.log('\nRun: aiox mega-brain --help for available commands');
+          process.exit(1);
+      }
+    }
+  } catch (error) {
+    console.error(`❌ Mega-Brain error: ${error.message}`);
+    if (args.includes('--verbose')) {
+      console.error(error.stack);
+    }
+    process.exit(1);
+  }
+}
+
 // Helper: Run initialization wizard
 async function runWizard(options = {}) {
   // Use the v4 wizard from packages/installer/src/wizard/index.js
@@ -66,6 +132,7 @@ USAGE:
   npx aiox-core@latest validate     # Validate installation integrity
   npx aiox-core@latest info         # Show system info
   npx aiox-core@latest doctor       # Run diagnostics
+  npx aiox-core@latest mega-brain   # Mega-Brain knowledge & decision system
   npx aiox-core@latest --version    # Show version
   npx aiox-core@latest --version -d # Show detailed version info
   npx aiox-core@latest --help       # Show this help
@@ -832,6 +899,11 @@ async function initProject() {
 // Command routing (async main function)
 async function main() {
   switch (command) {
+    case 'mega-brain':
+      // Mega-Brain Knowledge & Decision System - Phase 3
+      await runMegaBrain();
+      break;
+
     case 'workers':
       // Service Discovery CLI - Story 2.7
       try {

@@ -9,6 +9,9 @@ interface Material { id: string; project_id: string; filename: string; file_type
 interface ConsistencyEntity { name: string; type: string; appearances: number; consistent: boolean; }
 interface ConsistencyContradiction { description: string; severity: 'warning' | 'error'; chapters: number[]; }
 interface ConsistencyReport { entities: ConsistencyEntity[]; contradictions: ConsistencyContradiction[]; checked_at: string; }
+interface BetaReviewResult { reviewer: string; persona: string; score: number; feedback: string; suggestions: string[]; }
+interface StoryBibleResult { characters: Record<string, unknown>[]; settings: Record<string, unknown>[]; rules: string[]; timeline: string[]; themes: string[]; }
+interface RevisionResult { passes_completed: number; total_changes: number; improved_chapters: number; details: { chapter: string; changes: string[] }[]; }
 
 const GEN_PHASES = ['Planning', 'Writing', 'Reviewing', 'Editing'];
 
@@ -69,6 +72,17 @@ function EditorContent() {
   const [showConsistency, setShowConsistency] = useState(false);
   const [consistencyReport, setConsistencyReport] = useState<ConsistencyReport | null>(null);
   const [loadingConsistency, setLoadingConsistency] = useState(false);
+
+  // God Mode v3 state
+  const [showStoryBible, setShowStoryBible] = useState(false);
+  const [storyBible, setStoryBible] = useState<StoryBibleResult | null>(null);
+  const [loadingBible, setLoadingBible] = useState(false);
+  const [showBetaReview, setShowBetaReview] = useState(false);
+  const [betaReview, setBetaReview] = useState<BetaReviewResult[] | null>(null);
+  const [loadingBeta, setLoadingBeta] = useState(false);
+  const [showRevision, setShowRevision] = useState(false);
+  const [revisionReport, setRevisionReport] = useState<RevisionResult | null>(null);
+  const [loadingRevision, setLoadingRevision] = useState(false);
 
   const token = typeof window !== 'undefined' ? localStorage.getItem('access_token') : null;
   const hdrs: Record<string, string> = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
@@ -173,11 +187,48 @@ function EditorContent() {
     return `~${minutes} min remaining`;
   };
 
-  // Generate ALL chapters at once
-  const generateAllChapters = async () => {
+  // God Mode v3: Generate ALL chapters via backend pipeline
+  const generateAllV3 = async () => {
     if (!projectId || !project) return;
     setGeneratingAll(true);
     setGenPhaseIndex(0);
+    setGenProgress('God Mode v3: Initializing multi-agent pipeline...');
+    const start = Date.now();
+    setGenStartTime(start);
+
+    try {
+      setGenPhaseIndex(0);
+      setGenProgress('Planning book structure with AI agents...');
+
+      const r = await fetch(`/api/projects/${projectId}/generate-all`, {
+        method: 'POST', headers: hdrs,
+        body: JSON.stringify({ mode: 'parallel', target_words_per_chapter: 3500 })
+      });
+
+      if (r.ok) {
+        const data = await r.json();
+        setGenPhaseIndex(3);
+        setGenProgress(`Done! ${data.chapters_generated || 0} chapters, ${data.total_words?.toLocaleString() || '?'} words`);
+        // Reload project to get new chapters
+        await loadProject();
+      } else {
+        // Fallback to local generation
+        setGenProgress('V3 unavailable, using local generation...');
+        await generateAllChaptersLocal();
+      }
+    } catch {
+      // Fallback to local generation
+      setGenProgress('V3 unavailable, using local generation...');
+      await generateAllChaptersLocal();
+    }
+
+    setGeneratingAll(false);
+    setGenStartTime(null);
+  };
+
+  // Local fallback: Generate ALL chapters at once
+  const generateAllChaptersLocal = async () => {
+    if (!projectId || !project) return;
     const start = Date.now();
     setGenStartTime(start);
 
@@ -210,7 +261,7 @@ function EditorContent() {
       try {
         const r = await fetch(`/api/projects/${projectId}/chapters/${newChapters[i].id}/generate`, {
           method: 'POST', headers: hdrs,
-          body: JSON.stringify({ agent_type: 'writer', instructions: `Write detailed content for "${newChapters[i].title}" in a ${project.genre} book about ${project.topic}. Make it engaging and well-structured.` })
+          body: JSON.stringify({ agent_type: 'writer', instructions: `Write detailed content for "${newChapters[i].title}" in a ${project.genre} book about ${project.topic}. Make it engaging and well-structured. Minimum 3000 words.` })
         });
         if (r.ok) {
           const data = await r.json();
@@ -226,10 +277,14 @@ function EditorContent() {
     setChapters(newChapters);
     if (newChapters.length > 0) { setActiveChapter(newChapters[0].id); setContent(newChapters[0].content || ''); }
     setGenProgress('');
-    setGeneratingAll(false);
-    setGenStartTime(null);
     setGenChapterCurrent(0);
     setGenChapterTotal(0);
+  };
+
+  // Generate ALL chapters (tries v3 first, falls back to local)
+  const generateAllChapters = async () => {
+    setGeneratingAll(true);
+    await generateAllV3();
   };
 
   // AI edit existing content
@@ -255,33 +310,34 @@ function EditorContent() {
       const ch = chapters.find(c => c.id === activeChapter);
       const r = await fetch(`/api/projects/${projectId}/chapters/${activeChapter}/generate`, {
         method: 'POST', headers: hdrs,
-        body: JSON.stringify({ agent_type: 'writer', instructions: `Write detailed content for "${ch?.title}" in a ${project?.genre} book about ${project?.topic}. Make it engaging, detailed, and well-structured with multiple paragraphs.` })
+        body: JSON.stringify({ agent_type: 'writer', instructions: `Write detailed content for "${ch?.title}" in a ${project?.genre} book about ${project?.topic}. Make it engaging, detailed, and well-structured with multiple paragraphs. Minimum 3000 words.` })
       });
       if (r.ok) { const data = await r.json(); setContent(prev => prev ? prev + '\n\n' + data.generated_text : data.generated_text); }
     } catch { /* silent */ }
     setGeneratingChapter(false);
   };
 
-  // Export book
-  const exportBook = async (format: 'pdf' | 'txt' | 'html') => {
+  // Export book (pdf, txt, html, epub)
+  const exportBook = async (format: 'pdf' | 'txt' | 'html' | 'epub') => {
     if (!projectId || exporting) return;
     setExporting(true);
     setShowExportMenu(false);
     try {
-      const r = await fetch(`/api/projects/${projectId}/export`, {
+      const url = format === 'epub' ? `/api/projects/${projectId}/export-epub` : `/api/projects/${projectId}/export`;
+      const r = await fetch(url, {
         method: 'POST', headers: hdrs,
         body: JSON.stringify({ format })
       });
       if (r.ok) {
         const blob = await r.blob();
-        const url = URL.createObjectURL(blob);
+        const blobUrl = URL.createObjectURL(blob);
         const a = document.createElement('a');
-        a.href = url;
+        a.href = blobUrl;
         a.download = `${project?.title || 'book'}.${format}`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+        URL.revokeObjectURL(blobUrl);
       }
     } catch { /* silent */ }
     setExporting(false);
@@ -305,6 +361,69 @@ function EditorContent() {
     if (next && !consistencyReport) loadConsistency();
   };
 
+  // God Mode v3: Story Bible
+  const loadStoryBible = async () => {
+    if (!projectId) return;
+    setLoadingBible(true);
+    try {
+      const r = await fetch(`/api/projects/${projectId}/story-bible`, {
+        method: 'POST', headers: hdrs, body: JSON.stringify({})
+      });
+      if (r.ok) { setStoryBible(await r.json()); }
+    } catch { /* silent */ }
+    setLoadingBible(false);
+  };
+
+  const toggleStoryBible = () => {
+    const next = !showStoryBible;
+    setShowStoryBible(next);
+    if (next && !storyBible) loadStoryBible();
+  };
+
+  // God Mode v3: Beta Review
+  const loadBetaReview = async () => {
+    if (!projectId) return;
+    setLoadingBeta(true);
+    try {
+      const r = await fetch(`/api/projects/${projectId}/beta-review`, {
+        method: 'POST', headers: hdrs, body: JSON.stringify({})
+      });
+      if (r.ok) {
+        const data = await r.json();
+        setBetaReview(data.reviews || data);
+      }
+    } catch { /* silent */ }
+    setLoadingBeta(false);
+  };
+
+  const toggleBetaReview = () => {
+    const next = !showBetaReview;
+    setShowBetaReview(next);
+    if (next && !betaReview) loadBetaReview();
+  };
+
+  // God Mode v3: Deep Revision
+  const loadDeepRevision = async () => {
+    if (!projectId) return;
+    setLoadingRevision(true);
+    try {
+      const r = await fetch(`/api/projects/${projectId}/deep-revision`, {
+        method: 'POST', headers: hdrs, body: JSON.stringify({ passes: 3 })
+      });
+      if (r.ok) {
+        setRevisionReport(await r.json());
+        // Reload chapters after revision
+        await loadProject();
+      }
+    } catch { /* silent */ }
+    setLoadingRevision(false);
+  };
+
+  const toggleRevision = () => {
+    const next = !showRevision;
+    setShowRevision(next);
+  };
+
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0];
     if (!f || !projectId) return;
@@ -323,7 +442,7 @@ function EditorContent() {
     return sum + wc;
   }, 0);
   const estimatedPages = Math.ceil(totalWords / 250);
-  const targetWords = project?.target_word_count || 50000;
+  const targetWords = project?.target_word_count || 35000;
   const completedChapters = chapters.filter(c => c.status === 'complete').length;
   const overallCompletion = chapters.length > 0 ? Math.round((completedChapters / chapters.length) * 100) : 0;
   const maxChapterWords = Math.max(...chapters.map(chapterWordCount), 1);
@@ -352,6 +471,30 @@ function EditorContent() {
           <span style={{ color: '#333' }}>|</span>
           <span style={{ color: '#666', fontSize: 12 }}>{chapters.length} ch.</span>
 
+          {/* Story Bible Button */}
+          <button
+            onClick={toggleStoryBible}
+            style={{ padding: '5px 10px', background: showStoryBible ? '#1e2a3f' : '#222', color: showStoryBible ? '#a78bfa' : '#999', borderRadius: 6, fontSize: 11, fontWeight: 600, border: 'none', cursor: 'pointer' }}
+          >
+            Bible
+          </button>
+
+          {/* Beta Review Button */}
+          <button
+            onClick={toggleBetaReview}
+            style={{ padding: '5px 10px', background: showBetaReview ? '#2a1e3f' : '#222', color: showBetaReview ? '#c084fc' : '#999', borderRadius: 6, fontSize: 11, fontWeight: 600, border: 'none', cursor: 'pointer' }}
+          >
+            Beta
+          </button>
+
+          {/* Revision Button */}
+          <button
+            onClick={toggleRevision}
+            style={{ padding: '5px 10px', background: showRevision ? '#3f1e1e' : '#222', color: showRevision ? '#fb923c' : '#999', borderRadius: 6, fontSize: 11, fontWeight: 600, border: 'none', cursor: 'pointer' }}
+          >
+            Revision
+          </button>
+
           {/* Consistency Button */}
           <button
             onClick={toggleConsistency}
@@ -370,8 +513,8 @@ function EditorContent() {
               {exporting ? 'Exporting...' : 'Export'}
             </button>
             {showExportMenu && (
-              <div style={{ position: 'absolute', right: 0, top: '100%', marginTop: 4, background: '#111', border: '1px solid #333', borderRadius: 8, padding: '4px 0', minWidth: 130, animation: 'slideIn 0.15s ease', zIndex: 200 }}>
-                {(['pdf', 'txt', 'html'] as const).map(fmt => (
+              <div style={{ position: 'absolute', right: 0, top: '100%', marginTop: 4, background: '#111', border: '1px solid #333', borderRadius: 8, padding: '4px 0', minWidth: 150, animation: 'slideIn 0.15s ease', zIndex: 200 }}>
+                {(['pdf', 'txt', 'html', 'epub'] as const).map(fmt => (
                   <button
                     key={fmt}
                     onClick={() => exportBook(fmt)}
@@ -379,7 +522,7 @@ function EditorContent() {
                     onMouseEnter={e => (e.currentTarget.style.background = '#1e1e1e')}
                     onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
                   >
-                    {fmt === 'pdf' ? 'PDF Download' : fmt === 'txt' ? 'TXT Download' : 'HTML Download'}
+                    {fmt === 'pdf' ? 'PDF Download' : fmt === 'txt' ? 'TXT Download' : fmt === 'html' ? 'HTML Download' : 'EPUB Download'}
                   </button>
                 ))}
               </div>
@@ -401,7 +544,7 @@ function EditorContent() {
           <div style={{ display: 'flex', gap: 8, marginBottom: 12, justifyContent: 'center' }}>
             {GEN_PHASES.map((phase, i) => (
               <div key={phase} style={{ padding: '3px 12px', borderRadius: 20, fontSize: 11, fontWeight: 600, background: i === genPhaseIndex ? '#2563eb' : i < genPhaseIndex ? '#1e3a5f' : '#111', color: i === genPhaseIndex ? '#fff' : i < genPhaseIndex ? '#60a5fa' : '#444', border: `1px solid ${i === genPhaseIndex ? '#2563eb' : i < genPhaseIndex ? '#1e3a5f' : '#333'}`, transition: 'all 0.3s' }}>
-                {i < genPhaseIndex ? '✓ ' : i === genPhaseIndex ? '• ' : ''}{phase}
+                {i < genPhaseIndex ? '+ ' : i === genPhaseIndex ? '> ' : ''}{phase}
               </div>
             ))}
           </div>
@@ -426,6 +569,145 @@ function EditorContent() {
               {genChapterTotal > 0 ? `Chapter ${genChapterCurrent}/${genChapterTotal}: ${genProgress.replace(/^(Creating|Writing) chapter \d+\/\d+:\s?/, '')}` : genProgress}
             </span>
           </div>
+        </div>
+      )}
+
+      {/* Story Bible Panel */}
+      {showStoryBible && !generatingAll && (
+        <div style={{ background: '#0a0a18', borderBottom: '1px solid #2e1e5f', padding: '14px 20px', animation: 'fadeInDown 0.2s ease' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+            <h3 style={{ fontSize: 13, fontWeight: 600, color: '#a78bfa' }}>Story Bible</h3>
+            <button onClick={loadStoryBible} disabled={loadingBible} style={{ padding: '4px 10px', background: '#2e1e5f', color: '#a78bfa', borderRadius: 6, fontSize: 11, fontWeight: 600, border: 'none', cursor: 'pointer', opacity: loadingBible ? 0.5 : 1 }}>
+              {loadingBible ? 'Generating...' : 'Regenerate'}
+            </button>
+          </div>
+          {loadingBible && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#7c5aad', fontSize: 13 }}>
+              <div style={{ width: 14, height: 14, border: '2px solid transparent', borderTopColor: '#a78bfa', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+              Analyzing your book to build the Story Bible...
+            </div>
+          )}
+          {!loadingBible && storyBible && (
+            <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+              {storyBible.characters && storyBible.characters.length > 0 && (
+                <div style={{ flex: 1, minWidth: 200 }}>
+                  <p style={{ fontSize: 11, color: '#7c5aad', fontWeight: 600, marginBottom: 6, textTransform: 'uppercase' }}>Characters ({storyBible.characters.length})</p>
+                  {storyBible.characters.map((c: Record<string, unknown>, i: number) => (
+                    <div key={i} style={{ fontSize: 12, color: '#ccc', marginBottom: 4 }}>{String(c.name || c.character || JSON.stringify(c))}</div>
+                  ))}
+                </div>
+              )}
+              {storyBible.themes && storyBible.themes.length > 0 && (
+                <div style={{ flex: 1, minWidth: 200 }}>
+                  <p style={{ fontSize: 11, color: '#7c5aad', fontWeight: 600, marginBottom: 6, textTransform: 'uppercase' }}>Themes</p>
+                  {storyBible.themes.map((t: string, i: number) => (
+                    <div key={i} style={{ fontSize: 12, color: '#ccc', marginBottom: 4 }}>{t}</div>
+                  ))}
+                </div>
+              )}
+              {storyBible.rules && storyBible.rules.length > 0 && (
+                <div style={{ flex: 1, minWidth: 200 }}>
+                  <p style={{ fontSize: 11, color: '#7c5aad', fontWeight: 600, marginBottom: 6, textTransform: 'uppercase' }}>World Rules</p>
+                  {storyBible.rules.map((r: string, i: number) => (
+                    <div key={i} style={{ fontSize: 12, color: '#ccc', marginBottom: 4 }}>{r}</div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+          {!loadingBible && !storyBible && (
+            <p style={{ color: '#5a4a7a', fontSize: 13 }}>Click Regenerate to create a Story Bible from your chapters.</p>
+          )}
+        </div>
+      )}
+
+      {/* Beta Review Panel */}
+      {showBetaReview && !generatingAll && (
+        <div style={{ background: '#0f0a18', borderBottom: '1px solid #3e1e5f', padding: '14px 20px', animation: 'fadeInDown 0.2s ease' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+            <h3 style={{ fontSize: 13, fontWeight: 600, color: '#c084fc' }}>AI Beta Readers</h3>
+            <button onClick={loadBetaReview} disabled={loadingBeta} style={{ padding: '4px 10px', background: '#3e1e5f', color: '#c084fc', borderRadius: 6, fontSize: 11, fontWeight: 600, border: 'none', cursor: 'pointer', opacity: loadingBeta ? 0.5 : 1 }}>
+              {loadingBeta ? 'Reviewing...' : 'Run Review'}
+            </button>
+          </div>
+          {loadingBeta && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#9a6acd', fontSize: 13 }}>
+              <div style={{ width: 14, height: 14, border: '2px solid transparent', borderTopColor: '#c084fc', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+              3 AI beta readers are analyzing your book...
+            </div>
+          )}
+          {!loadingBeta && betaReview && (
+            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+              {(Array.isArray(betaReview) ? betaReview : []).map((review, i) => (
+                <div key={i} style={{ flex: 1, minWidth: 220, background: '#111', borderRadius: 8, padding: 12, border: '1px solid #2a1a3f' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: '#c084fc' }}>{review.reviewer || review.persona}</span>
+                    <span style={{ fontSize: 12, fontWeight: 700, color: review.score >= 8 ? '#4ade80' : review.score >= 6 ? '#f59e0b' : '#ef4444' }}>{review.score}/10</span>
+                  </div>
+                  <p style={{ fontSize: 12, color: '#aaa', marginBottom: 8, lineHeight: 1.5 }}>{review.feedback}</p>
+                  {review.suggestions && review.suggestions.length > 0 && (
+                    <div>
+                      <p style={{ fontSize: 10, color: '#7a5aad', fontWeight: 600, marginBottom: 4 }}>SUGGESTIONS:</p>
+                      {review.suggestions.map((s: string, j: number) => (
+                        <div key={j} style={{ fontSize: 11, color: '#888', marginBottom: 2 }}>- {s}</div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+          {!loadingBeta && !betaReview && (
+            <p style={{ color: '#6a4a8a', fontSize: 13 }}>Click Run Review to get feedback from 3 AI beta readers.</p>
+          )}
+        </div>
+      )}
+
+      {/* Deep Revision Panel */}
+      {showRevision && !generatingAll && (
+        <div style={{ background: '#180a0a', borderBottom: '1px solid #5f2e1e', padding: '14px 20px', animation: 'fadeInDown 0.2s ease' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+            <h3 style={{ fontSize: 13, fontWeight: 600, color: '#fb923c' }}>Deep Revision (3-Pass)</h3>
+            <button onClick={loadDeepRevision} disabled={loadingRevision} style={{ padding: '4px 10px', background: '#5f2e1e', color: '#fb923c', borderRadius: 6, fontSize: 11, fontWeight: 600, border: 'none', cursor: 'pointer', opacity: loadingRevision ? 0.5 : 1 }}>
+              {loadingRevision ? 'Revising...' : 'Start Revision'}
+            </button>
+          </div>
+          {loadingRevision && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#ad7a5a', fontSize: 13 }}>
+              <div style={{ width: 14, height: 14, border: '2px solid transparent', borderTopColor: '#fb923c', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+              Running 3-pass deep revision on all chapters... This may take a few minutes.
+            </div>
+          )}
+          {!loadingRevision && revisionReport && (
+            <div>
+              <div style={{ display: 'flex', gap: 16, marginBottom: 12 }}>
+                <div style={{ background: '#111', borderRadius: 8, padding: '8px 14px', border: '1px solid #3f1e1e' }}>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: '#fb923c' }}>{revisionReport.passes_completed}</div>
+                  <div style={{ fontSize: 10, color: '#ad7a5a' }}>Passes</div>
+                </div>
+                <div style={{ background: '#111', borderRadius: 8, padding: '8px 14px', border: '1px solid #3f1e1e' }}>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: '#fb923c' }}>{revisionReport.total_changes}</div>
+                  <div style={{ fontSize: 10, color: '#ad7a5a' }}>Changes</div>
+                </div>
+                <div style={{ background: '#111', borderRadius: 8, padding: '8px 14px', border: '1px solid #3f1e1e' }}>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: '#fb923c' }}>{revisionReport.improved_chapters}</div>
+                  <div style={{ fontSize: 10, color: '#ad7a5a' }}>Improved</div>
+                </div>
+              </div>
+              {revisionReport.details && revisionReport.details.length > 0 && (
+                <div style={{ maxHeight: 120, overflow: 'auto' }}>
+                  {revisionReport.details.map((d, i) => (
+                    <div key={i} style={{ fontSize: 12, color: '#ccc', marginBottom: 4 }}>
+                      <span style={{ color: '#fb923c', fontWeight: 600 }}>{d.chapter}:</span> {d.changes.join(', ')}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+          {!loadingRevision && !revisionReport && (
+            <p style={{ color: '#8a5a4a', fontSize: 13 }}>Deep Revision performs 3 passes: Grammar, Style, and Coherence. Click Start to begin.</p>
+          )}
         </div>
       )}
 
@@ -478,7 +760,7 @@ function EditorContent() {
                   ))}
                   {consistencyReport.contradictions.length === 0 && (
                     <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#4ade80', fontSize: 12 }}>
-                      <span>✓</span> No contradictions found
+                      <span>+</span> No contradictions found
                     </div>
                   )}
                 </div>
@@ -497,16 +779,16 @@ function EditorContent() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
             <h3 style={{ fontSize: 13, fontWeight: 600, color: '#60a5fa' }}>Source Materials</h3>
             <label style={{ padding: '5px 12px', background: '#2563eb', color: '#fff', borderRadius: 6, fontSize: 11, fontWeight: 600, cursor: 'pointer' }}>
-              + Upload <input type="file" accept=".pdf,.docx,.txt,.md,.doc" style={{ display: 'none' }} onChange={handleFileUpload} />
+              + Upload <input type="file" accept=".pdf,.docx,.txt,.md,.doc,.mp3,.wav,.m4a" style={{ display: 'none' }} onChange={handleFileUpload} />
             </label>
           </div>
           {materials.length === 0 ? (
-            <p style={{ color: '#4a6fa5', fontSize: 12 }}>No source files yet.</p>
+            <p style={{ color: '#4a6fa5', fontSize: 12 }}>No source files yet. Upload PDFs, DOCX, TXT, or audio files.</p>
           ) : (
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
               {materials.map(m => (
                 <div key={m.id} style={{ background: '#111', borderRadius: 6, padding: '8px 12px', border: '1px solid #222', fontSize: 12 }}>
-                  <span style={{ color: '#fff' }}>📄 {m.filename}</span>
+                  <span style={{ color: '#fff' }}>{m.filename}</span>
                   <span style={{ color: '#555', marginLeft: 8 }}>{m.file_size_mb.toFixed(1)}MB</span>
                 </div>
               ))}
@@ -568,7 +850,7 @@ function EditorContent() {
             {chapters.length > 0 && (
               <div style={{ padding: '10px 14px', borderTop: '1px solid #222' }}>
                 <button onClick={generateAllChapters} disabled={generatingAll} style={{ width: '100%', padding: '8px', background: 'linear-gradient(135deg,#2563eb,#7c3aed)', color: '#fff', borderRadius: 6, fontSize: 12, fontWeight: 600, opacity: generatingAll ? 0.5 : 1, border: 'none', cursor: 'pointer' }}>
-                  Regenerate All
+                  Regenerate All (God Mode)
                 </button>
               </div>
             )}
@@ -623,15 +905,15 @@ function EditorContent() {
               {chapters.length === 0 ? (
                 /* Empty state */
                 <>
-                  <div style={{ fontSize: 56, marginBottom: 20 }}>📖</div>
+                  <div style={{ fontSize: 56, marginBottom: 20 }}>&#x1F4D6;</div>
                   <h3 style={{ color: '#fff', fontSize: 22, fontWeight: 600, marginBottom: 8 }}>Ready to write your book?</h3>
                   <p style={{ color: '#666', fontSize: 15, marginBottom: 8, textAlign: 'center', maxWidth: 400 }}>
-                    Click the button below and AI will generate a complete book outline with all chapters and content for &ldquo;{project?.title}&rdquo;.
+                    Click the button below and AI will generate a complete book with all chapters using God Mode v3 multi-agent pipeline.
                   </p>
                   <p style={{ color: '#555', fontSize: 13, marginBottom: 24 }}>Genre: {project?.genre} &bull; Topic: {project?.topic}</p>
                   <button onClick={generateAllChapters} disabled={generatingAll}
                     style={{ padding: '16px 40px', background: 'linear-gradient(135deg,#2563eb,#7c3aed)', color: '#fff', borderRadius: 12, fontSize: 18, fontWeight: 700, animation: 'glow 2s ease-in-out infinite', border: 'none', cursor: 'pointer' }}>
-                    Generate Entire Book
+                    Generate Entire Book (God Mode)
                   </button>
                   <p style={{ color: '#444', fontSize: 12, marginTop: 16 }}>You can edit everything after generation</p>
                 </>
