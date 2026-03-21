@@ -1,0 +1,215 @@
+# Site Dissection Workflow
+# Complete multi-dimensional website analysis
+
+workflow:
+  id: wf-site-dissection
+  name: "Dissecacao Completa de Website"
+  trigger: "*dissect"
+  entry_agent: webcraft-chief
+  estimated_duration: "2-4 hours"
+  description: |
+    Workflow completo de analise de website atraves de 8 dimensoes: estrutura/padroes,
+    design visual, animacoes/motion, design tokens, performance, acessibilidade,
+    SEO e GEO. Produz relatorio holístico com recomendacoes acionáveis.
+
+  type: sequential
+  sequence:
+    - agent: vitaly-friedman
+      action: analyze-site
+      creates: structure_analysis
+    - agent: tobias-van-schneider
+      action: assess-visual
+      creates: visual_assessment
+    - agent: val-head
+      action: audit-motion
+      creates: motion_audit
+    - agent: jina-anne
+      action: extract-tokens
+      creates: token_extraction
+    - agent: addy-osmani
+      action: audit-performance
+      creates: performance_report
+    - agent: heydon-pickering
+      action: audit-accessibility
+      creates: accessibility_report
+    - agent: lily-ray
+      action: audit-seo
+      creates: seo_report
+    - agent: fabrice-canel
+      action: audit-geo
+      creates: geo_report
+
+phases:
+  - id: phase_1_structure
+    name: "Analise Estrutural & Padroes"
+    agent: vitaly-friedman
+    task: analyze-site.md
+    depends_on: []
+    description: "Dissecar a arquitetura do site — HTML structure, tech stack, layout patterns, component inventory, navigation architecture, responsive strategy"
+    checkpoint:
+      gate: "Structure map complete with tech stack identified and component patterns documented"
+      veto: "HALT if no URL or site access provided — cannot analyze what cannot be seen"
+      required_output: "structure_analysis.yaml"
+    outputs:
+      - tech_stack_report
+      - component_inventory
+      - layout_patterns
+      - navigation_map
+      - responsive_strategy
+
+  - id: phase_2_visual
+    name: "Avaliacao Visual & Criativa"
+    agent: tobias-van-schneider
+    task: create-design.md
+    depends_on: [phase_1_structure]
+    description: "Avaliar a direcao visual — typography, color palette, spacing system, visual hierarchy, originality assessment, art direction quality"
+    checkpoint:
+      gate: "Visual assessment complete with originality score and improvement opportunities"
+      veto: "HALT if structure analysis not available — visual assessment needs structural context"
+      required_output: "visual_assessment.yaml"
+    outputs:
+      - typography_analysis
+      - color_palette_extraction
+      - spacing_system_analysis
+      - visual_hierarchy_map
+      - originality_assessment
+
+  - id: phase_3_motion
+    name: "Auditoria de Animacao & Motion"
+    agent: val-head
+    task: analyze-site.md
+    depends_on: [phase_1_structure]
+    support_agents: [tobias-van-schneider]
+    description: "Auditar todas as animacoes — transitions, micro-interactions, scroll effects, page transitions, loading states, motion choreography"
+    checkpoint:
+      gate: "Motion inventory complete with purposefulness assessment for each animation"
+      veto: "HALT if animations cannot be observed — need interactive access or video recordings"
+      required_output: "motion_audit.yaml"
+    outputs:
+      - animation_inventory
+      - transition_catalog
+      - motion_choreography_map
+      - performance_impact_of_animations
+      - purposefulness_scores
+
+  - id: phase_4_tokens
+    name: "Extracao & Analise de Design Tokens"
+    agent: jina-anne
+    task: tokenize-design.md
+    depends_on: [phase_2_visual, phase_3_motion]
+    description: "Extrair e analisar o sistema de tokens — color tokens, typography tokens, spacing tokens, motion tokens, breakpoint tokens, component tokens"
+    checkpoint:
+      gate: "Token architecture mapped with naming convention analysis and completeness assessment"
+      veto: "HALT if visual and motion analysis not available — tokens need both inputs"
+      required_output: "token_analysis.yaml"
+    outputs:
+      - extracted_tokens
+      - token_architecture_analysis
+      - naming_convention_assessment
+      - token_completeness_score
+      - tokenization_recommendations
+
+  - id: phase_5_performance
+    name: "Auditoria de Performance"
+    agent: addy-osmani
+    task: audit-performance.md
+    depends_on: [phase_1_structure]
+    description: "Auditar performance — Core Web Vitals (LCP, INP, CLS), loading strategy, render-blocking resources, image optimization, JavaScript execution, bundle analysis"
+    checkpoint:
+      gate: "Performance report with Core Web Vitals scores, bottleneck identification, and prioritized fixes"
+      veto: "HALT if site cannot be accessed or Lighthouse cannot run"
+      required_output: "performance_report.yaml"
+    outputs:
+      - core_web_vitals_scores
+      - loading_waterfall
+      - bottleneck_analysis
+      - image_optimization_report
+      - bundle_analysis
+      - prioritized_fixes
+
+  - id: phase_6_accessibility
+    name: "Auditoria de Acessibilidade"
+    agent: heydon-pickering
+    task: audit-accessibility.md
+    depends_on: [phase_1_structure]
+    support_agents: [vitaly-friedman]
+    description: "Auditar acessibilidade — WCAG 2.2 compliance, semantic HTML, ARIA usage, keyboard navigation, screen reader compatibility, color contrast, focus management"
+    checkpoint:
+      gate: "Accessibility report with WCAG conformance level, violation inventory, and remediation plan"
+      veto: "HALT if HTML cannot be inspected — accessibility audit requires DOM access"
+      required_output: "accessibility_report.yaml"
+    outputs:
+      - wcag_conformance_level
+      - violation_inventory
+      - semantic_html_assessment
+      - keyboard_navigation_map
+      - color_contrast_report
+      - remediation_plan
+
+  - id: phase_7_seo
+    name: "Auditoria SEO"
+    agent: lily-ray
+    task: audit-seo.md
+    depends_on: [phase_5_performance, phase_6_accessibility]
+    description: "Auditar SEO — technical SEO, structured data, E-E-A-T signals, indexation, crawlability, content quality, on-page optimization"
+    checkpoint:
+      gate: "SEO report with technical health score, content quality assessment, and prioritized action items"
+      veto: "HALT if performance and accessibility data not available — SEO audit needs these inputs for page experience assessment"
+      required_output: "seo_report.yaml"
+    outputs:
+      - technical_seo_score
+      - structured_data_audit
+      - eeat_assessment
+      - indexation_status
+      - content_quality_score
+      - action_items
+
+  - id: phase_8_geo
+    name: "Auditoria GEO (AI Search Visibility)"
+    agent: fabrice-canel
+    task: audit-geo.md
+    depends_on: [phase_7_seo]
+    support_agents: [lily-ray]
+    description: "Auditar GEO — AI search readiness, entity optimization, citability, structured data for LLMs, content authority signals, AI-friendly architecture"
+    checkpoint:
+      gate: "GEO report with AI visibility score, citability assessment, and AI-optimization roadmap"
+      veto: "HALT if SEO data not available — GEO builds on SEO foundation"
+      required_output: "geo_report.yaml"
+    outputs:
+      - ai_visibility_score
+      - citability_assessment
+      - entity_optimization_status
+      - ai_friendly_architecture_score
+      - optimization_roadmap
+
+  - id: phase_9_synthesis
+    name: "Sintese & Relatorio Final"
+    agent: webcraft-chief
+    task: review.md
+    depends_on: [phase_4_tokens, phase_5_performance, phase_6_accessibility, phase_7_seo, phase_8_geo]
+    description: "Sintetizar todos os relatorios em documento holístico com scoring multi-dimensional e roadmap priorizado"
+    checkpoint:
+      gate: "Final report complete with cross-dimensional scoring, priority matrix, and phased roadmap"
+      veto: "HALT if any phase report is missing — synthesis requires all 8 dimensions"
+      required_output: "site_dissection_report.md"
+    outputs:
+      - multi_dimensional_scorecard
+      - priority_matrix
+      - phased_roadmap
+      - executive_summary
+      - detailed_findings
+
+completion_criteria:
+  - "Structure and patterns analysis completed"
+  - "Visual and creative assessment delivered"
+  - "Animation and motion audit finished"
+  - "Design tokens extracted and analyzed"
+  - "Performance report with Core Web Vitals"
+  - "Accessibility audit with WCAG conformance"
+  - "SEO audit with technical health and E-E-A-T"
+  - "GEO audit with AI visibility assessment"
+  - "Final synthesis with multi-dimensional scorecard and roadmap"
+
+error_handling:
+  escalation: "If any specialist phase is blocked, webcraft-chief may skip that phase and note it as 'NOT ASSESSED' in the final report"
+  data_gap: "If a dimension cannot be fully assessed (e.g., no interactive access for motion audit), document limitations and provide best-effort analysis"

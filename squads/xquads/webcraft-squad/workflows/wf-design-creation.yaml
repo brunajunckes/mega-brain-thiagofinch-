@@ -1,0 +1,195 @@
+# Design Creation Workflow
+# From brief to unique, high-performance, accessible, SEO-ready design
+
+workflow:
+  id: wf-design-creation
+  name: "Criacao de Design Web"
+  trigger: "*design"
+  entry_agent: webcraft-chief
+  estimated_duration: "4-8 hours"
+  description: |
+    Workflow completo de criação de design web — desde o briefing e benchmarks ate a entrega
+    de um design unico, tokenizado, performático, acessível e otimizado para search.
+    Foco em originalidade: designs que NÃO parecem templates de IA.
+
+  type: sequential
+  sequence:
+    - agent: vitaly-friedman
+      action: research-benchmarks
+      creates: research_foundation
+    - agent: tobias-van-schneider
+      action: creative-direction
+      creates: visual_concept
+    - agent: val-head
+      action: motion-strategy
+      creates: motion_system
+    - agent: jina-anne
+      action: tokenize-design
+      creates: token_architecture
+    - agent: addy-osmani
+      action: performance-budget
+      creates: performance_validation
+    - agent: heydon-pickering
+      action: accessibility-validation
+      creates: accessibility_validation
+    - agent: lily-ray
+      action: seo-readiness
+      creates: seo_blueprint
+    - agent: webcraft-chief
+      action: final-review
+      creates: design_package
+
+phases:
+  - id: phase_1_research
+    name: "Research & Benchmarks"
+    agent: vitaly-friedman
+    task: analyze-site.md
+    depends_on: []
+    description: "Pesquisar o espaco do problema — analisar competidores, identificar padroes do setor, coletar benchmarks de design, mapear tendencias relevantes (nao para copiar, mas para diferenciar)"
+    checkpoint:
+      gate: "Research complete with competitive landscape, benchmark collection, and differentiation opportunities"
+      veto: "HALT if no briefing or project context provided — cannot research without direction"
+      required_output: "research_foundation.yaml"
+    outputs:
+      - competitive_analysis
+      - design_benchmarks
+      - sector_patterns
+      - differentiation_opportunities
+      - user_persona_insights
+
+  - id: phase_2_creative
+    name: "Direcao Criativa & Conceito Visual"
+    agent: tobias-van-schneider
+    task: create-design.md
+    depends_on: [phase_1_research]
+    description: "Definir a direcao criativa — mood board, paleta de cores, tipografia, sistema de espacamento, visual hierarchy, art direction. REGRA: o design DEVE ser original e nao parecer template genérico de IA"
+    checkpoint:
+      gate: "Creative direction defined with mood board, color palette, typography system, and visual hierarchy"
+      veto: "HALT if design looks generic or template-like — originality is non-negotiable"
+      required_output: "creative_direction.yaml"
+    outputs:
+      - mood_board
+      - color_palette
+      - typography_system
+      - spacing_system
+      - visual_hierarchy
+      - art_direction_guidelines
+
+  - id: phase_3_motion
+    name: "Estrategia de Motion & Interacao"
+    agent: val-head
+    task: create-design.md
+    depends_on: [phase_2_creative]
+    description: "Definir a estrategia de motion — principios de animacao, timing/easing curves, micro-interactions, transicoes de pagina, scroll animations, loading states"
+    checkpoint:
+      gate: "Motion strategy defined with animation principles, timing curves, and interaction choreography"
+      veto: "HALT if animations are purely decorative without UX purpose — motion must serve the user"
+      required_output: "motion_strategy.yaml"
+    outputs:
+      - animation_principles
+      - timing_easing_curves
+      - micro_interaction_specs
+      - page_transition_specs
+      - scroll_animation_specs
+      - loading_state_specs
+
+  - id: phase_4_tokens
+    name: "Arquitetura de Design Tokens"
+    agent: jina-anne
+    task: tokenize-design.md
+    depends_on: [phase_2_creative, phase_3_motion]
+    description: "Construir arquitetura completa de design tokens — primitive tokens, semantic tokens, component tokens. Inclui color, typography, spacing, motion, breakpoints"
+    checkpoint:
+      gate: "Token architecture complete with naming convention, hierarchy, and all design decisions tokenized"
+      veto: "HALT if token naming is ambiguous or hierarchy is inconsistent"
+      required_output: "token_architecture.yaml"
+    outputs:
+      - primitive_tokens
+      - semantic_tokens
+      - component_tokens
+      - motion_tokens
+      - breakpoint_tokens
+      - token_documentation
+
+  - id: phase_5_performance
+    name: "Validacao de Performance"
+    agent: addy-osmani
+    task: audit-performance.md
+    depends_on: [phase_2_creative, phase_3_motion]
+    description: "Validar que o design respeita budgets de performance — image strategy, font loading, animation performance, critical rendering path, Core Web Vitals projections"
+    checkpoint:
+      gate: "Performance budget defined and all design decisions validated against thresholds"
+      veto: "HALT if design decisions will cause Core Web Vitals failures — redesign required"
+      required_output: "performance_validation.yaml"
+    outputs:
+      - performance_budget
+      - image_strategy
+      - font_loading_strategy
+      - animation_performance_assessment
+      - cwv_projections
+
+  - id: phase_6_accessibility
+    name: "Validacao de Acessibilidade"
+    agent: heydon-pickering
+    task: audit-accessibility.md
+    depends_on: [phase_2_creative, phase_4_tokens]
+    description: "Validar que o design é acessível — color contrast, focus indicators, touch targets, readable typography, animation preferences (prefers-reduced-motion), semantic structure plan"
+    checkpoint:
+      gate: "All design decisions validated against WCAG 2.2 AA with documented accessible patterns"
+      veto: "HALT if color contrast ratios fail WCAG AA — must fix before proceeding"
+      required_output: "accessibility_validation.yaml"
+    outputs:
+      - contrast_ratios
+      - focus_indicator_specs
+      - touch_target_validation
+      - reduced_motion_alternatives
+      - semantic_structure_plan
+      - aria_strategy
+
+  - id: phase_7_seo
+    name: "Blueprint SEO-Ready"
+    agent: lily-ray
+    task: audit-seo.md
+    depends_on: [phase_5_performance, phase_6_accessibility]
+    support_agents: [fabrice-canel]
+    description: "Garantir que o design é SEO-ready — heading hierarchy, semantic HTML plan, structured data strategy, image SEO, internal linking architecture, Core Web Vitals alignment"
+    checkpoint:
+      gate: "SEO blueprint complete with heading hierarchy, structured data plan, and content architecture"
+      veto: "HALT if heading hierarchy breaks SEO best practices or structured data is not planned"
+      required_output: "seo_blueprint.yaml"
+    outputs:
+      - heading_hierarchy
+      - semantic_html_plan
+      - structured_data_strategy
+      - image_seo_guidelines
+      - internal_linking_plan
+      - geo_considerations
+
+  - id: phase_8_synthesis
+    name: "Revisao Final & Pacote de Entrega"
+    agent: webcraft-chief
+    task: review.md
+    depends_on: [phase_4_tokens, phase_5_performance, phase_6_accessibility, phase_7_seo]
+    description: "Revisar todas as entregas, garantir coerencia entre as dimensoes, compilar pacote final de design"
+    checkpoint:
+      gate: "All dimensions aligned, no conflicts between specialists, design package complete"
+      veto: "HALT if any specialist validation failed — resolve conflicts before delivery"
+      required_output: "design_package.md"
+    outputs:
+      - design_specification
+      - token_files
+      - motion_specs
+      - performance_budget
+      - accessibility_specs
+      - seo_blueprint
+      - implementation_guide
+
+completion_criteria:
+  - "Research and benchmarks collected"
+  - "Creative direction defined with originality verified"
+  - "Motion strategy with purposeful animations"
+  - "Design tokens architecture complete"
+  - "Performance budget validated"
+  - "WCAG 2.2 AA accessibility confirmed"
+  - "SEO blueprint ready"
+  - "Final design package compiled and reviewed"

@@ -1,0 +1,132 @@
+# Therapeutic Plan Workflow
+# Planejamento terapeutico integrado com avaliacao, analise e revisao multi-abordagem
+
+workflow:
+  id: wf-therapeutic-plan
+  name: "Plano Terapeutico Integrado"
+  trigger: "*therapeutic-plan"
+  entry_agent: psych-chief
+  estimated_duration: "45-90 minutos"
+  description: |
+    Workflow de 5 fases para construcao de um plano terapeutico integrado. O caso e
+    avaliado inicialmente pelo psych-chief, analisado em profundidade pelo especialista
+    de dominio, traduzido em plano terapeutico, revisado sob lente complementar, e
+    finalizado em plano integrado com marcos de progresso.
+
+  type: sequential
+  sequence:
+    - agent: psych-chief
+      action: diagnose
+      creates: initial_assessment
+    - agent: "{specialist}"
+      action: deep-analyze
+      creates: deep_analysis
+    - agent: "{specialist}"
+      action: plan
+      creates: therapeutic_plan
+    - agent: psych-chief
+      action: cross-review
+      creates: multi_approach_review
+    - agent: psych-chief
+      action: finalize
+      creates: integrated_plan
+
+phases:
+  - id: phase_1_avaliacao_inicial
+    name: "Avaliacao Inicial"
+    agent: psych-chief
+    task: diagnose.md
+    depends_on: []
+    description: "Compreender o caso, classificar a demanda e selecionar o especialista mais indicado"
+    checkpoint:
+      gate: "Caso compreendido, demanda classificada, especialista primario selecionado"
+      veto: "HALT se informacoes insuficientes para planejar tratamento — solicitar mais dados"
+    outputs:
+      - caso_understanding
+      - demand_classification
+      - specialist_selection
+      - initial_guidance
+
+  - id: phase_2_analise_aprofundada
+    name: "Analise Aprofundada"
+    agent: "{especialista selecionado por dominio}"
+    task: "{task do especialista}"
+    depends_on: [phase_1_avaliacao_inicial]
+    description: "Analise profunda do caso pelo especialista de dominio usando seu framework teorico"
+    checkpoint:
+      gate: "Analise completa com formulacao do caso, fatores de manutencao e alvos terapeuticos"
+      veto: "HALT se analise nao identifica alvos terapeuticos claros"
+    outputs:
+      - case_formulation
+      - maintaining_factors
+      - therapeutic_targets
+      - specialist_analysis
+
+  - id: phase_3_plano_terapeutico
+    name: "Design do Plano Terapeutico"
+    agent: "{mesmo especialista da Phase 2}"
+    task: "{task do especialista}"
+    depends_on: [phase_2_analise_aprofundada]
+    description: "Transformar a analise em plano terapeutico estruturado com intervencoes e marcos"
+    checkpoint:
+      gate: "Plano com objetivos, intervencoes sequenciadas, marcos de progresso e metricas"
+      veto: "HALT se plano nao inclui criterios de avaliacao de progresso"
+    outputs:
+      - treatment_objectives
+      - intervention_sequence
+      - progress_milestones
+      - evaluation_criteria
+
+  - id: phase_4_revisao_multi_abordagem
+    name: "Revisao Multi-Abordagem"
+    agent: psych-chief
+    task: review.md
+    depends_on: [phase_3_plano_terapeutico]
+    description: "Revisar o plano sob lente complementar para enriquecer e identificar pontos cegos"
+    parallel_consultation:
+      second_specialist: "{especialista de abordagem complementar}"
+      purpose: "Fornecer perspectiva alternativa sobre o plano"
+    checkpoint:
+      gate: "Plano revisado com pontos cegos identificados e perspectiva complementar integrada"
+      veto: "HALT se revisao identifica riscos nao endereçados no plano"
+    outputs:
+      - quality_review
+      - complementary_perspective
+      - blind_spots
+      - enrichment_suggestions
+
+  - id: phase_5_plano_final
+    name: "Plano Terapeutico Integrado Final"
+    agent: psych-chief
+    task: review.md
+    depends_on: [phase_4_revisao_multi_abordagem]
+    description: "Integrar perspectivas em plano final com marcos, metricas e recomendacoes"
+    checkpoint:
+      gate: "Plano final integra abordagem primaria e complementar, com marcos claros e plano de contingencia"
+      veto: "HALT se plano final nao endereca feedback da revisao"
+    outputs:
+      - integrated_therapeutic_plan
+      - milestones_timeline
+      - contingency_plan
+      - monitoring_protocol
+
+completion_criteria:
+  - "Caso avaliado com classificacao de demanda e dominio"
+  - "Analise aprofundada realizada por especialista de dominio"
+  - "Plano terapeutico estruturado com objetivos e intervencoes"
+  - "Revisao multi-abordagem com perspectiva complementar"
+  - "Plano final integrado com marcos de progresso e metricas"
+  - "Plano de contingencia para cenarios de nao-resposta"
+  - "Indicadores de risco verificados em todas as fases"
+
+routing_guide:
+  depressao_cognitiva: [aaron-beck, irvin-yalom]
+  ansiedade_regulacao: [marsha-linehan, aaron-beck]
+  trauma_complexo: [gabor-mate, marsha-linehan]
+  conflito_inconsciente: [sigmund-freud, carl-jung]
+  crise_existencial: [irvin-yalom, carl-jung]
+  dificuldade_relacional: [carl-rogers, sigmund-freud]
+  desregulacao_emocional: [marsha-linehan, carl-rogers]
+  vieses_decisao: [daniel-kahneman, aaron-beck]
+  estrutura_sujeito: [jacques-lacan, sigmund-freud]
+  individuacao_sentido: [carl-jung, irvin-yalom]

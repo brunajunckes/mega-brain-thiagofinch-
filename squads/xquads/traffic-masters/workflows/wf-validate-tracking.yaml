@@ -1,0 +1,185 @@
+workflow:
+  id: wf-validate-tracking
+  name: "Validação de Rastreamento End-to-End"
+  version: "1.0.0"
+  description: |
+    Workflow completo de validação de rastreamento. Diagnostica se pixels,
+    GTM, eventos de conversão e integração server-side estão funcionando
+    corretamente para uma página ou site. Identifica problemas, aponta
+    causas e executa correções quando possível via API (GTM, Meta).
+    Cobre: pixel check, GTM audit, browser inspection, network analysis,
+    conversion event test e cache interference check.
+  trigger: "*validate-tracking"
+  entry_agent: pixel-specialist
+  estimated_duration: "15-30 minutes"
+
+  inputs:
+    - name: website
+      type: string
+      required: true
+      description: "URL da página principal a validar"
+    - name: platform
+      type: string
+      required: true
+      description: "Plataformas a checar (meta, google, tiktok)"
+    - name: account_alias
+      type: string
+      required: false
+      description: "Alias da conta de anúncios (ex: partners)"
+    - name: conversion_page
+      type: string
+      required: false
+      description: "URL da página de thank you / confirmação"
+
+  type: sequential
+  sequence:
+    - agent: pixel-specialist
+      action: validate-tracking (phase 1 - pixel check)
+      creates: pixel_report
+    - agent: pixel-specialist
+      action: validate-tracking (phase 2 - GTM audit)
+      creates: gtm_report
+    - agent: pixel-specialist
+      action: validate-tracking (phase 3+4 - browser + network)
+      creates: browser_report
+    - agent: pixel-specialist
+      action: validate-tracking (phase 5 - conversion test)
+      creates: conversion_report
+    - agent: pixel-specialist
+      action: validate-tracking (phase 6 - cache check + final report)
+      creates: validation_report
+
+phases:
+  - id: phase_1
+    name: "Pixel Check"
+    agent: pixel-specialist
+    task: validate-tracking.md
+    description: |
+      Verificar pixel(s) da conta de anúncios via Meta MCP.
+      Confirmar pixel ID correto, last_fired_time recente, is_created_by_business.
+      Cruzar pixel da conta com pixel configurado no GTM.
+    tools:
+      - mcp__meta-ads__meta_get_pixel
+      - mcp__meta-ads__meta_list_accounts
+    outputs:
+      - pixel_id: "string — ID correto do pixel"
+      - pixel_status: "ok | wrong_id | inactive | unavailable"
+      - last_fired: "timestamp"
+    checkpoint:
+      gate: "Pixel ID identificado e status verificado"
+      veto: "Pixel não encontrado na conta — não continuar sem ID válido"
+
+  - id: phase_2
+    name: "GTM Audit"
+    agent: pixel-specialist
+    task: validate-tracking.md
+    depends_on: [phase_1]
+    description: |
+      Auditar container GTM via service account Google.
+      Verificar versão publicada, tags com firingTriggerId, triggers com
+      filtros corretos e variáveis de pixel/GA4 com IDs corretos.
+    tools:
+      - bash (node + googleapis via tools/gtm-mcp/)
+    outputs:
+      - gtm_version: "string — versão live"
+      - tags_status: "list — tag, firingTriggerId, paused"
+      - variables_status: "object — pixel_id, ga4_id"
+      - issues_found: "list"
+    checkpoint:
+      gate: "Container auditado. Tags têm triggers. Variáveis com IDs corretos."
+      veto: "Todas as tags sem trigger — container inoperante"
+
+  - id: phase_3
+    name: "Browser Inspection"
+    agent: pixel-specialist
+    task: validate-tracking.md
+    depends_on: [phase_2]
+    description: |
+      Inspecionar página ao vivo via Playwright.
+      Verificar inicialização do GTM (window.google_tag_manager, window.dataLayer),
+      Meta Pixel (window.fbq), atributos dos scripts (rocketlazyloadscript),
+      e console por warnings de pixel unavailable.
+    tools:
+      - mcp__playwright__browser_navigate
+      - mcp__playwright__browser_run_code
+      - mcp__playwright__browser_console_messages
+      - mcp__playwright__browser_network_requests
+    outputs:
+      - has_gtm: "boolean"
+      - has_fbq: "boolean"
+      - has_data_layer: "boolean"
+      - wp_rocket_blocking: "boolean"
+      - console_warnings: "list"
+      - network_events: "list"
+    checkpoint:
+      gate: "Inspeção browser completa. GTM status, pixel status e warnings documentados."
+      veto: "Browser inacessível — validação incompleta"
+
+  - id: phase_4
+    name: "Conversion Event Test"
+    agent: pixel-specialist
+    task: validate-tracking.md
+    depends_on: [phase_3]
+    description: |
+      Simular interação de usuário real para ativar scripts delayed.
+      Preencher formulário com dados de teste, capturar network requests
+      após submit e verificar se evento Lead/conversão dispara corretamente
+      com o nome de evento padrão esperado pela plataforma.
+    tools:
+      - mcp__playwright__browser_type
+      - mcp__playwright__browser_click
+      - mcp__playwright__browser_run_code
+      - mcp__playwright__browser_network_requests
+    outputs:
+      - lead_event_fired: "boolean"
+      - event_name: "string — nome do evento capturado"
+      - event_correct: "boolean — standard Lead vs custom"
+      - trigger_match: "boolean — form ID bate com trigger"
+    checkpoint:
+      gate: "Teste de conversão executado. Resultado documentado."
+      veto: "Formulário não encontrado na página"
+
+  - id: phase_5
+    name: "Correções e Relatório Final"
+    agent: pixel-specialist
+    task: validate-tracking.md
+    depends_on: [phase_4]
+    description: |
+      Consolidar todos os problemas encontrados. Executar correções
+      automáticas via API quando possível (GTM: pixel ID, event name,
+      trigger fix — publicar nova versão). Listar ações manuais pendentes
+      (WP Rocket, WordPress admin, Meta Business Manager).
+      Emitir relatório final com status por check e próximas ações.
+    tools:
+      - bash (node + googleapis — GTM updates + publish)
+      - mcp__meta-ads__meta_get_pixel
+    outputs:
+      - validation_report: "markdown — relatório completo"
+      - fixes_applied: "list — correções executadas automaticamente"
+      - pending_actions: "list — ações manuais necessárias"
+      - overall_status: "ok | partial | critical"
+    checkpoint:
+      gate: "Relatório emitido com status de todos os checks"
+      veto: "Não emitir relatório sem ter executado pelo menos phases 1-3"
+
+completion_criteria:
+  - "Pixel ID verificado e cruzado com GTM"
+  - "GTM container auditado — tags, triggers e variáveis"
+  - "Browser check com Playwright executado"
+  - "Network requests inspecionados"
+  - "Evento de conversão testado"
+  - "Interferência de cache verificada"
+  - "Relatório final emitido com status e ações"
+
+tools_required:
+  - mcp: "meta-ads (meta_get_pixel, meta_list_accounts)"
+  - mcp: "playwright (navigate, run_code, network_requests, console_messages)"
+  - bash: "node + googleapis (GTM API via tools/gtm-mcp/)"
+  - bash: "node (GTM service account: credentials/n8n-automacoes-439221-d1f8e533786b.json)"
+
+notes:
+  - "GTM API: account 6313638523 (Save Company). Container IDs em tools/gtm-mcp/"
+  - "Pixel Partners correto: 684377252867531 (Marcos Adriano Silva)"
+  - "Stape proxy: api.{dominio}/dehjqkmnlstta.js — verificar 200 OK"
+  - "WP Rocket delay: type=rocketlazyloadscript indica script atrasado"
+  - "Form IDs observados: form_webinar_partners, form_partners (parceiro)"

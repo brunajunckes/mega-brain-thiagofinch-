@@ -1,0 +1,66 @@
+# ═══════════════════════════════════════════════════════════════════
+# Squad: Psych Squad
+# Domain: Comportamento Humano, Psicologia, Psiquiatria & Psicanalise
+# Version: 1.0.0
+# ═══════════════════════════════════════════════════════════════════
+
+squad:
+  name: psych-squad
+  display_name: "Psych Squad"
+  version: "1.0.0"
+  domain: "Psicologia, Psiquiatria & Psicanalise"
+  description: |
+    Squad interdisciplinar de especialistas em comportamento humano, reunindo as maiores
+    mentes da psicologia, psiquiatria e psicanalise. De Freud a Kahneman, de Jung a Linehan,
+    cada especialista traz decadas de pesquisa e pratica clinica destiladas em frameworks
+    acionaveis para profissionais de saude.
+
+    O squad cobre psicanalise classica e lacaniana, terapia cognitivo-comportamental,
+    abordagem centrada na pessoa, psicoterapia existencial, psicologia comportamental,
+    trauma e adicao, terapia comportamental dialetica e psicologia analitica.
+    Inclui analise de transcricoes de sessoes para extracao de padroes e direcionamento terapeutico.
+  keywords: [psicologia, psiquiatria, psicanalise, comportamento, terapia, trauma, cognitivo, existencial, humanista, transcricao]
+  entry_agent: psych-chief
+  created_at: "2026-03-16"
+
+tiers:
+  tier_0:
+    name: "Orquestracao"
+    agents: [psych-chief]
+    purpose: "Triagem clinica, routing por dominio, sintese multi-abordagem, analise de transcricoes"
+  tier_1:
+    name: "Especialistas"
+    agents: [carl-jung, sigmund-freud, aaron-beck, carl-rogers, irvin-yalom, daniel-kahneman, gabor-mate, marsha-linehan, jacques-lacan]
+    purpose: "Expertise em dominios especificos da psicologia, psiquiatria e psicanalise"
+
+agents:
+  psych-chief:       { file: agents/psych-chief.md, tier: 0, icon: "🧠", focus: "Triagem, routing, sintese clinica, analise de transcricoes" }
+  carl-jung:         { file: agents/carl-jung.md, tier: 1, icon: "🌀", focus: "Psicologia analitica, arquetipos, individuacao" }
+  sigmund-freud:     { file: agents/sigmund-freud.md, tier: 1, icon: "🛋️", focus: "Psicanalise, inconsciente, mecanismos de defesa" }
+  aaron-beck:        { file: agents/aaron-beck.md, tier: 1, icon: "💭", focus: "TCC, distorcoes cognitivas, reestruturacao" }
+  carl-rogers:       { file: agents/carl-rogers.md, tier: 1, icon: "💚", focus: "Abordagem centrada na pessoa, empatia" }
+  irvin-yalom:       { file: agents/irvin-yalom.md, tier: 1, icon: "🌊", focus: "Psicoterapia existencial, sentido" }
+  daniel-kahneman:   { file: agents/daniel-kahneman.md, tier: 1, icon: "⚖️", focus: "Vieses cognitivos, tomada de decisao" }
+  gabor-mate:        { file: agents/gabor-mate.md, tier: 1, icon: "🔥", focus: "Trauma, adicao, conexao mente-corpo" }
+  marsha-linehan:    { file: agents/marsha-linehan.md, tier: 1, icon: "☯️", focus: "TCD, regulacao emocional, mindfulness" }
+  jacques-lacan:     { file: agents/jacques-lacan.md, tier: 1, icon: "🪞", focus: "Psicanalise lacaniana, significante, Real/Simbolico/Imaginario" }
+
+handoffs:
+  psych-chief: { routes_to: [carl-jung, sigmund-freud, aaron-beck, carl-rogers, irvin-yalom, daniel-kahneman, gabor-mate, marsha-linehan, jacques-lacan] }
+  carl-jung: { escalates_to: [psych-chief] }
+  sigmund-freud: { escalates_to: [psych-chief] }
+  aaron-beck: { escalates_to: [psych-chief] }
+  carl-rogers: { escalates_to: [psych-chief] }
+  irvin-yalom: { escalates_to: [psych-chief] }
+  daniel-kahneman: { escalates_to: [psych-chief] }
+  gabor-mate: { escalates_to: [psych-chief] }
+  marsha-linehan: { escalates_to: [psych-chief] }
+  jacques-lacan: { escalates_to: [psych-chief] }
+
+cross_cutting:
+  quality_standards: { min_score: 7.0 }
+
+settings:
+  activation:
+    prefix: "psych-squad"
+    example: "@psych-squad:carl-jung"

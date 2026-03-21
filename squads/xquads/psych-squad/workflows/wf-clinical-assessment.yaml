@@ -1,0 +1,115 @@
+# Clinical Assessment Workflow
+# Avaliacao clinica multi-abordagem com triagem, analise especializada e sintese
+
+workflow:
+  id: wf-clinical-assessment
+  name: "Avaliacao Clinica Multi-Abordagem"
+  trigger: "*clinical-assessment"
+  entry_agent: psych-chief
+  estimated_duration: "30-60 minutos"
+  description: |
+    Workflow estruturado de avaliacao clinica onde um caso e triado pelo psych-chief,
+    analisado por 2-3 especialistas selecionados conforme o dominio do caso, e sintetizado
+    em uma recomendacao unificada que integra multiplas perspectivas teoricas.
+
+  type: sequential
+  sequence:
+    - agent: psych-chief
+      action: diagnose
+      creates: triagem
+    - agent: "{specialists}"
+      action: analyze
+      creates: perspectives
+    - agent: psych-chief
+      action: synthesize
+      creates: synthesis
+    - agent: psych-chief
+      action: recommend
+      creates: recommendation
+
+phases:
+  - id: phase_1_triagem
+    name: "Triagem e Selecao de Especialistas"
+    agent: psych-chief
+    task: diagnose.md
+    depends_on: []
+    description: "Analisar o caso, classificar dominio clinico e selecionar especialistas relevantes"
+    checkpoint:
+      gate: "Caso classificado com dominio, demanda e 2-3 especialistas selecionados com justificativa"
+      veto: "HALT se o caso nao contem informacoes suficientes para analise significativa"
+    outputs:
+      - caso_classification
+      - specialist_selection
+      - initial_guidance
+
+  - id: phase_2_avaliacao
+    name: "Avaliacao Especializada (Paralela)"
+    agent: "{2-3 especialistas selecionados}"
+    task: "{task do especialista}"
+    depends_on: [phase_1_triagem]
+    description: "Cada especialista analisa o caso atraves de seu framework teorico"
+    parallel: true
+    specialist_slots:
+      - slot: "specialist_1"
+        framework: "{framework teorico do especialista primario}"
+        deliverable: "Analise completa + recomendacoes + nivel de confianca"
+      - slot: "specialist_2"
+        framework: "{framework teorico do especialista secundario}"
+        deliverable: "Analise completa + recomendacoes + nivel de confianca"
+      - slot: "specialist_3"
+        framework: "{framework teorico do especialista terciario (se selecionado)}"
+        deliverable: "Analise completa + recomendacoes + nivel de confianca"
+    checkpoint:
+      gate: "Todos os especialistas selecionados forneceram sua analise e recomendacoes"
+      veto: "HALT se algum especialista identificou indicadores de risco nao endereçados"
+    outputs:
+      - individual_analyses
+      - specialist_recommendations
+
+  - id: phase_3_sintese
+    name: "Sintese e Integracao"
+    agent: psych-chief
+    task: review.md
+    depends_on: [phase_2_avaliacao]
+    description: "Cruzar perspectivas, identificar convergencias, divergencias e pontos cegos"
+    checkpoint:
+      gate: "Convergencias e divergencias mapeadas, pontos cegos identificados"
+      veto: "HALT se todos os especialistas concordam sem tensao — verificar viés de confirmacao"
+    outputs:
+      - synthesis_analysis
+      - convergence_map
+      - divergence_map
+      - blind_spots
+
+  - id: phase_4_recomendacao
+    name: "Recomendacao Unificada"
+    agent: psych-chief
+    task: review.md
+    depends_on: [phase_3_sintese]
+    description: "Entregar recomendacao sintetizada com visoes divergentes e proximos passos"
+    checkpoint:
+      gate: "Recomendacao inclui evidencias, divergencias endereçadas, e proximos passos claros"
+      veto: "HALT se recomendacao ignora argumentos divergentes fortes sem endereça-los"
+    outputs:
+      - unified_recommendation
+      - dissenting_views
+      - next_steps
+
+completion_criteria:
+  - "Caso triado com dominio clinico e demanda classificados"
+  - "2-3 especialistas consultados com analises individuais documentadas"
+  - "Sintese identifica convergencias, divergencias e pontos cegos"
+  - "Recomendacao unificada inclui visoes divergentes endereçadas"
+  - "Proximos passos claros definidos para o profissional"
+  - "Indicadores de risco verificados em todas as fases"
+
+routing_guide:
+  inconsciente_defesas: [sigmund-freud, jacques-lacan, carl-jung]
+  cognicao_pensamentos: [aaron-beck, daniel-kahneman, marsha-linehan]
+  relacao_terapeutica: [carl-rogers, irvin-yalom, sigmund-freud]
+  existencial_sentido: [irvin-yalom, carl-jung, carl-rogers]
+  trauma_adicao: [gabor-mate, marsha-linehan, carl-rogers]
+  regulacao_emocional: [marsha-linehan, carl-rogers, aaron-beck]
+  vieses_decisao: [daniel-kahneman, aaron-beck, irvin-yalom]
+  identidade_individuacao: [carl-jung, irvin-yalom, jacques-lacan]
+  estrutura_sujeito: [jacques-lacan, sigmund-freud, carl-jung]

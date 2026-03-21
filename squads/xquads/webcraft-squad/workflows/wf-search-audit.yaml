@@ -1,0 +1,132 @@
+# Search Audit Workflow
+# Complete search visibility audit — SEO + GEO + Performance + A11y
+
+workflow:
+  id: wf-search-audit
+  name: "Auditoria de Search Visibility"
+  trigger: "*search"
+  entry_agent: webcraft-chief
+  estimated_duration: "2-3 hours"
+  description: |
+    Auditoria completa de visibilidade em mecanismos de busca — SEO técnico, SEO de conteúdo,
+    Core Web Vitals, acessibilidade como fator de ranking, e GEO (otimização para AI search).
+    Cobre Google, Bing e AI chat engines (ChatGPT, Perplexity, Gemini, Claude).
+
+  type: sequential
+  sequence:
+    - agent: addy-osmani
+      action: audit-performance
+      creates: cwv_report
+    - agent: heydon-pickering
+      action: audit-accessibility
+      creates: a11y_report
+    - agent: lily-ray
+      action: audit-seo
+      creates: seo_report
+    - agent: fabrice-canel
+      action: audit-geo
+      creates: geo_report
+    - agent: webcraft-chief
+      action: synthesize
+      creates: search_visibility_report
+
+phases:
+  - id: phase_1_performance
+    name: "Core Web Vitals & Page Experience"
+    agent: addy-osmani
+    task: audit-performance.md
+    depends_on: []
+    description: "Auditar Core Web Vitals e sinais de page experience — LCP, INP, CLS, HTTPS, mobile-friendliness, no intrusive interstitials"
+    checkpoint:
+      gate: "CWV scores collected with bottleneck identification"
+      veto: "HALT if site cannot be accessed"
+      required_output: "cwv_report.yaml"
+    outputs:
+      - lcp_score_and_bottlenecks
+      - inp_score_and_bottlenecks
+      - cls_score_and_causes
+      - page_experience_signals
+      - mobile_usability
+
+  - id: phase_2_accessibility
+    name: "Acessibilidade como Fator de Ranking"
+    agent: heydon-pickering
+    task: audit-accessibility.md
+    depends_on: []
+    description: "Auditar acessibilidade com foco em impacto SEO — semantic HTML (headings, landmarks), image alt texts, link text quality, form labels, ARIA usage"
+    checkpoint:
+      gate: "A11y factors relevant to SEO documented with impact assessment"
+      veto: "HALT if HTML cannot be inspected"
+      required_output: "a11y_seo_report.yaml"
+    outputs:
+      - semantic_html_quality
+      - heading_structure
+      - image_alt_quality
+      - link_text_quality
+      - form_accessibility
+      - aria_usage_quality
+
+  - id: phase_3_seo
+    name: "Auditoria SEO Completa"
+    agent: lily-ray
+    task: audit-seo.md
+    depends_on: [phase_1_performance, phase_2_accessibility]
+    description: "Auditoria SEO abrangente — technical SEO, on-page, structured data, E-E-A-T, indexation, crawlability, content quality, internal linking"
+    checkpoint:
+      gate: "Complete SEO report with health score, issues prioritized, and action plan"
+      veto: "HALT if CWV and a11y data not available — needed for holistic SEO assessment"
+      required_output: "seo_report.yaml"
+    outputs:
+      - technical_seo_health
+      - on_page_optimization
+      - structured_data_audit
+      - eeat_signals
+      - indexation_crawlability
+      - content_quality
+      - internal_linking
+      - action_plan
+
+  - id: phase_4_geo
+    name: "Auditoria GEO (AI Search)"
+    agent: fabrice-canel
+    task: audit-geo.md
+    depends_on: [phase_3_seo]
+    support_agents: [lily-ray]
+    description: "Auditar visibilidade em AI search — entity optimization, citability score, AI-friendly content architecture, structured data for LLMs, knowledge graph presence"
+    checkpoint:
+      gate: "GEO report complete with AI visibility score and optimization roadmap"
+      veto: "HALT if SEO data not available — GEO analysis builds on SEO foundation"
+      required_output: "geo_report.yaml"
+    outputs:
+      - ai_visibility_score
+      - entity_optimization
+      - citability_score
+      - content_authority
+      - ai_friendly_architecture
+      - knowledge_graph_presence
+      - optimization_roadmap
+
+  - id: phase_5_synthesis
+    name: "Sintese de Search Visibility"
+    agent: webcraft-chief
+    task: review.md
+    depends_on: [phase_3_seo, phase_4_geo]
+    description: "Sintetizar todos os relatorios em um dashboard unificado de search visibility com scoring e roadmap priorizado"
+    checkpoint:
+      gate: "Unified report with search visibility scorecard, risk assessment, and phased roadmap"
+      veto: "HALT if any phase report is incomplete"
+      required_output: "search_visibility_report.md"
+    outputs:
+      - search_visibility_scorecard
+      - risk_assessment
+      - opportunity_map
+      - phased_roadmap
+      - quick_wins
+      - executive_summary
+
+completion_criteria:
+  - "Core Web Vitals audited with bottlenecks identified"
+  - "Accessibility factors relevant to SEO assessed"
+  - "Complete SEO audit with technical health and E-E-A-T"
+  - "GEO audit with AI visibility assessment"
+  - "Unified search visibility report with scorecard and roadmap"

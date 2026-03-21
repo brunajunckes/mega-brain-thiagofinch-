@@ -1,0 +1,150 @@
+name: webcraft-squad
+version: "2.0.0"
+short-title: "WebCraft Squad"
+description: "Squad unificado de Web Excellence — 14 experts (Vitaly Friedman, Tobias van Schneider, Val Head, Jina Anne, Addy Osmani, Heydon Pickering, Lily Ray, Fabrice Canel, Brad Frost, Dan Mall, Dave Malouf) + 3 especialistas (UX Designer, UI Engineer, Visual Generator) + 1 orquestrador. Análise de websites, design criativo, design systems, UX/UI, DesignOps, animações, design tokens, performance, acessibilidade, SEO e GEO."
+author: "Synkra AIOS"
+license: MIT
+slashPrefix: "webcraft-squad"
+
+aios:
+  minVersion: "4.0.0"
+  type: squad
+
+tags:
+  - web-design
+  - website-analysis
+  - design-tokens
+  - web-animation
+  - performance
+  - core-web-vitals
+  - accessibility
+  - wcag
+  - seo
+  - geo
+  - search-visibility
+  - ui-design
+  - creative-direction
+  - motion-design
+  - design-systems
+  - atomic-design
+  - ux-research
+  - design-ops
+  - component-architecture
+  - ui-engineering
+  - visual-assets
+
+components:
+  agents:
+    # Tier 0 — Orchestration
+    - webcraft-chief.md
+    # Tier 1 — Web Analysis & Creative
+    - vitaly-friedman.md
+    - tobias-van-schneider.md
+    - val-head.md
+    - jina-anne.md
+    # Tier 1 — Performance & Visibility
+    - addy-osmani.md
+    - heydon-pickering.md
+    - lily-ray.md
+    - fabrice-canel.md
+    # Tier 1 — Design Systems & Operations (merged from design-squad)
+    - brad-frost.md
+    - dan-mall.md
+    - dave-malouf.md
+    # Tier 2 — Design Specialists (merged from design-squad)
+    - ux-designer.md
+    - ui-engineer.md
+    - visual-generator.md
+  tasks:
+    # Original WebCraft tasks
+    - diagnose.md
+    - analyze-site.md
+    - create-design.md
+    - tokenize-design.md
+    - audit-performance.md
+    - audit-accessibility.md
+    - audit-seo.md
+    - audit-geo.md
+    - review.md
+    # Merged from design-squad
+    - create-component-spec.md
+    - create-design-system.md
+    - design-ux-flow.md
+    - generate-handoff.md
+    - setup-design-ops.md
+    - audit-design.md
+  workflows:
+    # Original WebCraft workflows
+    - wf-site-dissection.yaml
+    - wf-design-creation.yaml
+    - wf-search-audit.yaml
+    # Merged from design-squad
+    - wf-design-system-creation.yaml
+    - wf-feature-design.yaml
+  checklists:
+    - output-quality.md
+
+routing_matrix:
+  website_analysis:
+    primary: vitaly-friedman
+    secondary: addy-osmani
+    triggers: ["analyze site", "dissect website", "site structure", "how does this site work", "site audit", "website review"]
+  creative_design:
+    primary: tobias-van-schneider
+    secondary: val-head
+    triggers: ["create design", "new design", "redesign", "visual direction", "creative direction", "unique design", "bold design"]
+  animation_motion:
+    primary: val-head
+    secondary: tobias-van-schneider
+    triggers: ["animation", "motion", "transition", "micro-interaction", "scroll effect", "parallax", "hover effect"]
+  design_tokens:
+    primary: jina-anne
+    secondary: brad-frost
+    triggers: ["design tokens", "tokenize", "token architecture", "design system tokens", "CSS variables", "theme"]
+  performance:
+    primary: addy-osmani
+    secondary: vitaly-friedman
+    triggers: ["performance", "speed", "Core Web Vitals", "LCP", "CLS", "INP", "Lighthouse", "page speed", "loading"]
+  accessibility:
+    primary: heydon-pickering
+    secondary: ux-designer
+    triggers: ["accessibility", "a11y", "WCAG", "screen reader", "ARIA", "inclusive", "color contrast", "keyboard navigation"]
+  seo:
+    primary: lily-ray
+    secondary: fabrice-canel
+    triggers: ["SEO", "ranking", "Google", "search engine", "structured data", "schema markup", "E-E-A-T", "indexation", "crawl"]
+  geo:
+    primary: fabrice-canel
+    secondary: lily-ray
+    triggers: ["GEO", "AI search", "generative engine", "AI visibility", "ChatGPT", "Perplexity", "AI Overviews", "citability", "LLM"]
+  design_systems:
+    primary: brad-frost
+    secondary: dan-mall
+    triggers: ["design system", "atomic design", "component library", "pattern library", "style guide", "systematic design"]
+  design_ops:
+    primary: dave-malouf
+    secondary: dan-mall
+    triggers: ["design ops", "designops", "design process", "design maturity", "design team", "design leadership"]
+  ux_research:
+    primary: ux-designer
+    secondary: vitaly-friedman
+    triggers: ["UX", "user research", "persona", "journey map", "wireframe", "usability", "user flow", "prototype"]
+  ui_implementation:
+    primary: ui-engineer
+    secondary: brad-frost
+    triggers: ["implement", "frontend", "React", "component code", "responsive", "Tailwind", "Next.js", "Storybook"]
+  visual_assets:
+    primary: visual-generator
+    secondary: tobias-van-schneider
+    triggers: ["visual asset", "AI prompt", "image generation", "Midjourney", "DALL-E", "illustration", "thumbnail", "icon"]
+  design_scaling:
+    primary: dan-mall
+    secondary: dave-malouf
+    triggers: ["scale design", "design governance", "adoption", "design culture", "hot potato", "design that scales"]
+  full_audit:
+    primary: webcraft-chief
+    secondary: vitaly-friedman
+    triggers: ["full audit", "complete analysis", "site dissection", "comprehensive review"]
+
+config:
+  extends: extend

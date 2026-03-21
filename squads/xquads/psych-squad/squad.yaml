@@ -1,0 +1,54 @@
+name: psych-squad
+version: "1.0.0"
+short-title: "Psych Squad"
+description: "Squad de 9 especialistas em comportamento humano, psicologia, psiquiatria e psicanalise — Jung, Freud, Beck, Rogers, Yalom, Kahneman, Mate, Linehan, Lacan. Auxilia profissionais de saude na compreensao e abordagem de pacientes."
+author: "Synkra AIOS"
+license: MIT
+slashPrefix: "psych-squad"
+
+aios:
+  minVersion: "4.0.0"
+  type: squad
+
+tags:
+  - psicologia
+  - psiquiatria
+  - psicanalise
+  - comportamento-humano
+  - terapia
+  - saude-mental
+  - abordagem-terapeutica
+  - transcricao-sessoes
+
+components:
+  agents:
+    - psych-chief.md
+    - carl-jung.md
+    - sigmund-freud.md
+    - aaron-beck.md
+    - carl-rogers.md
+    - irvin-yalom.md
+    - daniel-kahneman.md
+    - gabor-mate.md
+    - marsha-linehan.md
+    - jacques-lacan.md
+  tasks:
+    - diagnose.md
+    - analyze-behavior.md
+    - psychoanalytic-assessment.md
+    - cognitive-restructuring.md
+    - patient-approach.md
+    - trauma-assessment.md
+    - existential-exploration.md
+    - emotional-regulation-plan.md
+    - analyze-transcript.md
+    - review.md
+  workflows:
+    - wf-clinical-assessment.yaml
+    - wf-therapeutic-plan.yaml
+    - wf-session-analysis.yaml
+  checklists:
+    - output-quality.md
+
+config:
+  extends: extend

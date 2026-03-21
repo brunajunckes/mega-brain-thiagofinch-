@@ -1,0 +1,463 @@
+# Psych Squad — Catalogo de Referencias
+# Atualizar sempre que adicionar novo material
+# Comando: *update-references
+
+catalog:
+  version: "1.0.0"
+  last_updated: "2026-03-16"
+  total_references: 0
+
+# ═══════════════════════════════════════════════════════════════
+# SIGMUND FREUD — Psicanalise Classica
+# ═══════════════════════════════════════════════════════════════
+sigmund_freud:
+  obras_fundamentais:
+    - id: freud-001
+      title: "A Interpretacao dos Sonhos (Die Traumdeutung)"
+      year: 1900
+      type: livro
+      status: pendente  # pendente | fichado | disponivel
+      path: null
+      concepts: [sonhos, trabalho-do-sonho, condensacao, deslocamento, conteudo-manifesto, conteudo-latente, realizacao-de-desejo]
+      relevance: alta
+
+    - id: freud-002
+      title: "Tres Ensaios sobre a Teoria da Sexualidade"
+      year: 1905
+      type: livro
+      status: pendente
+      path: null
+      concepts: [sexualidade-infantil, fases-do-desenvolvimento, complexo-de-edipo, libido, pulsao]
+      relevance: alta
+
+    - id: freud-003
+      title: "Alem do Principio do Prazer"
+      year: 1920
+      type: livro
+      status: pendente
+      path: null
+      concepts: [pulsao-de-morte, compulsao-a-repeticao, principio-do-prazer, trauma]
+      relevance: alta
+
+    - id: freud-004
+      title: "O Ego e o Id"
+      year: 1923
+      type: livro
+      status: pendente
+      path: null
+      concepts: [segunda-topica, id, ego, superego, estrutura-psiquica]
+      relevance: alta
+
+    - id: freud-005
+      title: "O Mal-Estar na Civilizacao"
+      year: 1930
+      type: livro
+      status: pendente
+      path: null
+      concepts: [cultura, pulsao, sublimacao, agressividade, culpa]
+      relevance: media
+
+    - id: freud-006
+      title: "Inibicao, Sintoma e Angustia"
+      year: 1926
+      type: livro
+      status: pendente
+      path: null
+      concepts: [angustia, mecanismos-de-defesa, recalque, sintoma, inibicao]
+      relevance: alta
+
+# ═══════════════════════════════════════════════════════════════
+# CARL JUNG — Psicologia Analitica
+# ═══════════════════════════════════════════════════════════════
+carl_jung:
+  obras_fundamentais:
+    - id: jung-001
+      title: "Tipos Psicologicos"
+      year: 1921
+      type: livro
+      status: pendente
+      path: null
+      concepts: [extroversao, introversao, pensamento, sentimento, sensacao, intuicao, atitudes, funcoes]
+      relevance: alta
+
+    - id: jung-002
+      title: "Os Arquetipos e o Inconsciente Coletivo"
+      year: 1959
+      type: livro
+      status: pendente
+      path: null
+      concepts: [arquetipos, inconsciente-coletivo, self, sombra, anima, animus, persona]
+      relevance: alta
+
+    - id: jung-003
+      title: "O Homem e seus Simbolos"
+      year: 1964
+      type: livro
+      status: pendente
+      path: null
+      concepts: [simbolos, sonhos, inconsciente, mitos, arte]
+      relevance: alta
+
+    - id: jung-004
+      title: "Memorias, Sonhos, Reflexoes"
+      year: 1961
+      type: autobiografia
+      status: pendente
+      path: null
+      concepts: [individuacao, experiencia-pessoal, inconsciente, visoes]
+      relevance: media
+
+    - id: jung-005
+      title: "Aion — Estudos sobre o Simbolismo do Si-Mesmo"
+      year: 1951
+      type: livro
+      status: pendente
+      path: null
+      concepts: [self, sombra, anima, cristo-como-simbolo, individuacao]
+      relevance: media
+
+# ═══════════════════════════════════════════════════════════════
+# JACQUES LACAN — Psicanalise Lacaniana
+# ═══════════════════════════════════════════════════════════════
+jacques_lacan:
+  obras_fundamentais:
+    - id: lacan-001
+      title: "Escritos (Ecrits)"
+      year: 1966
+      type: coletanea
+      status: pendente
+      path: null
+      concepts: [significante, sujeito, inconsciente-estruturado, estadio-do-espelho, nome-do-pai, metafora, metonimia]
+      relevance: alta
+
+    - id: lacan-002
+      title: "Seminario 11 — Os Quatro Conceitos Fundamentais"
+      year: 1964
+      type: seminario
+      status: pendente
+      path: null
+      concepts: [inconsciente, repeticao, transferencia, pulsao]
+      relevance: alta
+
+    - id: lacan-003
+      title: "Seminario 5 — As Formacoes do Inconsciente"
+      year: 1957
+      type: seminario
+      status: pendente
+      path: null
+      concepts: [chiste, ato-falho, grafo-do-desejo, metafora-paterna]
+      relevance: alta
+
+    - id: lacan-004
+      title: "Seminario 20 — Mais, Ainda (Encore)"
+      year: 1972
+      type: seminario
+      status: pendente
+      path: null
+      concepts: [gozo, gozo-feminino, nao-todo, sexuacao, no-borromeo]
+      relevance: media
+
+    - id: lacan-005
+      title: "Seminario 3 — As Psicoses"
+      year: 1955
+      type: seminario
+      status: pendente
+      path: null
+      concepts: [psicose, foraclusao, nome-do-pai, schreber, significante]
+      relevance: alta
+
+# ═══════════════════════════════════════════════════════════════
+# AARON BECK — Terapia Cognitivo-Comportamental
+# ═══════════════════════════════════════════════════════════════
+aaron_beck:
+  obras_fundamentais:
+    - id: beck-001
+      title: "Cognitive Therapy and the Emotional Disorders"
+      year: 1976
+      type: livro
+      status: pendente
+      path: null
+      concepts: [modelo-cognitivo, pensamentos-automaticos, distorcoes-cognitivas, esquemas]
+      relevance: alta
+
+    - id: beck-002
+      title: "Cognitive Therapy of Depression"
+      year: 1979
+      type: livro
+      status: pendente
+      path: null
+      concepts: [triade-cognitiva, depressao, registro-de-pensamentos, reestruturacao]
+      relevance: alta
+
+    - id: beck-003
+      title: "Cognitive Therapy of Personality Disorders"
+      year: 1990
+      type: livro
+      status: pendente
+      path: null
+      concepts: [crencas-centrais, esquemas-mal-adaptativos, transtornos-de-personalidade]
+      relevance: alta
+
+    - id: beck-004
+      title: "Cognitive Therapy of Anxiety Disorders"
+      year: 2005
+      type: livro
+      status: pendente
+      path: null
+      concepts: [modelo-cognitivo-ansiedade, avaliacao-de-ameaca, comportamentos-de-seguranca]
+      relevance: alta
+
+# ═══════════════════════════════════════════════════════════════
+# CARL ROGERS — Abordagem Centrada na Pessoa
+# ═══════════════════════════════════════════════════════════════
+carl_rogers:
+  obras_fundamentais:
+    - id: rogers-001
+      title: "Terapia Centrada no Cliente (Client-Centered Therapy)"
+      year: 1951
+      type: livro
+      status: pendente
+      path: null
+      concepts: [abordagem-centrada, condicoes-facilitadoras, tendencia-atualizante, self]
+      relevance: alta
+
+    - id: rogers-002
+      title: "Tornar-se Pessoa (On Becoming a Person)"
+      year: 1961
+      type: livro
+      status: pendente
+      path: null
+      concepts: [congruencia, empatia, aceitacao-incondicional, processo-de-mudanca]
+      relevance: alta
+
+    - id: rogers-003
+      title: "Grupos de Encontro"
+      year: 1970
+      type: livro
+      status: pendente
+      path: null
+      concepts: [grupo, facilitacao, processo-grupal, encontro-autentico]
+      relevance: media
+
+    - id: rogers-004
+      title: "As Condicoes Necessarias e Suficientes para a Mudanca Terapeutica"
+      year: 1957
+      type: artigo
+      status: pendente
+      path: null
+      concepts: [seis-condicoes, empatia, congruencia, aceitacao-positiva-incondicional]
+      relevance: alta
+
+# ═══════════════════════════════════════════════════════════════
+# IRVIN YALOM — Psicoterapia Existencial
+# ═══════════════════════════════════════════════════════════════
+irvin_yalom:
+  obras_fundamentais:
+    - id: yalom-001
+      title: "Existential Psychotherapy"
+      year: 1980
+      type: livro
+      status: pendente
+      path: null
+      concepts: [morte, liberdade, isolamento, sentido, angustia-existencial]
+      relevance: alta
+
+    - id: yalom-002
+      title: "The Theory and Practice of Group Psychotherapy"
+      year: 1970
+      type: livro
+      status: pendente
+      path: null
+      concepts: [fatores-terapeuticos, terapia-de-grupo, universalidade, coesao, catarse]
+      relevance: alta
+
+    - id: yalom-003
+      title: "Love's Executioner and Other Tales of Psychotherapy"
+      year: 1989
+      type: livro
+      status: pendente
+      path: null
+      concepts: [casos-clinicos, relacao-terapeutica, aqui-e-agora, mortalidade]
+      relevance: media
+
+    - id: yalom-004
+      title: "The Gift of Therapy"
+      year: 2001
+      type: livro
+      status: pendente
+      path: null
+      concepts: [dicas-terapeuticas, relacao, aqui-e-agora, auto-revelacao]
+      relevance: alta
+
+    - id: yalom-005
+      title: "Staring at the Sun — Overcoming the Terror of Death"
+      year: 2008
+      type: livro
+      status: pendente
+      path: null
+      concepts: [ansiedade-de-morte, despertar-existencial, ondulacao, legado]
+      relevance: alta
+
+# ═══════════════════════════════════════════════════════════════
+# DANIEL KAHNEMAN — Psicologia Comportamental
+# ═══════════════════════════════════════════════════════════════
+daniel_kahneman:
+  obras_fundamentais:
+    - id: kahneman-001
+      title: "Thinking, Fast and Slow"
+      year: 2011
+      type: livro
+      status: pendente
+      path: null
+      concepts: [sistema-1, sistema-2, vieses, heuristicas, aversao-a-perda, enquadramento]
+      relevance: alta
+
+    - id: kahneman-002
+      title: "Noise: A Flaw in Human Judgment"
+      year: 2021
+      type: livro
+      status: pendente
+      path: null
+      concepts: [ruido, variabilidade, julgamento, decisao, calibracao]
+      relevance: alta
+
+    - id: kahneman-003
+      title: "Prospect Theory: An Analysis of Decision under Risk"
+      year: 1979
+      type: artigo
+      status: pendente
+      path: null
+      concepts: [teoria-do-prospecto, aversao-a-perda, funcao-de-valor, ponto-de-referencia]
+      relevance: alta
+
+    - id: kahneman-004
+      title: "Judgment under Uncertainty: Heuristics and Biases"
+      year: 1974
+      type: artigo
+      status: pendente
+      path: null
+      concepts: [heuristicas, representatividade, disponibilidade, ancoragem]
+      relevance: alta
+
+# ═══════════════════════════════════════════════════════════════
+# GABOR MATE — Trauma & Adicao
+# ═══════════════════════════════════════════════════════════════
+gabor_mate:
+  obras_fundamentais:
+    - id: mate-001
+      title: "When the Body Says No: The Cost of Hidden Stress"
+      year: 2003
+      type: livro
+      status: pendente
+      path: null
+      concepts: [estresse, somatizacao, autoimunidade, emocoes-reprimidas, conexao-mente-corpo]
+      relevance: alta
+
+    - id: mate-002
+      title: "In the Realm of Hungry Ghosts: Close Encounters with Addiction"
+      year: 2008
+      type: livro
+      status: pendente
+      path: null
+      concepts: [adicao, trauma, dopamina, dor-emocional, compulsao]
+      relevance: alta
+
+    - id: mate-003
+      title: "The Myth of Normal: Trauma, Illness and Healing in a Toxic Culture"
+      year: 2022
+      type: livro
+      status: pendente
+      path: null
+      concepts: [trauma, normalidade-toxica, cura, cultura, autenticidade-vs-apego]
+      relevance: alta
+
+    - id: mate-004
+      title: "Hold On to Your Kids: Why Parents Need to Matter More Than Peers"
+      year: 2004
+      type: livro
+      status: pendente
+      path: null
+      concepts: [apego, orientacao-por-pares, vinculacao, parentalidade]
+      relevance: media
+
+# ═══════════════════════════════════════════════════════════════
+# MARSHA LINEHAN — Terapia Comportamental Dialetica
+# ═══════════════════════════════════════════════════════════════
+marsha_linehan:
+  obras_fundamentais:
+    - id: linehan-001
+      title: "Cognitive-Behavioral Treatment of Borderline Personality Disorder"
+      year: 1993
+      type: livro
+      status: pendente
+      path: null
+      concepts: [dbt, borderline, modelo-biossocial, dialetica, validacao, mindfulness]
+      relevance: alta
+
+    - id: linehan-002
+      title: "DBT Skills Training Manual"
+      year: 2015
+      type: manual
+      status: pendente
+      path: null
+      concepts: [mindfulness, regulacao-emocional, tolerancia-estresse, eficacia-interpessoal, habilidades]
+      relevance: alta
+
+    - id: linehan-003
+      title: "DBT Skills Training Handouts and Worksheets"
+      year: 2015
+      type: manual
+      status: pendente
+      path: null
+      concepts: [fichas, exercicios, pratica, habilidades-dbt]
+      relevance: alta
+
+    - id: linehan-004
+      title: "Building a Life Worth Living: A Memoir"
+      year: 2020
+      type: autobiografia
+      status: pendente
+      path: null
+      concepts: [historia-pessoal, bpd, desenvolvimento-dbt, resiliencia]
+      relevance: media
+
+# ═══════════════════════════════════════════════════════════════
+# GENERAL — Material Transversal
+# ═══════════════════════════════════════════════════════════════
+general:
+  referencias_transversais:
+    - id: gen-001
+      title: "DSM-5-TR — Manual Diagnostico e Estatistico de Transtornos Mentais"
+      year: 2022
+      type: manual
+      status: pendente
+      path: null
+      concepts: [diagnostico, transtornos, criterios, classificacao]
+      relevance: alta
+
+    - id: gen-002
+      title: "CID-11 — Classificacao Internacional de Doencas (Capitulo Mental)"
+      year: 2022
+      type: manual
+      status: pendente
+      path: null
+      concepts: [classificacao, diagnostico, oms, transtornos]
+      relevance: alta
+
+    - id: gen-003
+      title: "Codigo de Etica do Psicologo (CFP)"
+      year: 2005
+      type: documento
+      status: pendente
+      path: null
+      concepts: [etica, sigilo, autonomia, nao-maleficencia, competencia]
+      relevance: alta
+
+    - id: gen-004
+      title: "APA Practice Guidelines"
+      year: 2023
+      type: guideline
+      status: pendente
+      path: null
+      concepts: [diretrizes, pratica-baseada-em-evidencias, tratamento, avaliacao]
+      relevance: alta

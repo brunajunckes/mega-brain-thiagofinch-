@@ -1,0 +1,103 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - link "AIOX Brandbook home" [ref=e4] [cursor=pointer]:
+        - /url: /brandbook
+        - img "AIOX" [ref=e5]
+      - generic [ref=e6]:
+        - link "Guidelines" [ref=e8] [cursor=pointer]:
+          - /url: /brandbook/guidelines
+        - link "Movimento" [ref=e10] [cursor=pointer]:
+          - /url: /brandbook/movimento
+        - link "Pitch" [ref=e12] [cursor=pointer]:
+          - /url: /pitch-deck/pitch-overview
+        - link "Workspace" [ref=e14] [cursor=pointer]:
+          - /url: /workspace
+        - button "Brandbook ▾" [ref=e18] [cursor=pointer]:
+          - text: Brandbook
+          - generic [ref=e19]: ▾
+        - button "Design System ▾" [ref=e23] [cursor=pointer]:
+          - text: Design System
+          - generic [ref=e24]: ▾
+        - button "Showcase ▾" [ref=e28] [cursor=pointer]:
+          - text: Showcase
+          - generic [ref=e29]: ▾
+        - generic [ref=e31]:
+          - generic [ref=e32]: Theme
+          - button "Ativar tema Lime" [pressed] [ref=e33]: Lime
+          - button "Ativar tema Gold" [ref=e34]: Gold
+    - generic [ref=e35]:
+      - banner [ref=e36]:
+        - generic [ref=e37]:
+          - generic [ref=e38]: AIOX SQUAD
+          - generic [ref=e39]: EFFECTS LIBRARY
+          - generic [ref=e40]: V1.0 // DARK COCKPIT EDITION
+        - generic [ref=e41]:
+          - heading "Visual Effects" [level=1] [ref=e42]
+          - paragraph [ref=e43]: Visual effects and animations — Dark Cockpit Edition
+        - generic [ref=e44]:
+          - generic [ref=e45]: Effects System
+          - generic [ref=e46]: 5 Sections
+          - generic [ref=e47]: "2026"
+      - main [ref=e48]:
+        - generic [ref=e49]:
+          - generic [ref=e50]:
+            - generic [ref=e51]: "01"
+            - generic [ref=e53]: Ticker Strip
+          - generic [ref=e58]:
+            - generic [ref=e60]: Python
+            - generic [ref=e61]:
+              - generic [ref=e62]: ◆
+              - generic [ref=e63]: ChatGPT
+            - generic [ref=e64]:
+              - generic [ref=e65]: ◆
+              - generic [ref=e66]: AWS
+            - generic [ref=e67]:
+              - generic [ref=e68]: ◆
+              - generic [ref=e69]: Zapier
+            - generic [ref=e70]:
+              - generic [ref=e71]: ◆
+              - generic [ref=e72]: Docker
+            - generic [ref=e73]:
+              - generic [ref=e74]: ◆
+              - generic [ref=e75]: Claude
+            - generic [ref=e76]:
+              - generic [ref=e77]: ◆
+              - generic [ref=e78]: NodeJS
+            - generic [ref=e79]:
+              - generic [ref=e80]: ◆
+              - generic [ref=e81]: Vercel
+            - generic [ref=e82]:
+              - generic [ref=e83]: ◆
+              - generic [ref=e84]: Stripe
+        - generic [ref=e85]:
+          - generic [ref=e86]:
+            - generic [ref=e87]: "02"
+            - generic [ref=e89]: Badge Variants
+          - generic [ref=e92]:
+            - generic [ref=e93]: Lime
+            - generic [ref=e94]: Blue
+            - generic [ref=e95]: Error
+            - generic [ref=e96]: Surface
+            - generic [ref=e97]: Solid
+        - generic [ref=e98]:
+          - generic [ref=e99]:
+            - generic [ref=e100]: "03"
+            - generic [ref=e102]: Glow & Pulse
+          - generic [ref=e105]:
+            - generic [ref=e108]: Neon Glow
+            - generic [ref=e111]: Spin
+            - generic [ref=e114]: Pulse
+        - generic [ref=e115]:
+          - generic [ref=e116]:
+            - generic [ref=e117]: "04"
+            - generic [ref=e119]: Hover Effects
+          - generic [ref=e122]:
+            - generic [ref=e123] [cursor=pointer]: Automation
+            - generic [ref=e124] [cursor=pointer]: Intelligence
+            - generic [ref=e125] [cursor=pointer]: Orchestration
+            - generic [ref=e126] [cursor=pointer]: Integration
+    - contentinfo [ref=e127]:
+      - img "AIOX" [ref=e129]
+      - generic [ref=e130]: Brand Identity System // v2.0 // Confidential
+  - alert [ref=e131]

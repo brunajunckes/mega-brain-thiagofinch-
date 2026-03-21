@@ -1,0 +1,154 @@
+# Session Analysis Workflow
+# Analise de transcricoes de sessoes terapeuticas com extracao de padroes e direcionamento
+
+workflow:
+  id: wf-session-analysis
+  name: "Analise de Sessao Terapeutica"
+  trigger: "*session-analysis"
+  entry_agent: psych-chief
+  estimated_duration: "30-60 minutos"
+  description: |
+    Workflow de 5 fases para analise profunda de transcricoes de sessoes terapeuticas.
+    A transcricao e recebida e segmentada pelo psych-chief, padroes sao extraidos,
+    segmentos relevantes sao analisados por 2-3 especialistas em paralelo, achados sao
+    sintetizados em hipoteses clinicas, e um guia de direcionamento e gerado para
+    as proximas sessoes com perguntas, areas a explorar e tecnicas recomendadas.
+
+  type: sequential
+  sequence:
+    - agent: psych-chief
+      action: receive-transcript
+      creates: segmented_transcript
+    - agent: psych-chief
+      action: extract-patterns
+      creates: pattern_analysis
+    - agent: "{specialists}"
+      action: multi-lens-analysis
+      creates: specialist_perspectives
+    - agent: psych-chief
+      action: synthesize
+      creates: clinical_synthesis
+    - agent: psych-chief
+      action: guide
+      creates: session_guidance
+
+phases:
+  - id: phase_1_recepcao
+    name: "Recepcao e Segmentacao da Transcricao"
+    agent: psych-chief
+    task: analyze-transcript.md
+    depends_on: []
+    description: "Receber a transcricao, apresentar alerta etico, segmentar em blocos tematicos e identificar momentos-chave"
+    checkpoint:
+      gate: "Transcricao segmentada em blocos tematicos, momentos-chave identificados e marcados"
+      veto: "HALT se transcricao nao contem dialogo identificavel entre terapeuta e paciente"
+    outputs:
+      - thematic_blocks
+      - key_moments
+      - initial_impressions
+      - ethical_alert_presented
+
+  - id: phase_2_extracao
+    name: "Extracao de Padroes"
+    agent: psych-chief
+    task: analyze-transcript.md
+    depends_on: [phase_1_recepcao]
+    description: "Extrair padroes comportamentais, emocionais, defensivos, cognitivos e relacionais da transcricao"
+    checkpoint:
+      gate: "Padroes extraidos em todas as categorias: fala, emocao, defesas, cognicao, relacao, resistencia, abertura"
+      veto: "HALT se indicadores de risco detectados — alertar imediatamente antes de continuar"
+    outputs:
+      - speech_patterns
+      - emotional_themes
+      - defense_mechanisms
+      - cognitive_distortions
+      - relational_patterns
+      - resistance_moments
+      - opening_moments
+
+  - id: phase_3_multi_abordagem
+    name: "Analise Multi-Abordagem (Paralela)"
+    agent: "{2-3 especialistas selecionados por padroes}"
+    task: "{task do especialista}"
+    depends_on: [phase_2_extracao]
+    description: "Cada especialista analisa segmentos relevantes da transcricao atraves de sua lente teorica"
+    parallel: true
+    specialist_slots:
+      - slot: "specialist_1"
+        framework: "{framework do especialista primario}"
+        segments: "{segmentos da transcricao relevantes para esta lente}"
+        deliverable: "Achados + significancia clinica + recomendacoes"
+      - slot: "specialist_2"
+        framework: "{framework do especialista secundario}"
+        segments: "{segmentos da transcricao relevantes para esta lente}"
+        deliverable: "Achados + significancia clinica + recomendacoes"
+      - slot: "specialist_3"
+        framework: "{framework do especialista terciario (se selecionado)}"
+        segments: "{segmentos da transcricao relevantes para esta lente}"
+        deliverable: "Achados + significancia clinica + recomendacoes"
+    selection_criteria: |
+      Selecao baseada nos padroes extraidos na Phase 2:
+      - Padroes de defesa encontrados → sigmund-freud, jacques-lacan
+      - Distorcoes cognitivas encontradas → aaron-beck, daniel-kahneman
+      - Desregulacao emocional encontrada → marsha-linehan, carl-rogers
+      - Indicadores de trauma encontrados → gabor-mate, marsha-linehan
+      - Temas existenciais encontrados → irvin-yalom, carl-jung
+      - Questoes de identidade/sentido encontradas → carl-jung, irvin-yalom
+      - Padroes relacionais encontrados → carl-rogers, sigmund-freud
+    checkpoint:
+      gate: "Todos os especialistas selecionados forneceram analise de seus segmentos"
+      veto: "HALT se algum especialista identificou risco nao sinalizado na Phase 2"
+    outputs:
+      - specialist_analyses
+      - cross_framework_insights
+
+  - id: phase_4_sintese
+    name: "Sintese Clinica"
+    agent: psych-chief
+    task: analyze-transcript.md
+    depends_on: [phase_3_multi_abordagem]
+    description: "Integrar achados de todos os especialistas, identificar convergencias e divergencias, gerar hipoteses clinicas"
+    checkpoint:
+      gate: "Hipoteses clinicas geradas com evidencias, convergencias e divergencias mapeadas, pontos cegos identificados"
+      veto: "HALT se hipoteses nao sao sustentadas por evidencias da transcricao"
+    outputs:
+      - clinical_hypotheses
+      - convergences
+      - divergences
+      - blind_spots
+      - integrated_formulation
+
+  - id: phase_5_direcionamento
+    name: "Direcionamento para Proximas Sessoes"
+    agent: psych-chief
+    task: analyze-transcript.md
+    depends_on: [phase_4_sintese]
+    description: "Gerar guia pratico para proximas sessoes: perguntas, areas a explorar, tecnicas e mudancas de abordagem"
+    checkpoint:
+      gate: "Guia completo com perguntas, areas, tecnicas e recomendacoes, tudo vinculado a hipoteses e evidencias"
+      veto: "HALT se direcionamento nao esta conectado a hipoteses geradas na sintese"
+    outputs:
+      - suggested_questions
+      - areas_to_explore
+      - approach_recommendations
+      - techniques_to_consider
+      - risk_monitoring_plan
+
+completion_criteria:
+  - "Transcricao segmentada em blocos tematicos com momentos-chave"
+  - "Padroes extraidos em 7 categorias (fala, emocao, defesas, cognicao, relacao, resistencia, abertura)"
+  - "2-3 especialistas consultados em paralelo com analises individuais"
+  - "Sintese com hipoteses clinicas baseadas em evidencias"
+  - "Convergencias e divergencias entre perspectivas documentadas"
+  - "Guia para proximas sessoes com perguntas, areas, tecnicas e recomendacoes"
+  - "Indicadores de risco verificados e alertados em todas as fases"
+  - "Alerta etico apresentado ao profissional no inicio da analise"
+
+routing_guide:
+  defense_patterns: [sigmund-freud, jacques-lacan]
+  cognitive_distortions: [aaron-beck, daniel-kahneman]
+  emotional_dysregulation: [marsha-linehan, carl-rogers]
+  trauma_indicators: [gabor-mate, marsha-linehan]
+  existential_themes: [irvin-yalom, carl-jung]
+  identity_meaning: [carl-jung, irvin-yalom]
+  relational_patterns: [carl-rogers, sigmund-freud]

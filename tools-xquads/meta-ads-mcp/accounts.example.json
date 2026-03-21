@@ -1,0 +1,17 @@
+{
+  "accounts": [
+    {
+      "alias": "conta-principal",
+      "account_id": "123456789",
+      "name": "Minha Empresa Principal",
+      "notes": "Conta principal de e-commerce"
+    },
+    {
+      "alias": "cliente-x",
+      "account_id": "987654321",
+      "name": "Cliente X Ltda",
+      "notes": "Lead gen B2B"
+    }
+  ],
+  "default_account": "conta-principal"
+}

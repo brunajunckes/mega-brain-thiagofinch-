@@ -1,0 +1,14 @@
+{
+  "name": "gtm-mcp",
+  "version": "1.0.0",
+  "description": "Google Tag Manager MCP Server with Service Account auth",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "googleapis": "^144.0.0"
+  }
+}

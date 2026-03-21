@@ -1,0 +1,151 @@
+# ═══════════════════════════════════════════════════════════════════
+# Routing Catalog: WebCraft Squad
+# Version: 1.0.0
+# ═══════════════════════════════════════════════════════════════════
+
+domains:
+  website_analysis:
+    keywords: [website analysis, site audit, site structure, HTML structure, tech stack, site architecture, reverse engineering, competitive analysis, design patterns, layout analysis]
+    primary_agent: vitaly-friedman
+    secondary_agent: addy-osmani
+    description: "Deep website analysis — structure, technology, patterns, architecture, competitive benchmarking"
+
+  creative_design:
+    keywords: [creative direction, visual design, unique design, bold design, anti-generic, design concept, art direction, visual identity, layout design, typography, color theory, whitespace]
+    primary_agent: tobias-van-schneider
+    secondary_agent: val-head
+    description: "Original design creation — visual direction, art direction, anti-generic design that breaks AI sameness"
+
+  interaction_design:
+    keywords: [interaction design, user flow, navigation, UI patterns, form design, responsive design, mobile-first, adaptive design]
+    primary_agent: tobias-van-schneider
+    secondary_agent: vitaly-friedman
+    description: "Interaction patterns, user flows, navigation architecture, responsive strategies"
+
+  animation_motion:
+    keywords: [animation, motion design, CSS animation, micro-interaction, transition, scroll animation, parallax, hover effect, loading animation, page transition, choreography, easing]
+    primary_agent: val-head
+    secondary_agent: tobias-van-schneider
+    description: "Web animation, motion design, micro-interactions, scroll effects, page transitions"
+
+  design_tokens:
+    keywords: [design tokens, tokenization, token architecture, CSS custom properties, CSS variables, theme tokens, semantic tokens, primitive tokens, component tokens, multi-brand, theming]
+    primary_agent: jina-anne
+    secondary_agent: vitaly-friedman
+    description: "Design token architecture, tokenization strategy, multi-brand token systems, theme management"
+
+  design_systems:
+    keywords: [design system, component library, pattern library, style guide, systematic design, scalable design, token-driven]
+    primary_agent: jina-anne
+    secondary_agent: tobias-van-schneider
+    description: "Design system creation and evolution with token-first architecture"
+
+  performance:
+    keywords: [performance, speed, Core Web Vitals, LCP, CLS, INP, FID, Lighthouse, PageSpeed, image optimization, lazy loading, code splitting, bundle size, render blocking, critical CSS]
+    primary_agent: addy-osmani
+    secondary_agent: vitaly-friedman
+    description: "Web performance optimization — Core Web Vitals, loading strategies, image optimization, rendering performance"
+
+  google_standards:
+    keywords: [Google standards, page experience, mobile-first indexing, HTTPS, safe browsing, interstitials, responsive]
+    primary_agent: addy-osmani
+    secondary_agent: lily-ray
+    description: "Google page experience signals, mobile-first standards, quality benchmarks"
+
+  accessibility:
+    keywords: [accessibility, a11y, WCAG, WCAG 2.2, screen reader, ARIA, inclusive design, color contrast, keyboard navigation, focus management, skip links, alt text, semantic HTML, assistive technology]
+    primary_agent: heydon-pickering
+    secondary_agent: vitaly-friedman
+    description: "Web accessibility — WCAG compliance, inclusive design patterns, assistive technology support"
+
+  inclusive_components:
+    keywords: [inclusive components, accessible components, tabpanel, toggle, accordion, modal, dropdown, disclosure, accessible form, error handling a11y]
+    primary_agent: heydon-pickering
+    secondary_agent: jina-anne
+    description: "Inclusive component patterns — accessible UI building blocks with proper ARIA and keyboard support"
+
+  seo_technical:
+    keywords: [technical SEO, crawlability, indexation, robots.txt, sitemap, canonical, hreflang, structured data, schema markup, JSON-LD, rich snippets, page experience]
+    primary_agent: lily-ray
+    secondary_agent: addy-osmani
+    description: "Technical SEO — crawlability, indexation, structured data, schema markup, rich results"
+
+  seo_content:
+    keywords: [E-E-A-T, content quality, YMYL, author authority, topical authority, content strategy, search intent, keyword research, on-page SEO]
+    primary_agent: lily-ray
+    secondary_agent: fabrice-canel
+    description: "Content SEO — E-E-A-T signals, content quality, topical authority, search intent optimization"
+
+  seo_local:
+    keywords: [local SEO, Google Business Profile, local pack, NAP, citations, reviews, local schema]
+    primary_agent: lily-ray
+    secondary_agent: fabrice-canel
+    description: "Local SEO — Google Business Profile, local rankings, citations, review management"
+
+  geo_ai_search:
+    keywords: [GEO, generative engine optimization, AI search, AI Overviews, ChatGPT search, Perplexity, Bing Chat, Claude, Gemini, LLM visibility, AI citations]
+    primary_agent: fabrice-canel
+    secondary_agent: lily-ray
+    description: "Generative Engine Optimization — visibility in AI-powered search, LLM citation optimization"
+
+  geo_structured_data:
+    keywords: [entity optimization, knowledge graph, structured data for AI, schema for LLM, citability, source attribution, content authority, AI-friendly architecture]
+    primary_agent: fabrice-canel
+    secondary_agent: lily-ray
+    description: "AI-optimized structured data, entity graphs, knowledge representation for LLM consumption"
+
+  bing_search:
+    keywords: [Bing, Bing Webmaster, IndexNow, Bing ranking, Microsoft search, Bing AI]
+    primary_agent: fabrice-canel
+    secondary_agent: lily-ray
+    description: "Bing search optimization, IndexNow protocol, Bing-specific ranking factors"
+
+  # === Merged from design-squad ===
+
+  design_systems:
+    keywords: [design system, component library, pattern library, style guide, systematic design, scalable design, atomic design, design governance, design adoption]
+    primary_agent: brad-frost
+    secondary_agent: dan-mall
+    description: "Atomic design systems — component-driven architecture, pattern libraries, governance and adoption strategy"
+
+  design_scaling:
+    keywords: [design at scale, design culture, hot potato process, element collage, creative direction, design adoption, pilot project, design that scales]
+    primary_agent: dan-mall
+    secondary_agent: dave-malouf
+    description: "Design systems at scale — organizational strategy, adoption, creative direction, collaborative processes"
+
+  design_ops:
+    keywords: [designops, design operations, design process, design maturity, design team, design leadership, design program, workflow optimization, design metrics]
+    primary_agent: dave-malouf
+    secondary_agent: dan-mall
+    description: "DesignOps — three lenses of design operations, maturity assessment, process optimization, team scaling"
+
+  ux_research:
+    keywords: [UX research, user research, persona, journey map, wireframe, usability testing, user flow, information architecture, card sorting, prototype, user interview]
+    primary_agent: ux-designer
+    secondary_agent: vitaly-friedman
+    description: "User experience research — discovery, personas, journey maps, wireframes, usability testing"
+
+  ui_implementation:
+    keywords: [UI implementation, frontend code, React component, Next.js, Tailwind CSS, Storybook, responsive code, component code, design-to-code, Radix UI]
+    primary_agent: ui-engineer
+    secondary_agent: brad-frost
+    description: "Frontend UI implementation — design-to-code translation, component production, responsive engineering"
+
+  visual_assets:
+    keywords: [visual asset, AI prompt, image generation, Midjourney, DALL-E, Stable Diffusion, illustration, thumbnail, icon, visual identity, brand visual]
+    primary_agent: visual-generator
+    secondary_agent: tobias-van-schneider
+    description: "Visual asset creation — AI image prompts, visual identity systems, brand visuals, asset production"
+
+  component_spec:
+    keywords: [component spec, component API, props documentation, variant specification, component architecture, design handoff]
+    primary_agent: brad-frost
+    secondary_agent: ui-engineer
+    description: "Component specification — variants, tokens, accessibility, API documentation, implementation handoff"
+
+  full_site_audit:
+    keywords: [full audit, complete analysis, site dissection, comprehensive review, site assessment, website evaluation]
+    primary_agent: webcraft-chief
+    secondary_agent: vitaly-friedman
+    description: "Comprehensive multi-dimensional site audit orchestrating all specialists"

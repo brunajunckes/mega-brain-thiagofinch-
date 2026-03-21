@@ -1,0 +1,73 @@
+# Psych Squad — Therapeutic Frameworks Reference
+# Catalogo de frameworks terapeuticos por especialista
+
+frameworks:
+  sigmund_freud:
+    - name: "Primeira Topica"
+      components: [consciente, pre-consciente, inconsciente]
+    - name: "Segunda Topica"
+      components: [id, ego, superego]
+    - name: "Mecanismos de Defesa"
+      components: [recalque, projecao, negacao, racionalizacao, sublimacao, formacao-reativa, deslocamento, regressao]
+    - name: "Tecnica Psicanalitica"
+      components: [associacao-livre, interpretacao-de-sonhos, analise-de-transferencia, atencao-flutuante]
+
+  jacques_lacan:
+    - name: "Registros RSI"
+      components: [real, simbolico, imaginario]
+    - name: "Estruturas Clinicas"
+      components: [neurose, psicose, perversao]
+    - name: "Grafo do Desejo"
+      components: [demanda, desejo, fantasia, pulsao]
+    - name: "Discursos"
+      components: [mestre, universitario, histerica, analista]
+
+  carl_jung:
+    - name: "Arquetipos"
+      components: [self, sombra, anima, animus, persona, grande-mae, velho-sabio, trickster, heroi]
+    - name: "Processo de Individuacao"
+      components: [confronto-com-sombra, integracao-anima-animus, encontro-com-self, realizacao-do-si-mesmo]
+    - name: "Tipos Psicologicos"
+      components: [extroversao, introversao, pensamento, sentimento, sensacao, intuicao]
+
+  aaron_beck:
+    - name: "Modelo Cognitivo"
+      components: [situacao, pensamento-automatico, emocao, comportamento, reacao-fisiologica]
+    - name: "Distorcoes Cognitivas"
+      components: [catastrofizacao, pensamento-dicotomico, generalizacao-excessiva, leitura-mental, personalizacao, desqualificacao-do-positivo, deveria, filtro-mental, rotulacao, magnificacao-minimizacao]
+    - name: "Niveis de Cognicao"
+      components: [pensamentos-automaticos, crencas-intermediarias, crencas-centrais]
+
+  carl_rogers:
+    - name: "Condicoes Facilitadoras"
+      components: [empatia, congruencia, aceitacao-positiva-incondicional]
+    - name: "Processo Terapeutico"
+      components: [relacao-terapeutica, autoexploracao, insight, mudanca-de-autoconceito, crescimento]
+
+  irvin_yalom:
+    - name: "Preocupacoes Existenciais"
+      components: [morte, liberdade, isolamento, falta-de-sentido]
+    - name: "Fatores Terapeuticos de Grupo"
+      components: [universalidade, altruismo, instilacao-de-esperanca, informacao, recapitulacao-corretiva, socializacao, imitacao, aprendizado-interpessoal, coesao, catarse, fatores-existenciais]
+
+  daniel_kahneman:
+    - name: "Dois Sistemas"
+      components: [sistema-1-rapido-intuitivo, sistema-2-lento-deliberativo]
+    - name: "Vieses Cognitivos"
+      components: [ancoragem, disponibilidade, representatividade, aversao-a-perda, efeito-enquadramento, excesso-de-confianca, viés-de-confirmacao, efeito-halo]
+
+  gabor_mate:
+    - name: "Compassionate Inquiry"
+      components: [presenca-terapeutica, investigacao-compassiva, conexao-mente-corpo, reconhecimento-de-trauma]
+    - name: "Modelo de Adicao"
+      components: [dor-emocional-subjacente, adaptacao-ao-trauma, busca-de-alivio, ciclo-de-dependencia]
+    - name: "Estresse Toxico"
+      components: [ACE-experiencias-adversas, impacto-neurobiologico, somatizacao, resposta-ao-estresse]
+
+  marsha_linehan:
+    - name: "Modulos DBT"
+      components: [mindfulness, regulacao-emocional, tolerancia-ao-estresse, eficacia-interpessoal]
+    - name: "Modelo Biossocial"
+      components: [vulnerabilidade-biologica, ambiente-invalidante, desregulacao-emocional]
+    - name: "Dialética Central"
+      components: [aceitacao, mudanca, validacao, resolucao-de-problemas]

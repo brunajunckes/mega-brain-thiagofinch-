@@ -1,0 +1,129 @@
+# Psych Squad — Routing Catalog
+# Used by psych-chief for intelligent routing to specialists
+
+domains:
+  psicanalise_classica:
+    primary: sigmund-freud
+    secondary: jacques-lacan
+    keywords: [inconsciente, recalque, transferencia, contratransferencia, resistencia, associacao-livre, complexo-de-edipo, mecanismos-de-defesa, pulsao, libido, id, ego, superego, sonhos, ato-falho]
+    triggers:
+      - "paciente apresenta resistencia ao tratamento"
+      - "padroes repetitivos de relacionamento"
+      - "conteudo onirico relevante"
+      - "sintomas sem causa organica aparente"
+
+  psicanalise_lacaniana:
+    primary: jacques-lacan
+    secondary: sigmund-freud
+    keywords: [significante, real, simbolico, imaginario, gozo, desejo, nome-do-pai, foraclusao, metafora, metonimia, grande-outro, objeto-a, falo, estadio-do-espelho, nó-borromeano]
+    triggers:
+      - "questoes de identidade e constituicao do sujeito"
+      - "relacao com a linguagem e o discurso"
+      - "psicose e estrutura clinica"
+      - "questoes sobre desejo vs demanda"
+
+  psicologia_analitica:
+    primary: carl-jung
+    secondary: irvin-yalom
+    keywords: [arquetipos, sombra, anima, animus, individuacao, inconsciente-coletivo, self, persona, sincronicidade, simbolos, mandala, tipos-psicologicos]
+    triggers:
+      - "crise existencial ou de identidade"
+      - "sonhos simbolicos recorrentes"
+      - "busca de sentido e proposito"
+      - "integracao de aspectos sombrios da personalidade"
+
+  tcc:
+    primary: aaron-beck
+    secondary: daniel-kahneman
+    keywords: [distorcoes-cognitivas, pensamento-automatico, crencas-centrais, reestruturacao-cognitiva, registro-de-pensamentos, triade-cognitiva, catastrofizacao, pensamento-dicotomico, generalizacao, esquemas]
+    triggers:
+      - "depressao com padroes cognitivos negativos"
+      - "ansiedade e pensamentos catastroficos"
+      - "distorcoes de pensamento identificaveis"
+      - "necessidade de intervencao estruturada e breve"
+
+  humanista:
+    primary: carl-rogers
+    secondary: irvin-yalom
+    keywords: [empatia, congruencia, aceitacao-incondicional, tendencia-atualizante, self, autoconceito, experiencia-organismica, escuta-ativa, reflexao-de-sentimentos]
+    triggers:
+      - "dificuldade na relacao terapeutica"
+      - "paciente se sente julgado ou incompreendido"
+      - "necessidade de fortalecer alianca terapeutica"
+      - "trabalho com autenticidade e autoexploracao"
+
+  existencial:
+    primary: irvin-yalom
+    secondary: carl-jung
+    keywords: [morte, liberdade, isolamento, sentido, angustia-existencial, autenticidade, escolha, responsabilidade, finitude, terapia-de-grupo, aqui-e-agora]
+    triggers:
+      - "luto ou medo da morte"
+      - "crise de sentido e proposito"
+      - "solidao existencial profunda"
+      - "dificuldade com liberdade e responsabilidade"
+
+  comportamental:
+    primary: daniel-kahneman
+    secondary: aaron-beck
+    keywords: [vieses-cognitivos, heuristicas, sistema-1, sistema-2, tomada-de-decisao, aversao-a-perda, enquadramento, ancoragem, disponibilidade, representatividade]
+    triggers:
+      - "padroes de decisao irracionais"
+      - "vieses que afetam comportamento do paciente"
+      - "dificuldade em avaliar riscos"
+      - "pesquisa academica sobre comportamento"
+
+  trauma:
+    primary: gabor-mate
+    secondary: marsha-linehan
+    keywords: [trauma, apego, adicao, estresse-toxico, ACE, corpo, somatizacao, dissociacao, abuso, negligencia, trauma-desenvolvimental, compassionate-inquiry]
+    triggers:
+      - "historia de trauma na infancia"
+      - "adicao ou comportamentos compulsivos"
+      - "sintomas somaticos sem causa organica"
+      - "dificuldades de apego e vinculacao"
+
+  regulacao_emocional:
+    primary: marsha-linehan
+    secondary: carl-rogers
+    keywords: [regulacao-emocional, mindfulness, tolerancia-ao-estresse, eficacia-interpessoal, validacao, borderline, automutilacao, suicidio, dialectica, aceitacao-radical]
+    triggers:
+      - "desregulacao emocional intensa"
+      - "comportamentos autolesivos"
+      - "transtorno de personalidade borderline"
+      - "dificuldade em relacoes interpessoais intensas"
+
+multi_specialist_protocols:
+  junta_clinica:
+    description: "Avaliacao multi-abordagem de caso complexo"
+    agents: [sigmund-freud, aaron-beck, carl-rogers, gabor-mate]
+    use_when: "Caso complexo que requer multiplas perspectivas terapeuticas"
+  analise_profunda:
+    description: "Exploracao do inconsciente e estrutura psiquica"
+    agents: [sigmund-freud, carl-jung, jacques-lacan]
+    use_when: "Compreensao profunda da estrutura psiquica do paciente"
+  abordagem_integrativa:
+    description: "Integracao de tecnicas para caso resistente"
+    agents: [aaron-beck, marsha-linehan, carl-rogers]
+    use_when: "Paciente nao responde a abordagem unica"
+  crise_existencial:
+    description: "Trabalho com questoes de sentido e mortalidade"
+    agents: [irvin-yalom, carl-jung, carl-rogers]
+    use_when: "Paciente em crise existencial ou luto profundo"
+  trauma_complexo:
+    description: "Avaliacao e plano para trauma complexo"
+    agents: [gabor-mate, marsha-linehan, sigmund-freud]
+    use_when: "Trauma cronico com multiplas camadas de impacto"
+
+growth_stage_routing:
+  avaliacao_inicial:
+    description: "Primeiro contato ou triagem"
+    primary: psych-chief
+    focus: "Compreensao do caso, hipoteses iniciais, encaminhamento"
+  tratamento_ativo:
+    description: "Paciente em processo terapeutico"
+    primary: "{specialist by domain}"
+    focus: "Intervencoes especificas, tecnicas terapeuticas"
+  reavaliacao:
+    description: "Revisao de progresso ou mudanca de abordagem"
+    primary: psych-chief
+    focus: "Analise de evolucao, ajuste de estrategia"
