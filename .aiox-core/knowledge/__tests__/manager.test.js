@@ -4,7 +4,7 @@
 
 const path = require('path');
 const { tmpdir } = require('os');
-const { KnowledgeManager } = require('../manager');
+const { KnowledgeManager } = require('../manager.js');
 
 describe('KnowledgeManager', () => {
   let manager;

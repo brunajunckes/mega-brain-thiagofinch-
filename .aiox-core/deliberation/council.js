@@ -3,70 +3,20 @@
  * Multi-agent decision-making with evidence-based arguments
  */
 
-import { RAGSearchEngine, RAGResponse, CitationInfo } from '../rag/search-engine';
-import { KnowledgeManager } from '../knowledge/manager';
-
-export interface CouncilMember {
-  id: string;
-  name: string;
-  expertise: string[];
-  perspective: string;
-  role: 'hawk' | 'dove' | 'analyst' | 'pragmatist' | 'idealist' | 'devil-advocate';
-}
-
-export interface Argument {
-  agentId: string;
-  position: string;
-  evidence: CitationInfo[];
-  confidence: number;
-  summary: string;
-}
-
-export interface Deliberation {
-  id: string;
-  question: string;
-  members: CouncilMember[];
-  arguments: Map<string, Argument>;
-  evidence: CitationInfo[];
-  votes: Map<string, number>;
-  consensus: Recommendation;
-  duration: number;
-  timestamp: Date;
-}
-
-export interface Recommendation {
-  position: string;
-  confidence: number;
-  reasoning: string;
-  alternativePerspectives: string[];
-  caveats: string[];
-  actionItems: string[];
-}
-
-export interface CouncilConfig {
-  knowledgeManager: KnowledgeManager;
-  ragEngine: RAGSearchEngine;
-  councilSize: number; // Default 11
-}
-
-export class DeliberationCouncil {
-  private knowledgeManager: KnowledgeManager;
-  private ragEngine: RAGSearchEngine;
-  private councilMembers: CouncilMember[] = [];
-  private deliberations: Map<string, Deliberation> = new Map();
-  private councilSize: number;
-
-  constructor(config: CouncilConfig) {
+class DeliberationCouncil {
+  constructor(config) {
     this.knowledgeManager = config.knowledgeManager;
     this.ragEngine = config.ragEngine;
     this.councilSize = config.councilSize || 11;
+    this.councilMembers = [];
+    this.deliberations = new Map();
     this.initializeCounsil();
   }
 
   /**
    * Execute deliberation with full council
    */
-  async deliberate(question: string, domains?: string[]): Promise<Deliberation> {
+  async deliberate(question, domains) {
     try {
       const deliberationId = this.generateId();
       const startTime = Date.now();
@@ -83,7 +33,7 @@ export class DeliberationCouncil {
       // Form consensus
       const consensus = this.formConsensus(memberArguments, votes);
 
-      const deliberation: Deliberation = {
+      const deliberation = {
         id: deliberationId,
         question,
         members: this.councilMembers,
@@ -98,30 +48,28 @@ export class DeliberationCouncil {
       this.deliberations.set(deliberationId, deliberation);
       return deliberation;
     } catch (error) {
-      throw new Error(
-        `Deliberation failed: ${error instanceof Error ? error.message : 'Unknown error'}`
-      );
+      throw new Error(`Deliberation failed: ${error.message}`);
     }
   }
 
   /**
    * Get deliberation by ID
    */
-  async getDeliberation(id: string): Promise<Deliberation | null> {
+  async getDeliberation(id) {
     return this.deliberations.get(id) || null;
   }
 
   /**
    * Get all deliberations
    */
-  async getAllDeliberations(): Promise<Deliberation[]> {
+  async getAllDeliberations() {
     return Array.from(this.deliberations.values());
   }
 
   /**
    * Add custom council member
    */
-  addMember(member: CouncilMember): void {
+  addMember(member) {
     if (this.councilMembers.length < this.councilSize) {
       this.councilMembers.push(member);
     }
@@ -130,7 +78,7 @@ export class DeliberationCouncil {
   /**
    * Remove member by ID
    */
-  removeMember(memberId: string): boolean {
+  removeMember(memberId) {
     const index = this.councilMembers.findIndex((m) => m.id === memberId);
     if (index !== -1) {
       this.councilMembers.splice(index, 1);
@@ -142,14 +90,14 @@ export class DeliberationCouncil {
   /**
    * Get council composition
    */
-  getCouncilComposition(): CouncilMember[] {
+  getCouncilComposition() {
     return [...this.councilMembers];
   }
 
   // Private helper methods
 
-  private initializeCounsil(): void {
-    const defaultMembers: CouncilMember[] = [
+  initializeCounsil() {
+    const defaultMembers = [
       {
         id: 'member-1',
         name: 'Analytic Mind',
@@ -232,27 +180,24 @@ export class DeliberationCouncil {
     this.councilMembers = defaultMembers;
   }
 
-  private async gatherEvidence(question: string, domains?: string[]): Promise<CitationInfo[]> {
+  async gatherEvidence(question, domains) {
     try {
-      const { citations } = await this.ragEngine.search(question);
-      return citations;
+      const response = await this.ragEngine.search(question);
+      return response.citations;
     } catch (error) {
       console.error('Failed to gather evidence:', error);
       return [];
     }
   }
 
-  private async gatherArguments(
-    question: string,
-    evidence: CitationInfo[]
-  ): Promise<[string, Argument][]> {
-    const memberArguments: [string, Argument][] = [];
+  async gatherArguments(question, evidence) {
+    const memberArguments = [];
 
     for (const member of this.councilMembers) {
       const position = this.generatePosition(member, question, evidence);
       const confidence = this.calculateArgumentConfidence(evidence);
 
-      const argument: Argument = {
+      const argument = {
         agentId: member.id,
         position,
         evidence: evidence.slice(0, 2), // Top 2 citations per member
@@ -266,26 +211,21 @@ export class DeliberationCouncil {
     return memberArguments;
   }
 
-  private generatePosition(
-    member: CouncilMember,
-    question: string,
-    evidence: CitationInfo[]
-  ): string {
-    // Simple heuristic for position based on role
-    const rolePositions: Record<string, string> = {
+  generatePosition(member, question, evidence) {
+    const rolePositions = {
       hawk: `Yes, we should aggressively pursue this. ${question}`,
-      dove: `We should be cautious. Let\'s mitigate risks first.`,
+      dove: `We should be cautious. Let's mitigate risks first.`,
       analyst: `The data suggests this approach. Evidence: ${evidence.length} sources found.`,
       pragmatist: `This is practical and achievable given our constraints.`,
       idealist: `This aligns with our mission and long-term vision.`,
-      'devil-advocate': `What if we\'re wrong? Consider these alternatives...`,
+      'devil-advocate': `What if we're wrong? Consider these alternatives...`,
     };
 
     return rolePositions[member.role] || `Regarding your question: ${question}`;
   }
 
-  private conductVoting(memberArguments: [string, Argument][]): Map<string, number> {
-    const votes = new Map<string, number>();
+  conductVoting(memberArguments) {
+    const votes = new Map();
 
     for (const [memberId, arg] of memberArguments) {
       const vote = arg.confidence > 0.7 ? 1 : arg.confidence > 0.5 ? 0 : -1;
@@ -295,20 +235,26 @@ export class DeliberationCouncil {
     return votes;
   }
 
-  private formConsensus(memberArguments: [string, Argument][], votes: Map<string, number>): Recommendation {
+  formConsensus(memberArguments, votes) {
     const voteValues = Array.from(votes.values());
     const positiveVotes = voteValues.filter((v) => v > 0).length;
     const negativeVotes = voteValues.filter((v) => v < 0).length;
     const neutralVotes = voteValues.filter((v) => v === 0).length;
 
-    const consensus = positiveVotes > negativeVotes ? 'YES' : negativeVotes > positiveVotes ? 'NO' : 'MIXED';
+    const consensus =
+      positiveVotes > negativeVotes
+        ? 'YES'
+        : negativeVotes > positiveVotes
+          ? 'NO'
+          : 'MIXED';
     const confidence = (positiveVotes + neutralVotes / 2) / voteValues.length;
 
     const alternativePerspectives = Array.from(memberArguments)
       .filter(([_, arg]) => arg.confidence < 0.6)
       .map(([_, arg]) => arg.position);
 
-    const caveats = negativeVotes > 0 ? ['Risk perspectives should be considered'] : [];
+    const caveats =
+      negativeVotes > 0 ? ['Risk perspectives should be considered'] : [];
 
     return {
       position: consensus,
@@ -320,9 +266,13 @@ export class DeliberationCouncil {
     };
   }
 
-  private generateActionItems(consensus: string, memberArguments: [string, Argument][]): string[] {
+  generateActionItems(consensus, _memberArguments) {
     if (consensus === 'YES') {
-      return ['Move forward with implementation', 'Monitor key metrics', 'Prepare contingency plans'];
+      return [
+        'Move forward with implementation',
+        'Monitor key metrics',
+        'Prepare contingency plans',
+      ];
     } else if (consensus === 'NO') {
       return ['Explore alternatives', 'Address objections', 'Revisit timeline'];
     } else {
@@ -330,14 +280,16 @@ export class DeliberationCouncil {
     }
   }
 
-  private calculateArgumentConfidence(evidence: CitationInfo[]): number {
+  calculateArgumentConfidence(evidence) {
     if (evidence.length === 0) return 0.5;
     const avgRelevance =
       evidence.reduce((sum, e) => sum + e.relevance, 0) / evidence.length;
     return Math.min(avgRelevance * 1.2, 1);
   }
 
-  private generateId(): string {
+  generateId() {
     return `del_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
   }
 }
+
+module.exports = { DeliberationCouncil };

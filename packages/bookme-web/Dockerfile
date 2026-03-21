@@ -2,19 +2,19 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy monorepo structure
-COPY package.json package-lock.json ./
-COPY packages/ ./packages/
+# Copy package files
+COPY package.json ./
+COPY pnpm-lock.yaml* ./
 
-# Install dependencies (skip hooks)
-RUN npm ci --ignore-scripts 2>&1 | grep -v "husky"
+# Install dependencies
+RUN npm install --legacy-peer-deps 2>&1 | tail -5
 
-# Build Next.js from bookme-web workspace
-WORKDIR /app/packages/bookme-web
+# Copy source
+COPY . .
 
 # Expose port
 EXPOSE 3000
 
-# Start app in dev mode (Pages Router)
+# Start app in dev mode
 ENV DOCKER_ENV=true
-CMD ["npm", "run", "dev"]
+CMD ["npx", "next", "dev", "--port", "3000"]

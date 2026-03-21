@@ -215,3 +215,5 @@
 {"timestamp":"2026-03-21T01:22:04.408Z","action":"add","path":".aiox-core/infrastructure/scripts/repo-analyzer-worker.js","trigger":"watcher"}
 {"timestamp":"2026-03-21T01:22:47.519Z","action":"add","path":".aiox-core/infrastructure/scripts/token-efficient-analyzer.js","trigger":"watcher"}
 {"timestamp":"2026-03-21T01:32:31.357Z","action":"add","path":".aiox-core/core/orchestration/benchmarks.js","trigger":"watcher"}
+{"timestamp":"2026-03-21T01:46:15.215Z","action":"add","path":".aiox-core/core/orchestration/tracing-integration.js","trigger":"watcher"}
+{"timestamp":"2026-03-21T01:46:15.215Z","action":"add","path":".aiox-core/core/orchestration/tracing-provider.js","trigger":"watcher"}
