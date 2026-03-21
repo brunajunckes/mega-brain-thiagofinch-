@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T01:40:25.151Z"
+generated_at: "2026-03-21T01:46:14.689Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1397
+file_count: 1400
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1116,6 +1116,10 @@ files:
     hash: sha256:cbf936d20f4c82ace238ce223ca521a86d3e687fdb182b2de5f893a473da025e
     type: core
     size: 15128
+  - path: core/orchestration/__tests__/tracing.test.js
+    hash: sha256:40785ebd973db09f8fd0ab0bcc5729bf5b4ae5a0d720579e8c7da0efa39a1a3d
+    type: core
+    size: 13860
   - path: core/orchestration/__tests__/worker-pool.test.js
     hash: sha256:92bcde29673851682d078e30f3245b89f787885237a5243e6803be5097e0248e
     type: core
@@ -1364,6 +1368,14 @@ files:
     hash: sha256:a6453c6acf0ff007444adeaa5e4620890fff38f0b31b058a2da04d790fb098ab
     type: core
     size: 31469
+  - path: core/orchestration/tracing-integration.js
+    hash: sha256:0beaa26c5c0ff36cd7c92cf9327d23cd5f3d8b52752e3d1cc0e8a1e5df1b4e99
+    type: core
+    size: 8683
+  - path: core/orchestration/tracing-provider.js
+    hash: sha256:8a24ef00824faf46dad1b6a471b04f8412e32623adb3c94eff8875bd632809e1
+    type: core
+    size: 7170
   - path: core/orchestration/worker-pool.js
     hash: sha256:0310587ffbece62c3d3cc7cf42c2bdcbf7e4d667bc3be822cd8dc4bbce47cd23
     type: core

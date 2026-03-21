@@ -75,19 +75,19 @@ export class DeliberationCouncil {
       const evidence = await this.gatherEvidence(question, domains);
 
       // Get arguments from each council member
-      const arguments = await this.gatherArguments(question, evidence);
+      const memberArguments = await this.gatherArguments(question, evidence);
 
       // Conduct voting
-      const votes = this.conductVoting(arguments);
+      const votes = this.conductVoting(memberArguments);
 
       // Form consensus
-      const consensus = this.formConsensus(arguments, votes);
+      const consensus = this.formConsensus(memberArguments, votes);
 
       const deliberation: Deliberation = {
         id: deliberationId,
         question,
         members: this.councilMembers,
-        arguments: new Map(arguments),
+        arguments: new Map(memberArguments),
         evidence,
         votes,
         consensus,
@@ -246,7 +246,7 @@ export class DeliberationCouncil {
     question: string,
     evidence: CitationInfo[]
   ): Promise<[string, Argument][]> {
-    const arguments: [string, Argument][] = [];
+    const memberArguments: [string, Argument][] = [];
 
     for (const member of this.councilMembers) {
       const position = this.generatePosition(member, question, evidence);
@@ -260,10 +260,10 @@ export class DeliberationCouncil {
         summary: `${member.name} (${member.role}): ${position}`,
       };
 
-      arguments.push([member.id, argument]);
+      memberArguments.push([member.id, argument]);
     }
 
-    return arguments;
+    return memberArguments;
   }
 
   private generatePosition(
@@ -284,10 +284,10 @@ export class DeliberationCouncil {
     return rolePositions[member.role] || `Regarding your question: ${question}`;
   }
 
-  private conductVoting(arguments: [string, Argument][]): Map<string, number> {
+  private conductVoting(memberArguments: [string, Argument][]): Map<string, number> {
     const votes = new Map<string, number>();
 
-    for (const [memberId, arg] of arguments) {
+    for (const [memberId, arg] of memberArguments) {
       const vote = arg.confidence > 0.7 ? 1 : arg.confidence > 0.5 ? 0 : -1;
       votes.set(memberId, vote);
     }
@@ -295,7 +295,7 @@ export class DeliberationCouncil {
     return votes;
   }
 
-  private formConsensus(arguments: [string, Argument][], votes: Map<string, number>): Recommendation {
+  private formConsensus(memberArguments: [string, Argument][], votes: Map<string, number>): Recommendation {
     const voteValues = Array.from(votes.values());
     const positiveVotes = voteValues.filter((v) => v > 0).length;
     const negativeVotes = voteValues.filter((v) => v < 0).length;
@@ -304,7 +304,7 @@ export class DeliberationCouncil {
     const consensus = positiveVotes > negativeVotes ? 'YES' : negativeVotes > positiveVotes ? 'NO' : 'MIXED';
     const confidence = (positiveVotes + neutralVotes / 2) / voteValues.length;
 
-    const alternativePerspectives = Array.from(arguments)
+    const alternativePerspectives = Array.from(memberArguments)
       .filter(([_, arg]) => arg.confidence < 0.6)
       .map(([_, arg]) => arg.position);
 

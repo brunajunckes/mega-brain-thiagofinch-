@@ -38,6 +38,19 @@ export default function CreatePage() {
       const data = await r.json();
       if (r.status === 401) { localStorage.removeItem('access_token'); localStorage.removeItem('user'); router.push('/auth/login'); return; }
       if (!r.ok) { setErr(data.detail || data.error || 'Failed to create project'); setBusy(false); return; }
+
+      // Upload file if selected
+      if (file && data.id) {
+        const fd = new FormData();
+        fd.append('file', file);
+        fd.append('description', `Source material for ${form.title}`);
+        await fetch(`/api/projects/${data.id}/materials`, {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}` },
+          body: fd
+        });
+      }
+
       router.push(`/editor?id=${data.id}`);
     } catch {
       setErr('Network error'); setBusy(false);
