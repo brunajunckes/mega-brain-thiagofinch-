@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T00:32:30.473Z"
+generated_at: "2026-03-21T00:49:54.298Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1205
+file_count: 1209
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1056,6 +1056,10 @@ files:
     hash: sha256:d6210b5570b19a3745108ded25f4a4053ab4b7c62a3cb18e072399b36d0f2dd0
     type: core
     size: 9923
+  - path: core/orchestration/__tests__/priority-queue.test.js
+    hash: sha256:3833a0c1495788e80444c79786b32fd2f57e1bc4e2fec62f710824b31b78c26c
+    type: core
+    size: 10610
   - path: core/orchestration/__tests__/retry-rollback-recovery.test.js
     hash: sha256:76fdda94d284d946404f279801bda7f82d63a15c67c7c609fdaa28ce5aa66d1b
     type: core
@@ -1076,6 +1080,10 @@ files:
     hash: sha256:0aaa8d54d3a9d99f61258302c6f075629b12cba711fabb3dcaa30e11cdf216a8
     type: core
     size: 6520
+  - path: core/orchestration/__tests__/task-scheduler.test.js
+    hash: sha256:cbf936d20f4c82ace238ce223ca521a86d3e687fdb182b2de5f893a473da025e
+    type: core
+    size: 15128
   - path: core/orchestration/__tests__/worker-pool.test.js
     hash: sha256:92bcde29673851682d078e30f3245b89f787885237a5243e6803be5097e0248e
     type: core
@@ -1220,6 +1228,10 @@ files:
     hash: sha256:1ae9d42b22a2b80d1480c14eaaeb010e98f0ffdcb6e0e1a135a2c072a8f3b9e2
     type: core
     size: 7265
+  - path: core/orchestration/priority-queue.js
+    hash: sha256:18d44453b240a5822c3223b9fe0f498b87667ab6ef69dd536df175287418d82f
+    type: core
+    size: 9352
   - path: core/orchestration/recovery-handler.js
     hash: sha256:6a9ef025f95885849aa893188299aca698cea2ea428cc302012833032c9e106e
     type: core
@@ -1268,6 +1280,10 @@ files:
     hash: sha256:690edab3642a4f3ca85a24e1cc8d857be7fb81e7476cb21babec2d26d8323e4c
     type: core
     size: 4872
+  - path: core/orchestration/task-scheduler.js
+    hash: sha256:680a48f7d4603798e3cc02fbe6c545bedc1c2dbb893390cdb12c2c1cb2bec658
+    type: core
+    size: 7548
   - path: core/orchestration/tech-stack-detector.js
     hash: sha256:074c52757e181cc1e344b26ae191ac67488d18e9da2b06b5def23abb6c64c056
     type: core
@@ -1689,9 +1705,9 @@ files:
     type: data
     size: 9575
   - path: data/entity-registry.yaml
-    hash: sha256:0437be1cd4a617567986d7d4a6f285767c46b0622d45cd6945e00856fefe628c
+    hash: sha256:a03f364260e2b36e744178af8ecfa02d0828f1fb8f521e3099182e66b25435ce
     type: data
-    size: 572128
+    size: 576321
   - path: data/learned-patterns.yaml
     hash: sha256:24ac0b160615583a0ff783d3da8af80b7f94191575d6db2054ec8e10a3f945dc
     type: data
@@ -4535,15 +4551,15 @@ files:
   - path: scripts/batch-migrate-phase1.ps1
     hash: sha256:c1f72c94244b7fe8f1f5cf12f0eb2cea017aeaca620953ede02c5c8f0125b429
     type: script
-    size: 974
+    size: 938
   - path: scripts/batch-migrate-phase2.ps1
     hash: sha256:9f7d0a90fec3c2553cd5b757765b15839a0eeefb040fe6e23d58faa801eefe61
     type: script
-    size: 2591
+    size: 2503
   - path: scripts/batch-migrate-phase3.ps1
     hash: sha256:5555a7095693dd7a64be48c6fb0e03b706a68ffd66af9edebac65b798dc4f2bb
     type: script
-    size: 1492
+    size: 1447
   - path: scripts/command-execution-hook.js
     hash: sha256:295663ee1d236c1085f359773c8940a2cb05cea648e39ef1f02f745a3e7d0990
     type: script
@@ -4555,7 +4571,7 @@ files:
   - path: scripts/diagnostics/diagnose-npx-issue.ps1
     hash: sha256:628a9e59d6f2fa9e36bb25526f665451e6028b535346ac4a598f42466073fd31
     type: script
-    size: 3590
+    size: 3494
   - path: scripts/diagnostics/health-dashboard/index.html
     hash: sha256:141280a67daaca0a211d40f95f45fe4b8bf3575ce8920aa8c89dea0ca39ec7ae
     type: script
@@ -4711,11 +4727,11 @@ files:
   - path: scripts/diagnostics/quick-diagnose.cmd
     hash: sha256:93a2ccc5e59df1d7c7ea6ce7df2dcace11c354d3f48bcf74ad2c12dac3418525
     type: script
-    size: 1975
+    size: 1890
   - path: scripts/diagnostics/quick-diagnose.ps1
     hash: sha256:308a0a0fee943d3d0922cacf85682858cbec0a568f669683f91ff91cf2435dd6
     type: script
-    size: 4468
+    size: 4351
   - path: scripts/migrate-framework-docs.sh
     hash: sha256:535844ae659e1cb4d35658cde8379b64a4195ff62ee84d048b9a5c7249f5b617
     type: script
@@ -4743,7 +4759,7 @@ files:
   - path: scripts/validate-phase1.ps1
     hash: sha256:ea9f40a265c44fffeb859f5041f7d7cbcd49322d3f0c0d88949f8ac8b7c25c15
     type: script
-    size: 768
+    size: 733
   - path: scripts/workflow-management.md
     hash: sha256:fae596f7be326f897fafeab252fdffd2c6d6cb3163f31f71a4c01d5c88e79930
     type: script
