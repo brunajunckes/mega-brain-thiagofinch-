@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T01:22:03.496Z"
+generated_at: "2026-03-21T01:22:47.208Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1391
+file_count: 1394
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1028,6 +1028,10 @@ files:
     hash: sha256:2986f24388132df711fc134a8069b6f2b54b2e03123f1257a3e1c5e75f33fdf5
     type: core
     size: 236
+  - path: core/orchestration/__tests__/benchmarks.test.js
+    hash: sha256:35acf76669e61624cc31a536b001136f63d0d74c7bfb3657c12561ebe6b657d9
+    type: core
+    size: 13234
   - path: core/orchestration/__tests__/cache-manager.test.js
     hash: sha256:93d5094f2d8705d8c3cce65f6d740623971a1921bf75b529281bc11c3bf28cf9
     type: core
@@ -1120,6 +1124,10 @@ files:
     hash: sha256:244779710ccb5f5b466d55c3437bf6a62e33dd903d6d9755a8d62e6d65ce74b6
     type: core
     size: 7127
+  - path: core/orchestration/benchmarks.js
+    hash: sha256:633ad744944ae32f840ac27adb1c89d8a5b9c2294c84a97cb43f1cef6c636ac6
+    type: core
+    size: 6409
   - path: core/orchestration/bob-orchestrator.js
     hash: sha256:35219c5113c262a39f249866e66c76f9f1206465dd68a66eb27d82c623b46048
     type: core
@@ -1809,9 +1817,9 @@ files:
     type: data
     size: 16853
   - path: data/entity-registry.yaml
-    hash: sha256:cb4dccdd0b059856a6565a4fe8b3ba03ce8816d8d3394d1f5f292dd08e55efdb
+    hash: sha256:9eb604d97381fb5d2d5102e3a8119111b0663574b6eed3913358d04e74a428e8
     type: data
-    size: 653136
+    size: 653464
   - path: data/go.md
     hash: sha256:e0851caecbdc2cea6531359fe640427685cd6ed664dbf991ccb135917c4d1ec2
     type: data
@@ -4472,6 +4480,10 @@ files:
     hash: sha256:2df35a1706b1389809226fde3c4e0bc72e4d5cebacab3cb98beaa70768049061
     type: script
     size: 5861
+  - path: infrastructure/scripts/token-efficient-analyzer.js
+    hash: sha256:35b209e10bec2f832ff9882c9995bffd397656f8c6972c24ae427aabdd0c05a3
+    type: script
+    size: 7086
   - path: infrastructure/scripts/tool-resolver.js
     hash: sha256:2fa44e4a940d4c33570fd9b4495b5c39792c52ca91b98c4be2fb55cb974ad095
     type: script
