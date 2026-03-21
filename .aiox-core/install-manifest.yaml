@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T01:22:47.208Z"
+generated_at: "2026-03-21T01:28:18.434Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1394
+file_count: 1395
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1817,9 +1817,9 @@ files:
     type: data
     size: 16853
   - path: data/entity-registry.yaml
-    hash: sha256:9eb604d97381fb5d2d5102e3a8119111b0663574b6eed3913358d04e74a428e8
+    hash: sha256:d03faa9bba0c0fa28f0120743a07992084abb7edc7541079714c460717eaf5f9
     type: data
-    size: 653464
+    size: 655891
   - path: data/go.md
     hash: sha256:e0851caecbdc2cea6531359fe640427685cd6ed664dbf991ccb135917c4d1ec2
     type: data
@@ -3884,6 +3884,10 @@ files:
     hash: sha256:95e70563eadf720ce4c6aa6349ace311cf34c63bc5044f71565f328a2dc9a706
     type: script
     size: 28267
+  - path: infrastructure/scripts/daily-repo-discovery.sh
+    hash: sha256:92bde86f67451d8da73a4d6e4f971270abeee0d0e5c16b7aae29b95334356ff0
+    type: script
+    size: 2102
   - path: infrastructure/scripts/dashboard-status-writer.js
     hash: sha256:a01bc8e74ce40206bbb49453af46896388754f412961b6f6585927a382338f01
     type: script
