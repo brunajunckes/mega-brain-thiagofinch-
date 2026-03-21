@@ -23,5 +23,11 @@
       }
     ]
   },
-  "language": "portuguese"
+  "language": "portuguese",
+  "permissions": {
+    "allow": [
+      "Write(.aiox-core/core/orchestration/**)",
+      "Edit(.aiox-core/core/orchestration/**)"
+    ]
+  }
 }
