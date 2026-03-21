@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "squads": {
+    "aios-forge-squad": {
+      "source": "gutomec/squads-sh-aios/aios-forge-squad",
+      "squad": "aios-forge-squad",
+      "version": "1.0.2",
+      "hash": "605626078f3eef19",
+      "installedAt": "2026-03-11T17:25:26.602Z",
+      "agents": [
+        "aios-architect",
+        "aios-catalyst",
+        "aios-forge",
+        "aios-nexus",
+        "aios-oracle",
+        "aios-scout",
+        "aios-sentinel"
+      ]
+    }
+  }
+}
