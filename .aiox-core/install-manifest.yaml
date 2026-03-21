@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T00:16:34.289Z"
+generated_at: "2026-03-21T00:18:00.412Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1194
+file_count: 1196
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1044,6 +1044,10 @@ files:
     hash: sha256:00269a7f4706d39f6cd295e99325242e2d0b75e36e274cd35d61534066a42124
     type: core
     size: 12326
+  - path: core/orchestration/__tests__/performance-profiler.test.js
+    hash: sha256:d6210b5570b19a3745108ded25f4a4053ab4b7c62a3cb18e072399b36d0f2dd0
+    type: core
+    size: 9923
   - path: core/orchestration/__tests__/retry-rollback-recovery.test.js
     hash: sha256:76fdda94d284d946404f279801bda7f82d63a15c67c7c609fdaa28ce5aa66d1b
     type: core
@@ -1184,6 +1188,10 @@ files:
     hash: sha256:17b9669337d080509cb270eb8564a0f5684b2abbad1056f81b6947bb0b2b594f
     type: core
     size: 5820
+  - path: core/orchestration/performance-profiler.js
+    hash: sha256:1ae9d42b22a2b80d1480c14eaaeb010e98f0ffdcb6e0e1a135a2c072a8f3b9e2
+    type: core
+    size: 7265
   - path: core/orchestration/recovery-handler.js
     hash: sha256:6a9ef025f95885849aa893188299aca698cea2ea428cc302012833032c9e106e
     type: core
@@ -1645,9 +1653,9 @@ files:
     type: data
     size: 9575
   - path: data/entity-registry.yaml
-    hash: sha256:abe23d78f45b2f57dd783ed35e7c30b1b3d1fe687eb536f53356a94d1e5fff21
+    hash: sha256:ff5725e82e1435606f4838a02ea567da441b7bfc706cca7689f80da5ac2537ca
     type: data
-    size: 567285
+    size: 570608
   - path: data/learned-patterns.yaml
     hash: sha256:24ac0b160615583a0ff783d3da8af80b7f94191575d6db2054ec8e10a3f945dc
     type: data
