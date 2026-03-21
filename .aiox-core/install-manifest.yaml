@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T00:13:28.309Z"
+generated_at: "2026-03-21T00:16:34.289Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1193
+file_count: 1194
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1036,6 +1036,10 @@ files:
     hash: sha256:fb48407cc51de3a2896b655efe6609d359c08db09ab4e7367c78ad2f7eba2aa9
     type: core
     size: 8711
+  - path: core/orchestration/__tests__/e2e-workflows.test.js
+    hash: sha256:c15effd5272ab17ac836e19176ab71e20cba55ff9babed2827cfc6c96bfee7fa
+    type: core
+    size: 13955
   - path: core/orchestration/__tests__/gates-integration.test.js
     hash: sha256:00269a7f4706d39f6cd295e99325242e2d0b75e36e274cd35d61534066a42124
     type: core
@@ -1641,9 +1645,9 @@ files:
     type: data
     size: 9575
   - path: data/entity-registry.yaml
-    hash: sha256:76f252df01ec2e464fcede5c0d31dc824d86a1b1eff345bce71728ea0e539199
+    hash: sha256:abe23d78f45b2f57dd783ed35e7c30b1b3d1fe687eb536f53356a94d1e5fff21
     type: data
-    size: 567393
+    size: 567285
   - path: data/learned-patterns.yaml
     hash: sha256:24ac0b160615583a0ff783d3da8af80b7f94191575d6db2054ec8e10a3f945dc
     type: data
