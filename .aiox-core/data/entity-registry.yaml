@@ -1,7 +1,7 @@
 metadata:
   version: 1.0.0
-  lastUpdated: '2026-03-21T00:27:33.544Z'
-  entityCount: 823
+  lastUpdated: '2026-03-21T00:30:58.892Z'
+  entityCount: 826
   checksumAlgorithm: sha256
   resolutionRate: 100
 entities:
@@ -14377,6 +14377,56 @@ entities:
         extensionPoints: []
       checksum: sha256:dd025894f8f0d3bd22a147dbc0debef8b83e96f3c59483653404b3cd5a01d5aa
       lastVerified: '2026-03-21T00:27:32.039Z'
+    load-balancer:
+      path: .aiox-core/core/orchestration/load-balancer.js
+      layer: L1
+      type: module
+      purpose: Entity at .aiox-core/core/orchestration/load-balancer.js
+      keywords:
+        - load
+        - balancer
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.4
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:78425c6138e6cf94f8aacbbac38d09e9af9e574ceb3c738a6193bf9f0d3f69c6
+      lastVerified: '2026-03-21T00:30:58.884Z'
+    task-queue:
+      path: .aiox-core/core/orchestration/task-queue.js
+      layer: L1
+      type: module
+      purpose: Entity at .aiox-core/core/orchestration/task-queue.js
+      keywords:
+        - task
+        - queue
+      usedBy:
+        - worker-pool
+      dependencies: []
+      adaptability:
+        score: 0.4
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:690edab3642a4f3ca85a24e1cc8d857be7fb81e7476cb21babec2d26d8323e4c
+      lastVerified: '2026-03-21T00:30:58.885Z'
+    worker-pool:
+      path: .aiox-core/core/orchestration/worker-pool.js
+      layer: L1
+      type: module
+      purpose: Entity at .aiox-core/core/orchestration/worker-pool.js
+      keywords:
+        - worker
+        - pool
+      usedBy: []
+      dependencies:
+        - task-queue
+      adaptability:
+        score: 0.4
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:0310587ffbece62c3d3cc7cf42c2bdcbf7e4d667bc3be822cd8dc4bbce47cd23
+      lastVerified: '2026-03-21T00:30:58.885Z'
   agents:
     aiox-master:
       path: .aiox-core/development/agents/aiox-master.md

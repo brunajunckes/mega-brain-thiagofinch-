@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T00:30:58.619Z"
+generated_at: "2026-03-21T00:32:30.473Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1202
+file_count: 1205
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1028,6 +1028,10 @@ files:
     hash: sha256:2986f24388132df711fc134a8069b6f2b54b2e03123f1257a3e1c5e75f33fdf5
     type: core
     size: 236
+  - path: core/orchestration/__tests__/cache-manager.test.js
+    hash: sha256:93d5094f2d8705d8c3cce65f6d740623971a1921bf75b529281bc11c3bf28cf9
+    type: core
+    size: 7400
   - path: core/orchestration/__tests__/checkpoint-manager.test.js
     hash: sha256:830ebf646b71fab8070fdbb74c045269a51f223eed34610a43d016f2eb68fab8
     type: core
@@ -1096,6 +1100,14 @@ files:
     hash: sha256:370599a3de3c936e8ebf2f5d14a1d09b8b33c3ccda3027d68740171314888215
     type: core
     size: 26070
+  - path: core/orchestration/cache-manager.js
+    hash: sha256:eb198c707e833d88d45895810c03d2a45e1fd2292dc7a68a5c19445b559bf3a9
+    type: core
+    size: 5102
+  - path: core/orchestration/cache-strategies.js
+    hash: sha256:2d308300fce552ecfccd9b9994418cc2476d9d3509a4ff3f916a1a0c3defe964
+    type: core
+    size: 5311
   - path: core/orchestration/checklist-runner.js
     hash: sha256:40f17b74c2fe6746f45aa5750c0b85b5af22221e010951eb6e93f5796fb70a8f
     type: core
@@ -1677,9 +1689,9 @@ files:
     type: data
     size: 9575
   - path: data/entity-registry.yaml
-    hash: sha256:1136a17b8bee86bad777c030645e170fda45bcfb0cb4757e86afa0982d5e9101
+    hash: sha256:0437be1cd4a617567986d7d4a6f285767c46b0622d45cd6945e00856fefe628c
     type: data
-    size: 570608
+    size: 572128
   - path: data/learned-patterns.yaml
     hash: sha256:24ac0b160615583a0ff783d3da8af80b7f94191575d6db2054ec8e10a3f945dc
     type: data
