@@ -39,6 +39,35 @@ COMMANDS_RULE_REVIEW_2=Suggest improvements with rationale
 COMMANDS_RULE_REVIEW_3=Reference standards from coding-standards.md
 
 # ============================================================
+# [*adopt-repo] COMMAND (NEW - 2026-03-21):
+#   0. MANDATORY: Load external-repo-adoption-checklist (95 items)
+#   1. PHASE 1: Copy ALL squads (agents, tasks, workflows, checklists)
+#   2. PHASE 2: Copy ALL .aiox-core enhancements (AI, monitor, scripts)
+#   3. PHASE 3: Copy ALL tools & infrastructure (MCP, scripts, patches)
+#   4. PHASE 4: Copy ALL IDE integrations (.claude, .cursor, .gemini)
+#   5. PHASE 5: Copy ALL configuration (env, squad-lock, CLAUDE.md, rules)
+#   6. PHASE 6: Copy ALL documentation (docs, case studies, reference)
+#   7. PHASE 7: Copy ALL governance rules (agent-authority, workflows)
+#   8. PHASE 8: Run 95-point verification checklist - ALL MUST PASS
+#   9. PHASE 9: Create comprehensive adoption documents + commit
+#   10. CRITICAL: Do not mark COMPLETE until ALL 95 checks verified
+#   11. USER RULE: No "tem mais alguma coisa" - exhaustive by design
+# ============================================================
+COMMANDS_RULE_ADOPT_REPO_0=Load external-repo-adoption-checklist with 95 verification points
+COMMANDS_RULE_ADOPT_REPO_1=Copy all squads: agents + tasks + workflows + checklists
+COMMANDS_RULE_ADOPT_REPO_2=Copy all .aiox-core: workflow-intelligence + monitor + scripts + schemas
+COMMANDS_RULE_ADOPT_REPO_3=Copy all tools: MCP servers + automation + infrastructure
+COMMANDS_RULE_ADOPT_REPO_4=Copy all IDE integrations: .claude .cursor .gemini .codex .antigravity
+COMMANDS_RULE_ADOPT_REPO_5=Copy all configuration: .env .squad-lock core-config CLAUDE.md
+COMMANDS_RULE_ADOPT_REPO_6=Copy all documentation: docs case-studies README runbooks
+COMMANDS_RULE_ADOPT_REPO_7=Copy all governance: agent-authority workflow-execution rules
+COMMANDS_RULE_ADOPT_REPO_8=Verify all 95 checklist items BEFORE marking complete
+COMMANDS_RULE_ADOPT_REPO_9=Create adoption analysis + completion document
+COMMANDS_RULE_ADOPT_REPO_10=Commit each phase with comprehensive commit messages
+COMMANDS_RULE_ADOPT_REPO_11=Final status: ZERO items left behind - GUARANTEED
+COMMANDS_RULE_ADOPT_REPO_12=If user asks "tem mais alguma coisa" - failure (checklist wasn't thorough)
+
+# ============================================================
 # [*plan] COMMAND:
 #   0. Outline approach before implementation
 #   1. List files to modify with rationale

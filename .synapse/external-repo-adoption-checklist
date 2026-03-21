@@ -1,0 +1,165 @@
+# ==========================================
+# SYNAPSE Domain: External Repository Adoption Checklist
+# Created: 2026-03-21
+# Description: Complete exhaustive checklist for adopting external repositories
+# ==========================================
+
+# Layer 6: External Repo Adoption Rules
+EXTERNAL_REPO_ADOPTION_STATE=active
+EXTERNAL_REPO_ADOPTION_RECALL=adopt,external,repository,git,complete,exhaustive,checklist,nothing-left-behind
+EXTERNAL_REPO_ADOPTION_EXCLUDE=
+
+# === PHASE 1: SQUADS & AGENTS ===
+ADOPTION_CHECK_001=Verify all squads directory exists and count squads
+ADOPTION_CHECK_002=For each squad: copy agents/ directory completely
+ADOPTION_CHECK_003=For each squad: copy tasks/ directory completely
+ADOPTION_CHECK_004=For each squad: copy workflows/ directory completely
+ADOPTION_CHECK_005=For each squad: copy checklists/ directory completely
+ADOPTION_CHECK_006=For each squad: copy data/ directory if exists
+ADOPTION_CHECK_007=For each squad: copy config.yaml or squad.yaml
+ADOPTION_CHECK_008=Register all agents in SYNAPSE manifest
+ADOPTION_CHECK_009=Register all squads in SYNAPSE manifest
+ADOPTION_CHECK_010=Create integration tests for squads (15+ assertions)
+
+# === PHASE 2: FRAMEWORK CORE ENHANCEMENTS ===
+ADOPTION_CHECK_011=Check .aiox-core/ directory structure
+ADOPTION_CHECK_012=Copy workflow-intelligence/ if exists (AI suggestion system)
+ADOPTION_CHECK_013=Copy monitor/ if exists (observability system)
+ADOPTION_CHECK_014=Copy scripts/ if exists (automation scripts)
+ADOPTION_CHECK_015=Copy schemas/ if exists (validation framework)
+ADOPTION_CHECK_016=Copy presets/ if exists (configuration templates)
+ADOPTION_CHECK_017=Copy core/ enhancements if differs from baseline
+ADOPTION_CHECK_018=Copy infrastructure/ improvements if differs
+ADOPTION_CHECK_019=Copy development/ enhancements if differs
+ADOPTION_CHECK_020=Merge docs/standards/ with existing standards
+
+# === PHASE 3: TOOLS & INFRASTRUCTURE ===
+ADOPTION_CHECK_021=Check tools/ or scripts/ directories for MCP servers
+ADOPTION_CHECK_022=Copy google-ads-mcp or similar integrations
+ADOPTION_CHECK_023=Copy meta-ads-mcp or similar integrations
+ADOPTION_CHECK_024=Copy gtm-mcp or similar integrations
+ADOPTION_CHECK_025=Copy any aiox-patches or sync scripts
+ADOPTION_CHECK_026=Copy any automation utilities
+ADOPTION_CHECK_027=Copy any deployment scripts
+ADOPTION_CHECK_028=Copy any migration tools
+
+# === PHASE 4: IDE INTEGRATIONS ===
+ADOPTION_CHECK_029=Check all IDE integration directories:
+ADOPTION_CHECK_030=Copy .claude/ contents (agents, rules, commands, workflows)
+ADOPTION_CHECK_031=Copy .cursor/ contents if differs from baseline
+ADOPTION_CHECK_032=Copy .gemini/ contents if differs (commands + rules)
+ADOPTION_CHECK_033=Copy .codex/ contents if differs
+ADOPTION_CHECK_034=Copy .antigravity/ contents if differs
+ADOPTION_CHECK_035=Copy .windsurf/ contents if exists
+ADOPTION_CHECK_036=Copy any other IDE directories found
+
+# === PHASE 5: CONFIGURATION & ENVIRONMENT ===
+ADOPTION_CHECK_037=Copy .env.example if exists (environment template)
+ADOPTION_CHECK_038=Copy .squad-lock.json if exists (squad coordination)
+ADOPTION_CHECK_039=Copy core-config.yaml if exists
+ADOPTION_CHECK_040=Copy .claude.json if exists
+ADOPTION_CHECK_041=Copy .gitignore enhancements if needed
+ADOPTION_CHECK_042=Copy .github/ contents (workflows, agents, configs)
+ADOPTION_CHECK_043=Copy GitHub Actions workflows if exists
+ADOPTION_CHECK_044=Copy pre-commit hooks if exists
+
+# === PHASE 6: DOCUMENTATION & REFERENCES ===
+ADOPTION_CHECK_045=Copy docs/ directory completely
+ADOPTION_CHECK_046=Copy case studies / business models if exists
+ADOPTION_CHECK_047=Copy README.md or main documentation
+ADOPTION_CHECK_048=Copy CLAUDE.md project instructions
+ADOPTION_CHECK_049=Copy any architecture diagrams
+ADOPTION_CHECK_050=Copy any decision records (ADRs)
+ADOPTION_CHECK_051=Copy any runbooks or procedures
+ADOPTION_CHECK_052=Copy reference materials in files/ or similar
+
+# === PHASE 7: RULES & GOVERNANCE ===
+ADOPTION_CHECK_053=Check .claude/rules/ directory (10+ common rules)
+ADOPTION_CHECK_054=Copy agent-authority.md rules
+ADOPTION_CHECK_055=Copy agent-handoff.md rules
+ADOPTION_CHECK_056=Copy workflow-execution.md rules
+ADOPTION_CHECK_057=Copy story-lifecycle.md rules
+ADOPTION_CHECK_058=Copy tool-examples.md rules
+ADOPTION_CHECK_059=Copy mcp-usage.md rules
+ADOPTION_CHECK_060=Copy coderabbit-integration.md rules
+ADOPTION_CHECK_061=Copy any custom domain rules
+ADOPTION_CHECK_062=Copy any SYNAPSE manifest entries
+
+# === PHASE 8: VALIDATION & TESTING ===
+ADOPTION_CHECK_063=Create comprehensive test suite for all components
+ADOPTION_CHECK_064=Verify all agents load correctly
+ADOPTION_CHECK_065=Verify all tasks are accessible
+ADOPTION_CHECK_066=Verify all workflows validate
+ADOPTION_CHECK_067=Test squad activation (@squad-name)
+ADOPTION_CHECK_068=Test agent commands (*help, *task, etc)
+ADOPTION_CHECK_069=Verify MCP servers are present
+ADOPTION_CHECK_070=Run full test suite: npm test
+
+# === PHASE 9: COMMIT & DOCUMENTATION ===
+ADOPTION_CHECK_071=Create comprehensive adoption analysis document
+ADOPTION_CHECK_072=Create completion document with all tallies
+ADOPTION_CHECK_073=Document everything adopted with line counts
+ADOPTION_CHECK_074=Commit Phase 1 (squads + agents)
+ADOPTION_CHECK_075=Commit Phase 2 (framework enhancements)
+ADOPTION_CHECK_076=Commit Phase 3 (tools + infrastructure)
+ADOPTION_CHECK_077=Commit Phase 4 (IDE integrations)
+ADOPTION_CHECK_078=Commit Phase 5 (configuration)
+ADOPTION_CHECK_079=Commit Phase 6 (documentation)
+ADOPTION_CHECK_080=Final verification commit with zero items left
+
+# === EXHAUSTIVE VERIFICATION CHECKLIST ===
+EXHAUSTIVE_CHECK_001=Search entire repo for hidden .dotfiles
+EXHAUSTIVE_CHECK_002=Verify no symlinks left behind
+EXHAUSTIVE_CHECK_003=Check for any .lock or state files
+EXHAUSTIVE_CHECK_004=Verify package.json scripts for new commands
+EXHAUSTIVE_CHECK_005=Check for any CI/CD pipeline files
+EXHAUSTIVE_CHECK_006=Verify all nested directories explored
+EXHAUSTIVE_CHECK_007=Check for any private/secret configurations
+EXHAUSTIVE_CHECK_008=Verify no binary files missed
+EXHAUSTIVE_CHECK_009=Confirm all JSON/YAML files processed
+EXHAUSTIVE_CHECK_010=Final diff check: no files left behind
+
+# === SYNAPSE REGISTRATION ===
+EXHAUSTIVE_CHECK_011=Register all squads in SYNAPSE manifest
+EXHAUSTIVE_CHECK_012=Register all agents in SYNAPSE manifest
+EXHAUSTIVE_CHECK_013=Register all domains in SYNAPSE manifest
+EXHAUSTIVE_CHECK_014=Register all MCP servers if applicable
+EXHAUSTIVE_CHECK_015=Verify manifest is valid SYNAPSE format
+
+# === TOTAL ITEMS TO VERIFY ===
+# 80 adoption checks + 15 exhaustive checks = 95 TOTAL VERIFICATION POINTS
+# RULE: Do not mark adoption complete until ALL 95 checks pass
+# RULE: If any check fails, investigate and resolve before proceeding
+# RULE: User should NEVER ask "tem mais alguma coisa" - everything is already checked
+
+# === ADOPTION COMPLETE CRITERIA ===
+# ✅ All squads copied and tested
+# ✅ All framework enhancements integrated
+# ✅ All tools and infrastructure copied
+# ✅ All IDE integrations added
+# ✅ All configuration files present
+# ✅ All documentation archived
+# ✅ All rules and governance integrated
+# ✅ All 95 verification points passed
+# ✅ Complete test suite passing
+# ✅ Comprehensive documentation created
+# ✅ SYNAPSE manifest fully updated
+# ✅ Zero items left behind - GUARANTEED
+
+# === ADOPTION STATUS INDICATORS ===
+# Status: READY_FOR_ADOPTION when:
+# - All 95 checks reviewed
+# - All phases identified
+# - All files mapped
+# - Commit strategy planned
+
+# Status: IN_PROGRESS when:
+# - Actively copying components
+# - Tests running
+# - Commits being made
+
+# Status: COMPLETE when:
+# - All 95 checks verified ✓
+# - All phases committed
+# - Final documentation created
+# - Zero items left behind

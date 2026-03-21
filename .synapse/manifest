@@ -132,3 +132,8 @@ SQUAD_TRAFFIC_MASTERS_STATE=active
 SQUAD_TRAFFIC_MASTERS_SQUAD_TRIGGER=traffic-masters
 SQUAD_WEBCRAFT_SQUAD_STATE=active
 SQUAD_WEBCRAFT_SQUAD_SQUAD_TRIGGER=webcraft-squad
+
+# External Repository Adoption (Exhaustive Checklist - 95 verification points)
+EXTERNAL_REPO_ADOPTION_STATE=active
+EXTERNAL_REPO_ADOPTION_RECALL=adopt,external,repository,git,complete,exhaustive,comprehensive,nothing-left-behind,checklist
+EXTERNAL_REPO_ADOPTION_VERIFY_ALL_ITEMS=true
