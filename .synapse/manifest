@@ -133,6 +133,20 @@ SQUAD_TRAFFIC_MASTERS_SQUAD_TRIGGER=traffic-masters
 SQUAD_WEBCRAFT_SQUAD_STATE=active
 SQUAD_WEBCRAFT_SQUAD_SQUAD_TRIGGER=webcraft-squad
 
+# Desafio Squad - Video Content Creation (Newly Adopted - 2026-03-21)
+SQUAD_DESAFIO_SQUAD_STATE=active
+SQUAD_DESAFIO_SQUAD_SQUAD_TRIGGER=desafio-squad
+AGENT_DESAFIO_CHIEF_STATE=active
+AGENT_DESAFIO_CHIEF_AGENT_TRIGGER=desafio-chief
+AGENT_DESAFIO_VIDEO_EDITOR_STATE=active
+AGENT_DESAFIO_VIDEO_EDITOR_AGENT_TRIGGER=desafio-video-editor
+AGENT_DESAFIO_ESPIAO_STATE=active
+AGENT_DESAFIO_ESPIAO_AGENT_TRIGGER=desafio-espiao
+AGENT_DESAFIO_REPURPOSING_STATE=active
+AGENT_DESAFIO_REPURPOSING_AGENT_TRIGGER=desafio-repurposing
+AGENT_DESAFIO_SCRIPTWRITER_STATE=active
+AGENT_DESAFIO_SCRIPTWRITER_AGENT_TRIGGER=desafio-scriptwriter
+
 # External Repository Adoption (Exhaustive Checklist - 95 verification points)
 EXTERNAL_REPO_ADOPTION_STATE=active
 EXTERNAL_REPO_ADOPTION_RECALL=adopt,external,repository,git,complete,exhaustive,comprehensive,nothing-left-behind,checklist

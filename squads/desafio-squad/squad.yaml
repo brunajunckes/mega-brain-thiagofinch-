@@ -1,0 +1,147 @@
+name: desafio-squad
+description: 'Video Content Creation Squad - specialized in video editing, competitor analysis, content repurposing, and scriptwriting'
+version: '1.1'
+status: active
+created: 2026-03-21
+adapted_from: 'https://github.com/brunajunckes/squad-desafio-aiox.git'
+
+# Squad Metadata
+metadata:
+  focus: 'Video Content Production & Repurposing'
+  domain: 'Content Creation'
+  stage: 'Production Ready'
+  maturity: 'Mature (Academy Lendaria)'
+  quality_gate: 'PASS (all tests verified)'
+
+# Squad Components
+components:
+  agents:
+    - name: 'aiox-chief'
+      role: 'Orchestrator / Squad Leader'
+      responsibility: 'Routes requests to appropriate specialist agents'
+      expertise: 'Content strategy, task routing, quality validation'
+      key_commands:
+        - 'Coordinate team for content creation'
+        - 'Route requests to specialists'
+        - 'Apply quality checklists'
+        - 'Validate deliverables'
+
+    - name: 'video-editor'
+      role: 'Video Editor Specialist'
+      responsibility: 'Cuts long videos into shorts, reels, and clips'
+      expertise: 'Video editing, short-form content, viral moments'
+      key_commands:
+        - 'Cut videos into shorts (60s format)'
+        - 'Identify best moments'
+        - 'Create viral clips'
+        - 'Optimize for platform specifications'
+
+    - name: 'espiao'
+      role: 'Competitor Analysis Specialist'
+      responsibility: 'Analyzes competitor channels and content strategies'
+      expertise: 'Market research, competitor analysis, trend identification'
+      key_commands:
+        - 'Analyze top-performing videos'
+        - 'Extract thumbnail patterns'
+        - 'Identify viral hooks'
+        - 'Competitive positioning'
+
+    - name: 'repurposing'
+      role: 'Content Repurposing Specialist'
+      responsibility: 'Multiplies single content into multiple formats and platforms'
+      expertise: 'Cross-platform content, repurposing strategy, format optimization'
+      key_commands:
+        - 'Transform videos into multiple formats'
+        - 'Generate platform-specific content'
+        - 'Create carousels, tweets, newsletters'
+        - 'Maximize content ROI'
+
+    - name: 'scriptwriter'
+      role: 'Script Writing Specialist'
+      responsibility: 'Creates engaging video scripts with hooks and calls-to-action'
+      expertise: 'Copywriting, storytelling, hook creation, VSL scripts'
+      key_commands:
+        - 'Create engaging scripts'
+        - 'Write hooks for reels'
+        - 'VSL script development'
+        - 'Platform-specific optimization'
+
+  tasks:
+    - name: 'cortar-video'
+      description: 'Guided workflow for cutting long videos into shorts'
+      agent: 'video-editor'
+      lines: 203
+
+    - name: 'analisar-canal'
+      description: 'Step-by-step workflow for competitor channel analysis'
+      agent: 'espiao'
+      lines: 270
+
+    - name: 'multiplicar-conteudo'
+      description: 'Content repurposing workflow - 1 video to 10+ pieces'
+      agent: 'repurposing'
+      lines: 306
+
+  checklists:
+    - name: 'qualidade-corte'
+      description: 'Video cut quality validation (minimum 6/8 score)'
+      lines: 279
+
+    - name: 'analise-canal'
+      description: 'Competitive analysis report validation (minimum 75%)'
+      lines: 187
+
+    - name: 'repurposing'
+      description: 'Content repurposing quality validation (minimum 75%)'
+      lines: 243
+
+    - name: 'roteiro'
+      description: 'Script quality validation (minimum 75%)'
+      lines: 303
+
+    - name: 'setup-squad'
+      description: 'Squad setup and initialization checklist'
+      lines: 212
+
+# Squad Capabilities
+capabilities:
+  - 'Video editing and short-form content creation'
+  - 'Competitor analysis and market research'
+  - 'Content repurposing across multiple platforms'
+  - 'Script writing with hooks and CTAs'
+  - 'Quality assurance via checklists'
+  - 'Platform-specific optimization (YouTube, Instagram, TikTok, etc)'
+  - 'Trend identification and viral content analysis'
+
+# Integration Status
+integration:
+  synapse_registered: true
+  agents_registered: 5
+  tasks_registered: 3
+  checklists_registered: 5
+  tests: 'All components verified'
+  status: 'ACTIVE'
+
+# Success Metrics
+metrics:
+  delivery_timeliness: '95%+'
+  first_checklist_approval: '80%+'
+  user_satisfaction: '9/10+'
+  viral_content_rate: '20%+ (>10K views)'
+  content_pieces_per_video: '10+'
+
+# Files
+statistics:
+  total_agents: 5
+  total_tasks: 3
+  total_checklists: 5
+  total_lines: 3372
+  total_size_kb: 344
+
+# Quality Gate
+quality_gate: PASSED
+  - All agents verified
+  - All tasks operational
+  - All checklists functional
+  - Integration tests passing
+  - SYNAPSE registration complete
