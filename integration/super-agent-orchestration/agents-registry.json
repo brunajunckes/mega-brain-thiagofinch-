@@ -1,0 +1,84 @@
+{
+      "version": "2.0.0",
+      "workflow": {
+              "leader": "aiox-master",
+              "leaderElection": {
+                        "strategy": "score-based",
+                        "criteria": ["task-completion-rate", "coordination-efficiency", "agent-feedback"],
+                        "evaluationInterval": "per-sprint",
+                        "fallbackLeader": "workflow-orchestrator"
+              },
+              "phases": ["planning", "development", "qa", "deployment"],
+              "delegationModel": "hierarchical"
+      },
+      "agents": {
+              "aiox": [
+                        {"id": "aiox-master", "role": "Orchestration master & Leader", "phase": "meta", "rank": 1, "canLead": true, "skills": ["coordination", "delegation", "monitoring", "conflict-resolution"]},
+                        {"id": "aiox-orchestrator", "role": "Workflow coordination", "phase": "meta", "rank": 2, "canLead": true, "skills": ["workflow-design", "task-routing", "load-balancing"]},
+                        {"id": "analyst", "role": "Business analysis and PRD", "phase": "planning", "rank": 3, "canLead": false, "skills": ["requirements", "market-analysis", "prd-creation"]},
+                        {"id": "pm", "role": "Product management", "phase": "planning", "rank": 3, "canLead": false, "skills": ["roadmap", "prioritization", "stakeholder-mgmt"]},
+                        {"id": "architect", "role": "System design", "phase": "planning", "rank": 3, "canLead": true, "skills": ["system-design", "tech-stack", "scalability"]},
+                        {"id": "ux-expert", "role": "UX design", "phase": "planning", "rank": 4, "canLead": false, "skills": ["user-research", "wireframing", "prototyping"]},
+                        {"id": "sm", "role": "Sprint management", "phase": "development", "rank": 3, "canLead": false, "skills": ["scrum", "sprint-planning", "velocity-tracking"]},
+                        {"id": "dev", "role": "Implementation", "phase": "development", "rank": 4, "canLead": false, "skills": ["coding", "debugging", "code-review"]},
+                        {"id": "qa", "role": "Quality assurance", "phase": "development", "rank": 4, "canLead": false, "skills": ["testing", "automation", "bug-tracking"]},
+                        {"id": "po", "role": "Product Owner", "phase": "development", "rank": 3, "canLead": false, "skills": ["backlog", "acceptance-criteria", "user-stories"]},
+                        {"id": "data-engineer", "role": "Database engineering", "phase": "development", "rank": 4, "canLead": false, "skills": ["sql", "nosql", "data-modeling", "etl"]},
+                        {"id": "devops", "role": "CI/CD and infrastructure", "phase": "development", "rank": 4, "canLead": false, "skills": ["ci-cd", "monitoring", "infrastructure"]}
+              ],
+              "claude": {
+                        "core-dev": ["api-designer", "backend-developer", "frontend-developer", "fullstack-developer"],
+                        "languages": ["typescript-pro", "python-pro", "rust-engineer", "react-specialist", "nextjs-developer"],
+                        "infrastructure": ["terraform-engineer", "kubernetes-specialist", "cloud-architect", "docker-expert", "sre-engineer"],
+                        "quality": ["security-auditor", "penetration-tester", "performance-engineer", "code-reviewer", "qa-expert"],
+                        "data-ai": ["ml-engineer", "data-scientist", "llm-architect", "mlops-engineer", "data-pipeline-engineer"],
+                        "nlp-qa": ["xquad-evaluator", "cross-lingual-qa", "squad-specialist", "multilingual-nlp", "benchmark-analyst"],
+                        "meta": ["workflow-orchestrator", "multi-agent-coordinator", "task-distributor"]
+              },
+              "xquad": {
+                        "id": "xquad-evaluator",
+                        "role": "Cross-lingual Question Answering evaluation specialist",
+                        "source": "google-deepmind/xquad",
+                        "license": "CC-BY-SA-4.0",
+                        "capabilities": [
+                                    "cross-lingual-qa-evaluation",
+                                    "multilingual-benchmark",
+                                    "squad-format-processing",
+                                    "zero-shot-transfer-evaluation",
+                                    "f1-em-scoring"
+                        ],
+                        "supportedLanguages": ["ar", "de", "el", "en", "es", "hi", "ro", "ru", "th", "tr", "vi", "zh"],
+                        "dataFiles": {
+                                    "ar": "xquad.ar.json",
+                                    "de": "xquad.de.json",
+                                    "el": "xquad.el.json",
+                                    "en": "xquad.en.json",
+                                    "es": "xquad.es.json",
+                                    "hi": "xquad.hi.json",
+                                    "ro": "xquad.ro.json",
+                                    "ru": "xquad.ru.json",
+                                    "th": "xquad.th.json",
+                                    "tr": "xquad.tr.json",
+                                    "vi": "xquad.vi.json",
+                                    "zh": "xquad.zh.json"
+                        },
+                        "integration": {
+                                    "adapter": "integration/xquad-agent.js",
+                                    "squad": "data-ai",
+                                    "phase": "qa"
+                        }
+              }
+      },
+      "leaderboard": {
+              "description": "Agent ranking based on performance metrics",
+              "metrics": ["tasks-completed", "accuracy", "speed", "collaboration-score"],
+              "currentLeader": "aiox-master",
+              "rankings": [
+                        {"agent": "aiox-master", "score": 98, "reason": "Best coordination, full-stack orchestration, conflict resolution"},
+                        {"agent": "workflow-orchestrator", "score": 95, "reason": "Excellent workflow design, strong task routing"},
+                        {"agent": "architect", "score": 93, "reason": "Superior system design, scalability expertise"},
+                        {"agent": "analyst", "score": 90, "reason": "Strong requirements analysis, market insights"},
+                        {"agent": "xquad-evaluator", "score": 88, "reason": "Cross-lingual QA expertise, multilingual benchmark specialist"}
+              ]
+      }
+}
