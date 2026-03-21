@@ -1,6 +1,6 @@
 metadata:
   version: 1.0.0
-  lastUpdated: '2026-03-21T01:27:21.148Z'
+  lastUpdated: '2026-03-21T01:32:31.362Z'
   entityCount: 954
   checksumAlgorithm: sha256
   resolutionRate: 100
@@ -10246,15 +10246,12 @@ entities:
       usedBy:
         - benchmarks.test
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.4
         constraints: []
         extensionPoints: []
       checksum: sha256:633ad744944ae32f840ac27adb1c89d8a5b9c2294c84a97cb43f1cef6c636ac6
-      lastVerified: '2026-03-21T01:27:19.156Z'
+      lastVerified: '2026-03-21T01:32:31.357Z'
     bob-orchestrator:
       path: .aiox-core/core/orchestration/bob-orchestrator.js
       layer: L1
