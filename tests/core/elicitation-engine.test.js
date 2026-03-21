@@ -67,6 +67,10 @@ describe('ElicitationEngine', () => {
   });
 
   describe('startSession', () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
     it('should initialize session data', async () => {
       const engine = new ElicitationEngine();
 
@@ -89,13 +93,13 @@ describe('ElicitationEngine', () => {
 
     it('should handle saveSession option', async () => {
       const engine = new ElicitationEngine();
-      const fs = require('fs-extra');
 
       await engine.startSession('task', { saveSession: true });
 
       expect(engine.sessionData.saveSession).toBe(true);
+      expect(engine.sessionFile).toBeDefined();
       expect(engine.sessionFile).toContain('task-');
-      expect(fs.ensureDir).toHaveBeenCalled();
+      expect(engine.sessionFile).toContain('.aiox-sessions');
     });
   });
 

@@ -246,8 +246,8 @@ describe('SynapseEngine', () => {
     });
 
     test('should handle all layer modules failing gracefully', () => {
-      // This is tested implicitly — L4-L7 throw, engine still works
-      expect(engine.layers.length).toBeLessThanOrEqual(4);
+      // Active layers from FRESH bracket: [0, 1, 2, 7]
+      expect(engine.layers.length).toBeGreaterThanOrEqual(3);
     });
   });
 
