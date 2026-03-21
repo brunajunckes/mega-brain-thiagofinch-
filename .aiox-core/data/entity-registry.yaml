@@ -1,7 +1,7 @@
 metadata:
   version: 1.0.0
-  lastUpdated: '2026-03-06T11:53:37.887Z'
-  entityCount: 745
+  lastUpdated: '2026-03-21T01:11:40.061Z'
+  entityCount: 846
   checksumAlgorithm: sha256
   resolutionRate: 100
 entities:
@@ -1080,7 +1080,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:64abe2114fc3ab6b0494375c6401aa6a8213c63b1dc18ffac729d2acf1161a2c
-      lastVerified: '2026-03-06T11:53:37.089Z'
+      lastVerified: '2026-03-21T01:11:40.026Z'
     create-worktree:
       path: .aiox-core/development/tasks/create-worktree.md
       layer: L2
@@ -5513,6 +5513,391 @@ entities:
         extensionPoints: []
       checksum: sha256:484409d3b069c30a14ba28873388567f06d613e6feb9acb14537434d1db03446
       lastVerified: '2026-03-06T11:53:37.237Z'
+    analise-astrologica-semanal:
+      path: .aiox-core/development/tasks/analise-astrologica-semanal.md
+      layer: L2
+      type: task
+      purpose: Analise Astrologica Semanal
+      keywords:
+        - analise
+        - astrologica
+        - semanal
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:7d00a4f2c353bffabd5e0f31f6110f8d1e29a35b089101b2fe1972a5f632c320
+      lastVerified: '2026-03-21T01:11:40.023Z'
+    analise-final-conteudo:
+      path: .aiox-core/development/tasks/analise-final-conteudo.md
+      layer: L2
+      type: task
+      purpose: Analise Final de Conteudo
+      keywords:
+        - analise
+        - final
+        - conteudo
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:be5c439c5f8bc7ee20c96464fe8c46ea571a44ae2f75570ed973fe5ff9516a5d
+      lastVerified: '2026-03-21T01:11:40.024Z'
+    clickup-backlog-grooming:
+      path: .aiox-core/development/tasks/clickup-backlog-grooming.md
+      layer: L2
+      type: task
+      purpose: '** Refine Product Backlog: prioritize, estimate, and break down items'
+      keywords:
+        - clickup
+        - backlog
+        - grooming
+        - 'task:'
+        - via
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:90b9895ef90697b6f6ca9d6c909acb1cfa526ad86292402531ce30b1a9550eda
+      lastVerified: '2026-03-21T01:11:40.024Z'
+    clickup-board-status:
+      path: .aiox-core/development/tasks/clickup-board-status.md
+      layer: L2
+      type: task
+      purpose: '** Show current Sprint Board status from ClickUp data'
+      keywords:
+        - clickup
+        - board
+        - status
+        - 'task:'
+        - via
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:6d97e0bba1dd071b433a521e79ed2c4958cbae896bad58194083f882e758767c
+      lastVerified: '2026-03-21T01:11:40.024Z'
+    clickup-create-task:
+      path: .aiox-core/development/tasks/clickup-create-task.md
+      layer: L2
+      type: task
+      purpose: '** Create a task in ClickUp with full Scrum metadata'
+      keywords:
+        - clickup
+        - create
+        - task
+        - 'task:'
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:ac254d1d45520fd2c9c01c2e221352ff03c42d2d17823c6ce48e7cf507dd8c68
+      lastVerified: '2026-03-21T01:11:40.024Z'
+    clickup-daily-standup:
+      path: .aiox-core/development/tasks/clickup-daily-standup.md
+      layer: L2
+      type: task
+      purpose: '** Run async Daily Scrum by analyzing task status in ClickUp'
+      keywords:
+        - clickup
+        - daily
+        - standup
+        - 'task:'
+        - via
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:f34f2ded96b268036d935e53f919eb82e07aa7d40d7175f1b336b38e60ad3f68
+      lastVerified: '2026-03-21T01:11:40.024Z'
+    clickup-retrospective:
+      path: .aiox-core/development/tasks/clickup-retrospective.md
+      layer: L2
+      type: task
+      purpose: '** Facilitate Sprint Retrospective and create action items in ClickUp'
+      keywords:
+        - clickup
+        - retrospective
+        - 'task:'
+        - sprint
+        - via
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:b06df0fbc92fa279d9fc781ba4189e2d31516055b980df5194432f155e4027e7
+      lastVerified: '2026-03-21T01:11:40.025Z'
+    clickup-sprint-planning:
+      path: .aiox-core/development/tasks/clickup-sprint-planning.md
+      layer: L2
+      type: task
+      purpose: '** Facilitate Sprint Planning ceremony and create Sprint Backlog in ClickUp'
+      keywords:
+        - clickup
+        - sprint
+        - planning
+        - 'task:'
+        - via
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:6147bc63f1199f3ee057973ff16a6d520d90465e9a08895aa4a9fdca9a1795b3
+      lastVerified: '2026-03-21T01:11:40.025Z'
+    clickup-sprint-review:
+      path: .aiox-core/development/tasks/clickup-sprint-review.md
+      layer: L2
+      type: task
+      purpose: '** Generate Sprint Review report from ClickUp data'
+      keywords:
+        - clickup
+        - sprint
+        - review
+        - 'task:'
+        - via
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:b1496d9e0d36b22ca17f1ca4f4ea01e09e23362a09995c25747e98d7e21df4cf
+      lastVerified: '2026-03-21T01:11:40.025Z'
+    clickup-sync-notion:
+      path: .aiox-core/development/tasks/clickup-sync-notion.md
+      layer: L2
+      type: task
+      purpose: '** Read prompt from Notion page and execute it in ClickUp context'
+      keywords:
+        - clickup
+        - sync
+        - notion
+        - 'task:'
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:50bdcee4ae8c8e35a4b7b462fa7efd0a7f5c25b6984b574553ddd6d33e258d57
+      lastVerified: '2026-03-21T01:11:40.025Z'
+    clickup-velocity-report:
+      path: .aiox-core/development/tasks/clickup-velocity-report.md
+      layer: L2
+      type: task
+      purpose: '** Calculate team velocity from historical sprint data'
+      keywords:
+        - clickup
+        - velocity
+        - report
+        - 'task:'
+        - via
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:32189e0347e03be31f03472b16c63fabbe0a46104b4485134ff598245c476501
+      lastVerified: '2026-03-21T01:11:40.025Z'
+    conferencia-astrologica:
+      path: .aiox-core/development/tasks/conferencia-astrologica.md
+      layer: L2
+      type: task
+      purpose: Relatorio original + header de aprovacao + score
+      keywords:
+        - conferencia
+        - astrologica
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:913a8ff16a3c2c368b2eb7eec6b41a300ff4f77befd8e1453ddbcf26acb0ed36
+      lastVerified: '2026-03-21T01:11:40.026Z'
+    criar-ritual-criativo:
+      path: .aiox-core/development/tasks/criar-ritual-criativo.md
+      layer: L2
+      type: task
+      purpose: Criar Ritual Criativo Semanal
+      keywords:
+        - criar
+        - ritual
+        - criativo
+        - semanal
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:781465301ce9a87b7256e3af5deb2f722ad11f3593f5411d1d03392f3c1861e6
+      lastVerified: '2026-03-21T01:11:40.026Z'
+    criar-roteiro-video-analise:
+      path: .aiox-core/development/tasks/criar-roteiro-video-analise.md
+      layer: L2
+      type: task
+      purpose: Criar Roteiro de Video — Analise Astrologica Semanal
+      keywords:
+        - criar
+        - roteiro
+        - video
+        - analise
+        - astrologica
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:a9ebf893fa5a5fae42fd3c7c0e48104220801e56b1617b88bd63aafd39b91a71
+      lastVerified: '2026-03-21T01:11:40.029Z'
+    criar-roteiros-12-casas:
+      path: .aiox-core/development/tasks/criar-roteiros-12-casas.md
+      layer: L2
+      type: task
+      purpose: Criar Roteiros de Audio — 12 Casas/Ascendentes
+      keywords:
+        - criar
+        - roteiros
+        - '12'
+        - casas
+        - audio
+        - casas/ascendentes
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:f3b11a93088e05c17128fed1ced09f857e4887452cc9d72d70f5f1dd5d59309b
+      lastVerified: '2026-03-21T01:11:40.030Z'
+    criar-spoiler-semanal:
+      path: .aiox-core/development/tasks/criar-spoiler-semanal.md
+      layer: L2
+      type: task
+      purpose: Criar Spoiler Astrologico Semanal
+      keywords:
+        - criar
+        - spoiler
+        - semanal
+        - astrologico
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:d4b5f9857c0f7ab4dfaff9115d561f966fea8635af3ca80bbd3cd63e7d120b1f
+      lastVerified: '2026-03-21T01:11:40.030Z'
+    curadoria-cultural-semanal:
+      path: .aiox-core/development/tasks/curadoria-cultural-semanal.md
+      layer: L2
+      type: task
+      purpose: Curadoria Cultural Semanal
+      keywords:
+        - curadoria
+        - cultural
+        - semanal
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:14d0fdc4860485e43d11c2b9dc794653a7fa3f07f989c0137939ac47687ee41a
+      lastVerified: '2026-03-21T01:11:40.030Z'
+    export-notion-semanal:
+      path: .aiox-core/development/tasks/export-notion-semanal.md
+      layer: L2
+      type: task
+      purpose: Export para Notion — Conteudo Semanal Pelicula Sideral
+      keywords:
+        - export
+        - notion
+        - semanal
+        - para
+        - conteudo
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:4be8733a4919ec445ea652817f12c235cb1dfa7d8b2460dca7fc703676cee27b
+      lastVerified: '2026-03-21T01:11:40.030Z'
+    export-substack:
+      path: .aiox-core/development/tasks/export-substack.md
+      layer: L2
+      type: task
+      purpose: Export para Substack
+      keywords:
+        - export
+        - substack
+        - para
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:cff072ccc43fa59575d7cf43c6d69679ececc0ed47f8c97111d4ec96d946af68
+      lastVerified: '2026-03-21T01:11:40.031Z'
+    feedback-usuario-post:
+      path: .aiox-core/development/tasks/feedback-usuario-post.md
+      layer: L2
+      type: task
+      purpose: Feedback do Usuario — Post Substack
+      keywords:
+        - feedback
+        - usuario
+        - post
+        - substack
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:dfb1bd6f6238e3c542fa8dedda12c6472b90eb0631bd8d3529707b90f25c6c31
+      lastVerified: '2026-03-21T01:11:40.031Z'
+    update-aios:
+      path: .aiox-core/development/tasks/update-aios.md
+      layer: L2
+      type: task
+      purpose: >-
+        Git-native sync of AIOS framework from upstream repository. Uses sparse clone + file comparison for safe review
+        before applying changes. All local customizations preserved automatically by backup/rest
+      keywords:
+        - update
+        - aios
+        - 'task:'
+        - framework
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.8
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:e2211bb2a4976893a4867025c6fe40fcbc178abcbac9eb250def83e67590b00f
+      lastVerified: '2026-03-21T01:11:40.031Z'
   templates:
     activation-instructions-inline-greeting:
       path: .aiox-core/product/templates/activation-instructions-inline-greeting.yaml
@@ -6698,8 +7083,7 @@ entities:
       keywords:
         - activation
         - runtime
-      usedBy:
-        - generate-greeting
+      usedBy: []
       dependencies:
         - unified-activation-pipeline
       externalDeps: []
@@ -6740,9 +7124,7 @@ entities:
         - agent
         - config
         - loader
-      usedBy:
-        - unified-activation-pipeline
-        - config-loader
+      usedBy: []
       dependencies:
         - config-cache
         - performance-tracker
@@ -6846,10 +7228,7 @@ entities:
       keywords:
         - backlog
         - manager
-      usedBy:
-        - dev-backlog-debt
-        - po-backlog-add
-        - qa-backlog-add-followup
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -6993,8 +7372,7 @@ entities:
       keywords:
         - decision
         - context
-      usedBy:
-        - decision-recorder
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -7019,9 +7397,7 @@ entities:
         - state
         - before
         - execution
-      usedBy:
-        - decision-recorder
-        - dev
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -7041,8 +7417,7 @@ entities:
         - decision
         - log
         - indexer
-      usedBy:
-        - decision-recorder
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -7061,8 +7436,7 @@ entities:
       keywords:
         - decision
         - recorder
-      usedBy:
-        - dev-develop-story
+      usedBy: []
       dependencies:
         - decision-context
         - decision-log-generator
@@ -7164,8 +7538,7 @@ entities:
         - elicitation
         - session
         - manager
-      usedBy:
-        - elicitation-engine
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -7224,9 +7597,7 @@ entities:
       keywords:
         - greeting
         - builder
-      usedBy:
-        - test-greeting-system
-        - unified-activation-pipeline
+      usedBy: []
       dependencies:
         - context-detector
         - git-config-detector
@@ -7277,10 +7648,7 @@ entities:
         - greeting
         - preference
         - manager
-      usedBy:
-        - greeting-builder
-        - greeting-config-cli
-        - unified-activation-pipeline
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -7318,8 +7686,7 @@ entities:
       keywords:
         - manifest
         - preview
-      usedBy:
-        - component-generator
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps:
@@ -7339,8 +7706,7 @@ entities:
       keywords:
         - metrics
         - tracker
-      usedBy:
-        - improve-self
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -7402,8 +7768,7 @@ entities:
       keywords:
         - pattern
         - learner
-      usedBy:
-        - learn-patterns
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -7541,8 +7906,7 @@ entities:
         - story
         - index
         - generator
-      usedBy:
-        - po-stories-index
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -7561,11 +7925,7 @@ entities:
       keywords:
         - story
         - manager
-      usedBy:
-        - po-pull-story-from-clickup
-        - po-pull-story
-        - po-sync-story-to-clickup
-        - po-sync-story
+      usedBy: []
       dependencies:
         - story-update-hook
         - tool-resolver
@@ -7588,8 +7948,7 @@ entities:
         - story
         - update
         - hook
-      usedBy:
-        - story-manager
+      usedBy: []
       dependencies:
         - clickup-helpers
       externalDeps: []
@@ -7729,8 +8088,7 @@ entities:
         - unified
         - activation
         - pipeline
-      usedBy:
-        - activation-runtime
+      usedBy: []
       dependencies:
         - greeting-builder
         - agent-config-loader
@@ -7760,8 +8118,7 @@ entities:
       keywords:
         - usage
         - tracker
-      usedBy:
-        - deprecate-component
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -7864,10 +8221,7 @@ entities:
       keywords:
         - workflow
         - navigator
-      usedBy:
-        - greeting-builder
-        - unified-activation-pipeline
-        - verify-workflow-gaps
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -7888,9 +8242,7 @@ entities:
         - state
         - manager
       usedBy:
-        - next
         - run-workflow-engine
-        - verify-workflow-gaps
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -7912,9 +8264,6 @@ entities:
       usedBy:
         - run-workflow-engine
         - validate-workflow
-        - verify-workflow-gaps
-        - squad-validator
-        - framework-analyzer
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -7978,8 +8327,7 @@ entities:
       keywords:
         - squad
         - analyzer
-      usedBy:
-        - squad-creator-analyze
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -8002,7 +8350,6 @@ entities:
         - '*design-squad'
       usedBy:
         - squad-creator-design
-        - index
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -8021,8 +8368,7 @@ entities:
       keywords:
         - squad
         - downloader
-      usedBy:
-        - index
+      usedBy: []
       dependencies:
         - squad-validator
         - squad-loader
@@ -8044,8 +8390,7 @@ entities:
         - squad
         - extender
         - ${context.componentname}
-      usedBy:
-        - squad-creator-extend
+      usedBy: []
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -8069,7 +8414,6 @@ entities:
       usedBy:
         - squad-creator-create
         - squad-creator-list
-        - index
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -8093,9 +8437,6 @@ entities:
         - squad-creator-create
         - squad-creator-extend
         - squad-creator-validate
-        - index
-        - squad-downloader
-        - squad-publisher
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -8116,7 +8457,6 @@ entities:
         - migrator
       usedBy:
         - squad-creator-migrate
-        - index
       dependencies: []
       externalDeps: []
       plannedDeps: []
@@ -8135,8 +8475,7 @@ entities:
       keywords:
         - squad
         - publisher
-      usedBy:
-        - index
+      usedBy: []
       dependencies:
         - squad-validator
         - squad-loader
@@ -8159,13 +8498,8 @@ entities:
         - validator
       usedBy:
         - squad-creator-create
-        - squad-creator-extend
         - squad-creator-migrate
         - squad-creator-validate
-        - verify-workflow-gaps
-        - index
-        - squad-downloader
-        - squad-publisher
       dependencies:
         - workflow-validator
       externalDeps: []
@@ -8521,11 +8855,7 @@ entities:
       keywords:
         - elicitation
         - engine
-      usedBy:
-        - index.esm
-        - index
-        - batch-creator
-        - component-generator
+      usedBy: []
       dependencies:
         - session-manager
         - security-checker
@@ -9033,25 +9363,22 @@ entities:
       checksum: sha256:d9108fa47ed7a9131703739befb214b97d5b8e546faf1b49d8ae9d083756c589
       lastVerified: '2026-03-06T11:53:37.370Z'
     circuit-breaker:
-      path: .aiox-core/core/ids/circuit-breaker.js
+      path: .aiox-core/core/orchestration/circuit-breaker.js
       layer: L1
       type: module
-      purpose: Entity at .aiox-core\core\ids\circuit-breaker.js
+      purpose: Entity at .aiox-core/core/orchestration/circuit-breaker.js
       keywords:
         - circuit
         - breaker
       usedBy:
         - verification-gate
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.4
         constraints: []
         extensionPoints: []
-      checksum: sha256:1b35331ba71a6ce17869bab255e087fc540291243f9884fc21ed89f7efc122a4
-      lastVerified: '2026-03-06T11:53:37.370Z'
+      checksum: sha256:6744ce4f063fbdf1c0f59e97efcf94e900a5df5fb65518bb6c01a45bc946f50e
+      lastVerified: '2026-03-21T01:11:40.008Z'
     framework-governor:
       path: .aiox-core/core/ids/framework-governor.js
       layer: L1
@@ -12778,6 +13105,22 @@ entities:
         extensionPoints: []
       checksum: sha256:dd025894f8f0d3bd22a147dbc0debef8b83e96f3c59483653404b3cd5a01d5aa
       lastVerified: '2026-03-06T11:53:37.512Z'
+    degradation-manager:
+      path: .aiox-core/core/orchestration/degradation-manager.js
+      layer: L1
+      type: module
+      purpose: Entity at .aiox-core/core/orchestration/degradation-manager.js
+      keywords:
+        - degradation
+        - manager
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.4
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:e6585b332bed028992f44528b21ef55188ecf4a5217fed93edab94dc2d0aef3f
+      lastVerified: '2026-03-21T01:11:40.009Z'
   agents:
     aiox-master:
       path: .aiox-core/development/agents/aiox-master.md
@@ -13621,6 +13964,227 @@ entities:
         extensionPoints: []
       checksum: sha256:b8b52820ba1929ba12403fc437868dd9e8a9c2532abe99296ad05864618693b0
       lastVerified: '2026-03-06T11:53:37.569Z'
+    astro-analyst:
+      path: .aiox-core/development/agents/astro/astro-analyst.md
+      layer: L2
+      type: agent
+      purpose: '''Envolve planetas lentos (Plutao, Netuno, Urano) em aspectos tensos'''
+      keywords:
+        - astro
+        - analyst
+        - astro-analyst
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.3
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:c22e97ca66b58c44aa57ae2b81ebd0ac844d3e11769fe518f642714c57be0ffd
+      lastVerified: '2026-03-21T01:11:40.018Z'
+    astro-casas:
+      path: .aiox-core/development/agents/astro/astro-casas.md
+      layer: L2
+      type: agent
+      purpose: '>-'
+      keywords:
+        - astro
+        - casas
+        - astro-casas
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.3
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:5392a26ac874f5e45e0124f978626e86cbc7c895e51ac42d14d3e21e107fbbfe
+      lastVerified: '2026-03-21T01:11:40.019Z'
+    astro-conferencia:
+      path: .aiox-core/development/agents/astro/astro-conferencia.md
+      layer: L2
+      type: agent
+      purpose: '"Graus, signos, orbes, aspectos conferem com o JSON"'
+      keywords:
+        - astro
+        - conferencia
+        - astro-conferencia
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.3
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:821d0bb8846d5fe63f00e780276eb214c23af15e5a6beb7e0bdd957f715f19a7
+      lastVerified: '2026-03-21T01:11:40.019Z'
+    astro-curador:
+      path: .aiox-core/development/agents/astro/astro-curador.md
+      layer: L2
+      type: agent
+      purpose: '''Mostra comandos disponiveis'''
+      keywords:
+        - astro
+        - curador
+        - astro-curador
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.3
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:40eaa23910878c7278ff4f469987aab9ae63dab33dd05b797d03fec97790ee25
+      lastVerified: '2026-03-21T01:11:40.019Z'
+    astro-editor:
+      path: .aiox-core/development/agents/astro/astro-editor.md
+      layer: L2
+      type: agent
+      purpose: '''Mostra comandos disponiveis'''
+      keywords:
+        - astro
+        - editor
+        - astro-editor
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.3
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:3e246b20ca390064400b527386157d4f1b810ca22b6f604ed8db47856b1fa0f6
+      lastVerified: '2026-03-21T01:11:40.020Z'
+    astro-ritualista:
+      path: .aiox-core/development/agents/astro/astro-ritualista.md
+      layer: L2
+      type: agent
+      purpose: '''Mostra comandos disponiveis'''
+      keywords:
+        - astro
+        - ritualista
+        - astro-ritualista
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.3
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:b055f747e85ce9c89adef855a6b3426c80f0dfe0899c82b67edd7bad72a63b12
+      lastVerified: '2026-03-21T01:11:40.020Z'
+    astro-roteirista:
+      path: .aiox-core/development/agents/astro/astro-roteirista.md
+      layer: L2
+      type: agent
+      purpose: '"Aula semanal da comunidade Camarin Sideral"'
+      keywords:
+        - astro
+        - roteirista
+        - astro-roteirista
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.3
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:df13409ee584b455fd7087430bc5cb789da334322d6026609a07d8414dc2775d
+      lastVerified: '2026-03-21T01:11:40.020Z'
+    astro-writer:
+      path: .aiox-core/development/agents/astro/astro-writer.md
+      layer: L2
+      type: agent
+      purpose: '''Problema→Agitacao→Solucao. O leitor sente a dor antes de saber da solucao.'''
+      keywords:
+        - astro
+        - writer
+        - astro-writer
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.3
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:aea4b5a6065732ddac548f341cd5e0b5635e99443816a3ec55a59482db3bd393
+      lastVerified: '2026-03-21T01:11:40.021Z'
+    frontend-lead:
+      path: .aiox-core/development/agents/business/frontend-lead.md
+      layer: L2
+      type: agent
+      purpose: Show all available commands
+      keywords:
+        - frontend
+        - lead
+        - frontend-lead
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.3
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:e3e6a742eb45b1ce842c42b0c85d7a6f98b8e3480a600281f21596b84d640f12
+      lastVerified: '2026-03-21T01:11:40.021Z'
+    mentor-negocios:
+      path: .aiox-core/development/agents/business/mentor-negocios.md
+      layer: L2
+      type: agent
+      purpose: '''Mostrar todos os comandos disponiveis'''
+      keywords:
+        - mentor
+        - negocios
+        - mentor-negocios
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.3
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:a338c9dc6dabb68382d14b5532cc4e5b3c62a377cb0c34211ce06ad7ef17f835
+      lastVerified: '2026-03-21T01:11:40.021Z'
+    payments-eng:
+      path: .aiox-core/development/agents/business/payments-eng.md
+      layer: L2
+      type: agent
+      purpose: Show all available commands
+      keywords:
+        - payments
+        - eng
+        - payments-eng
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.3
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:311d67dcb914418d1b7b875e1412021e8247dd6c3a209c0bbdc081be045780d2
+      lastVerified: '2026-03-21T01:11:40.022Z'
+    supabase-eng:
+      path: .aiox-core/development/agents/business/supabase-eng.md
+      layer: L2
+      type: agent
+      purpose: Show all available commands
+      keywords:
+        - supabase
+        - eng
+        - supabase-eng
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.3
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:5201959492a79839d567885e4a515176491519d02ad099605dacf2259e149a83
+      lastVerified: '2026-03-21T01:11:40.022Z'
+    clickup-scrum:
+      path: .aiox-core/development/agents/clickup-scrum.md
+      layer: L2
+      type: agent
+      purpose: '''Facilitate Sprint Planning ceremony in ClickUp'''
+      keywords:
+        - clickup
+        - scrum
+        - clickup-scrum
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.3
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:cffcd17beab03b1bffe9202557cf45a7c15d5965eae35680f8e3f27622e8dc97
+      lastVerified: '2026-03-21T01:11:40.022Z'
   checklists:
     agent-quality-gate:
       path: .aiox-core/development/checklists/agent-quality-gate.md
@@ -13730,6 +14294,45 @@ entities:
         extensionPoints: []
       checksum: sha256:158f21a6be7a7cbc90de0302678490887c2f88b1d79d925f77a8a2209d2ae003
       lastVerified: '2026-03-06T11:53:37.572Z'
+    clickup-scrum-quality-gate:
+      path: .aiox-core/development/checklists/clickup-scrum-quality-gate.md
+      layer: L2
+      type: checklist
+      purpose: '** Validate Scrum ceremonies and ClickUp operations quality'
+      keywords:
+        - clickup
+        - scrum
+        - quality
+        - gate
+        - 'checklist:'
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.6
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:1c38863daa1ed55664c054a4c1241ee1fb33d783d54682fe490a8dff82e3be7e
+      lastVerified: '2026-03-21T01:11:40.023Z'
+    universal-task-tracking-gate:
+      path: .aiox-core/development/checklists/universal-task-tracking-gate.md
+      layer: L2
+      type: checklist
+      purpose: '** Validate that the ClickUp Task Tracking protocol was followed during any work session'
+      keywords:
+        - universal
+        - task
+        - tracking
+        - gate
+        - 'checklist:'
+        - quality
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.6
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:7435a3713437e3f35d8342705f6a725fe98bdbf040e1dc9accd375f021fe1dff
+      lastVerified: '2026-03-21T01:11:40.023Z'
   data:
     agent-config-requirements:
       path: .aiox-core/data/agent-config-requirements.yaml
@@ -13937,7 +14540,7 @@ entities:
       checksum: sha256:d80a645a9c48b8ab8168ddbe36279662d72de4fb5cd8953a6685e5d1bd9968db
       lastVerified: '2026-03-06T11:53:37.596Z'
     csharp:
-      path: .aiox-core/data/tech-presets/csharp.md
+      path: .aiox-core/data/csharp.md
       layer: L3
       type: data
       purpose: '''Arquitetura para APIs em .NET 9+ com camadas claras, EF Core e testes automatizados'''
@@ -13947,17 +14550,14 @@ entities:
         - preset
       usedBy: []
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: orphan
       adaptability:
         score: 0.5
         constraints: []
         extensionPoints: []
       checksum: sha256:4667d33407c59fd6c7b4558370893a14df6d461645fc840b2df2fb7508bd6fcf
-      lastVerified: '2026-03-06T11:53:37.596Z'
+      lastVerified: '2026-03-21T01:11:40.015Z'
     go:
-      path: .aiox-core/data/tech-presets/go.md
+      path: .aiox-core/data/go.md
       layer: L3
       type: data
       purpose: '''Arquitetura para APIs e workers em Go 1.24+ com boundaries claros e alta testabilidade'''
@@ -13967,17 +14567,14 @@ entities:
         - preset
       usedBy: []
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: orphan
       adaptability:
         score: 0.5
         constraints: []
         extensionPoints: []
       checksum: sha256:e0851caecbdc2cea6531359fe640427685cd6ed664dbf991ccb135917c4d1ec2
-      lastVerified: '2026-03-06T11:53:37.596Z'
+      lastVerified: '2026-03-21T01:11:40.016Z'
     java:
-      path: .aiox-core/data/tech-presets/java.md
+      path: .aiox-core/data/java.md
       layer: L3
       type: data
       purpose: '''Arquitetura para backend Java 21+ com Spring Boot 3+, DDD tatico e testes robustos'''
@@ -13987,17 +14584,14 @@ entities:
         - preset
       usedBy: []
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: orphan
       adaptability:
         score: 0.5
         constraints: []
         extensionPoints: []
       checksum: sha256:b912e04412f63b59439f7cca119802bed95a6cb756221e3ba7aee45c3d2890fd
-      lastVerified: '2026-03-06T11:53:37.596Z'
+      lastVerified: '2026-03-21T01:11:40.016Z'
     nextjs-react:
-      path: .aiox-core/data/tech-presets/nextjs-react.md
+      path: .aiox-core/data/nextjs-react.md
       layer: L3
       type: data
       purpose: >-
@@ -14010,21 +14604,18 @@ entities:
         - tech
         - preset
       usedBy: []
-      dependencies: []
-      externalDeps: []
-      plannedDeps:
+      dependencies:
         - auth
         - user
         - '[feature]'
-      lifecycle: experimental
       adaptability:
         score: 0.5
         constraints: []
         extensionPoints: []
       checksum: sha256:558ce0abd112ca39853fc5150bd850862e5fcfac74c8def80c3876b60c9f5d33
-      lastVerified: '2026-03-06T11:53:37.597Z'
+      lastVerified: '2026-03-21T01:11:40.016Z'
     php:
-      path: .aiox-core/data/tech-presets/php.md
+      path: .aiox-core/data/php.md
       layer: L3
       type: data
       purpose: >-
@@ -14036,17 +14627,14 @@ entities:
         - preset
       usedBy: []
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: orphan
       adaptability:
         score: 0.5
         constraints: []
         extensionPoints: []
       checksum: sha256:847dde754e7a98c4d11328768483358d2be7d2f10e43b6703403237987620077
-      lastVerified: '2026-03-06T11:53:37.597Z'
+      lastVerified: '2026-03-21T01:11:40.016Z'
     rust:
-      path: .aiox-core/data/tech-presets/rust.md
+      path: .aiox-core/data/rust.md
       layer: L3
       type: data
       purpose: '''Arquitetura para APIs e workers em Rust 1.77+ com contratos por traits, errors tipados e testes confiaveis'''
@@ -14056,17 +14644,14 @@ entities:
         - preset
       usedBy: []
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: orphan
       adaptability:
         score: 0.5
         constraints: []
         extensionPoints: []
       checksum: sha256:58422e884e46660216d5389878ae2f0ab619da7d34f34ed1dff917dfd8fed7db
-      lastVerified: '2026-03-06T11:53:37.603Z'
+      lastVerified: '2026-03-21T01:11:40.017Z'
     _template:
-      path: .aiox-core/data/tech-presets/_template.md
+      path: .aiox-core/data/_template.md
       layer: L3
       type: data
       purpose: '''Brief description of when to use this preset'''
@@ -14076,15 +14661,243 @@ entities:
         - preset
       usedBy: []
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: orphan
       adaptability:
         score: 0.5
         constraints: []
         extensionPoints: []
       checksum: sha256:68b26930b728908b6097fc91956c8c446e5cc0dbe627e3b737495ebcd7e9569b
-      lastVerified: '2026-03-06T11:53:37.603Z'
+      lastVerified: '2026-03-21T01:11:40.009Z'
+    team-all:
+      path: .aiox-core/data/agent-teams/team-all.yaml
+      layer: L3
+      type: data
+      purpose: Includes every core system agent.
+      keywords:
+        - team
+        - all
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.5
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:368efa25930f89d33ee4178c7b77871ad2ca1437ca56376233b0c375a2cb311c
+      lastVerified: '2026-03-21T01:11:40.010Z'
+    team-fullstack:
+      path: .aiox-core/data/agent-teams/team-fullstack.yaml
+      layer: L3
+      type: data
+      purpose: Team capable of full stack, front end only, or service development.
+      keywords:
+        - team
+        - fullstack
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.5
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:0be99a3df841232203de1b382d416ddd7ce06d73b6a25572bd7d4e4b667b71ec
+      lastVerified: '2026-03-21T01:11:40.011Z'
+    team-ide-minimal:
+      path: .aiox-core/data/agent-teams/team-ide-minimal.yaml
+      layer: L3
+      type: data
+      purpose: Only the bare minimum for the IDE PO SM dev qa cycle.
+      keywords:
+        - team
+        - ide
+        - minimal
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.5
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:600b6795116fd74e66f3544679667fa4b6a546c88eaf5e30b6182b77ba341692
+      lastVerified: '2026-03-21T01:11:40.013Z'
+    team-no-ui:
+      path: .aiox-core/data/agent-teams/team-no-ui.yaml
+      layer: L3
+      type: data
+      purpose: Team with no UX or UI Planning.
+      keywords:
+        - team
+        - 'no'
+        - ui
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.5
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:0e116f4e40d483ef8ecfdc268998e6ee52f91bffe481ac9f1fdc424dc306d82d
+      lastVerified: '2026-03-21T01:11:40.013Z'
+    team-qa-focused:
+      path: .aiox-core/data/agent-teams/team-qa-focused.yaml
+      layer: L3
+      type: data
+      purpose: >-
+        Quality-focused team that orchestrates code review, testing, and deployment validation using CodeRabbit
+        integration. Ideal for pre-PR reviews, deployment gates, and comprehensive quality assurance.
+      keywords:
+        - team
+        - qa
+        - focused
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.5
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:1a1ba8e2816d801cbcce2013a9062d16713a09f70582ea399ed10751bc5b1557
+      lastVerified: '2026-03-21T01:11:40.013Z'
+    aios-kb:
+      path: .aiox-core/data/aios-kb.md
+      layer: L3
+      type: data
+      purpose: '"Complete story content..."'
+      keywords:
+        - aios
+        - kb
+        - knowledge
+        - base
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.5
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:c3e9060bb9db2eb0d8382e8bab8131d97381093ba875f541827b8ea31cd75202
+      lastVerified: '2026-03-21T01:11:40.014Z'
+    constitution:
+      path: .aiox-core/data/constitution.md
+      layer: L3
+      type: data
+      purpose: Synkra AIOX Constitution
+      keywords:
+        - constitution
+        - synkra
+        - aiox
+      usedBy: []
+      dependencies:
+        - store
+      adaptability:
+        score: 0.5
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:ba597ca7b104653769e0d1467dddf2ac0a0c5d6a398372e6283e1da8bd31621d
+      lastVerified: '2026-03-21T01:11:40.015Z'
+    core-config:
+      path: .aiox-core/data/core-config.yaml
+      layer: L3
+      type: data
+      purpose: Core MCPs - no API keys required
+      keywords:
+        - core
+        - config
+        - boundary
+        - mapping
+        - framework-project
+        - separation
+        - (epic
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.5
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:82a36027f0997e8cb888862b1d7962dd2d1c27b3fd841a761978189895c9f4cf
+      lastVerified: '2026-03-21T01:11:40.015Z'
+    decision-heuristics-framework:
+      path: .aiox-core/data/decision-heuristics-framework.md
+      layer: L3
+      type: data
+      purpose: '** Validate that actions align with vision/goals.'
+      keywords:
+        - decision
+        - heuristics
+        - framework
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.5
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:a84b23641dcc89228c7ebd3e11f371f4321f5fd4cc93a446e2a0117d978f7bc2
+      lastVerified: '2026-03-21T01:11:40.016Z'
+    quality-dimensions-framework:
+      path: .aiox-core/data/quality-dimensions-framework.md
+      layer: L3
+      type: data
+      purpose: '''Correctness verified by data/evidence'''
+      keywords:
+        - quality
+        - dimensions
+        - framework
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.5
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:73b0affc8999aeb391a40edc6bff990f327a6c28792496063e04d3f2bb08780f
+      lastVerified: '2026-03-21T01:11:40.017Z'
+    clickup-task-tracking:
+      path: .aiox-core/data/rules/clickup-task-tracking.md
+      layer: L3
+      type: data
+      purpose: Universal ClickUp Task Tracking Rule
+      keywords:
+        - clickup
+        - task
+        - tracking
+        - universal
+        - rule
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.5
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:8400e28ba32deb270e1c9cb6be1dfc46c2d3abd1f75d30294de8020c9f1b1130
+      lastVerified: '2026-03-21T01:11:40.017Z'
+    mcp-usage:
+      path: .aiox-core/data/rules/mcp-usage.md
+      layer: L3
+      type: data
+      purpose: MCP Server Usage Rules - AIOS Architecture
+      keywords:
+        - mcp
+        - usage
+        - server
+        - rules
+        - aios
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.5
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:0a3a01c5950d0edf51ee3f5e17e8ec041b5f9179d9496b22ff251a2574b5dc5d
+      lastVerified: '2026-03-21T01:11:40.017Z'
+    tier-system-framework:
+      path: .aiox-core/data/tier-system-framework.md
+      layer: L3
+      type: data
+      purpose: '''Establish baseline before any execution'''
+      keywords:
+        - tier
+        - system
+        - framework
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.5
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:2931ccff24f5b773f137ef590674d17dc0374f51ee2d8dbc82f74931ba2cb398
+      lastVerified: '2026-03-21T01:11:40.018Z'
   workflows:
     auto-worktree:
       path: .aiox-core/development/workflows/auto-worktree.yaml
@@ -14252,7 +15065,7 @@ entities:
         constraints: []
         extensionPoints: []
       checksum: sha256:e882daca473a95807e5c480c9b1c3d7b428277b075232cb907f9a253468a17c1
-      lastVerified: '2026-03-06T11:53:37.633Z'
+      lastVerified: '2026-03-21T01:11:40.031Z'
     epic-orchestration:
       path: .aiox-core/development/workflows/epic-orchestration.yaml
       layer: L2
@@ -14432,6 +15245,23 @@ entities:
         extensionPoints: []
       checksum: sha256:6125a3545e9a8550582d7d6ea640bbd5b0e4747b80e7c67ebf60ce284591220e
       lastVerified: '2026-03-06T11:53:37.645Z'
+    pelicula-content-pipeline:
+      path: .aiox-core/development/workflows/pelicula-content-pipeline.yaml
+      layer: L2
+      type: workflow
+      purpose: '>-'
+      keywords:
+        - pelicula
+        - content
+        - pipeline
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.4
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:dfd7c94122364938361fc11df4889f3dbce9555cc00cc58afa589be0377bed7b
+      lastVerified: '2026-03-21T01:11:40.031Z'
   utils:
     output-formatter:
       path: .aiox-core/core/utils/output-formatter.js
@@ -14532,7 +15362,7 @@ entities:
       checksum: sha256:22ee604ca42094f5b7939ec129c52cb1fc362ae70688cc1ef7a921c956ab38d2
       lastVerified: '2026-03-06T11:53:37.655Z'
     approval-workflow:
-      path: .aiox-core/infrastructure/scripts/approval-workflow.js
+      path: .aiox-core/infrastructure/scripts/development/approval-workflow.js
       layer: L2
       type: script
       purpose: impactReport.summary,
@@ -14542,15 +15372,12 @@ entities:
       usedBy:
         - architect-analyze-impact
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:4d744a8d08cadf09bf368a1457c1bd3bc68ccef0885c324b2527222da816544b
-      lastVerified: '2026-03-06T11:53:37.656Z'
+      checksum: sha256:06979905e62b61e6dde1d2e1714ce61b9a4538a31f31ae1e5f41365f36395b09
+      lastVerified: '2026-03-21T01:11:40.033Z'
     asset-inventory:
       path: .aiox-core/infrastructure/scripts/asset-inventory.js
       layer: L2
@@ -14592,25 +15419,22 @@ entities:
       checksum: sha256:ecdb368d80a69c8da7cc507aff0b18bd2e58d8bd94b9fb0ba1e074595a19e884
       lastVerified: '2026-03-06T11:53:37.656Z'
     backup-manager:
-      path: .aiox-core/infrastructure/scripts/backup-manager.js
+      path: .aiox-core/infrastructure/scripts/development/backup-manager.js
       layer: L2
       type: script
-      purpose: Entity at .aiox-core\infrastructure\scripts\backup-manager.js
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/backup-manager.js
       keywords:
         - backup
         - manager
       usedBy:
         - improve-self
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: deprecated
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:e7d0173f107c0576f443a7f4bc83387cdbb625518ce5749ca9059ffbf3070f44
-      lastVerified: '2026-03-06T11:53:37.657Z'
+      checksum: sha256:81c9fd6a4b8a8e7feb1f7a9d6ba790e597ad8113a9ca0723ae20eb111bfb3cee
+      lastVerified: '2026-03-21T01:11:40.034Z'
     batch-creator:
       path: .aiox-core/infrastructure/scripts/batch-creator.js
       layer: L2
@@ -14635,25 +15459,22 @@ entities:
       checksum: sha256:b91ca0e5d8af3d47658bc5bd754e72e654e68446c17c5e50e45ebd581535fe7d
       lastVerified: '2026-03-06T11:53:37.657Z'
     branch-manager:
-      path: .aiox-core/infrastructure/scripts/branch-manager.js
+      path: .aiox-core/infrastructure/scripts/development/branch-manager.js
       layer: L2
       type: script
-      purpose: Entity at .aiox-core\infrastructure\scripts\branch-manager.js
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/branch-manager.js
       keywords:
         - branch
         - manager
       usedBy: []
       dependencies:
         - git-wrapper
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: experimental
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:49f3a7a7aa36347c3e3dbc998847913c829216c71a1c659bf7a55d67a940d1c3
-      lastVerified: '2026-03-06T11:53:37.657Z'
+      checksum: sha256:5d292b329fea370ee9e0930c5d6e9cb5c69af78ec1435ee194ddba0c3d2232a1
+      lastVerified: '2026-03-21T01:11:40.034Z'
     capability-analyzer:
       path: .aiox-core/infrastructure/scripts/capability-analyzer.js
       layer: L2
@@ -14736,7 +15557,7 @@ entities:
       checksum: sha256:043ceb5b712903e6b78be83c997575e8de64d5815dccef88355c20d8153af9a6
       lastVerified: '2026-03-06T11:53:37.658Z'
     code-quality-improver:
-      path: .aiox-core/infrastructure/scripts/code-quality-improver.js
+      path: .aiox-core/infrastructure/scripts/development/code-quality-improver.js
       layer: L2
       type: script
       purpose: '''Apply consistent code formatting'','
@@ -14747,15 +15568,12 @@ entities:
       usedBy:
         - dev-improve-code-quality
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:765dd10a367656b330a659b2245ef2eb9a947905fee71555198837743fc1483f
-      lastVerified: '2026-03-06T11:53:37.659Z'
+      checksum: sha256:d0c844089e53dcd6c06755d4cb432a60fbebcedcf5a86ed635650573549a1941
+      lastVerified: '2026-03-21T01:11:40.035Z'
     codebase-mapper:
       path: .aiox-core/infrastructure/scripts/codebase-mapper.js
       layer: L2
@@ -14797,7 +15615,7 @@ entities:
       checksum: sha256:8a739b79182dc41e28b7e02aeb9ec1dde5ec49f3ca534399acc59711b3b92bbf
       lastVerified: '2026-03-06T11:53:37.660Z'
     commit-message-generator:
-      path: .aiox-core/infrastructure/scripts/commit-message-generator.js
+      path: .aiox-core/infrastructure/scripts/development/commit-message-generator.js
       layer: L2
       type: script
       purpose: ''';'
@@ -14809,15 +15627,12 @@ entities:
       dependencies:
         - diff-generator
         - modification-validator
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: experimental
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:611b0f27acd02e49aff7a2d91b48823dc4a2d788440fff2f32bf500a1bc84132
-      lastVerified: '2026-03-06T11:53:37.660Z'
+      checksum: sha256:c5990a5a012a2994d9a4d29ded445fef21d51e0b8203292104fbbd76b3e23826
+      lastVerified: '2026-03-21T01:11:40.035Z'
     component-generator:
       path: .aiox-core/infrastructure/scripts/component-generator.js
       layer: L2
@@ -14949,7 +15764,7 @@ entities:
       checksum: sha256:8f9489f7c57e775bfbb750761d9714505d5df3938b664cbbdf6701f9e18e240b
       lastVerified: '2026-03-06T11:53:37.661Z'
     conflict-resolver:
-      path: .aiox-core/infrastructure/scripts/conflict-resolver.js
+      path: .aiox-core/infrastructure/scripts/development/conflict-resolver.js
       layer: L2
       type: script
       purpose: '''No conflicts detected'','
@@ -14959,15 +15774,12 @@ entities:
       usedBy: []
       dependencies:
         - git-wrapper
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: experimental
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:3d2794a66f16fcea95b096386dc9c2dcd31e5938d862030e7ac1f38c00a2c0bd
-      lastVerified: '2026-03-06T11:53:37.662Z'
+      checksum: sha256:8971b9aca2ab23a9478ac70e59710ec843f483fcbe088371444f4fc9b56c5278
+      lastVerified: '2026-03-21T01:11:40.035Z'
     coverage-analyzer:
       path: .aiox-core/infrastructure/scripts/coverage-analyzer.js
       layer: L2
@@ -15009,7 +15821,7 @@ entities:
       checksum: sha256:a01bc8e74ce40206bbb49453af46896388754f412961b6f6585927a382338f01
       lastVerified: '2026-03-06T11:53:37.662Z'
     dependency-analyzer:
-      path: .aiox-core/infrastructure/scripts/dependency-analyzer.js
+      path: .aiox-core/infrastructure/scripts/development/dependency-analyzer.js
       layer: L2
       type: script
       purpose: '`Dependency task for ${id}`,'
@@ -15020,15 +15832,12 @@ entities:
         - modification-validator
         - batch-creator
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:af326d5d70a097cc255171d8f30b1d99a302b07d96d94528cfaad3f97bdea479
-      lastVerified: '2026-03-06T11:53:37.662Z'
+      checksum: sha256:0ab1a54c3df1cd81c8bc4b7f4d769f91c7b0bfa6ce38b8c7e1d7d5b223d2245f
+      lastVerified: '2026-03-21T01:11:40.037Z'
     dependency-impact-analyzer:
       path: .aiox-core/infrastructure/scripts/dependency-impact-analyzer.js
       layer: L2
@@ -15055,10 +15864,10 @@ entities:
       checksum: sha256:3c9d87250845f7def63a2230d4af43ed2d6ae84cfba6b6d72a5b9e285a66f5ed
       lastVerified: '2026-03-06T11:53:37.663Z'
     diff-generator:
-      path: .aiox-core/infrastructure/scripts/diff-generator.js
+      path: .aiox-core/infrastructure/scripts/development/diff-generator.js
       layer: L2
       type: script
-      purpose: Entity at .aiox-core\infrastructure\scripts\diff-generator.js
+      purpose: '{'
       keywords:
         - diff
         - generator
@@ -15066,15 +15875,12 @@ entities:
         - qa-review-proposal
         - commit-message-generator
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:569387c1dd8ee00d0ebc34b9f463438150ed9c96af2e5728fde83c36626211cf
-      lastVerified: '2026-03-06T11:53:37.663Z'
+      checksum: sha256:cad97b0096fc034fa6ed6cbd14a963abe32d880c1ce8034b6aa62af2e2239833
+      lastVerified: '2026-03-21T01:11:40.037Z'
     documentation-synchronizer:
       path: .aiox-core/infrastructure/scripts/documentation-synchronizer.js
       layer: L2
@@ -15180,10 +15986,10 @@ entities:
       checksum: sha256:52ed96d98fc6f9e83671d7d27f78dcff4f2475f3b8e339dc31922f6b2814ad78
       lastVerified: '2026-03-06T11:53:37.665Z'
     git-wrapper:
-      path: .aiox-core/infrastructure/scripts/git-wrapper.js
+      path: .aiox-core/infrastructure/scripts/development/git-wrapper.js
       layer: L2
       type: script
-      purpose: Entity at .aiox-core\infrastructure\scripts\git-wrapper.js
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/git-wrapper.js
       keywords:
         - git
         - wrapper
@@ -15191,15 +15997,12 @@ entities:
         - branch-manager
         - conflict-resolver
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:7130442ca72ba89e397be77000b44e2431b92a8af44d1fac63c869807641e587
-      lastVerified: '2026-03-06T11:53:37.665Z'
+      checksum: sha256:cb3abc56f9c001a80f18766d949b0d8916eb91d4644c0ee2d642ac62a03a73d3
+      lastVerified: '2026-03-21T01:11:40.040Z'
     gotchas-documenter:
       path: .aiox-core/infrastructure/scripts/gotchas-documenter.js
       layer: L2
@@ -15304,10 +16107,10 @@ entities:
       checksum: sha256:974dfb83d3bfbb56f4a02385d8edb735c0acab62acb8a1a4e7c69f5ecf10c810
       lastVerified: '2026-03-06T11:53:37.667Z'
     modification-validator:
-      path: .aiox-core/infrastructure/scripts/modification-validator.js
+      path: .aiox-core/infrastructure/scripts/development/modification-validator.js
       layer: L2
       type: script
-      purpose: Entity at .aiox-core\infrastructure\scripts\modification-validator.js
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/modification-validator.js
       keywords:
         - modification
         - validator
@@ -15318,15 +16121,12 @@ entities:
         - yaml-validator
         - dependency-analyzer
         - security-checker
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:0853fbe9e628510a0e6f8b95ac3c467d49df5cd7b15637f374928c1d3f9e2b87
-      lastVerified: '2026-03-06T11:53:37.668Z'
+      checksum: sha256:8bff78c5ce3a7c1add30f21f3b835aafd1b54b1752b7f24fc687a672026d7b13
+      lastVerified: '2026-03-21T01:11:40.042Z'
     output-formatter:
       path: .aiox-core/infrastructure/scripts/output-formatter.js
       layer: L2
@@ -15391,25 +16191,22 @@ entities:
       checksum: sha256:9edc6aabdb32431466c5c8db9da883bc0a5f4457cfc74ccc6c10ed687f8e1e52
       lastVerified: '2026-03-06T11:53:37.669Z'
     performance-analyzer:
-      path: .aiox-core/infrastructure/scripts/performance-analyzer.js
+      path: .aiox-core/infrastructure/scripts/development/performance-analyzer.js
       layer: L2
       type: script
-      purpose: Entity at .aiox-core\infrastructure\scripts\performance-analyzer.js
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/performance-analyzer.js
       keywords:
         - performance
         - analyzer
       usedBy:
         - analyze-framework
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:6d925acfbaf3cedae2b17ec262f8436c2d38d7eacd4513acfa0a6b3ebb600337
-      lastVerified: '2026-03-06T11:53:37.671Z'
+      checksum: sha256:52fc6c7dd22d7bdbbdfe51393c845075ee4fad75067fd91665682b9f0654e7c4
+      lastVerified: '2026-03-21T01:11:40.043Z'
     performance-and-error-resolver:
       path: .aiox-core/infrastructure/scripts/performance-and-error-resolver.js
       layer: L2
@@ -15648,7 +16445,7 @@ entities:
       checksum: sha256:09eb60cdd5b6a42a93b5f7450448899bf83e704ecec7d56ea27b560f063e2d1a
       lastVerified: '2026-03-06T11:53:37.677Z'
     refactoring-suggester:
-      path: .aiox-core/infrastructure/scripts/refactoring-suggester.js
+      path: .aiox-core/infrastructure/scripts/development/refactoring-suggester.js
       layer: L2
       type: script
       purpose: '''Extract long methods into smaller, focused methods'','
@@ -15658,15 +16455,12 @@ entities:
       usedBy:
         - dev-suggest-refactoring
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:118d4cdbc64cf3238065f2fb98958305ae81e1384bc68f5a6c7b768f1232cd1e
-      lastVerified: '2026-03-06T11:53:37.678Z'
+      checksum: sha256:d50ea6b609c9cf8385979386fee4b4385d11ebcde15460260f66d04c705f6cd9
+      lastVerified: '2026-03-21T01:11:40.044Z'
     repository-detector:
       path: .aiox-core/infrastructure/scripts/repository-detector.js
       layer: L2
@@ -15732,7 +16526,7 @@ entities:
       checksum: sha256:019af2e23de70d7dacb49faf031ba0c1f5553ecebe52f361bab74bfca73ba609
       lastVerified: '2026-03-06T11:53:37.679Z'
     security-checker:
-      path: .aiox-core/infrastructure/scripts/security-checker.js
+      path: .aiox-core/infrastructure/scripts/development/security-checker.js
       layer: L2
       type: script
       purpose: '{'
@@ -15746,15 +16540,12 @@ entities:
         - component-generator
         - improvement-validator
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:d14d9376e3044e61eba40c03931a05dc518f7b8a10618d4f8c9c8a4b300e71fc
-      lastVerified: '2026-03-06T11:53:37.679Z'
+      checksum: sha256:e567af91b0b79e7ba51399cf6bfe4279417e632465f923bc8334c28f9405883c
+      lastVerified: '2026-03-21T01:11:40.044Z'
     spot-check-validator:
       path: .aiox-core/infrastructure/scripts/spot-check-validator.js
       layer: L2
@@ -15860,10 +16651,10 @@ entities:
       checksum: sha256:ceb0450fa12fa48f0255bb4565858eb1a97b28c30b98d36cb61d52d72e08b054
       lastVerified: '2026-03-06T11:53:37.680Z'
     template-engine:
-      path: .aiox-core/infrastructure/scripts/template-engine.js
+      path: .aiox-core/infrastructure/scripts/development/template-engine.js
       layer: L2
       type: script
-      purpose: Entity at .aiox-core\infrastructure\scripts\template-engine.js
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/template-engine.js
       keywords:
         - template
         - engine
@@ -15871,20 +16662,17 @@ entities:
         - template-validator
         - component-generator
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:ec62a12ff9ad140d32fcbdfc9b5eef636101b75f0835469f1193fee8db0a7d55
-      lastVerified: '2026-03-06T11:53:37.681Z'
+      checksum: sha256:b97d091cb9a09e64d8632ae106cd00b3fd8a25bfbdb60d8cda6e5591c7dfd67f
+      lastVerified: '2026-03-21T01:11:40.049Z'
     template-validator:
-      path: .aiox-core/infrastructure/scripts/template-validator.js
+      path: .aiox-core/infrastructure/scripts/development/template-validator.js
       layer: L2
       type: script
-      purpose: Entity at .aiox-core\infrastructure\scripts\template-validator.js
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/template-validator.js
       keywords:
         - template
         - validator
@@ -15892,15 +16680,12 @@ entities:
         - component-generator
       dependencies:
         - template-engine
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:de989116d2f895b58e10355b8853e7b96af6fde151d2612616f18842b9cc56c4
-      lastVerified: '2026-03-06T11:53:37.681Z'
+      checksum: sha256:fb87e8d076b57469d33034f2cae32fd01eae81900317a267d26ab18eebaacb17
+      lastVerified: '2026-03-21T01:11:40.049Z'
     test-discovery:
       path: .aiox-core/infrastructure/scripts/test-discovery.js
       layer: L2
@@ -15921,25 +16706,22 @@ entities:
       checksum: sha256:04038aa49ae515697084fcdacaf0ef8bc36029fc114f5a1206065d7928870449
       lastVerified: '2026-03-06T11:53:37.681Z'
     test-generator:
-      path: .aiox-core/infrastructure/scripts/test-generator.js
+      path: .aiox-core/infrastructure/scripts/development/test-generator.js
       layer: L2
       type: script
-      purpose: Entity at .aiox-core\infrastructure\scripts\test-generator.js
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/test-generator.js
       keywords:
         - test
         - generator
       usedBy:
         - qa-generate-tests
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:f3146896fbcbc99563cc015b828f097167642e24c919c7c9bf6bbfee9ea87cc1
-      lastVerified: '2026-03-06T11:53:37.682Z'
+      checksum: sha256:c49f0d828ba4e5d996f6dc4fedd540fe2a95091de5e45093018686181493d164
+      lastVerified: '2026-03-21T01:11:40.050Z'
     test-quality-assessment:
       path: .aiox-core/infrastructure/scripts/test-quality-assessment.js
       layer: L2
@@ -16023,7 +16805,7 @@ entities:
       checksum: sha256:2fa44e4a940d4c33570fd9b4495b5c39792c52ca91b98c4be2fb55cb974ad095
       lastVerified: '2026-03-06T11:53:37.683Z'
     transaction-manager:
-      path: .aiox-core/infrastructure/scripts/transaction-manager.js
+      path: .aiox-core/infrastructure/scripts/development/transaction-manager.js
       layer: L2
       type: script
       purpose: options.description || 'Component operation',
@@ -16036,15 +16818,12 @@ entities:
         - component-generator
       dependencies:
         - component-metadata
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:bed375a4d72928ecfa670626c3e504194c4bf4439eab399fc5b31c919e873e86
-      lastVerified: '2026-03-06T11:53:37.683Z'
+      checksum: sha256:c1049e40ffa489206b48a8c95b0a55093ebf95fc2b2fb522e33b0fc8023d7d2a
+      lastVerified: '2026-03-21T01:11:40.050Z'
     usage-analytics:
       path: .aiox-core/infrastructure/scripts/usage-analytics.js
       layer: L2
@@ -16283,10 +17062,10 @@ entities:
       checksum: sha256:76ac6c2638b5ddf9d8a359ac9db887b926ca0993d77220f6511c58255f0cfbd3
       lastVerified: '2026-03-06T11:53:37.685Z'
     yaml-validator:
-      path: .aiox-core/infrastructure/scripts/yaml-validator.js
+      path: .aiox-core/infrastructure/scripts/development/yaml-validator.js
       layer: L2
       type: script
-      purpose: Entity at .aiox-core\infrastructure\scripts\yaml-validator.js
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/yaml-validator.js
       keywords:
         - yaml
         - validator
@@ -16296,25 +17075,19 @@ entities:
         - index
         - component-generator
       dependencies: []
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:2039ecb9a9d3f639c734c65704018efd2c4656c4995f0b0e537670f7417bf23b
-      lastVerified: '2026-03-06T11:53:37.686Z'
+      checksum: sha256:916864f9e56e1ccb7fc1596bd2da47400e4037f848a0d4e2bc46d0fa24cc544f
+      lastVerified: '2026-03-21T01:11:40.056Z'
     index:
-      path: .aiox-core/infrastructure/scripts/codex-skills-sync/index.js
+      path: .aiox-core/infrastructure/scripts/development/squad/index.js
       layer: L2
       type: script
-      purpose: ${description}
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/squad/index.js
       keywords:
         - index
-        - aiox
-        - ${title}
-        - activator
       usedBy:
         - creation-helper
         - dev-helper
@@ -16324,16 +17097,19 @@ entities:
         - story-helper
         - validate
       dependencies:
-        - agent-parser
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
+        - squad-loader
+        - squad-validator
+        - squad-generator
+        - squad-designer
+        - squad-migrator
+        - squad-downloader
+        - squad-publisher
       adaptability:
         score: 0.7
         constraints: []
         extensionPoints: []
-      checksum: sha256:a7a3c97374c34a900acad13498f61f8a40517574480354218e349d1e1d3931a4
-      lastVerified: '2026-03-06T11:53:37.686Z'
+      checksum: sha256:d9bab56298104c00cc55d5e68bcf8bf660bc0f2a3f8c7609dc2ed911d34a4492
+      lastVerified: '2026-03-21T01:11:40.045Z'
     validate:
       path: .aiox-core/infrastructure/scripts/codex-skills-sync/validate.js
       layer: L2
@@ -16506,7 +17282,6 @@ entities:
         - agent
         - parser
       usedBy:
-        - index
         - validate
         - antigravity
         - cursor
@@ -16677,6 +17452,954 @@ entities:
         extensionPoints: []
       checksum: sha256:6d365be4a55e2f5ced316a0efbfa50fb925562f3e145d47a86c57a2c685343ac
       lastVerified: '2026-03-06T11:53:37.720Z'
+    activation-runtime:
+      path: .aiox-core/infrastructure/scripts/development/activation-runtime.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/activation-runtime.js
+      keywords:
+        - activation
+        - runtime
+      usedBy:
+        - generate-greeting
+      dependencies:
+        - unified-activation-pipeline
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:3750084310b5a88e2f8d345ad4b417a408f2633d10dab11f4d648e8e10caa90c
+      lastVerified: '2026-03-21T01:11:40.032Z'
+    agent-assignment-resolver:
+      path: .aiox-core/infrastructure/scripts/development/agent-assignment-resolver.js
+      layer: L2
+      type: script
+      purpose: 'Resolve {TODO: Agent Name} placeholders in all 114 task files'
+      keywords:
+        - agent
+        - assignment
+        - resolver
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:ae8a89d038cd9af894d9ec45d8b97ed930f84f70e88f17dbf1a3c556e336c75e
+      lastVerified: '2026-03-21T01:11:40.032Z'
+    agent-config-loader:
+      path: .aiox-core/infrastructure/scripts/development/agent-config-loader.js
+      layer: L2
+      type: script
+      purpose: Description"
+      keywords:
+        - agent
+        - config
+        - loader
+      usedBy:
+        - unified-activation-pipeline
+        - config-loader
+      dependencies:
+        - config-cache
+        - performance-tracker
+        - config-resolver
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:6935a5574f887d88101c44340a96f2a4f8d01b2bdeb433108b84253178a106c7
+      lastVerified: '2026-03-21T01:11:40.032Z'
+    agent-exit-hooks:
+      path: .aiox-core/infrastructure/scripts/development/agent-exit-hooks.js
+      layer: L2
+      type: script
+      purpose: '* - Save workflow state when commands complete successfully'
+      keywords:
+        - agent
+        - exit
+        - hooks
+      usedBy: []
+      dependencies:
+        - context-detector
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:7aee7f33cae1bc4192a5085898caaf57f4866ce68488637d0f90a6372b616ce8
+      lastVerified: '2026-03-21T01:11:40.032Z'
+    apply-inline-greeting-all-agents:
+      path: .aiox-core/infrastructure/scripts/development/apply-inline-greeting-all-agents.js
+      layer: L2
+      type: script
+      purpose: '"**Role:** {persona.role}"'
+      keywords:
+        - apply
+        - inline
+        - greeting
+        - all
+        - agents
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:5de6a7ddcab1ae34043b8a030b664deb9ce79e187ca30d22656716240e76a030
+      lastVerified: '2026-03-21T01:11:40.033Z'
+    audit-agent-config:
+      path: .aiox-core/infrastructure/scripts/development/audit-agent-config.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/audit-agent-config.js
+      keywords:
+        - audit
+        - agent
+        - config
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:d3908286737b3951a0140224aae604d63ab485d503d1f0fb83bc902112637db0
+      lastVerified: '2026-03-21T01:11:40.033Z'
+    backlog-manager:
+      path: .aiox-core/infrastructure/scripts/development/backlog-manager.js
+      layer: L2
+      type: script
+      purpose: this.description,
+      keywords:
+        - backlog
+        - manager
+      usedBy:
+        - dev-backlog-debt
+        - po-backlog-add
+        - qa-backlog-add-followup
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:7790e867301aed155dcad303feb8113ffd45abe99052e70749ceaae894e9620b
+      lastVerified: '2026-03-21T01:11:40.033Z'
+    batch-update-agents-session-context:
+      path: .aiox-core/infrastructure/scripts/development/batch-update-agents-session-context.js
+      layer: L2
+      type: script
+      purpose: ${successCount} updated, ${failCount} failed`);
+      keywords:
+        - batch
+        - update
+        - agents
+        - session
+        - context
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:d6fa38b55d788f0832021a15492d6b19d8967b481c05b87ab67d33a90ff7269b
+      lastVerified: '2026-03-21T01:11:40.034Z'
+    decision-context:
+      path: .aiox-core/infrastructure/scripts/development/decision-context.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/decision-context.js
+      keywords:
+        - decision
+        - context
+      usedBy:
+        - decision-recorder
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:7deca4e738f078e2ccded6e8e26d2322697ea7b9fedf5a48fe8eec18e227c347
+      lastVerified: '2026-03-21T01:11:40.036Z'
+    decision-log-generator:
+      path: .aiox-core/infrastructure/scripts/development/decision-log-generator.js
+      layer: L2
+      type: script
+      purpose: Full rollback to state before execution
+      keywords:
+        - decision
+        - log
+        - generator
+        - full
+        - rollback
+        - state
+        - before
+        - execution
+      usedBy:
+        - decision-recorder
+        - dev
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:15f1c67d72d2572c68cf8738dfc549166c424475f6706502496f4e21596db504
+      lastVerified: '2026-03-21T01:11:40.036Z'
+    decision-log-indexer:
+      path: .aiox-core/infrastructure/scripts/development/decision-log-indexer.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/decision-log-indexer.js
+      keywords:
+        - decision
+        - log
+        - indexer
+      usedBy:
+        - decision-recorder
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:4525176b92aefc6ea7387fc350e325192af044769b4774fde5bf35d74f93fd56
+      lastVerified: '2026-03-21T01:11:40.036Z'
+    decision-recorder:
+      path: .aiox-core/infrastructure/scripts/development/decision-recorder.js
+      layer: L2
+      type: script
+      purpose: ''');'
+      keywords:
+        - decision
+        - recorder
+      usedBy:
+        - dev-develop-story
+      dependencies:
+        - decision-context
+        - decision-log-generator
+        - decision-log-indexer
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:73a259407434e4c4653232e578d408ea6dbde5b809a8c16b7cb169933b941c1c
+      lastVerified: '2026-03-21T01:11:40.036Z'
+    dev-context-loader:
+      path: .aiox-core/infrastructure/scripts/development/dev-context-loader.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/dev-context-loader.js
+      keywords:
+        - dev
+        - context
+        - loader
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:0db8d8c4ec863935b02263560d90a901462fb51a87e922baee26882c9d3b8f7c
+      lastVerified: '2026-03-21T01:11:40.037Z'
+    elicitation-engine:
+      path: .aiox-core/infrastructure/scripts/development/elicitation-engine.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/elicitation-engine.js
+      keywords:
+        - elicitation
+        - engine
+      usedBy:
+        - index.esm
+        - index
+        - batch-creator
+        - component-generator
+      dependencies:
+        - security-checker
+        - elicitation-session-manager
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:5ce7ea9b9c7e3600fcec27eee444a2860c15ec187ca449f3b63564f453d71c50
+      lastVerified: '2026-03-21T01:11:40.038Z'
+    elicitation-session-manager:
+      path: .aiox-core/infrastructure/scripts/development/elicitation-session-manager.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/elicitation-session-manager.js
+      keywords:
+        - elicitation
+        - session
+        - manager
+      usedBy:
+        - elicitation-engine
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:0a7141f2cf61e8fa32f8c861633b50e87e75bc6023b650756c1b55ad947d314b
+      lastVerified: '2026-03-21T01:11:40.038Z'
+    generate-greeting:
+      path: .aiox-core/infrastructure/scripts/development/generate-greeting.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/generate-greeting.js
+      keywords:
+        - generate
+        - greeting
+      usedBy: []
+      dependencies:
+        - activation-runtime
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:49b857fe36a0216a0df8395a6847f14608bd6a228817276201d22598a6862a4f
+      lastVerified: '2026-03-21T01:11:40.038Z'
+    greeting-builder:
+      path: .aiox-core/infrastructure/scripts/development/greeting-builder.js
+      layer: L2
+      type: script
+      purpose: 'context.sessionMessage, recommendedCommand: null };'
+      keywords:
+        - greeting
+        - builder
+      usedBy:
+        - test-greeting-system
+        - unified-activation-pipeline
+      dependencies:
+        - context-detector
+        - git-config-detector
+        - workflow-navigator
+        - greeting-preference-manager
+        - project-status-loader
+        - permissions
+        - config-resolver
+        - validate-user-profile
+        - session-state
+        - surface-checker
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:6f7aad3bd400c77463af5665cec45e0256350671a113d2fcad83a6adfa5dbbac
+      lastVerified: '2026-03-21T01:11:40.040Z'
+    greeting-config-cli:
+      path: .aiox-core/infrastructure/scripts/development/greeting-config-cli.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/greeting-config-cli.js
+      keywords:
+        - greeting
+        - config
+        - cli
+      usedBy: []
+      dependencies:
+        - greeting-preference-manager
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:c6e5c4dac08349b17cae64562311a5c2fab8d7c29bc96d86cbe2b43846312b3d
+      lastVerified: '2026-03-21T01:11:40.040Z'
+    greeting-preference-manager:
+      path: .aiox-core/infrastructure/scripts/development/greeting-preference-manager.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/greeting-preference-manager.js
+      keywords:
+        - greeting
+        - preference
+        - manager
+      usedBy:
+        - greeting-builder
+        - greeting-config-cli
+        - unified-activation-pipeline
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:f6e8034fb7eb27a05f0ef186351282073c3e9b7d5d1db67fb88814c9b72fc219
+      lastVerified: '2026-03-21T01:11:40.041Z'
+    issue-triage:
+      path: .aiox-core/infrastructure/scripts/development/issue-triage.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/issue-triage.js
+      keywords:
+        - issue
+        - triage
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:a9f9741b1426732f19803bf9f292b15d8eed0fb875cf02df70735f48512f2310
+      lastVerified: '2026-03-21T01:11:40.041Z'
+    manifest-preview:
+      path: .aiox-core/infrastructure/scripts/development/manifest-preview.js
+      layer: L2
+      type: script
+      purpose: componentInfo.description })
+      keywords:
+        - manifest
+        - preview
+      usedBy:
+        - component-generator
+      dependencies:
+        - component-preview
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:93fff0b2f1993f1f03352a8d9162b93368a7f3b0caf1223ea23b228d092d2084
+      lastVerified: '2026-03-21T01:11:40.041Z'
+    metrics-tracker:
+      path: .aiox-core/infrastructure/scripts/development/metrics-tracker.js
+      layer: L2
+      type: script
+      purpose: this.generateImpactSummary(entry),
+      keywords:
+        - metrics
+        - tracker
+      usedBy:
+        - improve-self
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:ac90ed08276a66591c8170ef5b5501f46cb1ba9d276b383e20fc77a563083312
+      lastVerified: '2026-03-21T01:11:40.041Z'
+    migrate-task-to-v2:
+      path: .aiox-core/infrastructure/scripts/development/migrate-task-to-v2.js
+      layer: L2
+      type: script
+      purpose: '** Validate prerequisites BEFORE task execution (blocking)'
+      keywords:
+        - migrate
+        - task
+        - to
+        - v2
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:6bfef70de9592d53657f10a4e5c4582ac0ff11868d29e78b86676db45816152d
+      lastVerified: '2026-03-21T01:11:40.042Z'
+    pattern-learner:
+      path: .aiox-core/infrastructure/scripts/development/pattern-learner.js
+      layer: L2
+      type: script
+      purpose: '`Look for code matching: ${pattern.from}`,'
+      keywords:
+        - pattern
+        - learner
+      usedBy:
+        - learn-patterns
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:d562b095bd15dc12a4f474883a1ddb25fa4b7353729c1ff1eaa53675b964de52
+      lastVerified: '2026-03-21T01:11:40.043Z'
+    populate-entity-registry:
+      path: .aiox-core/infrastructure/scripts/development/populate-entity-registry.js
+      layer: L2
+      type: script
+      purpose: getCategoryDescription(c.category),
+      keywords:
+        - populate
+        - entity
+        - registry
+      usedBy: []
+      dependencies:
+        - layer-classifier
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:3021b425f334c63d6462e64f6316f8b4036bd77b0b49ae419f20695fe3d1a89d
+      lastVerified: '2026-03-21T01:11:40.043Z'
+    rollback-handler:
+      path: .aiox-core/infrastructure/scripts/development/rollback-handler.js
+      layer: L2
+      type: script
+      purpose: ${txn.description}`));
+      keywords:
+        - rollback
+        - handler
+      usedBy: []
+      dependencies:
+        - transaction-manager
+        - modification-validator
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:1017334a2fcc7c13cf46f12da127525435c0689e4d123d44156699431e941cd8
+      lastVerified: '2026-03-21T01:11:40.044Z'
+    skill-validator:
+      path: .aiox-core/infrastructure/scripts/development/skill-validator.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/skill-validator.js
+      keywords:
+        - skill
+        - validator
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:b6bab880896a6fdb16d288c11e1d8fe3fa9f57f144b213bcb6eca1560ec38af1
+      lastVerified: '2026-03-21T01:11:40.044Z'
+    squad-analyzer:
+      path: .aiox-core/infrastructure/scripts/development/squad/squad-analyzer.js
+      layer: L2
+      type: script
+      purpose: manifest.description || '',
+      keywords:
+        - squad
+        - analyzer
+      usedBy:
+        - squad-creator-analyze
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:3aa6fd5273ee0cc35331d4150ed98ef43e8ab678c7c7eaaf4b6ea4b40c657b0c
+      lastVerified: '2026-03-21T01:11:40.045Z'
+    squad-designer:
+      path: .aiox-core/infrastructure/scripts/development/squad/squad-designer.js
+      layer: L2
+      type: script
+      purpose: '`Squad for ${analysis.domain.replace(/-/g, '' '')} management`,'
+      keywords:
+        - squad
+        - designer
+        - generated
+        - '*design-squad'
+      usedBy:
+        - index
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:101cbb7d6ded0d6f991b29ac63dfee2c7bb86cbc8c4fefef728b7d12c3352829
+      lastVerified: '2026-03-21T01:11:40.045Z'
+    squad-downloader:
+      path: .aiox-core/infrastructure/scripts/development/squad/squad-downloader.js
+      layer: L2
+      type: script
+      purpose: 'string, type: string}>>}'
+      keywords:
+        - squad
+        - downloader
+      usedBy:
+        - index
+      dependencies:
+        - squad-validator
+        - squad-loader
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:e171444c33222c3ee7b34a874ce2298de010ddf9f883d9741084621084564dc9
+      lastVerified: '2026-03-21T01:11:40.045Z'
+    squad-extender:
+      path: .aiox-core/infrastructure/scripts/development/squad/squad-extender.js
+      layer: L2
+      type: script
+      purpose: 'description || `${type} component: ${name}`,'
+      keywords:
+        - squad
+        - extender
+        - ${context.componentname}
+      usedBy:
+        - squad-creator-extend
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:de3ee647aa5d1fb32a4216777f3bd4716022fec64f0566c0a004b0ea4d110cca
+      lastVerified: '2026-03-21T01:11:40.046Z'
+    squad-generator:
+      path: .aiox-core/infrastructure/scripts/development/squad/squad-generator.js
+      layer: L2
+      type: script
+      purpose: ${safeYamlValue(config.description || 'Custom squad')}
+      keywords:
+        - squad
+        - generator
+        - '*${taskname.replace(/-/g,'
+        - '''-'')}'
+      usedBy:
+        - index
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:c8c75b71af915c95b781662ba5cdee5899fd6842966fd8b90019923e091be575
+      lastVerified: '2026-03-21T01:11:40.047Z'
+    squad-loader:
+      path: .aiox-core/infrastructure/scripts/development/squad/squad-loader.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/squad/squad-loader.js
+      keywords:
+        - squad
+        - loader
+      usedBy:
+        - squad-creator-analyze
+        - squad-creator-extend
+        - index
+        - squad-downloader
+        - squad-publisher
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:7093b9457c93da6845722bf7eac660164963d5007c459afae2149340a7979f1f
+      lastVerified: '2026-03-21T01:11:40.047Z'
+    squad-migrator:
+      path: .aiox-core/infrastructure/scripts/development/squad/squad-migrator.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/squad/squad-migrator.js
+      keywords:
+        - squad
+        - migrator
+      usedBy:
+        - index
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:38d7906b3718701130c79ed66f2916710f0f13fb2d445b13e8cdb1c199192a0d
+      lastVerified: '2026-03-21T01:11:40.047Z'
+    squad-publisher:
+      path: .aiox-core/infrastructure/scripts/development/squad/squad-publisher.js
+      layer: L2
+      type: script
+      purpose: '** ${manifest.description || ''No description provided''}'
+      keywords:
+        - squad
+        - publisher
+      usedBy:
+        - index
+      dependencies:
+        - squad-validator
+        - squad-loader
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:73b3adcf1b6edb16cd1679fe37852d1f2fde5c89cee4ea7b0ae8ca95f7ff85d2
+      lastVerified: '2026-03-21T01:11:40.048Z'
+    squad-validator:
+      path: .aiox-core/infrastructure/scripts/development/squad/squad-validator.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/squad/squad-validator.js
+      keywords:
+        - squad
+        - validator
+      usedBy:
+        - squad-creator-extend
+        - verify-workflow-gaps
+        - index
+        - squad-downloader
+        - squad-publisher
+      dependencies:
+        - squad-schema
+        - workflow-validator
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:bba0ca266653ca7d6162de011165256e6e49ebe34f2136ae16a4c3393901ab27
+      lastVerified: '2026-03-21T01:11:40.048Z'
+    story-index-generator:
+      path: .aiox-core/infrastructure/scripts/development/story-index-generator.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/story-index-generator.js
+      keywords:
+        - story
+        - index
+        - generator
+      usedBy:
+        - po-stories-index
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:c9ce1d2f89e76b9b2250aaa2b49a2881fc331dfbdec0bc0c5b7e1ec7767af140
+      lastVerified: '2026-03-21T01:11:40.048Z'
+    story-manager:
+      path: .aiox-core/infrastructure/scripts/development/story-manager.js
+      layer: L2
+      type: script
+      purpose: storyContent,
+      keywords:
+        - story
+        - manager
+      usedBy:
+        - po-pull-story-from-clickup
+        - po-pull-story
+        - po-sync-story-to-clickup
+        - po-sync-story
+      dependencies:
+        - story-update-hook
+        - tool-resolver
+        - pm-adapter-factory
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:ba05c6dc3b29dad5ca57b0dafad8951d750bc30bdc04a9b083d4878c6f84f8f2
+      lastVerified: '2026-03-21T01:11:40.049Z'
+    story-update-hook:
+      path: .aiox-core/infrastructure/scripts/development/story-update-hook.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/story-update-hook.js
+      keywords:
+        - story
+        - update
+        - hook
+      usedBy:
+        - story-manager
+      dependencies:
+        - clickup-helpers
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:554a162e434717f86858ef04d8fdfe3ac40decf060cdc3d4d4987959fb2c51df
+      lastVerified: '2026-03-21T01:11:40.049Z'
+    task-identifier-resolver:
+      path: .aiox-core/infrastructure/scripts/development/task-identifier-resolver.js
+      layer: L2
+      type: script
+      purpose: 'Resolve {TODO: task identifier} placeholders in all 114 task files'
+      keywords:
+        - task
+        - identifier
+        - resolver
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:ef63e5302a7393d4409e50fc437fdf33bd85f40b1907862ccfd507188f072d22
+      lastVerified: '2026-03-21T01:11:40.049Z'
+    test-greeting-system:
+      path: .aiox-core/infrastructure/scripts/development/test-greeting-system.js
+      layer: L2
+      type: script
+      purpose: '''Show all available commands with descriptions'' },'
+      keywords:
+        - test
+        - greeting
+        - system
+      usedBy: []
+      dependencies:
+        - greeting-builder
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:598f32f09db543e67c0e79da78aaa6e2c78eb54b8f91a5014a27c67468e663bb
+      lastVerified: '2026-03-21T01:11:40.050Z'
+    unified-activation-pipeline:
+      path: .aiox-core/infrastructure/scripts/development/unified-activation-pipeline.js
+      layer: L2
+      type: script
+      purpose: '''Agent identity — greeting is broken without this'','
+      keywords:
+        - unified
+        - activation
+        - pipeline
+      usedBy:
+        - activation-runtime
+      dependencies:
+        - greeting-builder
+        - agent-config-loader
+        - context-loader
+        - project-status-loader
+        - git-config-detector
+        - permissions
+        - greeting-preference-manager
+        - context-detector
+        - workflow-navigator
+        - atomic-write
+        - pro-detector
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:de2d4a10b01da32d31c1f810feed429804da6869bb958d5a5ebe626589d0a2f6
+      lastVerified: '2026-03-21T01:11:40.051Z'
+    usage-tracker:
+      path: .aiox-core/infrastructure/scripts/development/usage-tracker.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/usage-tracker.js
+      keywords:
+        - usage
+        - tracker
+      usedBy:
+        - deprecate-component
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:6057623755bf0ee1d9e0fb36740fc41914a5f8ca8ad994d40edec260e273744b
+      lastVerified: '2026-03-21T01:11:40.051Z'
+    validate-filenames:
+      path: .aiox-core/infrastructure/scripts/development/validate-filenames.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/validate-filenames.js
+      keywords:
+        - validate
+        - filenames
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:0228b1538ff02dfe1f747038cbb5e86630683a3c950e27d6315bcd762b1a93fd
+      lastVerified: '2026-03-21T01:11:40.051Z'
+    validate-task-v2:
+      path: .aiox-core/infrastructure/scripts/development/validate-task-v2.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/validate-task-v2.js
+      keywords:
+        - validate
+        - task
+        - v2
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:4abe50b097c2d0f7a722b691ecd84021ea48b76a017ad76f4c49f748d002fe09
+      lastVerified: '2026-03-21T01:11:40.051Z'
+    verify-workflow-gaps:
+      path: .aiox-core/infrastructure/scripts/development/verify-workflow-gaps.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/verify-workflow-gaps.js
+      keywords:
+        - verify
+        - workflow
+        - gaps
+      usedBy: []
+      dependencies:
+        - workflow-elicitation
+        - workflow-validator
+        - squad-validator
+        - framework-analyzer
+        - workflow-state-manager
+        - workflow-navigator
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:a06a3fac2c4fdf995f18d6108d48855a1156b763ef906a3943b94dc9a709c167
+      lastVerified: '2026-03-21T01:11:40.054Z'
+    version-tracker:
+      path: .aiox-core/infrastructure/scripts/development/version-tracker.js
+      layer: L2
+      type: script
+      purpose: v.description,
+      keywords:
+        - version
+        - tracker
+      usedBy: []
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:d11804b82497e2a9c6e83191095681f5d57ac956b69975294f3f9d2efd0a7bdd
+      lastVerified: '2026-03-21T01:11:40.055Z'
+    workflow-navigator:
+      path: .aiox-core/infrastructure/scripts/development/workflow-navigator.js
+      layer: L2
+      type: script
+      purpose: step.description || '',
+      keywords:
+        - workflow
+        - navigator
+      usedBy:
+        - greeting-builder
+        - unified-activation-pipeline
+        - verify-workflow-gaps
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:45bd9f0317b6a0b9e9577b5b26550f1b7fafec2c45c1b542a6947ffd69a70fec
+      lastVerified: '2026-03-21T01:11:40.055Z'
+    workflow-state-manager:
+      path: .aiox-core/infrastructure/scripts/development/workflow-state-manager.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/workflow-state-manager.js
+      keywords:
+        - workflow
+        - state
+        - manager
+      usedBy:
+        - next
+        - verify-workflow-gaps
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:3a896079b32b8efb8c532c0626c4ce14fb52cc92afbb086f6f2d2a0367d60dec
+      lastVerified: '2026-03-21T01:11:40.055Z'
+    workflow-validator:
+      path: .aiox-core/infrastructure/scripts/development/workflow-validator.js
+      layer: L2
+      type: script
+      purpose: Entity at .aiox-core/infrastructure/scripts/development/workflow-validator.js
+      keywords:
+        - workflow
+        - validator
+      usedBy:
+        - verify-workflow-gaps
+        - squad-validator
+        - framework-analyzer
+      dependencies: []
+      adaptability:
+        score: 0.7
+        constraints: []
+        extensionPoints: []
+      checksum: sha256:55bd8375e570cf0c738c10ebc52637462b89cb9cde16c3b53b48e60c3cac49f4
+      lastVerified: '2026-03-21T01:11:40.055Z'
   infra-tools:
     README:
       path: .aiox-core/infrastructure/tools/README.md
