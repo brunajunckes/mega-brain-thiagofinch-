@@ -16,6 +16,7 @@ from brain.ingestion.doc import ingest_document
 from brain.ingestion.pdf import ingest_pdf
 from brain.ingestion.youtube import ingest_youtube
 from brain.ingestion.image import ingest_image
+from brain.watch.manager import WatchManager
 
 router = APIRouter(prefix='/brain', tags=['brain'])
 
@@ -241,15 +242,83 @@ async def squad_list_clones():
     raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get('/squad/debate/{debate_id}')
-async def squad_debate_replay(debate_id: str):
-  """Replay a saved debate by ID"""
+# --- Watch API Routes ---
+
+class WatchRequest(BaseModel):
+  channel_url: str
+  slug: str
+
+
+class WatchActionRequest(BaseModel):
+  action: str  # 'pause' or 'resume'
+
+
+watch_manager = WatchManager()
+
+
+@router.post('/watch')
+async def add_watch(req: WatchRequest):
+  """Add new channel watch"""
   try:
-    history = SquadCoordinator.get_debate_history(debate_id)
-    if not history:
-      raise HTTPException(status_code=404, detail=f'Debate {debate_id} not found or expired')
-    return history
+    result = watch_manager.add_watch(req.channel_url, req.slug)
+    return {'status': 'ok', 'watch': result}
+  except Exception as e:
+    raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get('/watch')
+async def list_watches():
+  """List all watched channels"""
+  try:
+    watches = watch_manager.list_watches()
+    return {'watches': watches, 'total': len(watches)}
+  except Exception as e:
+    raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.patch('/watch/{slug}')
+async def update_watch(slug: str, req: WatchActionRequest):
+  """Pause or resume a watch"""
+  try:
+    if req.action == 'pause':
+      watch_manager.pause_watch(slug)
+      watch_manager.log_event(slug, 'pause', 'success')
+      return {'status': 'paused', 'slug': slug}
+    elif req.action == 'resume':
+      watch_manager.resume_watch(slug)
+      watch_manager.log_event(slug, 'resume', 'success')
+      return {'status': 'resumed', 'slug': slug}
+    else:
+      raise HTTPException(status_code=400, detail=f'Unknown action: {req.action}')
   except HTTPException:
     raise
+  except Exception as e:
+    raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get('/watch/{slug}/history')
+async def watch_history(slug: str):
+  """View ingestion history for a watched clone"""
+  try:
+    import redis as redis_lib
+    r = redis_lib.from_url('redis://localhost:6379', decode_responses=True)
+    history_key = f'brain:watch:{slug}:history'
+    raw = r.lrange(history_key, 0, -1)
+    history = [json.loads(entry) for entry in raw]
+    return {'slug': slug, 'history': history, 'total': len(history)}
+  except Exception as e:
+    raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get('/watch/{slug}/logs')
+async def watch_logs(slug: str):
+  """View watch event logs"""
+  try:
+    import redis as redis_lib
+    r = redis_lib.from_url('redis://localhost:6379', decode_responses=True)
+    log_key = f'brain:watch:logs:{slug}'
+    raw = r.lrange(log_key, 0, -1)
+    logs = [json.loads(entry) for entry in raw]
+    return {'slug': slug, 'logs': logs, 'total': len(logs)}
   except Exception as e:
     raise HTTPException(status_code=500, detail=str(e))

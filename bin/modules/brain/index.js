@@ -4,6 +4,7 @@ const { status } = require('./status');
 const { ask } = require('./ask');
 const { squad } = require('./squad');
 const { watch } = require('./watch');
+const { watchDaemon } = require('./watch-daemon');
 
 const program = new Command('aiox-brain');
 
@@ -58,8 +59,14 @@ program
   .option('--clone <slug>', 'Target clone slug', null)
   .option('--list', 'List all watched channels', false)
   .option('--history', 'Show ingestion history', false)
+  .option('--logs', 'Show watch event logs', false)
   .option('--pause', 'Pause watching', false)
   .option('--resume', 'Resume watching', false)
   .action(watch);
+
+program
+  .command('watch-daemon [action]')
+  .description('Manage the watcher daemon (start|stop|status)')
+  .action(watchDaemon);
 
 module.exports = { run: (argv) => program.parse(argv) };
