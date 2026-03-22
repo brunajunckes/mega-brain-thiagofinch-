@@ -46,6 +46,8 @@ program
   .option('--list', 'List all available clones', false)
   .option('--synthesize', 'Synthesize responses into unified answer', false)
   .option('--debate <rounds>', 'Enable multi-round debate (number of rounds)', null)
+  .option('--clones <slugs>', 'Comma-separated list of clone slugs to query', null)
+  .option('--show-consensus', 'Show consensus scoring details', false)
   .option('--json', 'Output as JSON', false)
   .action(squad);
 

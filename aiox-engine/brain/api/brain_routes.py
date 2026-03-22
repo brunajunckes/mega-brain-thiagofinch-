@@ -11,6 +11,7 @@ from pydantic import BaseModel
 from brain.clone.store import BrainStore
 from brain.clone.agent import CloneAgent
 from brain.squad.coordinator import SquadCoordinator
+from brain.squad.debate import score_consensus
 from brain.ingestion.doc import ingest_document
 from brain.ingestion.pdf import ingest_pdf
 from brain.ingestion.youtube import ingest_youtube
@@ -214,8 +215,13 @@ async def squad_ask(req: SquadRequest):
       debate_result = await coordinator.debate(req.debate_rounds)
       result['debate'] = debate_result
 
+    # Score consensus on responses
+    responses = result.get('responses', {})
+    consensus = score_consensus(responses)
+    result['consensus'] = consensus
+
     if req.synthesize:
-      synthesis = await coordinator.synthesize(result['all_responses'])
+      synthesis = await coordinator.synthesize(responses)
       result['synthesis'] = synthesis
 
     return result
@@ -231,5 +237,19 @@ async def squad_list_clones():
     coordinator = SquadCoordinator('')
     clones = coordinator.get_clones()
     return {'clones': clones, 'count': len(clones)}
+  except Exception as e:
+    raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get('/squad/debate/{debate_id}')
+async def squad_debate_replay(debate_id: str):
+  """Replay a saved debate by ID"""
+  try:
+    history = SquadCoordinator.get_debate_history(debate_id)
+    if not history:
+      raise HTTPException(status_code=404, detail=f'Debate {debate_id} not found or expired')
+    return history
+  except HTTPException:
+    raise
   except Exception as e:
     raise HTTPException(status_code=500, detail=str(e))
