@@ -4,6 +4,7 @@ jest.mock('../../bin/modules/brain/http-client.js');
 const { ingest } = require('../../bin/modules/brain/ingest.js');
 const { status } = require('../../bin/modules/brain/status.js');
 const { ask } = require('../../bin/modules/brain/ask.js');
+const { squad } = require('../../bin/modules/brain/squad.js');
 
 describe('Brain Factory CLI', () => {
   beforeEach(() => {
@@ -155,5 +156,164 @@ describe('Brain Factory CLI', () => {
     });
 
     exitSpy.mockRestore();
+  });
+});
+
+describe('Brain Squad CLI', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test('squad --ask sends POST to /brain/squad/ask', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockResolvedValue({
+      data: {
+        responses: {
+          hormozi: { response: 'Scale offers first' },
+          naval: { response: 'Build leverage' },
+        },
+        consensus: {
+          consensus_score: 0.45,
+          consensus_percentage: 45,
+          agreement_level: 'medium',
+          common_themes: ['build'],
+          agreements: ['build'],
+          disagreements: [],
+        },
+        metrics: {
+          num_clones: 2,
+          parallel_queries: 2,
+          total_tokens: 100,
+          query_time: 2.5,
+        },
+      },
+    });
+
+    await squad({ ask: 'how to scale to 8 figures?' });
+
+    expect(request).toHaveBeenCalledWith('POST', '/brain/squad/ask', {
+      question: 'how to scale to 8 figures?',
+      use_rag: true,
+      synthesize: false,
+      debate_rounds: 0,
+    });
+  });
+
+  test('squad --ask with --synthesize sends synthesize flag', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockResolvedValue({
+      data: {
+        responses: { hormozi: { response: 'Test' } },
+        synthesis: { text: 'Unified view', model: 'qwen2.5:14b', synthesis_time: 1.2 },
+        consensus: { consensus_score: 0.5, consensus_percentage: 50, agreement_level: 'medium', common_themes: [], agreements: [], disagreements: [] },
+        metrics: { num_clones: 1, parallel_queries: 1, total_tokens: 50, query_time: 1.0 },
+      },
+    });
+
+    await squad({ ask: 'test question', synthesize: true });
+
+    expect(request).toHaveBeenCalledWith('POST', '/brain/squad/ask', {
+      question: 'test question',
+      use_rag: true,
+      synthesize: true,
+      debate_rounds: 0,
+    });
+  });
+
+  test('squad --ask with --debate sends debate_rounds', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockResolvedValue({
+      data: {
+        responses: { hormozi: { response: 'Test' } },
+        debate: {
+          debate_id: 'debate_abc123',
+          rounds: {
+            round_1: { hormozi: { response: 'Round 1' } },
+            round_2: { hormozi: { response: 'Round 2' } },
+            round_3: { hormozi: { response: 'Round 3' } },
+          },
+        },
+        consensus: { consensus_score: 0.3, consensus_percentage: 30, agreement_level: 'low', common_themes: [], agreements: [], disagreements: [] },
+        metrics: { num_clones: 1, parallel_queries: 1, total_tokens: 150, query_time: 5.0 },
+      },
+    });
+
+    await squad({ ask: 'test question', debate: '3' });
+
+    expect(request).toHaveBeenCalledWith('POST', '/brain/squad/ask', {
+      question: 'test question',
+      use_rag: true,
+      synthesize: false,
+      debate_rounds: 3,
+    });
+  });
+
+  test('squad --ask with --clones sends clone list', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockResolvedValue({
+      data: {
+        responses: { hormozi: { response: 'Test' } },
+        consensus: { consensus_score: 0, consensus_percentage: 0, agreement_level: 'none', common_themes: [], agreements: [], disagreements: [] },
+        metrics: { num_clones: 1, parallel_queries: 1, total_tokens: 50, query_time: 1.0 },
+      },
+    });
+
+    await squad({ ask: 'test', clones: 'hormozi,naval' });
+
+    expect(request).toHaveBeenCalledWith('POST', '/brain/squad/ask', {
+      question: 'test',
+      use_rag: true,
+      synthesize: false,
+      debate_rounds: 0,
+      clones: ['hormozi', 'naval'],
+    });
+  });
+
+  test('squad --list shows available clones', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockResolvedValue({
+      data: {
+        clones: [
+          { name: 'hormozi', chunk_count: 342, source_types: ['youtube', 'pdf'], available: true },
+          { name: 'naval', chunk_count: 891, source_types: ['youtube'], available: true },
+        ],
+        count: 2,
+      },
+    });
+
+    await squad({ list: true });
+
+    expect(request).toHaveBeenCalledWith('GET', '/brain/squad/clones');
+  });
+
+  test('squad without --ask or --list exits with error', async () => {
+    const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+    await squad({});
+
+    expect(exitSpy).toHaveBeenCalledWith(1);
+    exitSpy.mockRestore();
+  });
+
+  test('squad --ask with --json outputs JSON', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    const mockData = {
+      responses: { hormozi: { response: 'JSON test' } },
+      consensus: { consensus_score: 0.5, consensus_percentage: 50, agreement_level: 'medium', common_themes: [], agreements: [], disagreements: [] },
+      metrics: { num_clones: 1, parallel_queries: 1, total_tokens: 30, query_time: 0.5 },
+    };
+    request.mockResolvedValue({ data: mockData });
+
+    const logSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+
+    await squad({ ask: 'test', json: true });
+
+    // Verify JSON output was logged
+    const jsonCalls = logSpy.mock.calls.filter(
+      (call) => typeof call[0] === 'string' && call[0].includes('responses'),
+    );
+    expect(jsonCalls.length).toBeGreaterThan(0);
+
+    logSpy.mockRestore();
   });
 });
