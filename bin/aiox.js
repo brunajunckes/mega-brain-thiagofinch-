@@ -99,6 +99,15 @@ SESSIONS:
   aiox session archive <agent> <id>      # Archive a session
   aiox session snapshot <agent> <id>     # Create session snapshot
 
+EVOLUTION DASHBOARD:
+  aiox dashboard                         # Show evolution overview for all repos
+  aiox dashboard --repo <name>           # Show dashboard for specific repo
+  aiox dashboard --days <n>              # Filter to last N days (default 30)
+  aiox dashboard --report                # Generate full trend report
+  aiox dashboard --export                # Export report as JSON
+  aiox dashboard --prune                 # Prune old snapshots
+  aiox dashboard --verbose               # Show charts and detailed output
+
 SERVICE DISCOVERY:
   aiox workers search <query>            # Search for workers
   aiox workers search "json" --category=data
@@ -932,6 +941,41 @@ async function main() {
         quiet: doctorArgs.includes('--quiet'),
       };
       await runDoctor(doctorOptions);
+      break;
+    }
+
+    case 'dashboard': {
+      // Evolution Dashboard CLI - Story 2.4
+      const dashArgs = args.slice(1);
+      const dashOptions = {
+        repo: null,
+        days: '30',
+        report: dashArgs.includes('--report'),
+        export: dashArgs.includes('--export'),
+        prune: dashArgs.includes('--prune'),
+        verbose: dashArgs.includes('--verbose') || dashArgs.includes('-v'),
+        retention: '90',
+      };
+      // Parse --repo and --days flags
+      for (let i = 0; i < dashArgs.length; i++) {
+        if (dashArgs[i] === '--repo' && dashArgs[i + 1]) {
+          dashOptions.repo = dashArgs[i + 1];
+          i++;
+        } else if (dashArgs[i] === '--days' && dashArgs[i + 1]) {
+          dashOptions.days = dashArgs[i + 1];
+          i++;
+        } else if (dashArgs[i] === '--retention' && dashArgs[i + 1]) {
+          dashOptions.retention = dashArgs[i + 1];
+          i++;
+        }
+      }
+      try {
+        const { handleDashboardCommand } = require('../.aiox-core/cli/commands/dashboard');
+        await handleDashboardCommand(dashOptions);
+      } catch (error) {
+        console.error(`Dashboard error: ${error.message}`);
+        process.exit(1);
+      }
       break;
     }
 
