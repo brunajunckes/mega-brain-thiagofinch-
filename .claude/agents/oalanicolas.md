@@ -4,7 +4,7 @@ description: |
   Mind cloning architect. Expert in Voice DNA and Thinking DNA extraction.
   Captures mental models, communication patterns, and frameworks from elite minds.
 
-model: opus
+model: sonnet
 
 tools:
   - Read

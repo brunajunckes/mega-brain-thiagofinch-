@@ -3,7 +3,7 @@ name: aiox-devops
 description: |
   AIOX DevOps autônomo. Git operations, CI/CD, PR automation,
   pre-push quality gates, version management, MCP management. Usa task files reais do AIOX.
-model: opus
+model: sonnet
 tools:
   - Read
   - Grep

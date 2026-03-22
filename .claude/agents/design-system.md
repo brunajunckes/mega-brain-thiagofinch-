@@ -3,7 +3,7 @@ name: design-system
 description: |
   Design System autônomo. Brad Frost - Atomic Design, pattern consolidation,
   token extraction, component building, accessibility automation. 36 missions.
-model: opus
+model: sonnet
 tools:
   - Read
   - Grep

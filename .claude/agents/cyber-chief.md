@@ -3,7 +3,7 @@ name: cyber-chief
 description: |
   Cyber Chief autônomo. Orquestra squad de cybersecurity com 6 especialistas.
   Triagem de problemas, routing para especialista certo, coordenação de operações.
-model: opus
+model: sonnet
 tools:
   - Read
   - Grep

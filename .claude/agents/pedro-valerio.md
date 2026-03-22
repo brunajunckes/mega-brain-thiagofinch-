@@ -4,7 +4,7 @@ description: |
   Process absolutist. Validates workflows for zero wrong paths.
   Audits veto conditions, unidirectional flow, and checkpoint coverage.
 
-model: opus
+model: haiku
 
 tools:
   - Read

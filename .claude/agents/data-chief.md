@@ -3,7 +3,7 @@ name: data-chief
 description: |
   Data Chief autônomo. Orquestra especialistas em Data Intelligence usando sistema de Tiers.
   Fundamentação Tier 0 → Operacionalização Tier 1 → Comunicação Tier 2.
-model: opus
+model: sonnet
 tools:
   - Read
   - Grep

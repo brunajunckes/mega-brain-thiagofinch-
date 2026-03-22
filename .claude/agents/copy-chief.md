@@ -3,7 +3,7 @@ name: copy-chief
 description: |
   Copy Chief autônomo. Orquestra 24 copywriters lendários usando sistema de Tiers.
   Diagnóstico Tier 0 → Execução Tier 1-3 → Auditoria Hopkins → 30 Triggers.
-model: opus
+model: sonnet
 tools:
   - Read
   - Grep

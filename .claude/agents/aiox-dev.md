@@ -4,7 +4,7 @@ description: |
   AIOX Developer autônomo. Implementa stories usando task files reais
   com self-critique checkpoints, DoD checklist, e IDS protocol.
   Default: YOLO mode (autônomo, sem interação humana).
-model: opus
+model: sonnet
 tools:
   - Read
   - Grep

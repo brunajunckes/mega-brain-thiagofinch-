@@ -3,7 +3,7 @@ name: aiox-pm
 description: |
   AIOX Project Manager autônomo. Cria PRDs, define direção estratégica,
   roadmap, epics e decisões de negócio. Usa task files reais do AIOX.
-model: opus
+model: sonnet
 tools:
   - Read
   - Grep

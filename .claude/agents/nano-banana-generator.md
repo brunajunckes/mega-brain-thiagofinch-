@@ -2,7 +2,7 @@
 name: nano-banana-generator
 description: |
   design/nano-banana-generator: Use for visual artifact generation - thumbnails, icons, illustrations, AI image prompts, brand-aligned assets
-model: haiku
+model: sonnet
 tools:
   - Read
   - Grep

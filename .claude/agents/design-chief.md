@@ -3,7 +3,7 @@ name: design-chief
 description: |
   Design Chief autônomo. Orquestra 9 especialistas de design usando sistema de Tiers.
   Routing Tier 0 → Masters Tier 1 → Specialists Tier 2 → Multi-specialist workflows.
-model: opus
+model: sonnet
 tools:
   - Read
   - Grep

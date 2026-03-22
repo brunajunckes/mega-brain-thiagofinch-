@@ -3,7 +3,7 @@ name: aiox-data-engineer
 description: |
   AIOX Data Engineer autônomo. Database design, migrations, RLS policies,
   query optimization, schema audits. Usa task files reais do AIOX.
-model: opus
+model: sonnet
 tools:
   - Read
   - Grep

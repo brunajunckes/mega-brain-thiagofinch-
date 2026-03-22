@@ -3,7 +3,7 @@ name: aiox-analyst
 description: |
   AIOX Analyst autônomo. Market research, competitive analysis,
   brainstorming facilitation, ROI calculations, deep research. Usa task files reais do AIOX.
-model: opus
+model: sonnet
 tools:
   - Read
   - Grep

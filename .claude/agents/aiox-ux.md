@@ -3,7 +3,7 @@ name: aiox-ux
 description: |
   AIOX UX Design Expert autônomo. Frontend architecture, UI/UX design,
   wireframes, design system, accessibility, component design. 5 fases completas.
-model: opus
+model: sonnet
 tools:
   - Read
   - Grep
