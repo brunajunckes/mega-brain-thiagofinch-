@@ -962,6 +962,31 @@ async function main() {
       await runWizard();
       break;
 
+    case 'qa': {
+      // QA Validation CLI - Story 1.3
+      const qaSubCommand = args[1];
+      if (qaSubCommand === 'validate') {
+        try {
+          const { QACli } = require('../.aiox-core/core/qa-validator/qa-cli');
+          const cli = new QACli({ projectRoot: process.cwd() });
+          const qaArgs = args.slice(2);
+          const qaResult = await cli.execute(qaArgs);
+          if (qaResult.output) {
+            console.log(qaResult.output);
+          }
+          process.exit(qaResult.exitCode);
+        } catch (error) {
+          console.error(`Error: QA validation failed: ${error.message}`);
+          process.exit(2);
+        }
+      } else {
+        console.log('AIOX QA Commands:');
+        console.log('  aiox qa validate [path] [options]   Validate code quality');
+        console.log('\nRun aiox qa validate --help for more information.');
+      }
+      break;
+    }
+
     default:
       console.error(`❌ Unknown command: ${command}`);
       console.log('\nRun with --help to see available commands');

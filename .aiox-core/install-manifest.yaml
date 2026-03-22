@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-20T21:58:30.395Z"
+generated_at: "2026-03-22T15:45:12.531Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1170
+file_count: 1176
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1164,14 +1164,38 @@ files:
     hash: sha256:84f09067c7154d97cb2252b9a7def00562acf569cfc3b035d6d4e39fb40d4033
     type: core
     size: 7193
+  - path: core/qa-validator/__tests__/qa-cli.test.js
+    hash: sha256:43300be2f6e521275ddb52f2dc38b0ddabdec36f80082532524afb2780a1f2da
+    type: core
+    size: 8511
+  - path: core/qa-validator/__tests__/qa-report-generator.test.js
+    hash: sha256:b0d7ef79c5ab65745b5dd36959a159c79c97ac6eca6038bfe3d16b7f5e7dd1cb
+    type: core
+    size: 6331
+  - path: core/qa-validator/__tests__/qa-rules-engine.test.js
+    hash: sha256:84e6441cc543e978bac9d8ba8b8b168489f9b41abc5562172c26b60aa0cdb2f1
+    type: core
+    size: 7081
   - path: core/qa-validator/__tests__/qa-validator.test.js
     hash: sha256:5aa301137a800fe78f616e9a3cc4eba646cb44f228cea127d48e71e350aa1a94
     type: core
     size: 4410
   - path: core/qa-validator/index.js
-    hash: sha256:6af672b24ab4699949371d93b666162ac52a3b25cd82fe1e543fb8d6ab610b43
+    hash: sha256:e6f84b48570aeacd415933cbe5cab0ca65399b0e43f48dd728ad489995291b7c
     type: core
-    size: 101
+    size: 301
+  - path: core/qa-validator/qa-cli.js
+    hash: sha256:5622d9951b766022b741bb8d9c103792484c5b6fa57df354c7a46e64314a79d9
+    type: core
+    size: 5635
+  - path: core/qa-validator/qa-report-generator.js
+    hash: sha256:4a2410f97f0f2d5049f646a35d7b293cdf8993deda34242eb0bd6959fd5bd69c
+    type: core
+    size: 8529
+  - path: core/qa-validator/qa-rules-engine.js
+    hash: sha256:26ac8aab46ee700180564d76096066c679ddfa02853d8269f50ce6b23b3c39c0
+    type: core
+    size: 6325
   - path: core/qa-validator/qa-validator.js
     hash: sha256:e35462d6aad79c8ad1624286cae167ea7d95bbd8a7ae99a821de33670fa26ff4
     type: core
