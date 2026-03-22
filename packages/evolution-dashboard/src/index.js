@@ -1,10 +1,12 @@
 'use strict';
 
 /**
- * Evolution Dashboard — Real-time Evolution Tracking
+ * Evolution Dashboard -- Real-time Evolution Tracking
+ *
+ * Re-exports core modules and DashboardCLI for backward compatibility.
  *
  * @module evolution-dashboard
- * @version 1.0.0
+ * @version 2.0.0
  * @story 2.4
  */
 

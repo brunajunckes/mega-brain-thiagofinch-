@@ -1,18 +1,29 @@
 'use strict';
 
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
 const TimelineManager = require('../timeline-manager');
 const MetricsAggregator = require('../metrics-aggregator');
 const DashboardCLI = require('../dashboard-cli');
 
-describe('Evolution Dashboard', () => {
+describe('Evolution Dashboard (packages)', () => {
   let timelineManager;
   let aggregator;
   let cli;
+  let testDataDir;
 
   beforeEach(() => {
-    timelineManager = new TimelineManager({ storageDir: '/tmp/evolution-dashboard-test' });
+    testDataDir = path.join(os.tmpdir(), `pkg-dash-test-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+    timelineManager = new TimelineManager({ dataDir: testDataDir });
     aggregator = new MetricsAggregator(timelineManager);
     cli = new DashboardCLI(aggregator);
+  });
+
+  afterEach(() => {
+    if (fs.existsSync(testDataDir)) {
+      fs.rmSync(testDataDir, { recursive: true, force: true });
+    }
   });
 
   describe('TimelineManager', () => {
@@ -54,6 +65,7 @@ describe('Evolution Dashboard', () => {
       expect(delta).toBeDefined();
       expect(delta.timeRange).toBeDefined();
       expect(delta.healthScore).toBeDefined();
+      expect(delta.healthScore.direction).toBe('improving');
     });
 
     test('should retrieve timeline for repository', () => {
@@ -86,22 +98,15 @@ describe('Evolution Dashboard', () => {
 
   describe('MetricsAggregator', () => {
     test('should aggregate health trends', () => {
-      const snap1 = {
+      const snap = {
         healthScore: 5,
         stats: { totalFiles: 50 },
         metrics: { testCoverage: 50, codeQuality: 5 },
         debtLevel: 'moderate',
       };
 
-      const snap2 = {
-        healthScore: 6,
-        stats: { totalFiles: 60 },
-        metrics: { testCoverage: 60, codeQuality: 6 },
-        debtLevel: 'low',
-      };
-
-      timelineManager.storeSnapshot('health-test', snap1);
-      timelineManager.storeSnapshot('health-test', snap2);
+      timelineManager.storeSnapshot('health-test', snap);
+      timelineManager.storeSnapshot('health-test', { ...snap, healthScore: 6 });
 
       const trends = aggregator.getHealthTrends('health-test', 30);
       expect(trends.metric).toBe('healthScore');
@@ -169,10 +174,15 @@ describe('Evolution Dashboard', () => {
 
       timelineManager.storeSnapshot('cli-test', snapshot);
 
-      const output = cli.displayDashboard('cli-test');
-      expect(typeof output).toBe('string');
-      expect(output.length).toBeGreaterThan(0);
-      expect(output).toContain('Evolution Dashboard');
+      const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+      try {
+        const output = cli.displayDashboard('cli-test');
+        expect(typeof output).toBe('string');
+        expect(output.length).toBeGreaterThan(0);
+        expect(output).toContain('Evolution Dashboard');
+      } finally {
+        consoleSpy.mockRestore();
+      }
     });
 
     test('should display health chart', () => {
@@ -184,10 +194,15 @@ describe('Evolution Dashboard', () => {
       };
 
       timelineManager.storeSnapshot('chart-test', snapshot);
-      const output = cli.displayHealthChart('chart-test');
 
-      expect(typeof output).toBe('string');
-      expect(output).toContain('Health Score Trend');
+      const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+      try {
+        const output = cli.displayHealthChart('chart-test');
+        expect(typeof output).toBe('string');
+        expect(output).toContain('Health Score Trend');
+      } finally {
+        consoleSpy.mockRestore();
+      }
     });
 
     test('should display trend report', () => {
@@ -199,10 +214,15 @@ describe('Evolution Dashboard', () => {
       };
 
       timelineManager.storeSnapshot('trend-test', snapshot);
-      const output = cli.displayTrendReport('trend-test');
 
-      expect(typeof output).toBe('string');
-      expect(output).toContain('Trend Analysis');
+      const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+      try {
+        const output = cli.displayTrendReport('trend-test');
+        expect(typeof output).toBe('string');
+        expect(output).toContain('Trend Analysis');
+      } finally {
+        consoleSpy.mockRestore();
+      }
     });
   });
 });

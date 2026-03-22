@@ -8,7 +8,7 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-22T15:48:32.243Z"
+generated_at: "2026-03-22T15:48:32.114Z"
 generator: scripts/generate-install-manifest.js
 file_count: 1176
 files:
@@ -29,9 +29,9 @@ files:
     type: cli
     size: 20888
   - path: cli/commands/dashboard.js
-    hash: sha256:8d0601ee11abcaf24781b13c781dffc89cb5dea80ecabebda83945ca9c959ed0
+    hash: sha256:dfcae0022ceea48a7927ad9505dffccd43571d07e97d4d72688b45e25704613c
     type: cli
-    size: 2397
+    size: 4269
   - path: cli/commands/decide.js
     hash: sha256:94bf0a1115c408d36dc3f1cc9d745dabe10205ee5fb8913d7a0d13d0e140c269
     type: cli
@@ -557,25 +557,25 @@ files:
     type: core
     size: 1700
   - path: core/evolution-dashboard/__tests__/metrics-aggregator.test.js
-    hash: sha256:3624ba36f99b91efdb5f443b7f278bbe403b5b5ef555fe31ea2d5dea0a402321
+    hash: sha256:35c66585d060eb0654c88673b06c550b004bb3659ffcba4ee1fc6598aef71f17
     type: core
-    size: 2601
+    size: 12052
   - path: core/evolution-dashboard/__tests__/timeline-manager.test.js
-    hash: sha256:2555f66cd37c4fe945704b8798e025475c0c9847e6117ecdb490202a14e266b4
+    hash: sha256:ae7ca42ccae7ab00248c8c42bc46e2559bc7c7da561aed848430099987ff9bf2
     type: core
-    size: 4699
+    size: 12290
   - path: core/evolution-dashboard/index.js
     hash: sha256:0b3fed0ad75e3c065cabc1aa0669d115bb540e5726e8dae24d60f1e95b76e7c8
     type: core
     size: 200
   - path: core/evolution-dashboard/metrics-aggregator.js
-    hash: sha256:26faafefe4d2a966e714bcb49aca29b1c4bfb4f18af6c1ec57a1e88bae5c075b
+    hash: sha256:6a21a5576d992a1facdc42a0d237705eef40da903b8404187f77d610538d10fe
     type: core
-    size: 3680
+    size: 16303
   - path: core/evolution-dashboard/timeline-manager.js
-    hash: sha256:92b158e272a0ab05cb60037785fedceb887d9d0c0f4b30c16a1237856ec65195
+    hash: sha256:7204330cca093441186edbf7335e9405df17898b1c5f02aa1ee2020bdcfd4e79
     type: core
-    size: 5854
+    size: 12525
   - path: core/execution/autonomous-build-loop.js
     hash: sha256:22246474800340c7a97c8b865f5f9e3cb162efd45c5db1be2f9f729969a0b6d0
     type: core
@@ -1845,9 +1845,9 @@ files:
     hash: sha256:ba597ca7b104653769e0d1467dddf2ac0a0c5d6a398372e6283e1da8bd31621d
 =======
   - path: data/entity-registry.yaml
-    hash: sha256:f5b345dd554989e4abaa24990205ee6e5c988657edfb690b8d6cbe5664e3cf99
+    hash: sha256:dd2daf180ade57ecb280a7a1e53a327d6d97ca7150054b0f80907fe8c8440fff
     type: data
-    size: 557972
+    size: 554197
   - path: data/learned-patterns.yaml
     hash: sha256:24ac0b160615583a0ff783d3da8af80b7f94191575d6db2054ec8e10a3f945dc
     type: data
