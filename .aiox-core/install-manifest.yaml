@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-22T15:48:31.833Z"
+generated_at: "2026-03-22T15:48:32.243Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1400
+file_count: 1176
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1404,14 +1404,38 @@ files:
     hash: sha256:84f09067c7154d97cb2252b9a7def00562acf569cfc3b035d6d4e39fb40d4033
     type: core
     size: 7193
+  - path: core/qa-validator/__tests__/qa-cli.test.js
+    hash: sha256:43300be2f6e521275ddb52f2dc38b0ddabdec36f80082532524afb2780a1f2da
+    type: core
+    size: 8511
+  - path: core/qa-validator/__tests__/qa-report-generator.test.js
+    hash: sha256:b0d7ef79c5ab65745b5dd36959a159c79c97ac6eca6038bfe3d16b7f5e7dd1cb
+    type: core
+    size: 6331
+  - path: core/qa-validator/__tests__/qa-rules-engine.test.js
+    hash: sha256:84e6441cc543e978bac9d8ba8b8b168489f9b41abc5562172c26b60aa0cdb2f1
+    type: core
+    size: 7081
   - path: core/qa-validator/__tests__/qa-validator.test.js
     hash: sha256:5aa301137a800fe78f616e9a3cc4eba646cb44f228cea127d48e71e350aa1a94
     type: core
     size: 4410
   - path: core/qa-validator/index.js
-    hash: sha256:6af672b24ab4699949371d93b666162ac52a3b25cd82fe1e543fb8d6ab610b43
+    hash: sha256:e6f84b48570aeacd415933cbe5cab0ca65399b0e43f48dd728ad489995291b7c
     type: core
-    size: 101
+    size: 301
+  - path: core/qa-validator/qa-cli.js
+    hash: sha256:5622d9951b766022b741bb8d9c103792484c5b6fa57df354c7a46e64314a79d9
+    type: core
+    size: 5635
+  - path: core/qa-validator/qa-report-generator.js
+    hash: sha256:4a2410f97f0f2d5049f646a35d7b293cdf8993deda34242eb0bd6959fd5bd69c
+    type: core
+    size: 8529
+  - path: core/qa-validator/qa-rules-engine.js
+    hash: sha256:26ac8aab46ee700180564d76096066c679ddfa02853d8269f50ce6b23b3c39c0
+    type: core
+    size: 6325
   - path: core/qa-validator/qa-validator.js
     hash: sha256:e35462d6aad79c8ad1624286cae167ea7d95bbd8a7ae99a821de33670fa26ff4
     type: core
@@ -1821,33 +1845,9 @@ files:
     hash: sha256:ba597ca7b104653769e0d1467dddf2ac0a0c5d6a398372e6283e1da8bd31621d
 =======
   - path: data/entity-registry.yaml
-    hash: sha256:b7e888f4e9ac48ac3ae7ff5e6919f17e047649d637a2204429703a964e7fe293
+    hash: sha256:f5b345dd554989e4abaa24990205ee6e5c988657edfb690b8d6cbe5664e3cf99
     type: data
-    size: 5161
-  - path: data/core-config.yaml
-    hash: sha256:82a36027f0997e8cb888862b1d7962dd2d1c27b3fd841a761978189895c9f4cf
-    type: data
-    size: 11090
-  - path: data/csharp.md
-    hash: sha256:4667d33407c59fd6c7b4558370893a14df6d461645fc840b2df2fb7508bd6fcf
-    type: data
-    size: 10851
-  - path: data/decision-heuristics-framework.md
-    hash: sha256:a84b23641dcc89228c7ebd3e11f371f4321f5fd4cc93a446e2a0117d978f7bc2
-    type: data
-    size: 16853
-  - path: data/entity-registry.yaml
-    hash: sha256:348bff3fa56a8a37d0825fea9226a86d003253fd0effa680db7391fcd76c2dd6
-    type: data
-    size: 657959
-  - path: data/go.md
-    hash: sha256:e0851caecbdc2cea6531359fe640427685cd6ed664dbf991ccb135917c4d1ec2
-    type: data
-    size: 11080
-  - path: data/java.md
-    hash: sha256:b912e04412f63b59439f7cca119802bed95a6cb756221e3ba7aee45c3d2890fd
-    type: data
-    size: 11492
+    size: 557972
   - path: data/learned-patterns.yaml
     hash: sha256:24ac0b160615583a0ff783d3da8af80b7f94191575d6db2054ec8e10a3f945dc
     type: data
