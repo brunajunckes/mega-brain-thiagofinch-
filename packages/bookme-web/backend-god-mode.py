@@ -18,14 +18,30 @@ try:
 except ImportError:
     HAS_LONG_CONTENT = False
 
+# Novel Process — Advanced Writing Craft System
+try:
+    from novel_process import (
+        NovelProcessPipeline, VoiceProfileBuilder, VoiceProfile,
+        LivingStoryBible, CraftStandards, ChapterNotesGenerator,
+        VoiceComplianceAuditor, SceneOutlineEngine,
+        VOICE_INTERVIEW_QUESTIONS, VOICE_DEFAULTS,
+    )
+    HAS_NOVEL_PROCESS = True
+except ImportError:
+    HAS_NOVEL_PROCESS = False
+
 
 # ===== LLM PROVIDER DETECTION =====
 
 def get_available_provider() -> str:
+    if os.getenv("DEEPSEEK_API_KEY"):
+        return "deepseek"
     if os.getenv("OPENAI_API_KEY"):
         return "openai"
     if os.getenv("ANTHROPIC_API_KEY"):
         return "anthropic"
+    if os.getenv("OPENROUTER_API_KEY"):
+        return "openrouter"
     if os.getenv("OLLAMA_URL") or _check_ollama():
         return "ollama"
     return "template"
@@ -46,10 +62,14 @@ def _check_ollama() -> bool:
 def call_llm(prompt: str, system: str = "", max_tokens: int = 2000, provider: str = None) -> str:
     if provider is None:
         provider = get_available_provider()
-    if provider == "openai":
+    if provider == "deepseek":
+        return _call_deepseek(prompt, system, max_tokens)
+    elif provider == "openai":
         return _call_openai(prompt, system, max_tokens)
     elif provider == "anthropic":
         return _call_anthropic(prompt, system, max_tokens)
+    elif provider == "openrouter":
+        return _call_openrouter(prompt, system, max_tokens)
     elif provider == "ollama":
         return _call_ollama(prompt, system, max_tokens)
     return None
@@ -77,7 +97,8 @@ def _call_anthropic(prompt: str, system: str, max_tokens: int) -> str:
     try:
         import anthropic
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        kwargs = {"model": "claude-3-haiku-20240307", "max_tokens": max_tokens,
+        model = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-20250514")
+        kwargs = {"model": model, "max_tokens": max_tokens,
                   "messages": [{"role": "user", "content": prompt}]}
         if system:
             kwargs["system"] = system
@@ -85,6 +106,52 @@ def _call_anthropic(prompt: str, system: str, max_tokens: int) -> str:
         return response.content[0].text
     except Exception as e:
         print(f"[GodMode] Anthropic error: {e}")
+        return None
+
+
+def _call_deepseek(prompt: str, system: str, max_tokens: int) -> str:
+    """DeepSeek API — OpenAI-compatible endpoint, excellent for long-form writing."""
+    try:
+        from openai import OpenAI
+        client = OpenAI(
+            api_key=os.getenv("DEEPSEEK_API_KEY"),
+            base_url="https://api.deepseek.com"
+        )
+        messages = []
+        if system:
+            messages.append({"role": "system", "content": system})
+        messages.append({"role": "user", "content": prompt})
+        model = os.getenv("DEEPSEEK_MODEL", "deepseek-chat")
+        response = client.chat.completions.create(
+            model=model, messages=messages,
+            max_tokens=max_tokens, temperature=0.8
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        print(f"[GodMode] DeepSeek error: {e}")
+        return None
+
+
+def _call_openrouter(prompt: str, system: str, max_tokens: int) -> str:
+    """OpenRouter API — access to multiple models via single key."""
+    try:
+        from openai import OpenAI
+        client = OpenAI(
+            api_key=os.getenv("OPENROUTER_API_KEY"),
+            base_url="https://openrouter.ai/api/v1"
+        )
+        messages = []
+        if system:
+            messages.append({"role": "system", "content": system})
+        messages.append({"role": "user", "content": prompt})
+        model = os.getenv("OPENROUTER_MODEL", "deepseek/deepseek-chat")
+        response = client.chat.completions.create(
+            model=model, messages=messages,
+            max_tokens=max_tokens, temperature=0.8
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        print(f"[GodMode] OpenRouter error: {e}")
         return None
 
 
@@ -997,6 +1064,180 @@ Retorne APENAS o texto revisado."""
 
     def check_consistency(self, chapters):
         return self.consistency_checker.check(chapters)
+
+    # ===== NOVEL PROCESS ENHANCED METHODS =====
+
+    def generate_chapter_enhanced(
+        self, project_title, chapter_title, chapter_number, genre, topic,
+        target_audience, chapter_outline, previous_chapters,
+        custom_voice_rules=None, materials_context="", language="pt-br",
+        voice_profile_data=None, craft_standards_data=None,
+        story_bible_data=None, writing_samples=None,
+        max_revisions=1
+    ) -> Dict:
+        """
+        Full Novel Process pipeline: Voice Profile → Scene Outline → Write → Critique → Edit → Audit → Notes.
+        Falls back to standard pipeline if novel_process module is unavailable.
+        """
+        if not HAS_NOVEL_PROCESS:
+            return self.generate_chapter(
+                project_title, chapter_title, chapter_number, genre, topic,
+                target_audience, chapter_outline, previous_chapters,
+                custom_voice_rules, materials_context, language
+            )
+
+        provider = self.provider
+        print(f"[NovelProcess] Cap.{chapter_number} - Enhanced pipeline ({language})...")
+
+        # Initialize pipeline
+        pipeline = NovelProcessPipeline(
+            genre=genre,
+            topic=topic,
+            project_title=project_title,
+            provider=provider,
+            language=language,
+            voice_profile_data=voice_profile_data,
+            craft_standards_data=craft_standards_data,
+            story_bible_data=story_bible_data,
+        )
+
+        # Build voice profile from samples if provided
+        if writing_samples and not voice_profile_data:
+            print(f"[NovelProcess] Building voice profile from {len(writing_samples)} samples...")
+            pipeline.build_voice_profile_from_samples(writing_samples)
+
+        # Load materials
+        if materials_context:
+            pipeline.story_bible.set_materials(materials_context)
+            print(f"[NovelProcess] Materials injected: {len(materials_context)} chars")
+
+        # Load previous chapters into story bible
+        for prev in previous_chapters:
+            pipeline.story_bible.update_from_chapter(
+                prev["number"], prev["title"], prev.get("content", ""),
+                provider=provider
+            )
+
+        # Run full pipeline
+        result = pipeline.generate_chapter(
+            chapter_number=chapter_number,
+            chapter_title=chapter_title,
+            chapter_outline=chapter_outline,
+            target_audience=target_audience,
+            max_revisions=max_revisions,
+        )
+
+        if not result.get("content"):
+            print(f"[NovelProcess] Enhanced pipeline failed, falling back to standard...")
+            return self.generate_chapter(
+                project_title, chapter_title, chapter_number, genre, topic,
+                target_audience, chapter_outline, previous_chapters,
+                custom_voice_rules, materials_context, language
+            )
+
+        word_count = result.get("word_count", 0)
+        audit_score = result.get("audit", {}).get("compliance_score", 0)
+        print(f"[NovelProcess] Cap.{chapter_number} complete: {word_count} words, "
+              f"voice compliance: {audit_score}%")
+
+        return {
+            "generated_text": result["content"],
+            "word_count": word_count,
+            "provider": provider,
+            "language": language,
+            "pipeline_steps": [
+                {"agent": "scene_outline_engine", "status": "complete"},
+                {"agent": "enhanced_writer", "status": "complete"},
+                {"agent": "enhanced_critic", "status": "complete"},
+                {"agent": "enhanced_editor", "status": "complete"},
+                {"agent": "voice_auditor", "status": "complete", "score": audit_score},
+                {"agent": "notes_generator", "status": "complete"},
+            ],
+            "novel_process": {
+                "outline": result.get("outline", ""),
+                "notes": result.get("notes", {}),
+                "audit": result.get("audit", {}),
+                "issues_found": result.get("issues_found", []),
+                "story_bible": result.get("story_bible_snapshot", {}),
+                "voice_profile": pipeline.get_voice_profile(),
+                "craft_standards": pipeline.get_craft_standards(),
+            },
+            "memory_snapshot": {
+                "characters_tracked": len(pipeline.story_bible.characters),
+                "continuity_flags": len(pipeline.story_bible.continuity_flags),
+                "locations_tracked": len(pipeline.story_bible.locations),
+                "motifs_tracked": len(pipeline.story_bible.motifs),
+                "materials_loaded": bool(materials_context),
+            }
+        }
+
+    def build_voice_profile(self, genre, topic, writing_samples=None,
+                            interview_responses=None) -> Dict:
+        """Build a voice profile from writing samples or interview responses."""
+        if not HAS_NOVEL_PROCESS:
+            vb = VoiceBible(genre, topic)
+            return {"profile": vb.rules, "source": "legacy_voice_bible"}
+
+        builder = VoiceProfileBuilder(provider=self.provider)
+
+        if writing_samples:
+            profile = builder.from_writing_samples(writing_samples, genre, topic)
+        elif interview_responses:
+            profile = builder.from_interview_responses(interview_responses, genre, topic)
+        else:
+            profile = builder.from_genre_defaults(genre, topic)
+
+        return {"profile": profile.to_dict(), "source": profile.source}
+
+    def get_voice_interview_questions(self) -> List[str]:
+        """Return the 4 voice interview questions for the author."""
+        if HAS_NOVEL_PROCESS:
+            return list(VOICE_INTERVIEW_QUESTIONS)
+        return [
+            "Descreva um cômodo em que você passou muito tempo quando criança.",
+            "Conte sobre um momento em que você se sentiu completamente deslocado.",
+            "O que a maioria das pessoas entende errado sobre um assunto que você conhece bem?",
+            "Complete esta frase sem pensar: 'O problema de conseguir o que você quer é...'",
+        ]
+
+    def generate_story_bible(self, chapters, genre="", topic="") -> Dict:
+        """Generate a full living story bible from existing chapters."""
+        if not HAS_NOVEL_PROCESS:
+            return self.check_consistency(chapters)
+
+        bible = LivingStoryBible()
+        for ch in chapters:
+            if ch.get("content"):
+                bible.update_from_chapter(
+                    ch["number"], ch.get("title", f"Cap.{ch['number']}"),
+                    ch["content"], provider=self.provider
+                )
+
+        return {
+            "status": "complete",
+            "bible": bible.to_full_bible(),
+            "context_block": bible.to_context_block(),
+            "characters": len(bible.characters),
+            "locations": len(bible.locations),
+            "motifs": len(bible.motifs),
+            "continuity_flags": len(bible.continuity_flags),
+            "timeline_entries": len(bible.timeline),
+        }
+
+    def audit_voice_compliance(self, content, genre="", topic="",
+                                voice_profile_data=None) -> Dict:
+        """Audit a chapter against voice profile for compliance."""
+        if not HAS_NOVEL_PROCESS:
+            return {"compliance_score": 0, "error": "novel_process not available"}
+
+        if voice_profile_data:
+            profile = VoiceProfile.from_dict(voice_profile_data)
+        else:
+            builder = VoiceProfileBuilder(provider=self.provider)
+            profile = builder.from_genre_defaults(genre, topic)
+
+        auditor = VoiceComplianceAuditor(provider=self.provider)
+        return auditor.audit(content, profile)
 
 
 _god_mode_engine = None
