@@ -144,6 +144,8 @@ describe('End-to-End Workflow Tests', () => {
 
   describe('Scenario 3: Error Recovery and Retry', () => {
     it('should retry transient errors with exponential backoff', async () => {
+      // Use fast retry manager — default delays (1s+2s+4s) exceed Jest timeout
+      retryManager = new RetryManager({ maxRetries: 3, initialDelay: 10, maxDelay: 50, backoffMultiplier: 2 });
       let attempts = 0;
       const failingTask = async () => {
         attempts++;
@@ -158,6 +160,8 @@ describe('End-to-End Workflow Tests', () => {
     });
 
     it('should track retry history for audit trail', async () => {
+      // Use fast retry manager to avoid timeout from default 1s+ delays
+      retryManager = new RetryManager({ maxRetries: 3, initialDelay: 10, maxDelay: 50, backoffMultiplier: 2 });
       let attempts = 0;
       const failingTask = async () => {
         attempts++;
@@ -427,6 +431,14 @@ describe('End-to-End Workflow Tests', () => {
     });
 
     it('should measure retry performance under load', async () => {
+      // Use a fast retry manager with minimal delays for performance testing
+      const fastRetryManager = new RetryManager({
+        maxRetries: 3,
+        initialDelay: 10,
+        maxDelay: 50,
+        backoffMultiplier: 2,
+      });
+
       const tasks = Array(10)
         .fill(0)
         .map((_, i) => async () => {
@@ -438,7 +450,7 @@ describe('End-to-End Workflow Tests', () => {
       const start = Date.now();
       for (let i = 0; i < tasks.length; i++) {
         try {
-          await retryManager.executeWithRetry(`task-${i}`, tasks[i]);
+          await fastRetryManager.executeWithRetry(`task-${i}`, tasks[i]);
         } catch {
           // Expected for some tasks
         }

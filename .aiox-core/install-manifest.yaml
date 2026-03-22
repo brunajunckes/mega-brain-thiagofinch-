@@ -8,7 +8,7 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-21T03:40:27.185Z"
+generated_at: "2026-03-22T02:11:09.490Z"
 generator: scripts/generate-install-manifest.js
 file_count: 1400
 files:
@@ -1053,9 +1053,9 @@ files:
     type: core
     size: 8711
   - path: core/orchestration/__tests__/e2e-workflows.test.js
-    hash: sha256:c15effd5272ab17ac836e19176ab71e20cba55ff9babed2827cfc6c96bfee7fa
+    hash: sha256:a005e6168c2049ee269dc49ffc2abb11d5e72e888359281205aea3875ab9b5d9
     type: core
-    size: 13955
+    size: 14578
   - path: core/orchestration/__tests__/gates-integration.test.js
     hash: sha256:00269a7f4706d39f6cd295e99325242e2d0b75e36e274cd35d61534066a42124
     type: core
@@ -1833,7 +1833,7 @@ files:
     type: data
     size: 16853
   - path: data/entity-registry.yaml
-    hash: sha256:474b24cc0a9b7375dacb84e30ec7f1b7c971032774dbbea84eb425dacdb6a2d1
+    hash: sha256:348bff3fa56a8a37d0825fea9226a86d003253fd0effa680db7391fcd76c2dd6
     type: data
     size: 657959
   - path: data/go.md
