@@ -1,0 +1,17 @@
+{
+  "name": "first",
+  "version": "1.0.0",
+  "description": "**Meta:** $20,000 USD/mês **Estratégia:** Híbrida (Serviços AI + Micro-SaaS) **Timeline:** Receita em 7 dias, $20K MRR em 90 dias",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "patchright": "^1.58.2",
+    "playwright": "^1.58.2",
+    "rebrowser-playwright": "^1.52.0"
+  }
+}

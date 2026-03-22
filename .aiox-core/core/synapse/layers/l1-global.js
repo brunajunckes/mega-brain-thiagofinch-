@@ -14,7 +14,7 @@
  */
 
 const path = require('path');
-const { loadDomainFile } = require('../domain/domain-loader');
+const { loadDomainFile, loadContextDomainFile } = require('../domain/domain-loader');
 const LayerProcessor = require('./layer-processor');
 
 /**
@@ -44,7 +44,7 @@ class L1GlobalProcessor extends LayerProcessor {
    * @returns {{ rules: string[], metadata: object } | null}
    */
   process(context) {
-    const { config } = context;
+    const { config, bracket } = context;
     const { synapsePath, manifest } = config;
 
     // Resolve file paths from manifest or use defaults
@@ -60,8 +60,9 @@ class L1GlobalProcessor extends LayerProcessor {
       : path.join(synapsePath, 'context');
 
     // Load rules from both domain files
+    // Context rules are filtered by active bracket to avoid injecting all bracket levels
     const globalRules = loadDomainFile(globalFile);
-    const contextRules = loadDomainFile(contextFile);
+    const contextRules = loadContextDomainFile(contextFile, bracket);
 
     // Combine: global first, context second
     const rules = [...globalRules, ...contextRules];
@@ -79,6 +80,7 @@ class L1GlobalProcessor extends LayerProcessor {
       rules,
       metadata: {
         layer: 1,
+        source: 'global',
         sources,
       },
     };

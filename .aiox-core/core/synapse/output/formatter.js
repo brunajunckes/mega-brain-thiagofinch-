@@ -467,15 +467,14 @@ const SECTION_FORMATTERS = {
  * @returns {string} Formatted <synapse-rules> XML string
  */
 function formatSynapseRules(results, bracket, contextPercent, session, devmode, metrics, tokenBudget, showHandoffWarning) {
-  if (!results || results.length === 0) {
-    return '';
-  }
+  // Always produce at least the bracket header — even when no layers have rules
+  const safeResults = results || [];
 
   // Categorize results by section
   const sectionResults = {};
   const globalResults = [];
 
-  for (const result of results) {
+  for (const result of safeResults) {
     if (!result || !result.rules || result.rules.length === 0) {
       continue;
     }
@@ -538,9 +537,9 @@ function formatSynapseRules(results, bracket, contextPercent, session, devmode, 
     sectionIds.push('DEVMODE');
   }
 
-  // SUMMARY — always last
-  if (results.length > 0) {
-    sections.push(formatSummary(results, metrics || {}));
+  // SUMMARY — skip for FRESH (redundant when context is full)
+  if (bracket !== 'FRESH' && safeResults.length > 0) {
+    sections.push(formatSummary(safeResults, metrics || {}));
     sectionIds.push('SUMMARY');
   }
 

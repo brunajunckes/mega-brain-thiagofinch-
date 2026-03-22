@@ -20,6 +20,7 @@ function buildLayerContext(params) {
   return {
     prompt: safeParams.prompt || '',
     session: safeParams.session || {},
+    bracket: safeParams.bracket || 'FRESH',
     config: {
       ...(safeParams.config || {}),
       synapsePath: safeParams.synapsePath,

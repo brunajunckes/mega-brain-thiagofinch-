@@ -8,7 +8,11 @@
 # - File types for categorization
 #
 version: 5.0.3
+<<<<<<< HEAD
 generated_at: "2026-03-22T02:11:09.490Z"
+=======
+generated_at: "2026-03-22T15:48:31.833Z"
+>>>>>>> worktree-agent-a2f64cab
 generator: scripts/generate-install-manifest.js
 file_count: 1400
 files:
@@ -149,9 +153,9 @@ files:
     type: cli
     size: 5320
   - path: cli/commands/report.js
-    hash: sha256:fa3f0b00ff0ea1c147795a0e8372158158b6920b132e8e1e91eeb4cedbd9d9a7
+    hash: sha256:4f1aeda000827d9bc973bdc8f41a961edb58e90eac61ac7705fd50528d04fe43
     type: cli
-    size: 1656
+    size: 4411
   - path: cli/commands/session.js
     hash: sha256:9d9b02779d440780eca0b89abe788086316aff0022c3ebf4fe721a52e2abb64d
     type: cli
@@ -1816,8 +1820,13 @@ files:
     hash: sha256:5176849c01d90e5867f18962e03ff10a10628f40c30fe5c8cb65209f833c0884
     type: data
     size: 9575
+<<<<<<< HEAD
   - path: data/constitution.md
     hash: sha256:ba597ca7b104653769e0d1467dddf2ac0a0c5d6a398372e6283e1da8bd31621d
+=======
+  - path: data/entity-registry.yaml
+    hash: sha256:b7e888f4e9ac48ac3ae7ff5e6919f17e047649d637a2204429703a964e7fe293
+>>>>>>> worktree-agent-a2f64cab
     type: data
     size: 5161
   - path: data/core-config.yaml

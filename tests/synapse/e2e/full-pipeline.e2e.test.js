@@ -109,11 +109,13 @@ describeIfSynapse('SYNAPSE E2E: Full Pipeline', () => {
   // -----------------------------------------------------------------------
   // 4. XML contains CONSTITUTION section (NON-NEGOTIABLE)
   // -----------------------------------------------------------------------
-  test('XML contains CONSTITUTION section marked as NON-NEGOTIABLE', async () => {
-    const session = buildSession();
+  test('XML contains CONSTITUTION section marked as NON-NEGOTIABLE for MODERATE+ brackets', async () => {
+    // CONSTITUTION is skipped in FRESH (already in CLAUDE.md) — use MODERATE bracket
+    // MODERATE = 40-60% remaining → prompt_count ~50 (50*1500*1.2/200000 = 45% used → 55% remaining)
+    const session = buildSession({ prompt_count: 50 });
     const { xml } = await engine.process('Refactor the auth module', session);
 
-    // The constitution layer is ALWAYS_ON and NON_NEGOTIABLE per manifest
+    // The constitution layer is active for MODERATE/DEPLETED/CRITICAL brackets
     expect(xml).toContain('[CONSTITUTION]');
     expect(xml).toContain('NON-NEGOTIABLE');
   });

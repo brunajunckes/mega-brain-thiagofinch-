@@ -5,7 +5,7 @@ services:
     image: bookme-web:latest
     container_name: bookme-web
     ports:
-      - "3000:3000"
+      - "3003:3000"
     environment:
       - NODE_ENV=production
     volumes:

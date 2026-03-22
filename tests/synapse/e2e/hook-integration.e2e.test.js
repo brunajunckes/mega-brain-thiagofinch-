@@ -200,10 +200,11 @@ describeIfHookExists('SYNAPSE E2E: Hook Integration', () => {
     expect(result).toHaveProperty('xml');
     expect(typeof result.xml).toBe('string');
 
-    if (result.xml.length > 0) {
-      expect(result.xml).toContain('<synapse-rules>');
-      expect(result.xml).toMatch(/CONSTITUTION/i);
-    }
+    // Always produces bracket header (even with FRESH bracket where L0/L1 are skipped)
+    expect(result.xml).toContain('<synapse-rules>');
+    expect(result.xml).toContain('[CONTEXT BRACKET]');
+    // CONSTITUTION only appears for MODERATE/DEPLETED/CRITICAL brackets
+    // prompt_count=0 → FRESH → no CONSTITUTION injection (it's already in CLAUDE.md)
   });
 
   // ========================================================================

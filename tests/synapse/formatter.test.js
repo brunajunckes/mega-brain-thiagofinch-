@@ -168,12 +168,16 @@ describe('formatSynapseRules', () => {
     per_layer: {},
   };
 
-  test('should return empty string for null results', () => {
-    expect(formatSynapseRules(null, 'FRESH', 85, {}, false, {}, 800, false)).toBe('');
+  test('should return bracket header for null results (always show context bracket)', () => {
+    const xml = formatSynapseRules(null, 'FRESH', 85, {}, false, {}, 800, false);
+    expect(xml).toContain('<synapse-rules>');
+    expect(xml).toContain('[CONTEXT BRACKET]');
   });
 
-  test('should return empty string for empty results array', () => {
-    expect(formatSynapseRules([], 'FRESH', 85, {}, false, {}, 800, false)).toBe('');
+  test('should return bracket header for empty results array (always show context bracket)', () => {
+    const xml = formatSynapseRules([], 'FRESH', 85, {}, false, {}, 800, false);
+    expect(xml).toContain('<synapse-rules>');
+    expect(xml).toContain('[CONTEXT BRACKET]');
   });
 
   test('should wrap output in <synapse-rules> tags', () => {
@@ -269,13 +273,22 @@ describe('formatSynapseRules', () => {
     expect(xml).toContain('============================================================');
   });
 
-  test('should include SUMMARY section', () => {
+  test('should include SUMMARY section for non-FRESH brackets', () => {
+    const results = [
+      makeResult('constitution', ['Rule 1'], { activationReason: 'always active' }),
+    ];
+    // MODERATE bracket — SUMMARY should appear
+    const xml = formatSynapseRules(results, 'MODERATE', 50, defaultSession, false, defaultMetrics, 2000, false);
+    expect(xml).toContain('[LOADED DOMAINS SUMMARY]');
+    expect(xml).toContain('LOADED DOMAINS:');
+  });
+
+  test('should skip SUMMARY section for FRESH bracket (token economy)', () => {
     const results = [
       makeResult('constitution', ['Rule 1'], { activationReason: 'always active' }),
     ];
     const xml = formatSynapseRules(results, 'FRESH', 85, defaultSession, false, defaultMetrics, 2000, false);
-    expect(xml).toContain('[LOADED DOMAINS SUMMARY]');
-    expect(xml).toContain('LOADED DOMAINS:');
+    expect(xml).not.toContain('[LOADED DOMAINS SUMMARY]');
   });
 
   test('should skip sections with empty rules', () => {

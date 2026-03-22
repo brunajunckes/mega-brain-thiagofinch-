@@ -1,0 +1,7 @@
+{
+  "editor.accessibleSupportEnabled": false,
+  "editor.accessibilitySupport": "off",
+  "terminal.integrated.accessibleViewEnabled": false,
+  "notebook.accessibleView.enabled": false,
+  "diffEditor.accessibleDiffViewer.enabled": false
+}

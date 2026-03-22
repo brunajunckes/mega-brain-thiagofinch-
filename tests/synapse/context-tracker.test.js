@@ -207,10 +207,10 @@ describe('getTokenBudget', () => {
 // =============================================================================
 
 describe('getActiveLayers', () => {
-  test('should return L0, L1, L2, L7 for FRESH', () => {
+  test('should return L2, L7 for FRESH (L0/L1 skipped — already in CLAUDE.md at full context)', () => {
     const result = getActiveLayers('FRESH');
     expect(result).toEqual({
-      layers: [0, 1, 2, 7],
+      layers: [2, 7],
       memoryHints: false,
       handoffWarning: false,
     });
@@ -256,7 +256,7 @@ describe('getActiveLayers', () => {
     result1.memoryHints = true;
 
     const result2 = getActiveLayers('FRESH');
-    expect(result2.layers).toEqual([0, 1, 2, 7]);
+    expect(result2.layers).toEqual([2, 7]);
     expect(result2.memoryHints).toBe(false);
   });
 });

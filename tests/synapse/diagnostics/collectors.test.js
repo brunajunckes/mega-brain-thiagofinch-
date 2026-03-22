@@ -480,11 +480,11 @@ describe('pipeline-collector: collectPipelineSimulation', () => {
     expect(result.layers[7].layer).toBe('L7 Star-Command');
   });
 
-  test('FRESH bracket: only L0, L1, L2, L7 are ACTIVE', () => {
+  test('FRESH bracket: only L2, L7 are ACTIVE (L0/L1 skipped — in CLAUDE.md)', () => {
     const result = collectPipelineSimulation(0, null, { domains: {} });
 
-    const activeIndices = [0, 1, 2, 7];
-    const skipIndices = [3, 4, 5, 6];
+    const activeIndices = [2, 7];
+    const skipIndices = [0, 1, 3, 4, 5, 6];
 
     for (const i of activeIndices) {
       expect(result.layers[i].expected).toContain('ACTIVE');

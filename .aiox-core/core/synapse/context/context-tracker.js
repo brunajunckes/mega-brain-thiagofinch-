@@ -60,13 +60,13 @@ const DEFAULTS = {
 /**
  * Layer configurations per bracket.
  *
- * FRESH: L0 (Constitution), L1 (Global), L2 (Agent), L7 (Star-Command if explicit)
+ * FRESH: L2 (Agent), L7 (Star-Command) — L0/L1 skipped (already in CLAUDE.md, context 100%)
  * MODERATE: All 8 layers active
  * DEPLETED: All layers + memory hints enabled
  * CRITICAL: All layers + memory hints + handoff warning
  */
 const LAYER_CONFIGS = {
-  FRESH:    { layers: [0, 1, 2, 7], memoryHints: false, handoffWarning: false },
+  FRESH:    { layers: [2, 7], memoryHints: false, handoffWarning: false },
   MODERATE: { layers: [0, 1, 2, 3, 4, 5, 6, 7], memoryHints: false, handoffWarning: false },
   DEPLETED: { layers: [0, 1, 2, 3, 4, 5, 6, 7], memoryHints: true, handoffWarning: false },
   CRITICAL: { layers: [0, 1, 2, 3, 4, 5, 6, 7], memoryHints: true, handoffWarning: true },

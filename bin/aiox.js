@@ -1007,6 +1007,35 @@ async function main() {
       break;
     }
 
+    case 'report': {
+      // Health Report CLI - Story 3.1
+      try {
+        const { handleReportCommand } = require('../.aiox-core/cli/commands/report');
+        const reportArgs = args.slice(1);
+        const parsedReportArgs = {
+          _: reportArgs.filter((a) => !a.startsWith('--')),
+          verbose: reportArgs.includes('--verbose'),
+          format: (() => {
+            const fmtIdx = reportArgs.indexOf('--format');
+            return fmtIdx >= 0 && reportArgs[fmtIdx + 1] ? reportArgs[fmtIdx + 1] : undefined;
+          })(),
+          'filter-health': (() => {
+            const idx = reportArgs.indexOf('--filter-health');
+            return idx >= 0 && reportArgs[idx + 1] ? reportArgs[idx + 1] : undefined;
+          })(),
+          'filter-debt': (() => {
+            const idx = reportArgs.indexOf('--filter-debt');
+            return idx >= 0 && reportArgs[idx + 1] ? reportArgs[idx + 1] : undefined;
+          })(),
+        };
+        await handleReportCommand(parsedReportArgs);
+      } catch (error) {
+        console.error(`Report command error: ${error.message}`);
+        process.exit(1);
+      }
+      break;
+    }
+
     case 'validate':
       // Post-installation validation - Story 6.19
       await runValidate();

@@ -59,7 +59,7 @@ const MAX_STALENESS_MS = 30 * 60 * 1000;
 const STALE_DEGRADATION_FACTOR = 0.5;
 
 const BRACKET_ACTIVE_LAYERS = {
-  FRESH: ['constitution', 'global', 'agent', 'star-command'],
+  FRESH: ['agent', 'star-command'],
   MODERATE: ['constitution', 'global', 'agent', 'workflow', 'task', 'squad', 'keyword', 'star-command'],
   DEPLETED: ['constitution', 'global', 'agent', 'workflow', 'task', 'squad', 'keyword', 'star-command'],
   CRITICAL: ['constitution', 'agent'],

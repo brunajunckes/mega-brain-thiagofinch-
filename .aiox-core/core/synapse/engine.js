@@ -255,12 +255,12 @@ class SynapseEngine {
       }
       activeLayers = layerConfig.layers;
     } else {
-      // NOG-18: Simplified — always load L0-L2, skip bracket calculation.
-      // L3-L7 produced 0 rules (require session context that never exists).
-      // Bracket management replaced by native /compact.
+      // NOG-18 updated: use bracket-aware layer config for token economy.
+      // L3-L7 still disabled (no session context), but FRESH skips L0/L1 (in CLAUDE.md).
       contextPercent = estimateContextPercent(promptCount);
       bracket = calculateBracket(contextPercent);
-      activeLayers = DEFAULT_ACTIVE_LAYERS;
+      const layerConfig = getActiveLayers(bracket);
+      activeLayers = layerConfig ? layerConfig.layers : DEFAULT_ACTIVE_LAYERS;
       tokenBudget = getTokenBudget(bracket);
     }
 
@@ -292,6 +292,7 @@ class SynapseEngine {
       const context = buildLayerContext({
         prompt,
         session: session || {},
+        bracket,
         config: mergedConfig,
         synapsePath: this.synapsePath,
         manifest: mergedConfig.manifest || {},

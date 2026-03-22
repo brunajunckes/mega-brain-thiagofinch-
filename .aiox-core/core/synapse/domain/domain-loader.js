@@ -199,6 +199,49 @@ function loadDomainFile(domainPath) {
 }
 
 /**
+ * Load context bracket rules filtered by the current bracket.
+ *
+ * The context domain file uses keys like CONTEXT_RULE_FRESH_0, CONTEXT_RULE_MODERATE_0, etc.
+ * This function only returns rules whose key prefix matches the active bracket,
+ * preventing all bracket levels from being injected simultaneously.
+ *
+ * @param {string} domainPath - Absolute path to context domain file
+ * @param {string} [bracket] - Active bracket: FRESH | MODERATE | DEPLETED | CRITICAL
+ * @returns {string[]} Array of rule strings for the active bracket only
+ */
+function loadContextDomainFile(domainPath, bracket) {
+  let content;
+  try {
+    content = fs.readFileSync(domainPath, 'utf8');
+  } catch (_error) {
+    return [];
+  }
+
+  const lines = content.split(/\r?\n/);
+  const prefix = bracket ? `CONTEXT_RULE_${bracket.toUpperCase()}_` : null;
+  const rules = [];
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+
+    const match = trimmed.match(/^([A-Z][A-Z0-9_]*)=(.+)$/);
+    if (!match) continue;
+
+    const key = match[1];
+    const value = match[2].trim();
+
+    if (prefix) {
+      if (key.startsWith(prefix)) rules.push(value);
+    } else {
+      rules.push(value);
+    }
+  }
+
+  return rules;
+}
+
+/**
  * Check if a prompt should be excluded based on exclusion keywords
  *
  * @param {string} prompt - The user prompt to check
@@ -313,6 +356,7 @@ function parseCommaSeparated(value) {
 module.exports = {
   parseManifest,
   loadDomainFile,
+  loadContextDomainFile,
   isExcluded,
   matchKeywords,
   extractDomainInfo,
