@@ -5,6 +5,7 @@ Watcher Daemon — Background process for auto-ingestion of new videos
 import asyncio
 import signal
 import os
+import time
 from typing import List
 from datetime import datetime, timedelta
 import yt_dlp
@@ -23,18 +24,26 @@ class WatcherDaemon:
         self.manager = WatchManager()
         self.running = True
         self.pending_retries = {}
+        self.metrics = {
+            "channels_monitored": 0,
+            "videos_found": 0,
+            "videos_new": 0,
+            "ingestion_time": 0,
+            "total_tokens": 0,
+        }
 
         signal.signal(signal.SIGTERM, self._handle_sigterm)
         signal.signal(signal.SIGINT, self._handle_sigterm)
 
     def _handle_sigterm(self, signum, frame):
-        """Handle graceful shutdown"""
-        print("🛑 SIGTERM received, graceful shutdown...")
+        """Handle graceful shutdown — final sync before exit"""
+        self.manager.log_event("daemon", "shutdown", "success")
+        print("SIGTERM received, graceful shutdown...")
         self.running = False
 
     async def start(self):
         """Start the daemon"""
-        print("🚀 Watcher daemon started")
+        print("Watcher daemon started")
         while self.running:
             await self.poll_channels()
             await asyncio.sleep(WATCH_INTERVAL)
@@ -42,6 +51,7 @@ class WatcherDaemon:
     async def poll_channels(self):
         """Poll all watched channels"""
         watches = self.manager.list_watches()
+        self.metrics["channels_monitored"] = len(watches)
 
         for watch in watches:
             if watch.get("paused"):
@@ -57,6 +67,7 @@ class WatcherDaemon:
 
     async def check_channel(self, channel_url: str, slug: str):
         """Check channel for new videos"""
+        start_time = time.time()
         try:
             ydl_opts = {
                 'quiet': True,
@@ -69,6 +80,7 @@ class WatcherDaemon:
 
                 if 'entries' in info:
                     videos = info['entries'][:10]  # Check last 10 videos
+                    self.metrics["videos_found"] += len(videos)
 
                     seen = self.manager.get_seen_videos(slug)
                     new_count = 0
@@ -76,7 +88,6 @@ class WatcherDaemon:
                     for video in videos:
                         video_id = video.get('id')
                         if video_id not in seen:
-                            # Ingest new video
                             video_url = f"https://www.youtube.com/watch?v={video_id}"
                             try:
                                 await ingest_youtube(video_url, slug)
@@ -96,13 +107,17 @@ class WatcherDaemon:
                                     str(e)
                                 )
 
+                    self.metrics["videos_new"] += new_count
+                    duration = time.time() - start_time
+                    self.metrics["ingestion_time"] += duration
+
                     self.manager.log_event(
                         slug,
                         "check_complete",
                         "success"
                     )
 
-                    print(f"✅ {slug}: Found {new_count} new videos")
+                    print(f"{slug}: Found {new_count} new videos ({duration:.1f}s)")
 
         except Exception as e:
             self.manager.log_event(slug, "check_failed", "error", str(e))
@@ -117,7 +132,7 @@ class WatcherDaemon:
         if retry_count < MAX_RETRIES:
             backoff = 2 ** retry_count
             self.pending_retries[slug] += 1
-            print(f"⚠️ Retrying {slug} in {backoff}s (attempt {retry_count + 1}/{MAX_RETRIES})")
+            print(f"Retrying {slug} in {backoff}s (attempt {retry_count + 1}/{MAX_RETRIES})")
             await asyncio.sleep(backoff)
         else:
             self.manager.log_event(slug, "max_retries_reached", "failed", error)

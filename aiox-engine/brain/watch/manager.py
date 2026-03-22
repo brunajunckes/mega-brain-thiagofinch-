@@ -95,3 +95,36 @@ class WatchManager:
         """Mark video as seen"""
         seen_key = f"brain:watch:seen_videos:{slug}"
         self.redis.sadd(seen_key, video_id)
+
+    def is_watching(self, slug: str) -> bool:
+        """Check if a slug is being watched"""
+        return self.redis.sismember("brain:watch:active", slug)
+
+    def get_watched_channels(self) -> List[str]:
+        """Get list of all watched channel slugs"""
+        return list(self.redis.smembers("brain:watch:active"))
+
+    def get_history(self, slug: str) -> List[Dict]:
+        """Get ingestion history for a slug"""
+        history_key = f"brain:watch:{slug}:history"
+        raw = self.redis.lrange(history_key, 0, -1)
+        return [json.loads(entry) for entry in raw]
+
+    def get_logs(self, slug: str) -> List[Dict]:
+        """Get watch event logs for a slug"""
+        log_key = f"brain:watch:logs:{slug}"
+        raw = self.redis.lrange(log_key, 0, -1)
+        return [json.loads(entry) for entry in raw]
+
+    def get_metrics(self) -> Dict:
+        """Get performance metrics across all watches"""
+        active = self.get_watched_channels()
+        total_videos = 0
+        for slug in active:
+            seen_key = f"brain:watch:seen_videos:{slug}"
+            total_videos += self.redis.scard(seen_key)
+
+        return {
+            "channels_monitored": len(active),
+            "videos_ingested": total_videos,
+        }

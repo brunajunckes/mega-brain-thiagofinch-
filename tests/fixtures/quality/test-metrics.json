@@ -1,0 +1,123 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-03-22T00:40:06.234Z",
+  "retentionDays": 30,
+  "layers": {
+    "layer1": {
+      "passRate": 1,
+      "avgTimeMs": 1000,
+      "totalRuns": 8,
+      "lastRun": "2026-03-22T00:40:05.794Z"
+    },
+    "layer2": {
+      "passRate": 1,
+      "avgTimeMs": 2000,
+      "totalRuns": 1,
+      "lastRun": "2026-03-22T00:39:31.212Z",
+      "autoCatchRate": 0,
+      "coderabbit": {
+        "active": false,
+        "findingsCount": 0,
+        "severityBreakdown": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0
+        }
+      },
+      "quinn": {
+        "findingsCount": 0,
+        "topCategories": []
+      }
+    },
+    "layer3": {
+      "passRate": 0,
+      "avgTimeMs": 0,
+      "totalRuns": 0,
+      "lastRun": null
+    }
+  },
+  "trends": {
+    "autoCatchRate": [],
+    "passRates": [
+      {
+        "date": "2026-03-22",
+        "value": 1
+      }
+    ]
+  },
+  "history": [
+    {
+      "timestamp": "2026-03-22T00:39:29.756Z",
+      "layer": 1,
+      "passed": true,
+      "durationMs": 1000,
+      "findingsCount": 0,
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-03-22T00:39:31.110Z",
+      "layer": 1,
+      "passed": true,
+      "durationMs": 1000,
+      "findingsCount": 0,
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-03-22T00:39:31.212Z",
+      "layer": 2,
+      "passed": true,
+      "durationMs": 2000,
+      "findingsCount": 0,
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-03-22T00:39:31.261Z",
+      "layer": 1,
+      "passed": true,
+      "durationMs": 1000,
+      "findingsCount": 0,
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-03-22T00:39:31.441Z",
+      "layer": 1,
+      "passed": true,
+      "durationMs": 1000,
+      "findingsCount": 0,
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-03-22T00:39:32.107Z",
+      "layer": 1,
+      "passed": true,
+      "durationMs": 1000,
+      "findingsCount": 0,
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-03-22T00:39:35.301Z",
+      "layer": 1,
+      "passed": true,
+      "durationMs": 1000,
+      "findingsCount": 0,
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-03-22T00:39:42.258Z",
+      "layer": 1,
+      "passed": true,
+      "durationMs": 1000,
+      "findingsCount": 0,
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-03-22T00:40:05.794Z",
+      "layer": 1,
+      "passed": true,
+      "durationMs": 1000,
+      "findingsCount": 0,
+      "metadata": {}
+    }
+  ]
+}

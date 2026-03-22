@@ -4,6 +4,9 @@ jest.mock('../../bin/modules/brain/http-client.js');
 const { ingest } = require('../../bin/modules/brain/ingest.js');
 const { status } = require('../../bin/modules/brain/status.js');
 const { ask } = require('../../bin/modules/brain/ask.js');
+const {
+  watch, addWatch, listWatches, pauseWatch, resumeWatch, showHistory, showLogs,
+} = require('../../bin/modules/brain/watch.js');
 
 describe('Brain Factory CLI', () => {
   beforeEach(() => {
@@ -155,5 +158,161 @@ describe('Brain Factory CLI', () => {
     });
 
     exitSpy.mockRestore();
+  });
+});
+
+describe('Brain Watch CLI', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test('watch --channel --clone adds a watch', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockResolvedValue({ data: { status: 'ok' } });
+
+    await addWatch({ channel: 'https://youtube.com/@test', clone: 'test_clone' });
+
+    expect(request).toHaveBeenCalledWith('POST', '/brain/watch', {
+      channel_url: 'https://youtube.com/@test',
+      slug: 'test_clone',
+    });
+  });
+
+  test('watch --channel without --clone exits with error', async () => {
+    const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+    await addWatch({ channel: 'https://youtube.com/@test' });
+
+    expect(exitSpy).toHaveBeenCalledWith(1);
+    exitSpy.mockRestore();
+  });
+
+  test('watch --list fetches all watches', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockResolvedValue({
+      data: {
+        watches: [
+          { slug: 'hormozi', channel_url: 'https://youtube.com/@hormozi', paused: false },
+        ],
+        total: 1,
+      },
+    });
+
+    await listWatches();
+
+    expect(request).toHaveBeenCalledWith('GET', '/brain/watch');
+  });
+
+  test('watch --list shows empty message when no watches', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockResolvedValue({ data: { watches: [], total: 0 } });
+
+    const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+
+    await listWatches();
+
+    expect(consoleSpy).toHaveBeenCalledWith('No watched channels');
+    consoleSpy.mockRestore();
+  });
+
+  test('watch --pause sends PATCH with pause action', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockResolvedValue({ data: { status: 'paused' } });
+
+    await pauseWatch({ clone: 'test_clone' });
+
+    expect(request).toHaveBeenCalledWith('PATCH', '/brain/watch/test_clone', {
+      action: 'pause',
+    });
+  });
+
+  test('watch --pause without --clone exits with error', async () => {
+    const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+    await pauseWatch({});
+
+    expect(exitSpy).toHaveBeenCalledWith(1);
+    exitSpy.mockRestore();
+  });
+
+  test('watch --resume sends PATCH with resume action', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockResolvedValue({ data: { status: 'resumed' } });
+
+    await resumeWatch({ clone: 'test_clone' });
+
+    expect(request).toHaveBeenCalledWith('PATCH', '/brain/watch/test_clone', {
+      action: 'resume',
+    });
+  });
+
+  test('watch --resume without --clone exits with error', async () => {
+    const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+    await resumeWatch({});
+
+    expect(exitSpy).toHaveBeenCalledWith(1);
+    exitSpy.mockRestore();
+  });
+
+  test('watch --history fetches ingestion history', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockResolvedValue({
+      data: {
+        slug: 'hormozi',
+        history: [
+          { video_id: 'abc123', title: 'Test Video', chunks_added: 5, timestamp: '2026-03-20T00:00:00' },
+        ],
+        total: 1,
+      },
+    });
+
+    await showHistory({ clone: 'hormozi' });
+
+    expect(request).toHaveBeenCalledWith('GET', '/brain/watch/hormozi/history');
+  });
+
+  test('watch --history without --clone exits with error', async () => {
+    const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+    await showHistory({});
+
+    expect(exitSpy).toHaveBeenCalledWith(1);
+    exitSpy.mockRestore();
+  });
+
+  test('watch --logs fetches watch event logs', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockResolvedValue({
+      data: {
+        slug: 'hormozi',
+        logs: [
+          { timestamp: '2026-03-20T00:00:00', event_type: 'check_complete', status: 'success', error: '' },
+        ],
+        total: 1,
+      },
+    });
+
+    await showLogs({ clone: 'hormozi' });
+
+    expect(request).toHaveBeenCalledWith('GET', '/brain/watch/hormozi/logs');
+  });
+
+  test('watch with no flags exits with error', async () => {
+    const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+    await watch(undefined, {});
+
+    expect(exitSpy).toHaveBeenCalledWith(1);
+    exitSpy.mockRestore();
+  });
+
+  test('watch routes to correct handler based on flags', async () => {
+    const { request } = require('../../bin/modules/brain/http-client.js');
+    request.mockResolvedValue({ data: { watches: [], total: 0 } });
+
+    await watch(undefined, { list: true });
+
+    expect(request).toHaveBeenCalledWith('GET', '/brain/watch');
   });
 });
