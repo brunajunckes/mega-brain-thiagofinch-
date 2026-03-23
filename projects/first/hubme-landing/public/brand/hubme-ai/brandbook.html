@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hubme.ai — Brand Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,900;1,14..32,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --s0: oklch(9% 0.006 247);
+  --s1: oklch(11% 0.007 247);
+  --s2: oklch(13.5% 0.007 247);
+  --s3: oklch(16% 0.008 247);
+  --s4: oklch(19% 0.009 247);
+  --s5: oklch(22% 0.010 247);
+  --s6: oklch(26% 0.010 247);
+
+  --accent: #22D3EE;
+  --a1: color-mix(in oklch, #22D3EE 6%, transparent);
+  --a2: color-mix(in oklch, #22D3EE 10%, transparent);
+  --a3: color-mix(in oklch, #22D3EE 15%, transparent);
+  --a4: color-mix(in oklch, #22D3EE 22%, transparent);
+  --a5: color-mix(in oklch, #22D3EE 30%, transparent);
+  --a6: color-mix(in oklch, #22D3EE 40%, transparent);
+  --a7: color-mix(in oklch, #22D3EE 55%, transparent);
+  --a8: color-mix(in oklch, #22D3EE 70%, transparent);
+  --a9: #22D3EE;
+  --a-border: color-mix(in oklch, #22D3EE 25%, transparent);
+
+  --cream: #F4F4F4;
+  --dim: rgba(244,244,244,0.55);
+  --muted: rgba(244,244,244,0.35);
+  --subtle: rgba(244,244,244,0.18);
+
+  --gutter: max(2rem, calc(50vw - 540px));
+  --col: minmax(0, 1fr);
+
+  --success: #4ADE80;
+  --warning: #FBBF24;
+  --error: #F87171;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--s0);
+  color: var(--cream);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: color-mix(in oklch, var(--s1) 85%, transparent);
+  backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid rgba(244,244,244,0.06);
+  padding: 0 var(--gutter);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-mark { width: 28px; height: 28px; }
+
+.nav-wordmark {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+}
+
+.nav-wordmark span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: color 180ms, background 180ms;
+}
+
+.nav-links a:hover {
+  color: var(--cream);
+  background: rgba(244,244,244,0.05);
+}
+
+.nav-links .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+/* LAYOUT */
+.page { padding: 0 var(--gutter); }
+
+.section {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 96px 0;
+  border-bottom: 1px solid rgba(244,244,244,0.05);
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section.visible { opacity: 1; transform: translateY(0); }
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 56px;
+}
+
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.section-divider {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--subtle);
+}
+
+.section-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* HERO */
+.hero {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 120px 0 96px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.hero.visible { opacity: 1; transform: translateY(0); }
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+.hero h1 em { font-style: normal; color: var(--accent); }
+
+.hero p {
+  font-size: 1.05rem;
+  color: var(--dim);
+  max-width: 38ch;
+  line-height: 1.65;
+}
+
+.hero-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 32px;
+}
+
+.hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.hero-meta-item span { color: var(--dim); }
+
+.hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* LOGO SECTION */
+.logo-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  background: var(--s1);
+  border: 1px solid rgba(244,244,244,0.06);
+  border-radius: 16px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 40% at 50% 50%, color-mix(in oklch, #22D3EE 8%, transparent), transparent);
+  pointer-events: none;
+}
+
+.logo-main-svg {
+  width: 320px;
+  height: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(34,211,238,0.4)) drop-shadow(0 0 16px rgba(34,211,238,0.15)); }
+  50% { filter: drop-shadow(0 0 12px rgba(34,211,238,0.7)) drop-shadow(0 0 32px rgba(34,211,238,0.3)); }
+}
+
+.logo-main-svg { animation: glowPulse 3s ease-in-out infinite; }
+
+.logo-variants {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.logo-variant {
+  border-radius: 12px;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo-variant.dark { background: var(--s1); border: 1px solid rgba(244,244,244,0.06); }
+.logo-variant.light { background: #F0F9FF; border: 1px solid rgba(0,0,0,0.08); }
+.logo-variant.mono { background: #1A1A1A; border: 1px solid rgba(255,255,255,0.08); }
+
+.logo-variant-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.clearspace-box {
+  position: relative;
+  display: inline-block;
+  padding: 20px;
+  border: 1px dashed rgba(34,211,238,0.35);
+  border-radius: 4px;
+}
+
+.clearspace-note {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--s1);
+  padding: 0 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.clearspace-arrows {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--dim);
+  white-space: nowrap;
+}
+
+/* COLORS */
+.color-group { margin-bottom: 48px; }
+
+.color-group-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.swatches {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  width: 96px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(244,244,244,0.06);
+  transition: transform 180ms;
+}
+
+.swatch:hover { transform: translateY(-2px); }
+
+.swatch-color { height: 64px; }
+
+.swatch-body { background: var(--s2); padding: 8px 10px; }
+
+.swatch-hex {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--cream);
+  display: block;
+  line-height: 1.4;
+}
+
+.swatch-name {
+  font-size: 0.62rem;
+  color: var(--muted);
+  display: block;
+  margin-top: 2px;
+}
+
+.swatch-wide { width: 140px; }
+
+.swatches-surfaces {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.swatch-surface { border-radius: 8px; overflow: hidden; border: 1px solid rgba(244,244,244,0.06); }
+.swatch-surface-color { height: 80px; }
+.swatch-surface-body { padding: 6px 8px; background: var(--s2); }
+
+.swatch-surface-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--cream);
+  display: block;
+}
+
+.swatch-surface-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--muted);
+  display: block;
+  margin-top: 2px;
+}
+
+/* TYPOGRAPHY */
+.type-specimen {
+  padding: 32px 40px;
+  background: var(--s1);
+  border: 1px solid rgba(244,244,244,0.06);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  transition: background 200ms;
+}
+
+.type-specimen:hover { background: var(--s2); }
+.type-text { flex: 1; }
+
+.type-meta { text-align: right; flex-shrink: 0; min-width: 140px; }
+
+.type-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.type-spec {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--muted);
+  display: block;
+  line-height: 1.6;
+}
+
+/* COMPONENTS */
+.components-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.component-card {
+  background: var(--s1);
+  border: 1px solid rgba(244,244,244,0.06);
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.component-card-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.btn-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.btn-primary { background: var(--accent); color: #09090A; }
+
+.btn-primary:hover {
+  background: #67E8F9;
+  box-shadow: 0 0 24px rgba(34,211,238,0.35);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid rgba(244,244,244,0.15);
+}
+
+.btn-secondary:hover {
+  background: rgba(244,244,244,0.05);
+  border-color: rgba(244,244,244,0.28);
+  transform: translateY(-1px);
+}
+
+.btn-ghost { background: transparent; color: var(--accent); padding: 10px 16px; }
+.btn-ghost:hover { background: var(--a2); }
+.btn-sm { padding: 7px 14px; font-size: 0.8rem; border-radius: 6px; }
+
+.badges-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  font-family: inherit;
+}
+
+.badge-accent { background: var(--a2); color: var(--accent); border: 1px solid var(--a-border); }
+.badge-success { background: rgba(74,222,128,0.10); color: var(--success); border: 1px solid rgba(74,222,128,0.25); }
+.badge-warning { background: rgba(251,191,36,0.10); color: var(--warning); border: 1px solid rgba(251,191,36,0.25); }
+.badge-error { background: rgba(248,113,113,0.10); color: var(--error); border: 1px solid rgba(248,113,113,0.25); }
+.badge-neutral { background: rgba(244,244,244,0.06); color: var(--dim); border: 1px solid rgba(244,244,244,0.10); }
+
+.input-group { display: flex; flex-direction: column; gap: 6px; }
+.input-label { font-size: 0.8rem; font-weight: 500; color: var(--dim); }
+
+.input-field {
+  background: var(--s2);
+  border: 1px solid rgba(244,244,244,0.10);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.875rem;
+  color: var(--cream);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 180ms, box-shadow 180ms;
+  width: 100%;
+}
+
+.input-field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--a3); }
+.input-field::placeholder { color: var(--subtle); }
+
+.ui-card {
+  background: var(--s2);
+  border: 1px solid rgba(244,244,244,0.07);
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 200ms, box-shadow 200ms, border-color 200ms;
+  cursor: default;
+}
+
+.ui-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  border-color: rgba(244,244,244,0.12);
+}
+
+.ui-card-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--a2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.ui-card-title { font-size: 0.95rem; font-weight: 600; color: var(--cream); margin-bottom: 6px; letter-spacing: -0.01em; }
+.ui-card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+/* DO & DON'T */
+.dnd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.dnd-item { border-radius: 12px; overflow: hidden; border: 1px solid rgba(244,244,244,0.06); }
+
+.dnd-preview {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.dnd-preview.do { background: var(--s1); }
+
+.dnd-preview.dont {
+  background: repeating-linear-gradient(45deg, rgba(248,113,113,0.03), rgba(248,113,113,0.03) 10px, transparent 10px, transparent 20px);
+  background-color: var(--s1);
+}
+
+.dnd-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dnd-badge.do { background: rgba(74,222,128,0.12); color: var(--success); border: 1px solid rgba(74,222,128,0.25); }
+.dnd-badge.dont { background: rgba(248,113,113,0.12); color: var(--error); border: 1px solid rgba(248,113,113,0.25); }
+
+.dnd-footer { padding: 14px 16px; background: var(--s2); font-size: 0.8rem; color: var(--dim); line-height: 1.4; }
+
+/* Stagger */
+.stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0s; }
+.stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.07s; }
+.stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.14s; }
+.stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.21s; }
+.stagger.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.28s; }
+.stagger.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.35s; }
+.stagger.visible > *:nth-child(7) { opacity: 1; transform: none; transition-delay: 0.42s; }
+.stagger.visible > *:nth-child(n+8) { opacity: 1; transform: none; transition-delay: 0.49s; }
+
+.divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(34,211,238,0.2), transparent); }
+
+/* FOOTER */
+footer { padding: 48px var(--gutter); border-top: 1px solid rgba(244,244,244,0.05); }
+
+.footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-copy { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); }
+
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  background: var(--a1);
+  border: 1px solid var(--a-border);
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .logo-variants { grid-template-columns: 1fr; }
+  .swatches-surfaces { grid-template-columns: repeat(4, 1fr); }
+  .components-grid { grid-template-columns: 1fr; }
+  .dnd-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .type-specimen { flex-direction: column; }
+  .type-meta { text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <svg class="nav-mark" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ng" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#22D3EE"/>
+            <stop offset="100%" stop-color="#0891B2"/>
+          </linearGradient>
+        </defs>
+        <circle cx="40" cy="14" r="4" fill="#22D3EE" opacity="0.5"/>
+        <circle cx="63" cy="27" r="4" fill="#22D3EE" opacity="0.5"/>
+        <circle cx="63" cy="53" r="4" fill="#22D3EE" opacity="0.5"/>
+        <circle cx="40" cy="66" r="4" fill="#22D3EE" opacity="0.5"/>
+        <circle cx="17" cy="53" r="4" fill="#22D3EE" opacity="0.5"/>
+        <circle cx="17" cy="27" r="4" fill="#22D3EE" opacity="0.5"/>
+        <line x1="40" y1="14" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+        <line x1="63" y1="27" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+        <line x1="63" y1="53" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+        <line x1="40" y1="66" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+        <line x1="17" y1="53" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+        <line x1="17" y1="27" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+        <circle cx="40" cy="40" r="14" fill="#22D3EE" opacity="0.08"/>
+        <circle cx="40" cy="40" r="7" fill="url(#ng)"/>
+        <circle cx="40" cy="40" r="3" fill="#F0FDFF"/>
+      </svg>
+      <span class="nav-wordmark">hubme<span>.ai</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#logo"><span class="num">01</span> Logo</a></li>
+      <li><a href="#cores"><span class="num">02</span> Cores</a></li>
+      <li><a href="#tipografia"><span class="num">03</span> Tipografia</a></li>
+      <li><a href="#componentes"><span class="num">04</span> Componentes</a></li>
+      <li><a href="#dnd"><span class="num">05</span> Do &amp; Don't</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero" id="hero">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">Brand Book v1.0</div>
+      <h1>Where <em>AI</em><br>compounds.</h1>
+      <p>The complete visual identity system for hubme.ai — every rule, token, and component that defines how the brand lives in the world.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">// <span>Version</span> &nbsp;1.0</div>
+        <div class="hero-meta-item">// <span>Date</span> &nbsp;&nbsp;&nbsp;2026-03-22</div>
+        <div class="hero-meta-item">// <span>Studio</span> &nbsp;Brand Machine / AIOX</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg viewBox="0 0 200 200" width="260" height="260" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+        <defs>
+          <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#22D3EE" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="centralG" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#22D3EE"/>
+            <stop offset="100%" stop-color="#0891B2"/>
+          </linearGradient>
+          <filter id="nodeGlow">
+            <feGaussianBlur stdDeviation="3" result="b"/>
+            <feComposite in="SourceGraphic" in2="b" operator="over"/>
+          </filter>
+        </defs>
+        <circle cx="100" cy="100" r="90" fill="url(#bgGlow)"/>
+        <circle cx="100" cy="18" r="5" fill="#22D3EE" opacity="0.45"/>
+        <circle cx="165" cy="57" r="5" fill="#22D3EE" opacity="0.45"/>
+        <circle cx="165" cy="143" r="5" fill="#22D3EE" opacity="0.45"/>
+        <circle cx="100" cy="182" r="5" fill="#22D3EE" opacity="0.45"/>
+        <circle cx="35" cy="143" r="5" fill="#22D3EE" opacity="0.45"/>
+        <circle cx="35" cy="57" r="5" fill="#22D3EE" opacity="0.45"/>
+        <circle cx="100" cy="46" r="3.5" fill="#22D3EE" opacity="0.3"/>
+        <circle cx="141" cy="72" r="3.5" fill="#22D3EE" opacity="0.3"/>
+        <circle cx="141" cy="128" r="3.5" fill="#22D3EE" opacity="0.3"/>
+        <circle cx="100" cy="154" r="3.5" fill="#22D3EE" opacity="0.3"/>
+        <circle cx="59" cy="128" r="3.5" fill="#22D3EE" opacity="0.3"/>
+        <circle cx="59" cy="72" r="3.5" fill="#22D3EE" opacity="0.3"/>
+        <line x1="100" y1="18" x2="100" y2="100" stroke="#22D3EE" stroke-width="1" opacity="0.15"/>
+        <line x1="165" y1="57" x2="100" y2="100" stroke="#22D3EE" stroke-width="1" opacity="0.15"/>
+        <line x1="165" y1="143" x2="100" y2="100" stroke="#22D3EE" stroke-width="1" opacity="0.15"/>
+        <line x1="100" y1="182" x2="100" y2="100" stroke="#22D3EE" stroke-width="1" opacity="0.15"/>
+        <line x1="35" y1="143" x2="100" y2="100" stroke="#22D3EE" stroke-width="1" opacity="0.15"/>
+        <line x1="35" y1="57" x2="100" y2="100" stroke="#22D3EE" stroke-width="1" opacity="0.15"/>
+        <line x1="100" y1="46" x2="100" y2="100" stroke="#22D3EE" stroke-width="0.7" opacity="0.2"/>
+        <line x1="141" y1="72" x2="100" y2="100" stroke="#22D3EE" stroke-width="0.7" opacity="0.2"/>
+        <line x1="141" y1="128" x2="100" y2="100" stroke="#22D3EE" stroke-width="0.7" opacity="0.2"/>
+        <line x1="100" y1="154" x2="100" y2="100" stroke="#22D3EE" stroke-width="0.7" opacity="0.2"/>
+        <line x1="59" y1="128" x2="100" y2="100" stroke="#22D3EE" stroke-width="0.7" opacity="0.2"/>
+        <line x1="59" y1="72" x2="100" y2="100" stroke="#22D3EE" stroke-width="0.7" opacity="0.2"/>
+        <circle cx="100" cy="100" r="28" fill="#22D3EE" opacity="0.06"/>
+        <circle cx="100" cy="100" r="16" fill="url(#centralG)" filter="url(#nodeGlow)"/>
+        <circle cx="100" cy="100" r="6" fill="#F0FDFF"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 01 LOGO -->
+  <section class="section" id="logo">
+    <div class="section-label">
+      <span class="section-num">01</span>
+      <span class="section-divider">//</span>
+      <span class="section-title">Logo</span>
+    </div>
+
+    <div class="logo-hero">
+      <svg class="logo-main-svg" viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="hg2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#22D3EE"/>
+            <stop offset="100%" stop-color="#0891B2"/>
+          </linearGradient>
+          <linearGradient id="glow2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#22D3EE" stop-opacity="0"/>
+          </linearGradient>
+          <filter id="sfx2">
+            <feGaussianBlur stdDeviation="2" result="b"/>
+            <feComposite in="SourceGraphic" in2="b" operator="over"/>
+          </filter>
+        </defs>
+        <circle cx="40" cy="18" r="3.5" fill="#22D3EE" opacity="0.5"/>
+        <circle cx="58" cy="18" r="3.5" fill="#22D3EE" opacity="0.5"/>
+        <circle cx="67" cy="40" r="3.5" fill="#22D3EE" opacity="0.5"/>
+        <circle cx="58" cy="62" r="3.5" fill="#22D3EE" opacity="0.5"/>
+        <circle cx="40" cy="62" r="3.5" fill="#22D3EE" opacity="0.5"/>
+        <circle cx="31" cy="40" r="3.5" fill="#22D3EE" opacity="0.5"/>
+        <line x1="40" y1="18" x2="49" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+        <line x1="58" y1="18" x2="49" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+        <line x1="67" y1="40" x2="49" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+        <line x1="58" y1="62" x2="49" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+        <line x1="40" y1="62" x2="49" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+        <line x1="31" y1="40" x2="49" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+        <polygon points="49,9 64,18 64,62 49,71 34,62 34,18" fill="none" stroke="#22D3EE" stroke-width="1" stroke-opacity="0.15"/>
+        <circle cx="49" cy="40" r="10" fill="url(#glow2)"/>
+        <circle cx="49" cy="40" r="6" fill="url(#hg2)" filter="url(#sfx2)"/>
+        <circle cx="49" cy="40" r="2.5" fill="#F0FDFF"/>
+        <text x="88" y="48" font-family="'Inter', system-ui, sans-serif" font-weight="700" font-size="28" letter-spacing="-0.5" fill="#F4F4F4">hubme</text>
+        <text x="218" y="48" font-family="'Inter', system-ui, sans-serif" font-weight="400" font-size="28" letter-spacing="-0.5" fill="#22D3EE">.ai</text>
+      </svg>
+    </div>
+
+    <div class="logo-variants stagger">
+      <div class="logo-variant dark">
+        <svg viewBox="0 0 200 50" width="180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lv1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#22D3EE"/><stop offset="100%" stop-color="#0891B2"/>
+            </linearGradient>
+          </defs>
+          <circle cx="14" cy="8" r="2.5" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="25" cy="8" r="2.5" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="30" cy="20" r="2.5" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="25" cy="32" r="2.5" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="14" cy="32" r="2.5" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="9" cy="20" r="2.5" fill="#22D3EE" opacity="0.5"/>
+          <line x1="14" y1="8" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+          <line x1="25" y1="8" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+          <line x1="30" y1="20" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+          <line x1="25" y1="32" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+          <line x1="14" y1="32" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+          <line x1="9" y1="20" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+          <circle cx="19.5" cy="20" r="5" fill="url(#lv1)"/>
+          <circle cx="19.5" cy="20" r="2" fill="#F0FDFF"/>
+          <text x="38" y="25" font-family="'Inter', system-ui" font-weight="700" font-size="17" fill="#F4F4F4">hubme</text>
+          <text x="108" y="25" font-family="'Inter', system-ui" font-weight="400" font-size="17" fill="#22D3EE">.ai</text>
+        </svg>
+        <span class="logo-variant-label">Dark Background</span>
+      </div>
+
+      <div class="logo-variant light">
+        <svg viewBox="0 0 200 50" width="180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lv2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#0891B2"/><stop offset="100%" stop-color="#0E7490"/>
+            </linearGradient>
+          </defs>
+          <circle cx="14" cy="8" r="2.5" fill="#0891B2" opacity="0.6"/>
+          <circle cx="25" cy="8" r="2.5" fill="#0891B2" opacity="0.6"/>
+          <circle cx="30" cy="20" r="2.5" fill="#0891B2" opacity="0.6"/>
+          <circle cx="25" cy="32" r="2.5" fill="#0891B2" opacity="0.6"/>
+          <circle cx="14" cy="32" r="2.5" fill="#0891B2" opacity="0.6"/>
+          <circle cx="9" cy="20" r="2.5" fill="#0891B2" opacity="0.6"/>
+          <line x1="14" y1="8" x2="19.5" y2="20" stroke="#0891B2" stroke-width="0.8" opacity="0.35"/>
+          <line x1="25" y1="8" x2="19.5" y2="20" stroke="#0891B2" stroke-width="0.8" opacity="0.35"/>
+          <line x1="30" y1="20" x2="19.5" y2="20" stroke="#0891B2" stroke-width="0.8" opacity="0.35"/>
+          <line x1="25" y1="32" x2="19.5" y2="20" stroke="#0891B2" stroke-width="0.8" opacity="0.35"/>
+          <line x1="14" y1="32" x2="19.5" y2="20" stroke="#0891B2" stroke-width="0.8" opacity="0.35"/>
+          <line x1="9" y1="20" x2="19.5" y2="20" stroke="#0891B2" stroke-width="0.8" opacity="0.35"/>
+          <circle cx="19.5" cy="20" r="5" fill="url(#lv2)"/>
+          <circle cx="19.5" cy="20" r="2" fill="#FFFFFF"/>
+          <text x="38" y="25" font-family="'Inter', system-ui" font-weight="700" font-size="17" fill="#111827">hubme</text>
+          <text x="108" y="25" font-family="'Inter', system-ui" font-weight="400" font-size="17" fill="#0891B2">.ai</text>
+        </svg>
+        <span class="logo-variant-label" style="color:#6B7280">Light Background</span>
+      </div>
+
+      <div class="logo-variant mono">
+        <svg viewBox="0 0 200 50" width="180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="8" r="2.5" fill="#FFFFFF" opacity="0.45"/>
+          <circle cx="25" cy="8" r="2.5" fill="#FFFFFF" opacity="0.45"/>
+          <circle cx="30" cy="20" r="2.5" fill="#FFFFFF" opacity="0.45"/>
+          <circle cx="25" cy="32" r="2.5" fill="#FFFFFF" opacity="0.45"/>
+          <circle cx="14" cy="32" r="2.5" fill="#FFFFFF" opacity="0.45"/>
+          <circle cx="9" cy="20" r="2.5" fill="#FFFFFF" opacity="0.45"/>
+          <line x1="14" y1="8" x2="19.5" y2="20" stroke="#FFFFFF" stroke-width="0.8" opacity="0.25"/>
+          <line x1="25" y1="8" x2="19.5" y2="20" stroke="#FFFFFF" stroke-width="0.8" opacity="0.25"/>
+          <line x1="30" y1="20" x2="19.5" y2="20" stroke="#FFFFFF" stroke-width="0.8" opacity="0.25"/>
+          <line x1="25" y1="32" x2="19.5" y2="20" stroke="#FFFFFF" stroke-width="0.8" opacity="0.25"/>
+          <line x1="14" y1="32" x2="19.5" y2="20" stroke="#FFFFFF" stroke-width="0.8" opacity="0.25"/>
+          <line x1="9" y1="20" x2="19.5" y2="20" stroke="#FFFFFF" stroke-width="0.8" opacity="0.25"/>
+          <circle cx="19.5" cy="20" r="5" fill="#FFFFFF"/>
+          <circle cx="19.5" cy="20" r="2" fill="#1A1A1A"/>
+          <text x="38" y="25" font-family="'Inter', system-ui" font-weight="700" font-size="17" fill="#FFFFFF">hubme</text>
+          <text x="108" y="25" font-family="'Inter', system-ui" font-weight="400" font-size="17" fill="#FFFFFF" opacity="0.6">.ai</text>
+        </svg>
+        <span class="logo-variant-label">Monochrome</span>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; align-items:center; gap:16px; padding:48px 40px; background:var(--s1); border:1px solid rgba(244,244,244,0.06); border-radius:12px;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);">Clear Space Rule</div>
+      <div class="clearspace-box">
+        <span class="clearspace-note">x = cap-height of wordmark</span>
+        <svg viewBox="0 0 200 50" width="160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="csg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#22D3EE"/><stop offset="100%" stop-color="#0891B2"/>
+            </linearGradient>
+          </defs>
+          <circle cx="14" cy="8" r="2.5" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="25" cy="8" r="2.5" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="30" cy="20" r="2.5" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="25" cy="32" r="2.5" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="14" cy="32" r="2.5" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="9" cy="20" r="2.5" fill="#22D3EE" opacity="0.5"/>
+          <line x1="14" y1="8" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+          <line x1="25" y1="8" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+          <line x1="30" y1="20" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+          <line x1="25" y1="32" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+          <line x1="14" y1="32" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+          <line x1="9" y1="20" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+          <circle cx="19.5" cy="20" r="5" fill="url(#csg)"/>
+          <circle cx="19.5" cy="20" r="2" fill="#F0FDFF"/>
+          <text x="38" y="25" font-family="'Inter', system-ui" font-weight="700" font-size="17" fill="#F4F4F4">hubme</text>
+          <text x="108" y="25" font-family="'Inter', system-ui" font-weight="400" font-size="17" fill="#22D3EE">.ai</text>
+        </svg>
+        <span class="clearspace-arrows">min 20px all sides (digital)</span>
+      </div>
+      <p style="font-size:0.8rem; color:var(--muted); text-align:center; max-width:44ch; margin-top:8px;">Never allow other visual elements within the clear space zone. The mark requires room to breathe and be recognized instantly.</p>
+    </div>
+  </section>
+
+  <!-- 02 CORES -->
+  <section class="section" id="cores">
+    <div class="section-label">
+      <span class="section-num">02</span>
+      <span class="section-divider">//</span>
+      <span class="section-title">Cores</span>
+    </div>
+
+    <div class="color-group">
+      <div class="color-group-title">Accent Spectrum — Cyan #22D3EE / 14-Step Opacity Ladder</div>
+      <div class="swatches stagger">
+        <div class="swatch">
+          <div class="swatch-color" style="background:rgba(34,211,238,0.06)"></div>
+          <div class="swatch-body"><span class="swatch-hex">--a1</span><span class="swatch-name">6% opacity</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:rgba(34,211,238,0.10)"></div>
+          <div class="swatch-body"><span class="swatch-hex">--a2</span><span class="swatch-name">10% opacity</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:rgba(34,211,238,0.15)"></div>
+          <div class="swatch-body"><span class="swatch-hex">--a3</span><span class="swatch-name">15% opacity</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:rgba(34,211,238,0.22)"></div>
+          <div class="swatch-body"><span class="swatch-hex">--a4</span><span class="swatch-name">22% opacity</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:rgba(34,211,238,0.30)"></div>
+          <div class="swatch-body"><span class="swatch-hex">--a5</span><span class="swatch-name">30% opacity</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:rgba(34,211,238,0.40)"></div>
+          <div class="swatch-body"><span class="swatch-hex">--a6</span><span class="swatch-name">40% opacity</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:rgba(34,211,238,0.55)"></div>
+          <div class="swatch-body"><span class="swatch-hex">--a7</span><span class="swatch-name">55% opacity</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:rgba(34,211,238,0.70)"></div>
+          <div class="swatch-body"><span class="swatch-hex">--a8</span><span class="swatch-name">70% opacity</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#22D3EE; box-shadow:0 0 20px rgba(34,211,238,0.5)"></div>
+          <div class="swatch-body"><span class="swatch-hex">#22D3EE</span><span class="swatch-name">--a9 Full</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#0891B2"></div>
+          <div class="swatch-body"><span class="swatch-hex">#0891B2</span><span class="swatch-name">Accent Deep</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-group">
+      <div class="color-group-title">Surface Stack — OKLCH 7-Level System</div>
+      <div class="swatches-surfaces stagger">
+        <div class="swatch-surface">
+          <div class="swatch-surface-color" style="background:oklch(9% 0.006 247); border-bottom:1px solid rgba(255,255,255,0.06)"></div>
+          <div class="swatch-surface-body"><span class="swatch-surface-name">--s0</span><span class="swatch-surface-val">oklch(9%)</span></div>
+        </div>
+        <div class="swatch-surface">
+          <div class="swatch-surface-color" style="background:oklch(11% 0.007 247)"></div>
+          <div class="swatch-surface-body"><span class="swatch-surface-name">--s1</span><span class="swatch-surface-val">oklch(11%)</span></div>
+        </div>
+        <div class="swatch-surface">
+          <div class="swatch-surface-color" style="background:oklch(13.5% 0.007 247)"></div>
+          <div class="swatch-surface-body"><span class="swatch-surface-name">--s2</span><span class="swatch-surface-val">oklch(13.5%)</span></div>
+        </div>
+        <div class="swatch-surface">
+          <div class="swatch-surface-color" style="background:oklch(16% 0.008 247)"></div>
+          <div class="swatch-surface-body"><span class="swatch-surface-name">--s3</span><span class="swatch-surface-val">oklch(16%)</span></div>
+        </div>
+        <div class="swatch-surface">
+          <div class="swatch-surface-color" style="background:oklch(19% 0.009 247)"></div>
+          <div class="swatch-surface-body"><span class="swatch-surface-name">--s4</span><span class="swatch-surface-val">oklch(19%)</span></div>
+        </div>
+        <div class="swatch-surface">
+          <div class="swatch-surface-color" style="background:oklch(22% 0.010 247)"></div>
+          <div class="swatch-surface-body"><span class="swatch-surface-name">--s5</span><span class="swatch-surface-val">oklch(22%)</span></div>
+        </div>
+        <div class="swatch-surface">
+          <div class="swatch-surface-color" style="background:oklch(26% 0.010 247)"></div>
+          <div class="swatch-surface-body"><span class="swatch-surface-name">--s6</span><span class="swatch-surface-val">oklch(26%)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+      <div class="color-group" style="margin-bottom:0">
+        <div class="color-group-title">Semantic</div>
+        <div class="swatches stagger">
+          <div class="swatch swatch-wide">
+            <div class="swatch-color" style="background:#4ADE80; box-shadow:0 0 16px rgba(74,222,128,0.3)"></div>
+            <div class="swatch-body"><span class="swatch-hex">#4ADE80</span><span class="swatch-name">Success</span></div>
+          </div>
+          <div class="swatch swatch-wide">
+            <div class="swatch-color" style="background:#FBBF24; box-shadow:0 0 16px rgba(251,191,36,0.3)"></div>
+            <div class="swatch-body"><span class="swatch-hex">#FBBF24</span><span class="swatch-name">Warning</span></div>
+          </div>
+          <div class="swatch swatch-wide">
+            <div class="swatch-color" style="background:#F87171; box-shadow:0 0 16px rgba(248,113,113,0.3)"></div>
+            <div class="swatch-body"><span class="swatch-hex">#F87171</span><span class="swatch-name">Error</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="color-group" style="margin-bottom:0">
+        <div class="color-group-title">Text Hierarchy</div>
+        <div class="swatches stagger">
+          <div class="swatch swatch-wide">
+            <div class="swatch-color" style="background:#F4F4F4"></div>
+            <div class="swatch-body"><span class="swatch-hex">#F4F4F4</span><span class="swatch-name">Cream — Primary</span></div>
+          </div>
+          <div class="swatch swatch-wide">
+            <div class="swatch-color" style="background:rgba(244,244,244,0.55)"></div>
+            <div class="swatch-body"><span class="swatch-hex">rgba 55%</span><span class="swatch-name">Dim — Secondary</span></div>
+          </div>
+          <div class="swatch swatch-wide">
+            <div class="swatch-color" style="background:rgba(244,244,244,0.35)"></div>
+            <div class="swatch-body"><span class="swatch-hex">rgba 35%</span><span class="swatch-name">Muted — Tertiary</span></div>
+          </div>
+          <div class="swatch swatch-wide">
+            <div class="swatch-color" style="background:rgba(244,244,244,0.18)"></div>
+            <div class="swatch-body"><span class="swatch-hex">rgba 18%</span><span class="swatch-name">Subtle — Disabled</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 TIPOGRAFIA -->
+  <section class="section" id="tipografia">
+    <div class="section-label">
+      <span class="section-num">03</span>
+      <span class="section-divider">//</span>
+      <span class="section-title">Tipografia</span>
+    </div>
+
+    <div class="stagger">
+      <div class="type-specimen">
+        <div class="type-text">
+          <div style="font-size:4.5rem;font-weight:900;letter-spacing:-0.04em;line-height:1;color:var(--cream)">Where AI compounds.</div>
+        </div>
+        <div class="type-meta">
+          <span class="type-label">Display</span>
+          <span class="type-spec">4.5rem / 900<br>tracking -0.04em<br>Inter</span>
+        </div>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-text">
+          <div style="font-size:3rem;font-weight:800;letter-spacing:-0.03em;line-height:1.1;color:var(--cream)">Every connection matters.</div>
+        </div>
+        <div class="type-meta">
+          <span class="type-label">H1</span>
+          <span class="type-spec">3rem / 800<br>tracking -0.03em<br>Inter</span>
+        </div>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-text">
+          <div style="font-size:2rem;font-weight:700;letter-spacing:-0.02em;line-height:1.2;color:var(--cream)">Intelligence at every node.</div>
+        </div>
+        <div class="type-meta">
+          <span class="type-label">H2</span>
+          <span class="type-spec">2rem / 700<br>tracking -0.02em<br>Inter</span>
+        </div>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-text">
+          <div style="font-size:1.25rem;font-weight:600;letter-spacing:-0.01em;color:var(--cream)">Build faster with compounding AI workflows</div>
+        </div>
+        <div class="type-meta">
+          <span class="type-label">H3</span>
+          <span class="type-spec">1.25rem / 600<br>tracking -0.01em<br>Inter</span>
+        </div>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-text">
+          <div style="font-size:1rem;font-weight:400;line-height:1.65;color:var(--dim);max-width:64ch">hubme.ai connects your entire business intelligence stack into a single compounding network. Every new data source makes the whole system smarter — not just one workflow, but the entire graph.</div>
+        </div>
+        <div class="type-meta">
+          <span class="type-label">Body</span>
+          <span class="type-spec">1rem / 400<br>line-height 1.65<br>Inter</span>
+        </div>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-text">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.875rem;font-weight:400;color:var(--accent);letter-spacing:0.01em">const hub = await hubme.connect&#40;&#123; nodes: 'all' &#125;&#41;</div>
+        </div>
+        <div class="type-meta">
+          <span class="type-label">Mono</span>
+          <span class="type-spec">0.875rem / 400<br>JetBrains Mono<br>Code, data labels</span>
+        </div>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-text">
+          <div style="font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">Section Label — Uppercase Tracking</div>
+        </div>
+        <div class="type-meta">
+          <span class="type-label">Label</span>
+          <span class="type-spec">0.75rem / 600<br>tracking 0.1em<br>Uppercase</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 COMPONENTES -->
+  <section class="section" id="componentes">
+    <div class="section-label">
+      <span class="section-num">04</span>
+      <span class="section-divider">//</span>
+      <span class="section-title">Componentes</span>
+    </div>
+
+    <div class="components-grid stagger">
+      <div class="component-card">
+        <div class="component-card-title">Buttons</div>
+        <div class="btn-row" style="margin-bottom:16px">
+          <button class="btn btn-primary">Get started</button>
+          <button class="btn btn-secondary">Learn more</button>
+          <button class="btn btn-ghost">View docs</button>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-sm">Connect</button>
+          <button class="btn btn-secondary btn-sm">Cancel</button>
+          <button class="btn btn-ghost btn-sm">More</button>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <div class="component-card-title">Badges &amp; Tags</div>
+        <div class="badges-row" style="margin-bottom:12px">
+          <span class="badge badge-accent">AI-Powered</span>
+          <span class="badge badge-success">Active</span>
+          <span class="badge badge-warning">Beta</span>
+        </div>
+        <div class="badges-row">
+          <span class="badge badge-error">Deprecated</span>
+          <span class="badge badge-neutral">Draft</span>
+          <span class="badge badge-accent">v2.0</span>
+        </div>
+      </div>
+
+      <div class="component-card">
+        <div class="component-card-title">Input Field</div>
+        <div class="input-group">
+          <label class="input-label">Workspace name</label>
+          <input class="input-field" type="text" placeholder="e.g. Acme Corp AI Hub">
+        </div>
+        <div class="input-group" style="margin-top:16px">
+          <label class="input-label">API Endpoint</label>
+          <input class="input-field" type="text" placeholder="https://api.hubme.ai/v1" style="font-family:'JetBrains Mono',monospace;font-size:0.8rem">
+        </div>
+      </div>
+
+      <div class="component-card">
+        <div class="component-card-title">UI Card</div>
+        <div class="ui-card">
+          <div class="ui-card-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="3" fill="#22D3EE"/>
+              <circle cx="8" cy="2" r="1.5" fill="#22D3EE" opacity="0.5"/>
+              <circle cx="14" cy="5" r="1.5" fill="#22D3EE" opacity="0.5"/>
+              <circle cx="14" cy="11" r="1.5" fill="#22D3EE" opacity="0.5"/>
+              <circle cx="8" cy="14" r="1.5" fill="#22D3EE" opacity="0.5"/>
+              <circle cx="2" cy="11" r="1.5" fill="#22D3EE" opacity="0.5"/>
+              <circle cx="2" cy="5" r="1.5" fill="#22D3EE" opacity="0.5"/>
+              <line x1="8" y1="2" x2="8" y2="8" stroke="#22D3EE" stroke-width="0.8" opacity="0.3"/>
+              <line x1="14" y1="5" x2="8" y2="8" stroke="#22D3EE" stroke-width="0.8" opacity="0.3"/>
+              <line x1="14" y1="11" x2="8" y2="8" stroke="#22D3EE" stroke-width="0.8" opacity="0.3"/>
+              <line x1="8" y1="14" x2="8" y2="8" stroke="#22D3EE" stroke-width="0.8" opacity="0.3"/>
+              <line x1="2" y1="11" x2="8" y2="8" stroke="#22D3EE" stroke-width="0.8" opacity="0.3"/>
+              <line x1="2" y1="5" x2="8" y2="8" stroke="#22D3EE" stroke-width="0.8" opacity="0.3"/>
+            </svg>
+          </div>
+          <div class="ui-card-title">AI Integration Hub</div>
+          <div class="ui-card-desc">Connect your tools and let the network effect compound your intelligence across every workflow.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 DO & DON'T -->
+  <section class="section" id="dnd">
+    <div class="section-label">
+      <span class="section-num">05</span>
+      <span class="section-divider">//</span>
+      <span class="section-title">Do &amp; Don't</span>
+    </div>
+
+    <div class="dnd-grid stagger">
+      <!-- DO 1 -->
+      <div class="dnd-item">
+        <div class="dnd-preview do">
+          <span class="dnd-badge do">Do</span>
+          <svg viewBox="0 0 200 50" width="160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="dd1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22D3EE"/><stop offset="100%" stop-color="#0891B2"/></linearGradient></defs>
+            <circle cx="14" cy="8" r="2.5" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="25" cy="8" r="2.5" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="30" cy="20" r="2.5" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="25" cy="32" r="2.5" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="14" cy="32" r="2.5" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="9" cy="20" r="2.5" fill="#22D3EE" opacity="0.5"/>
+            <line x1="14" y1="8" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+            <line x1="30" y1="20" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+            <circle cx="19.5" cy="20" r="5" fill="url(#dd1)"/>
+            <circle cx="19.5" cy="20" r="2" fill="#F0FDFF"/>
+            <text x="38" y="25" font-family="Inter,sans-serif" font-weight="700" font-size="17" fill="#F4F4F4">hubme</text>
+            <text x="108" y="25" font-family="Inter,sans-serif" font-weight="400" font-size="17" fill="#22D3EE">.ai</text>
+          </svg>
+        </div>
+        <div class="dnd-footer">Logo on dark background — full contrast, brand colors fully legible.</div>
+      </div>
+
+      <!-- DONT 1 -->
+      <div class="dnd-item">
+        <div class="dnd-preview dont" style="background:linear-gradient(135deg,#FF6B6B,#4ECDC4 40%,#45B7D1 70%,#96CEB4)">
+          <span class="dnd-badge dont">Don't</span>
+          <svg viewBox="0 0 200 50" width="160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="dd1b" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22D3EE"/><stop offset="100%" stop-color="#0891B2"/></linearGradient></defs>
+            <circle cx="19.5" cy="20" r="5" fill="url(#dd1b)"/>
+            <circle cx="19.5" cy="20" r="2" fill="#F0FDFF"/>
+            <text x="38" y="25" font-family="Inter,sans-serif" font-weight="700" font-size="17" fill="#F4F4F4">hubme</text>
+            <text x="108" y="25" font-family="Inter,sans-serif" font-weight="400" font-size="17" fill="#22D3EE">.ai</text>
+          </svg>
+        </div>
+        <div class="dnd-footer">Logo on busy or colorful backgrounds — mark is lost and brand integrity collapses.</div>
+      </div>
+
+      <!-- DO 2 -->
+      <div class="dnd-item">
+        <div class="dnd-preview do" style="flex-direction:column;gap:14px;">
+          <span class="dnd-badge do">Do</span>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <div style="width:28px;height:28px;border-radius:50%;background:#22D3EE;box-shadow:0 0 12px rgba(34,211,238,0.4)"></div>
+            <span style="font-size:0.85rem;font-weight:600;color:var(--cream)">One accent: Cyan only</span>
+          </div>
+          <button class="btn btn-primary btn-sm">Get started</button>
+        </div>
+        <div class="dnd-footer">#22D3EE as the singular brand accent. One color, full identity.</div>
+      </div>
+
+      <!-- DONT 2 -->
+      <div class="dnd-item">
+        <div class="dnd-preview dont" style="flex-direction:column;gap:14px;">
+          <span class="dnd-badge dont">Don't</span>
+          <div style="display:flex;gap:8px;">
+            <div style="width:26px;height:26px;border-radius:50%;background:#22D3EE"></div>
+            <div style="width:26px;height:26px;border-radius:50%;background:#A78BFA"></div>
+            <div style="width:26px;height:26px;border-radius:50%;background:#FB923C"></div>
+            <div style="width:26px;height:26px;border-radius:50%;background:#4ADE80"></div>
+          </div>
+          <span style="font-size:0.75rem;color:var(--muted)">Multiple accent colors mixed</span>
+        </div>
+        <div class="dnd-footer">Mixing accents dilutes the brand. Cyan is singular and ownable.</div>
+      </div>
+
+      <!-- DO 3 -->
+      <div class="dnd-item">
+        <div class="dnd-preview do">
+          <span class="dnd-badge do">Do</span>
+          <svg viewBox="0 0 200 50" width="160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="dd3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22D3EE"/><stop offset="100%" stop-color="#0891B2"/></linearGradient></defs>
+            <circle cx="14" cy="8" r="2.5" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="25" cy="8" r="2.5" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="30" cy="20" r="2.5" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="25" cy="32" r="2.5" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="14" cy="32" r="2.5" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="9" cy="20" r="2.5" fill="#22D3EE" opacity="0.5"/>
+            <line x1="14" y1="8" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+            <line x1="25" y1="8" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+            <line x1="30" y1="20" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+            <line x1="25" y1="32" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+            <line x1="14" y1="32" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+            <line x1="9" y1="20" x2="19.5" y2="20" stroke="#22D3EE" stroke-width="0.8" opacity="0.25"/>
+            <circle cx="19.5" cy="20" r="5" fill="url(#dd3)"/>
+            <circle cx="19.5" cy="20" r="2" fill="#F0FDFF"/>
+            <text x="38" y="25" font-family="Inter,sans-serif" font-weight="700" font-size="17" fill="#F4F4F4">hubme</text>
+            <text x="108" y="25" font-family="Inter,sans-serif" font-weight="400" font-size="17" fill="#22D3EE">.ai</text>
+          </svg>
+        </div>
+        <div class="dnd-footer">Correct proportions maintained — mark and wordmark at original aspect ratio.</div>
+      </div>
+
+      <!-- DONT 3 -->
+      <div class="dnd-item">
+        <div class="dnd-preview dont">
+          <span class="dnd-badge dont">Don't</span>
+          <div style="transform:scaleX(1.55) scaleY(0.65);transform-origin:center;opacity:0.65">
+            <svg viewBox="0 0 200 50" width="160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="dd4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22D3EE"/><stop offset="100%" stop-color="#0891B2"/></linearGradient></defs>
+              <circle cx="19.5" cy="20" r="5" fill="url(#dd4)"/>
+              <circle cx="19.5" cy="20" r="2" fill="#F0FDFF"/>
+              <text x="38" y="25" font-family="Inter,sans-serif" font-weight="700" font-size="17" fill="#F4F4F4">hubme</text>
+              <text x="108" y="25" font-family="Inter,sans-serif" font-weight="400" font-size="17" fill="#22D3EE">.ai</text>
+            </svg>
+          </div>
+        </div>
+        <div class="dnd-footer">Never stretch or squash the logo. Scale uniformly — always preserve the original aspect ratio.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">hubme.ai Brandbook v1.0 &nbsp;—&nbsp; Brand Machine / AIOX &nbsp;—&nbsp; 2026-03-22</span>
+    <span class="footer-badge">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <circle cx="6" cy="6" r="2.5" fill="#22D3EE"/>
+        <circle cx="6" cy="1.5" r="1" fill="#22D3EE" opacity="0.5"/>
+        <circle cx="10.5" cy="4" r="1" fill="#22D3EE" opacity="0.5"/>
+        <line x1="6" y1="1.5" x2="6" y2="6" stroke="#22D3EE" stroke-width="0.6" opacity="0.3"/>
+        <line x1="10.5" y1="4" x2="6" y2="6" stroke="#22D3EE" stroke-width="0.6" opacity="0.3"/>
+      </svg>
+      AIOX Brand Machine
+    </span>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.section, .hero').forEach(function(el) {
+    io.observe(el);
+  });
+
+  var staggerIo = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        staggerIo.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+  document.querySelectorAll('.stagger').forEach(function(el) {
+    staggerIo.observe(el);
+  });
+})();
+</script>
+
+</body>
+</html>

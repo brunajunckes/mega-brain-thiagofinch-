@@ -1,0 +1,19 @@
+Return-Path: <root@mail.hubme.tech>
+Delivered-To: mary@hubme.tech
+Received: from mail.hubme.tech
+	by mail.hubme.tech with LMTP
+	id Y6EpIRcUwGl7AwAAcErP4g
+	(envelope-from <root@mail.hubme.tech>)
+	for <mary@hubme.tech>; Sun, 22 Mar 2026 16:08:55 +0000
+Received: by mail.hubme.tech (Postfix, from userid 0)
+	id 7D5CD14C5C5; Sun, 22 Mar 2026 16:08:55 +0000 (UTC)
+To: mary@hubme.tech
+Subject: Test from mary@hubme.tech
+MIME-Version: 1.0
+Content-Type: text/plain; charset="ANSI_X3.4-1968"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260322160855.7D5CD14C5C5@mail.hubme.tech>
+Date: Sun, 22 Mar 2026 16:08:55 +0000 (UTC)
+From: root <root@mail.hubme.tech>
+
+Test email from HubMe AI

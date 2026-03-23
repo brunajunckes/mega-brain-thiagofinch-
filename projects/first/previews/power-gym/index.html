@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Gym - Academia de Fitness em São Paulo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 2px solid #ef4444;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ef4444;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav .nav-links a:hover {
+            color: #ef4444;
+        }
+
+        nav .cta-btn {
+            background: #ef4444;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        nav .cta-btn:hover {
+            background: #dc2626;
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a1515 100%);
+            border-bottom: 3px solid #ef4444;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #ef4444;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #e0e0e0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .hero .primary-btn {
+            background: #ef4444;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            border: 2px solid #ef4444;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(239, 68, 68, 0.8);
+            }
+        }
+
+        .hero .primary-btn:hover {
+            background: #dc2626;
+            border-color: #dc2626;
+            transform: scale(1.05);
+        }
+
+        .hero .secondary-btn {
+            background: transparent;
+            color: #ef4444;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            border: 2px solid #ef4444;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .hero .secondary-btn:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        /* Plans Section */
+        .plans {
+            padding: 4rem 2rem;
+            background: #0a0a0a;
+            text-align: center;
+        }
+
+        .plans h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ef4444;
+        }
+
+        .plans-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .plan-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid #ef4444;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.4);
+        }
+
+        .plan-card.featured {
+            transform: scale(1.05);
+            border: 3px solid #ef4444;
+        }
+
+        .plan-card.featured::before {
+            content: '⭐ MAIS POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ef4444;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .plan-card h3 {
+            font-size: 1.8rem;
+            margin: 1rem 0;
+            color: #ef4444;
+        }
+
+        .plan-card .price {
+            font-size: 2.5rem;
+            color: #ef4444;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .plan-card .period {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 1.5rem 0;
+            color: #e0e0e0;
+        }
+
+        .plan-card ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .plan-card ul li::before {
+            content: '✓ ';
+            color: #ef4444;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .plan-card button {
+            background: #ef4444;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+
+        .plan-card button:hover {
+            background: #dc2626;
+        }
+
+        /* Classes Section */
+        .classes {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            text-align: center;
+        }
+
+        .classes h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ef4444;
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .class-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #ef4444;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .class-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+        }
+
+        .class-card .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .class-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #ef4444;
+        }
+
+        .class-card p {
+            color: #e0e0e0;
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 4rem 2rem;
+            background: #0a0a0a;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ef4444;
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            border-top: 3px solid #ef4444;
+        }
+
+        .testimonial-card .stars {
+            color: #ef4444;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-card p {
+            color: #e0e0e0;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .testimonial-card .author {
+            color: #ef4444;
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #2a1515 0%, #1a1a1a 100%);
+            text-align: center;
+            border-top: 3px solid #ef4444;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #ef4444;
+        }
+
+        .contact p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #e0e0e0;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border: 2px solid #25D366;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1bbe55;
+            border-color: #1bbe55;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            border-top: 2px solid #ef4444;
+            padding: 2rem;
+            text-align: center;
+            color: #999;
+        }
+
+        footer a {
+            color: #ef4444;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            nav .nav-links {
+                gap: 1rem;
+                width: 100%;
+                justify-content: center;
+                margin-top: 1rem;
+            }
+
+            nav .logo {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons button,
+            .hero-buttons a {
+                width: 100%;
+            }
+
+            .plans h2,
+            .classes h2,
+            .testimonials h2,
+            .contact h2 {
+                font-size: 2rem;
+            }
+
+            .plan-card.featured {
+                transform: scale(1);
+            }
+
+            .plans-container,
+            .classes-grid,
+            .testimonials-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .contact-buttons button,
+            .contact-buttons a {
+                width: 100%;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .plan-card,
+        .class-card,
+        .testimonial-card {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .class-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .class-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .class-card:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">💪 Power Gym</a>
+        <ul class="nav-links">
+            <li><a href="#planos">Planos</a></li>
+            <li><a href="#aulas">Aulas</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+        <button class="cta-btn" onclick="document.getElementById('primeira-semana').scrollIntoView({ behavior: 'smooth' })">Primeira Semana Grátis</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>🔥 Transforme Seu Corpo 🔥</h1>
+        <p>Bem-vindo à Power Gym! O melhor ambiente para você alcançar seus objetivos de fitness. Com equipamentos modernos, instrutores qualificados e uma comunidade motivada, você terá todo o suporte necessário.</p>
+        <div class="hero-buttons">
+            <button id="primeira-semana" class="primary-btn" onclick="whatsappFreeWeek()">⭐ Primeira Semana Grátis ⭐</button>
+            <a href="#planos" class="secondary-btn">Ver Planos →</a>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section class="plans" id="planos">
+        <h2>💳 Nossos Planos</h2>
+        <div class="plans-container">
+            <div class="plan-card">
+                <h3>Básico</h3>
+                <div class="price">R$ 79</div>
+                <div class="period">/mês</div>
+                <ul>
+                    <li>Acesso à musculação</li>
+                    <li>Uso de equipamentos</li>
+                    <li>Estacionamento</li>
+                    <li>Avaliação inicial</li>
+                    <li>Comunidade exclusiva</li>
+                </ul>
+                <button onclick="whatsappPlan('Básico')">Contratar Agora</button>
+            </div>
+
+            <div class="plan-card featured">
+                <h3>Premium</h3>
+                <div class="price">R$ 129</div>
+                <div class="period">/mês</div>
+                <ul>
+                    <li>Tudo do Plano Básico</li>
+                    <li>Aulas em grupo ilimitadas</li>
+                    <li>1 avaliação mensal</li>
+                    <li>Treino personalizado</li>
+                    <li>Acesso 24/7</li>
+                </ul>
+                <button onclick="whatsappPlan('Premium')">Contratar Agora</button>
+            </div>
+
+            <div class="plan-card">
+                <h3>VIP</h3>
+                <div class="price">R$ 199</div>
+                <div class="period">/mês</div>
+                <ul>
+                    <li>Tudo do Plano Premium</li>
+                    <li>Personal trainer dedicado</li>
+                    <li>Nutrição personalizada</li>
+                    <li>Acompanhamento mensal</li>
+                    <li>Prioridade em agendamentos</li>
+                </ul>
+                <button onclick="whatsappPlan('VIP')">Contratar Agora</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section class="classes" id="aulas">
+        <h2>🏋️ Nossas Aulas</h2>
+        <div class="classes-grid">
+            <div class="class-card">
+                <div class="emoji">💪</div>
+                <h3>Musculação</h3>
+                <p>Ganho de massa, força e condicionamento físico com máquinas e pesos livres de alta qualidade.</p>
+            </div>
+
+            <div class="class-card">
+                <div class="emoji">🏃</div>
+                <h3>CrossFit</h3>
+                <p>Treinos funcionais intensos que combinam força, potência e resistência cardiovascular.</p>
+            </div>
+
+            <div class="class-card">
+                <div class="emoji">🧘</div>
+                <h3>Yoga</h3>
+                <p>Aulas de yoga para relaxamento, flexibilidade e bem-estar mental e físico.</p>
+            </div>
+
+            <div class="class-card">
+                <div class="emoji">🚴</div>
+                <h3>Spinning</h3>
+                <p>Aulas de ciclismo indoor motivantes com instrutores energéticos e trilha sonora vibrante.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="depoimentos">
+        <h2>⭐ O Que Nossos Clientes Dizem</h2>
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"A Power Gym mudou minha vida! Consegui meus objetivos em 3 meses com a ajuda da equipe incrível."</p>
+                <div class="author">- João Silva</div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Ambiente limpo, equipamentos modernos e instrutores muito atenciosos. Super recomendo!"</p>
+                <div class="author">- Maria Santos</div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"O melhor investimento que fiz para minha saúde. A comunidade é tão motivadora!"</p>
+                <div class="author">- Carlos Oliveira</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contato">
+        <h2>📞 Entre em Contato</h2>
+        <p>Tem dúvidas? Fale conosco via WhatsApp e comece sua jornada na Power Gym hoje mesmo!</p>
+        <div class="contact-buttons">
+            <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20planos%20da%20Power%20Gym" class="whatsapp-btn" target="_blank">
+                📱 Conversar no WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Power Gym. Todos os direitos reservados.</p>
+        <p>Site criado por <a href="https://go.hubme.tech" target="_blank">HubMe AI</a> · <a href="https://go.hubme.tech" target="_blank">go.hubme.tech</a></p>
+    </footer>
+
+    <script>
+        function whatsappFreeWeek() {
+            const message = encodeURIComponent("Olá! Gostaria de aproveitar a Primeira Semana Grátis na Power Gym! 💪");
+            window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
+        }
+
+        function whatsappPlan(planName) {
+            const message = encodeURIComponent(`Oi! Gostaria de contratar o plano ${planName} da Power Gym. 💪`);
+            window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>

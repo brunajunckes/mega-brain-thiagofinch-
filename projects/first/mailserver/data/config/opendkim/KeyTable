@@ -1,0 +1,1 @@
+mail._domainkey.hubme.tech hubme.tech:mail:/etc/opendkim/keys/hubme.tech/mail.private

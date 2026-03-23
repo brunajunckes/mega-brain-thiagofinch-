@@ -2,21 +2,10 @@ services:
   hubme-landing:
     build: .
     container_name: hubme-landing
+    ports:
+      - "3010:3010"
     restart: unless-stopped
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.hubme-go.rule=Host(`go.hubme.tech`)"
-      - "traefik.http.routers.hubme-go.entrypoints=websecure"
-      - "traefik.http.routers.hubme-go.tls.certresolver=letsencrypt"
-      - "traefik.http.services.hubme-go.loadbalancer.server.port=3010"
     deploy:
       resources:
         limits:
           memory: 256M
-    networks:
-      - traefik-network
-
-networks:
-  traefik-network:
-    external: true
-    name: ai

@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-23T02:42:07.826Z"
+generated_at: "2026-03-23T03:24:45.510Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1669
+file_count: 1670
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -4720,6 +4720,10 @@ files:
     hash: sha256:e7818aa9f7c8db4efd6d7fd631fb8ff6f1aac4202c3f6253dfd6d50dd708fc30
     type: workflow
     size: 10747
+  - path: development/workflows/nexus-qa-gate.yaml
+    hash: sha256:fbb4f90daf76124f2afeff1cb6ab24478095977f2af8a3fec32140c864121e55
+    type: workflow
+    size: 34452
   - path: development/workflows/pelicula-content-pipeline.yaml
     hash: sha256:dfd7c94122364938361fc11df4889f3dbce9555cc00cc58afa589be0377bed7b
     type: workflow

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patinhas Pet Shop - Cuidados para seu Melhor Amigo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafaf8;
+        }
+
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(249, 115, 22, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f97316;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #f97316;
+        }
+
+        .whatsapp-btn {
+            background-color: #f97316;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #ea580c;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 100%;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: #f97316;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid white;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: #f97316;
+        }
+
+        .services {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #f97316;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(249, 115, 22, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: #f97316;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-btn {
+            background-color: #f97316;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .service-btn:hover {
+            background-color: #ea580c;
+            transform: scale(1.05);
+        }
+
+        .products {
+            background-color: #f5f5f3;
+            padding: 3rem 2rem;
+        }
+
+        .products-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #f97316;
+            margin-bottom: 2rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(249, 115, 22, 0.2);
+        }
+
+        .product-image {
+            background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-card h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .product-price {
+            color: #f97316;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #f97316;
+            margin-bottom: 2rem;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.1);
+        }
+
+        .contact-info h3 {
+            color: #f97316;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #f97316;
+            min-width: 30px;
+        }
+
+        .contact-item p {
+            color: #666;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.1);
+        }
+
+        .contact-form h3 {
+            color: #f97316;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #f97316;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #f97316;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #ea580c;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-link {
+            color: #f97316;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s;
+            z-index: 99;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+            }
+
+            .services h2,
+            .products h2,
+            .contact h2 {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-whatsapp {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+
+        .cta-banner {
+            background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: 12px;
+        }
+
+        .cta-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .loading {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                🐾 Patinhas Pet Shop
+            </div>
+            <ul class="nav-links">
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <a href="https://wa.me/5511999999999" class="whatsapp-btn">💬 WhatsApp</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>🐕 Bem-vindo à Patinhas Pet Shop 🐈</h1>
+            <p>Cuidados profissionais e amorosos para seu melhor amigo</p>
+            <div class="hero-buttons">
+                <a href="#agendamento" class="btn-primary">📅 Agendar Agora</a>
+                <a href="#contato" class="btn-secondary">Saiba Mais</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="servicos">
+        <h2>✨ Nossos Serviços</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🛁</div>
+                <h3>Banho e Tosa</h3>
+                <p>Higiene completa e tosa profissional com os melhores cuidados para deixar seu pet lindo e saudável.</p>
+                <button class="service-btn" onclick="agendar('Banho e Tosa')">Agendar</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏥</div>
+                <h3>Consulta Veterinária</h3>
+                <p>Atendimento veterinário completo para vacinação, check-up e cuidados de saúde do seu companheiro.</p>
+                <button class="service-btn" onclick="agendar('Consulta Veterinária')">Agendar</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏨</div>
+                <h3>Hotel Pet</h3>
+                <p>Hospedagem segura e confortável enquanto você viaja. Seu pet fica em boas mãos.</p>
+                <button class="service-btn" onclick="agendar('Hotel Pet')">Agendar</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎀</div>
+                <h3>Acessórios</h3>
+                <p>Coleiras, colchões, brinquedos e muito mais para o conforto e diversão do seu pet.</p>
+                <button class="service-btn" onclick="comprar()">Ver Produtos</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-banner">
+        <h2 id="agendamento">🌟 Agende Seu Banho e Tosa Hoje!</h2>
+        <p>Garanta um horário com nossos profissionais especializados</p>
+        <a href="https://wa.me/5511999999999?text=Gostaria%20de%20agendar%20um%20banho%20e%20tosa" class="btn-primary">📞 Agendar pelo WhatsApp</a>
+    </div>
+
+    <section class="products" id="produtos">
+        <div class="products-content">
+            <h2>🛍️ Produtos em Destaque</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">🦴</div>
+                    <div class="product-info">
+                        <h3>Ossinhos Naturais</h3>
+                        <div class="product-price">R$ 25,90</div>
+                        <p>Ossinhos naturais para mastigar - mantém seus dentes limpos e saudáveis</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🧵</div>
+                    <div class="product-info">
+                        <h3>Brinquedos de Corda</h3>
+                        <div class="product-price">R$ 19,90</div>
+                        <p>Brinquedos duráveis que proporcionam diversão e exercício</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🏠</div>
+                    <div class="product-info">
+                        <h3>Cama Premium</h3>
+                        <div class="product-price">R$ 89,90</div>
+                        <p>Cama confortável e macia para o repouso perfeito do seu pet</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🍖</div>
+                    <div class="product-info">
+                        <h3>Ração Premium</h3>
+                        <div class="product-price">R$ 65,00</div>
+                        <p>Ração balanceada com nutrientes essenciais para saúde do seu pet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contato">
+        <h2>📍 Entre em Contato</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Informações</h3>
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <p><strong>Endereço:</strong><br>Rua das Patinhas, 123<br>São Paulo, SP - 01234-567</p>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <p><strong>WhatsApp:</strong><br><a href="https://wa.me/5511999999999" style="color: #f97316; text-decoration: none; font-weight: bold;">(11) 9 9999-9999</a></p>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <p><strong>Telefone:</strong><br>(11) 3333-3333</p>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">⏰</span>
+                    <p><strong>Horários:</strong><br>Seg-Sex: 9h às 18h<br>Sábado: 9h às 13h<br>Domingo: Fechado</p>
+                </div>
+            </div>
+
+            <form class="contact-form" onsubmit="enviarFormulario(event)">
+                <h3>Envie uma Mensagem</h3>
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <a href="https://wa.me/5511999999999" class="floating-whatsapp" title="Contato via WhatsApp">💬</a>
+
+    <footer>
+        <p>&copy; 2024 Patinhas Pet Shop - Cuidando de quem você ama</p>
+        <p>Site criado por <a href="https://go.hubme.tech" class="footer-link">HubMe AI</a> · <a href="https://go.hubme.tech" class="footer-link">go.hubme.tech</a></p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        function agendar(servico) {
+            const mensagem = `Olá! Gostaria de agendar: ${servico}`;
+            const url = `https://wa.me/5511999999999?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, '_blank');
+        }
+
+        function comprar() {
+            alert('Visite nossa loja para conhecer todos os produtos disponíveis!');
+        }
+
+        function enviarFormulario(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const mensagem = document.getElementById('mensagem').value;
+
+            const mensagemWhatsApp = `Olá! Recebi uma mensagem de contato:\n\nNome: ${nome}\nEmail: ${email}\nTelefone: ${telefone}\nMensagem: ${mensagem}`;
+            const url = `https://wa.me/5511999999999?text=${encodeURIComponent(mensagemWhatsApp)}`;
+
+            window.open(url, '_blank');
+
+            document.querySelector('.contact-form').reset();
+            alert('Obrigado! Sua mensagem será enviada via WhatsApp.');
+        }
+
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

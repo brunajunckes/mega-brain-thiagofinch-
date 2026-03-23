@@ -1,0 +1,30 @@
+services:
+  mailserver:
+    image: ghcr.io/docker-mailserver/docker-mailserver:latest
+    container_name: hubme-mail
+    hostname: mail.hubme.tech
+    ports:
+      - "25:25"
+      - "587:587"
+      - "993:993"
+    volumes:
+      - ./data/mail:/var/mail
+      - ./data/state:/var/mail-state
+      - ./data/logs:/var/log/mail
+      - ./data/config:/tmp/docker-mailserver
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - ENABLE_SPAMASSASSIN=1
+      - ENABLE_CLAMAV=0
+      - ENABLE_FAIL2BAN=1
+      - SSL_TYPE=self-signed
+      - PERMIT_DOCKER=network
+      - ONE_DIR=1
+      - ENABLE_POSTGREY=0
+      - ENABLE_SASLAUTHD=0
+      - OVERRIDE_HOSTNAME=mail.hubme.tech
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    restart: unless-stopped

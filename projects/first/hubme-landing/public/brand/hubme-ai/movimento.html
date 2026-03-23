@@ -1,0 +1,2295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hubme.Ai — Movimento</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  /* Surface scale */
+  --s0: oklch(9% 0.006 247);
+  --s1: oklch(11% 0.007 247);
+  --s2: oklch(13.5% 0.007 247);
+  --s3: oklch(16% 0.008 247);
+  --s4: oklch(19% 0.009 247);
+
+  /* Accent */
+  --accent: #22D3EE;
+  --a1: color-mix(in oklch, #22D3EE 6%, transparent);
+  --a2: color-mix(in oklch, #22D3EE 12%, transparent);
+  --a3: color-mix(in oklch, #22D3EE 20%, transparent);
+  --a-border: color-mix(in oklch, #22D3EE 25%, transparent);
+
+  /* Text */
+  --cream: #F4F4F4;
+  --dim: rgba(244,244,244,0.55);
+  --muted: rgba(244,244,244,0.35);
+
+  /* Layout */
+  --gutter: max(2rem, calc(50vw - 560px));
+
+  /* Borders */
+  --border: rgba(244,244,244,0.06);
+  --border-strong: rgba(244,244,244,0.1);
+
+  /* Motion tokens */
+  --dur-instant: 80ms;
+  --dur-fast: 150ms;
+  --dur-normal: 250ms;
+  --dur-slow: 400ms;
+  --dur-enter: 600ms;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-neutral: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--s0);
+  color: var(--cream);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+.t-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.69rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.t-hud {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.t-title {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.t-section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.t-card-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.t-body {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--dim);
+}
+
+.t-small {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.t-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+}
+
+.accent { color: var(--accent); }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.section {
+  padding: 96px 0;
+}
+
+.section + .section {
+  border-top: 1px solid var(--border);
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: color-mix(in oklch, var(--s0) 85%, transparent);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 20px 0;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-logo-mark {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-logo-mark svg {
+  width: 28px;
+  height: 28px;
+}
+
+.nav-logo-text {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+}
+
+.nav-logo-text .ai { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.nav-links a {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+
+.nav-links a:hover {
+  color: var(--cream);
+  background: var(--a1);
+}
+
+.nav-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: var(--a2);
+  border: 1px solid var(--a-border);
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  padding: 120px 0 96px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(ellipse at center, color-mix(in oklch, #22D3EE 8%, transparent) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--a-border);
+  background: var(--a1);
+}
+
+.hero-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: hub-ping 2s ease-out infinite;
+  position: relative;
+}
+
+.hero-title {
+  margin-bottom: 12px;
+}
+
+.hero-subtitle {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--dim);
+  margin-bottom: 32px;
+}
+
+.hero-desc {
+  max-width: 520px;
+  font-size: 1.0625rem;
+  color: var(--dim);
+  line-height: 1.7;
+  margin-bottom: 56px;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  max-width: 680px;
+}
+
+.hero-stat {
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-stat::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--a1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity var(--dur-normal) var(--ease-out);
+}
+
+.hero-stat:hover::before {
+  opacity: 1;
+}
+
+.hero-stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.hero-stat-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ============================================================
+   SECTION HEADER
+   ============================================================ */
+.section-header {
+  margin-bottom: 48px;
+}
+
+.section-hud {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.section-hud-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  max-width: 64px;
+}
+
+/* ============================================================
+   CARD BASE
+   ============================================================ */
+.card {
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.card-sm {
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+/* ============================================================
+   DEMO STAGE
+   ============================================================ */
+.demo-stage {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.demo-stage::before {
+  content: 'DEMO';
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  opacity: 0.5;
+}
+
+/* ============================================================
+   CODE BLOCK
+   ============================================================ */
+.code-block {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.code-block-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--s3);
+}
+
+.code-block-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.code-block pre {
+  padding: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  line-height: 1.8;
+  overflow-x: auto;
+  color: var(--dim);
+}
+
+.code-kw { color: #22D3EE; }
+.code-prop { color: #93C5FD; }
+.code-val { color: #86EFAC; }
+.code-cmt { color: rgba(244,244,244,0.25); font-style: italic; }
+.code-str { color: #FCA5A5; }
+.code-num { color: #FCD34D; }
+.code-punc { color: rgba(244,244,244,0.45); }
+
+/* ============================================================
+   KEYFRAMES — ALL ANIMATIONS
+   ============================================================ */
+
+/* Hub logo pulse */
+@keyframes hub-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.82; }
+}
+
+/* Radar ping expanding ring */
+@keyframes hub-ping {
+  0% { transform: scale(1); opacity: 0.7; }
+  75%, 100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* Element entering from below */
+@keyframes hub-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Slow rotation for loading states */
+@keyframes hub-spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Glow pulsing on accent elements */
+@keyframes hub-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px 0 rgba(34,211,238,0.15),
+                0 0 24px 0 rgba(34,211,238,0.05);
+  }
+  50% {
+    box-shadow: 0 0 20px 0 rgba(34,211,238,0.4),
+                0 0 60px 0 rgba(34,211,238,0.15),
+                0 0 100px 0 rgba(34,211,238,0.05);
+  }
+}
+
+/* Stagger entrance (used in choreography demo) */
+@keyframes stagger-enter {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ball bounce for easing demos */
+@keyframes ball-ease-out {
+  0% { left: 8px; }
+  100% { left: calc(100% - 40px); }
+}
+
+@keyframes ball-spring {
+  0% { left: 8px; }
+  100% { left: calc(100% - 40px); }
+}
+
+@keyframes ball-neutral {
+  0% { left: 8px; }
+  100% { left: calc(100% - 40px); }
+}
+
+/* Duration demo */
+@keyframes dur-expand {
+  0% { width: 0; opacity: 0; }
+  100% { width: 100%; opacity: 1; }
+}
+
+/* Toggle switch */
+@keyframes toggle-on {
+  from { transform: translateX(0); }
+  to { transform: translateX(20px); }
+}
+
+/* Sluggish */
+@keyframes sluggish-expand {
+  0% { opacity: 0; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ============================================================
+   01 — PRINCIPIOS
+   ============================================================ */
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.principle-card {
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+
+.principle-card:hover {
+  border-color: var(--a-border);
+  background: color-mix(in oklch, var(--s1) 80%, #22D3EE 2%);
+}
+
+.principle-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.principle-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+
+.principle-desc {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 24px;
+}
+
+/* P1 — Hover button demo */
+.demo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--s2);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--cream);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-spring),
+              box-shadow var(--dur-fast) var(--ease-out);
+  user-select: none;
+}
+
+.demo-btn:hover {
+  background: var(--a2);
+  border-color: var(--a-border);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(34,211,238,0.12);
+}
+
+.demo-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* P2 — Good vs Bad easing */
+.easing-compare-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.easing-track {
+  position: relative;
+  height: 32px;
+  background: var(--s3);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.easing-label-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.easing-ball {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  top: 0;
+  animation-duration: 1.8s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.ball-good {
+  background: var(--accent);
+  animation-name: ball-ease-out;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-direction: alternate;
+}
+
+.ball-bad {
+  background: #F87171;
+  animation-name: ball-ease-out;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+
+/* P3 — Duration compare */
+.dur-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.dur-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dur-bar {
+  height: 6px;
+  border-radius: 100px;
+  background: var(--accent);
+  animation: dur-expand 1s var(--ease-out) infinite alternate;
+}
+
+.dur-bar.slow {
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  background: #F87171;
+}
+
+/* P4 — Toggle */
+.toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toggle {
+  width: 44px;
+  height: 24px;
+  border-radius: 100px;
+  background: var(--s3);
+  border: 1px solid var(--border-strong);
+  position: relative;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.toggle.is-on {
+  background: rgba(34,211,238,0.25);
+  border-color: var(--a-border);
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: transform var(--dur-fast) var(--ease-spring),
+              background var(--dur-fast) var(--ease-out);
+}
+
+.toggle.is-on .toggle-thumb {
+  transform: translateX(20px);
+  background: var(--accent);
+}
+
+.toggle-state {
+  font-size: 0.8125rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--muted);
+  transition: color var(--dur-fast) var(--ease-out);
+  min-width: 64px;
+}
+
+.toggle-state.active {
+  color: var(--accent);
+}
+
+/* ============================================================
+   02 — EASING CURVES
+   ============================================================ */
+.easing-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.easing-card {
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.easing-svg-wrap {
+  margin: 16px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.easing-svg {
+  width: 120px;
+  height: 80px;
+}
+
+.curve-path {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.curve-ease-out { stroke: var(--accent); }
+.curve-spring { stroke: #86EFAC; }
+.curve-neutral { stroke: #FCD34D; }
+
+.easing-track-wrap {
+  height: 40px;
+  background: var(--s2);
+  border-radius: 100px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 16px;
+}
+
+.easing-runner {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.runner-ease-out {
+  background: var(--accent);
+  animation-name: ball-ease-out;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.runner-spring {
+  background: #86EFAC;
+  animation-name: ball-spring;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.runner-neutral {
+  background: #FCD34D;
+  animation-name: ball-neutral;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.easing-name {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+  color: var(--cream);
+}
+
+.easing-use {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 12px;
+  line-height: 1.4;
+}
+
+.easing-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  background: var(--a1);
+  border: 1px solid var(--a-border);
+  color: var(--accent);
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+/* ============================================================
+   03 — DURAÇÕES
+   ============================================================ */
+.duration-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.duration-row {
+  display: grid;
+  grid-template-columns: 160px 80px 1fr 200px;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 24px;
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: background var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+
+.duration-row:hover {
+  background: var(--s2);
+  border-color: var(--border-strong);
+}
+
+.dur-token {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.dur-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--cream);
+  font-weight: 600;
+}
+
+.dur-use {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.dur-demo-wrap {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dur-demo-block {
+  width: 48px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--accent);
+  opacity: 0;
+}
+
+/* Trigger animation on hover of parent row */
+.duration-row:hover .dur-demo-block {
+  animation: hub-enter 1s var(--ease-out) forwards;
+}
+
+/* Each row has a unique duration via inline style */
+
+/* ============================================================
+   04 — KEYFRAMES SECTION
+   ============================================================ */
+.keyframes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.keyframe-card {
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.keyframe-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.keyframe-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.keyframe-desc {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* hub-pulse demo */
+.kf-pulse-mark {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--accent);
+  animation: hub-pulse 2.5s var(--ease-neutral) infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kf-pulse-mark-inner {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: var(--s0);
+}
+
+/* hub-ping demo */
+.kf-ping-wrap {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kf-ping-center {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: relative;
+  z-index: 1;
+}
+
+.kf-ping-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: hub-ping 1.8s cubic-bezier(0,0,0.2,1) infinite;
+}
+
+.kf-ping-ring-2 {
+  animation-delay: 0.6s;
+}
+
+/* hub-enter demo */
+.kf-enter-item {
+  background: var(--s2);
+  border: 1px solid var(--a-border);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--cream);
+  width: 100%;
+  text-align: center;
+}
+
+.kf-enter-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.kf-enter-item:nth-child(1) { animation: hub-enter 600ms var(--ease-out) both; }
+.kf-enter-item:nth-child(2) { animation: hub-enter 600ms var(--ease-out) 80ms both; }
+.kf-enter-item:nth-child(3) { animation: hub-enter 600ms var(--ease-out) 160ms both; }
+
+/* hub-spin-slow demo */
+.kf-spin-ring {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid var(--border-strong);
+  border-top-color: var(--accent);
+  animation: hub-spin-slow 2s linear infinite;
+}
+
+/* hub-glow-pulse demo */
+.kf-glow-ball {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: hub-glow-pulse 2.5s var(--ease-neutral) infinite;
+}
+
+/* ============================================================
+   05 — CHOREOGRAPHY
+   ============================================================ */
+.choreo-section .stagger-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.stagger-item {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+}
+
+.stagger-item.animate {
+  animation: stagger-enter var(--dur-enter) var(--ease-out) both;
+}
+
+.stagger-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.stagger-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cream);
+}
+
+.stagger-delay-badge {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  background: var(--a1);
+  border: 1px solid var(--a-border);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.choreo-replay-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 10px 24px;
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+  font-family: 'Inter', system-ui, sans-serif;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.choreo-replay-btn:hover {
+  border-color: var(--a-border);
+  color: var(--accent);
+  background: var(--a1);
+}
+
+.choreo-rule {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  align-items: start;
+}
+
+.choreo-rule-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--a2);
+  border: 1px solid var(--a-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.choreo-rule-text {
+  font-size: 0.8125rem;
+  color: var(--dim);
+  line-height: 1.5;
+}
+
+.choreo-rule-text strong {
+  color: var(--cream);
+  font-weight: 600;
+}
+
+/* ============================================================
+   06 — DO & DON'T
+   ============================================================ */
+.dod-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dod-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.dod-card {
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dod-card.do::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #4ADE80;
+  border-radius: 2px;
+}
+
+.dod-card.dont::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #F87171;
+  border-radius: 2px;
+}
+
+.dod-verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.dod-card.do .dod-verdict {
+  background: rgba(74, 222, 128, 0.1);
+  color: #4ADE80;
+  border: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+.dod-card.dont .dod-verdict {
+  background: rgba(248, 113, 113, 0.1);
+  color: #F87171;
+  border: 1px solid rgba(248, 113, 113, 0.2);
+}
+
+.dod-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.dod-subtitle {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* DO: fast feedback demo */
+.dod-fast-btn {
+  padding: 10px 20px;
+  background: var(--a2);
+  border: 1px solid var(--a-border);
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.dod-fast-btn:hover {
+  background: var(--a3);
+  transform: translateY(-1px);
+}
+
+.dod-fast-btn:active {
+  transform: scale(0.97);
+}
+
+/* DONT: sluggish demo */
+.dod-slow-btn {
+  padding: 10px 20px;
+  background: rgba(248,113,113,0.08);
+  border: 1px solid rgba(248,113,113,0.2);
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #F87171;
+  cursor: pointer;
+  transition: all 800ms linear;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.dod-slow-btn:hover {
+  background: rgba(248,113,113,0.15);
+  transform: translateY(-1px);
+}
+
+/* DO: ease-out demo */
+.dod-ease-track {
+  height: 36px;
+  background: var(--s2);
+  border-radius: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dod-ease-ball {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.dod-ease-ball.good {
+  background: #4ADE80;
+  animation-name: ball-ease-out;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dod-ease-ball.bad {
+  background: #F87171;
+  animation-name: ball-ease-out;
+  animation-timing-function: linear;
+}
+
+/* DO: subtle vs excessive */
+.dod-subtle-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: var(--accent);
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.dod-subtle-box:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+.dod-bounce-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: #F87171;
+  cursor: pointer;
+  animation: dod-excessive 1.2s cubic-bezier(0.34, 2.2, 0.64, 1) infinite;
+}
+
+@keyframes dod-excessive {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.3) rotate(-5deg); }
+  50% { transform: scale(0.8) rotate(5deg); }
+  75% { transform: scale(1.2) rotate(-3deg); }
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo-mark {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--accent);
+}
+
+.footer-brand {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--cream);
+}
+
+.footer-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted);
+  line-height: 1.6;
+  text-align: right;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--s0); }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 100px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(244,244,244,0.15); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  :root { --gutter: 1.25rem; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .principles-grid { grid-template-columns: 1fr; }
+  .easing-cards { grid-template-columns: 1fr; }
+  .duration-row { grid-template-columns: 1fr 60px; gap: 12px; }
+  .duration-row .dur-use,
+  .duration-row .dur-demo-wrap { display: none; }
+  .keyframes-grid { grid-template-columns: 1fr; }
+  .dod-pair { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .footer-meta { text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-mark">
+          <svg viewBox="0 0 80 80" fill="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="ng-mv" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#22D3EE"/>
+                <stop offset="100%" stop-color="#0891B2"/>
+              </linearGradient>
+            </defs>
+            <circle cx="40" cy="14" r="4" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="63" cy="27" r="4" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="63" cy="53" r="4" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="40" cy="66" r="4" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="17" cy="53" r="4" fill="#22D3EE" opacity="0.5"/>
+            <circle cx="17" cy="27" r="4" fill="#22D3EE" opacity="0.5"/>
+            <line x1="40" y1="14" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+            <line x1="63" y1="27" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+            <line x1="63" y1="53" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+            <line x1="40" y1="66" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+            <line x1="17" y1="53" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+            <line x1="17" y1="27" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+            <circle cx="40" cy="40" r="14" fill="#22D3EE" opacity="0.08"/>
+            <circle cx="40" cy="40" r="7" fill="url(#ng-mv)"/>
+            <circle cx="40" cy="40" r="3" fill="#F0FDFF"/>
+          </svg>
+        </div>
+        <span class="nav-logo-text">hubme<span class="ai">.ai</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#principios">Princípios</a>
+        <a href="#easing">Easing</a>
+        <a href="#duracoes">Durações</a>
+        <a href="#keyframes">Keyframes</a>
+        <a href="#coreografia">Coreografia</a>
+        <a href="#dodont">Do &amp; Don't</a>
+        <span class="nav-pill">Motion v1.0</span>
+      </nav>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero section">
+  <div class="container">
+
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      <span class="t-label" style="margin:0">Brand Motion System</span>
+    </div>
+
+    <h1 class="t-title hero-title">Motion</h1>
+    <p class="hero-subtitle">Design em movimento</p>
+
+    <p class="hero-desc t-body">
+      O movimento da Hubme.Ai é preciso, intencional e nunca supérfluo.
+      Cada animação comunica estado, não decoração.
+    </p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value accent">Purposeful</div>
+        <div class="hero-stat-label">Toda animação tem razão de existir</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value accent">Precise</div>
+        <div class="hero-stat-label">Valores exatos, não aproximações</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value accent">Calm</div>
+        <div class="hero-stat-label">Nunca ansioso, nunca excessivo</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value accent">Informative</div>
+        <div class="hero-stat-label">Mudança de estado sempre animada</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     01 — PRINCÍPIOS
+     ============================================================ -->
+<section class="section" id="principios">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-hud">
+        <span class="t-hud">01 //</span>
+        <div class="section-hud-line"></div>
+      </div>
+      <h2 class="t-section-title">Princípios</h2>
+      <p class="t-body" style="margin-top:8px;max-width:520px;">
+        Quatro regras que governam todo movimento na interface.
+        Violá-las significa adicionar ruído, não clareza.
+      </p>
+    </div>
+
+    <div class="principles-grid">
+
+      <!-- P1: Intencional -->
+      <div class="principle-card">
+        <div class="principle-number">01 — PRINCÍPIO</div>
+        <div class="principle-title">Intencional</div>
+        <div class="principle-desc">
+          Anime para comunicar, nunca para impressionar. Cada motion precisa responder:
+          "que informação isso transmite?"
+        </div>
+        <div class="demo-stage" style="min-height:100px">
+          <button class="demo-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 1L13 4.5V9.5L7 13L1 9.5V4.5L7 1Z" stroke="#22D3EE" stroke-width="1.5" fill="none"/>
+            </svg>
+            Hover me
+          </button>
+        </div>
+        <div class="t-small">Hover revela contexto — feedback preciso, sem exagero</div>
+      </div>
+
+      <!-- P2: Preciso -->
+      <div class="principle-card">
+        <div class="principle-number">02 — PRINCÍPIO</div>
+        <div class="principle-title">Preciso</div>
+        <div class="principle-desc">
+          Use tokens exatos. "ease-in-out" arbitrário é diferente de
+          <code style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--accent)">var(--ease-neutral)</code>.
+        </div>
+        <div class="demo-stage" style="padding:16px;min-height:100px">
+          <div style="width:100%;max-width:280px">
+            <div class="easing-label-row">
+              <span class="t-small" style="color:#4ADE80">ease-out (correto)</span>
+            </div>
+            <div class="easing-track" style="margin-bottom:10px">
+              <div class="easing-ball ball-good"></div>
+            </div>
+            <div class="easing-label-row">
+              <span class="t-small" style="color:#F87171">linear (robotico)</span>
+            </div>
+            <div class="easing-track">
+              <div class="easing-ball ball-bad"></div>
+            </div>
+          </div>
+        </div>
+        <div class="t-small">Mesma distância, easing diferente — percepção completamente distinta</div>
+      </div>
+
+      <!-- P3: Efêmero -->
+      <div class="principle-card">
+        <div class="principle-number">03 — PRINCÍPIO</div>
+        <div class="principle-title">Efêmero</div>
+        <div class="principle-desc">
+          Movimentos devem completar rapidamente. O usuário não veio ver animações —
+          veio usar o produto.
+        </div>
+        <div class="demo-stage" style="padding:20px;flex-direction:column;gap:14px;min-height:100px">
+          <div class="dur-compare" style="width:100%;max-width:280px">
+            <div class="dur-bar-wrap">
+              <span style="width:56px;font-size:0.7rem;color:#4ADE80;font-family:'JetBrains Mono',monospace;flex-shrink:0">150ms</span>
+              <div style="flex:1;height:6px;border-radius:100px;background:var(--s3);overflow:hidden">
+                <div style="height:100%;border-radius:100px;background:#4ADE80;animation:dur-expand 0.5s var(--ease-out) infinite alternate;animation-duration:1s"></div>
+              </div>
+            </div>
+            <div class="dur-bar-wrap">
+              <span style="width:56px;font-size:0.7rem;color:#F87171;font-family:'JetBrains Mono',monospace;flex-shrink:0">800ms</span>
+              <div style="flex:1;height:6px;border-radius:100px;background:var(--s3);overflow:hidden">
+                <div style="height:100%;border-radius:100px;background:#F87171;animation:dur-expand 0.5s linear infinite alternate;animation-duration:3s"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="t-small">150ms vs 800ms — o primeiro serve, o segundo irrita</div>
+      </div>
+
+      <!-- P4: Informativo -->
+      <div class="principle-card">
+        <div class="principle-number">04 — PRINCÍPIO</div>
+        <div class="principle-title">Informativo</div>
+        <div class="principle-desc">
+          Mudanças de estado precisam ser percebidas. Um toggle sem animação
+          gera dúvida: "funcionou?"
+        </div>
+        <div class="demo-stage" style="min-height:100px">
+          <div class="toggle-wrap">
+            <div class="toggle" id="demo-toggle" onclick="toggleSwitch(this)">
+              <div class="toggle-thumb"></div>
+            </div>
+            <span class="toggle-state" id="toggle-state">off</span>
+          </div>
+        </div>
+        <div class="t-small">Clique o toggle — a animação confirma a ação</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     02 — EASING CURVES
+     ============================================================ -->
+<section class="section" id="easing">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-hud">
+        <span class="t-hud">02 //</span>
+        <div class="section-hud-line"></div>
+      </div>
+      <h2 class="t-section-title">Curvas de Easing</h2>
+      <p class="t-body" style="margin-top:8px;max-width:520px;">
+        Três curvas, cada uma com propósito específico.
+        Escolha pela intenção — não pela preferência pessoal.
+      </p>
+    </div>
+
+    <div class="easing-cards">
+
+      <!-- ease-out -->
+      <div class="easing-card">
+        <div class="t-label" style="margin-bottom:8px">Default</div>
+        <div class="easing-name">ease-out</div>
+        <div class="t-small" style="margin-top:4px">Entrada rápida, saída suave</div>
+
+        <div class="easing-svg-wrap">
+          <svg class="easing-svg" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Grid lines -->
+            <line x1="10" y1="10" x2="10" y2="70" stroke="rgba(244,244,244,0.06)" stroke-width="1"/>
+            <line x1="10" y1="70" x2="110" y2="70" stroke="rgba(244,244,244,0.06)" stroke-width="1"/>
+            <line x1="10" y1="10" x2="110" y2="10" stroke="rgba(244,244,244,0.04)" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="110" y1="10" x2="110" y2="70" stroke="rgba(244,244,244,0.04)" stroke-width="1" stroke-dasharray="3 3"/>
+            <!-- Curve: cubic-bezier(0.16, 1, 0.3, 1) -->
+            <!-- P0=(10,70) P1=(26.2,70) P2=(46,10) P3=(110,10) -->
+            <path d="M10,70 C26.2,70 46,10 110,10" class="curve-path curve-ease-out"/>
+            <!-- Control handles -->
+            <circle cx="26.2" cy="70" r="2.5" fill="rgba(34,211,238,0.3)"/>
+            <circle cx="46" cy="10" r="2.5" fill="rgba(34,211,238,0.3)"/>
+            <line x1="10" y1="70" x2="26.2" y2="70" stroke="rgba(34,211,238,0.2)" stroke-width="1" stroke-dasharray="2 2"/>
+            <line x1="110" y1="10" x2="46" y2="10" stroke="rgba(34,211,238,0.2)" stroke-width="1" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+
+        <div class="easing-track-wrap">
+          <div class="easing-runner runner-ease-out"></div>
+        </div>
+
+        <div class="easing-tag">cubic-bezier(0.16, 1, 0.3, 1)</div>
+        <div class="easing-use">Para elementos entrando na tela. Parece natural porque imita física real — atrito no final.</div>
+      </div>
+
+      <!-- spring -->
+      <div class="easing-card">
+        <div class="t-label" style="margin-bottom:8px;color:#86EFAC">Spring</div>
+        <div class="easing-name" style="color:#86EFAC">spring</div>
+        <div class="t-small" style="margin-top:4px">Pequeno bounce. Alta energia.</div>
+
+        <div class="easing-svg-wrap">
+          <svg class="easing-svg" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="10" y1="10" x2="10" y2="70" stroke="rgba(244,244,244,0.06)" stroke-width="1"/>
+            <line x1="10" y1="70" x2="110" y2="70" stroke="rgba(244,244,244,0.06)" stroke-width="1"/>
+            <line x1="10" y1="10" x2="110" y2="10" stroke="rgba(244,244,244,0.04)" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="110" y1="10" x2="110" y2="70" stroke="rgba(244,244,244,0.04)" stroke-width="1" stroke-dasharray="3 3"/>
+            <!-- spring overshoots above y=10 -->
+            <!-- cubic-bezier(0.34, 1.56, 0.64, 1) — P1 y > 1, so goes above line -->
+            <!-- P0=(10,70) P1=(51,70-1.56*60)=(51,-23.6) P2=(87,10) P3=(110,10) -->
+            <path d="M10,70 C51,-24 87,10 110,10" class="curve-path" style="stroke:#86EFAC"/>
+            <circle cx="51" cy="-24" r="2.5" fill="rgba(134,239,172,0.3)"/>
+            <circle cx="87" cy="10" r="2.5" fill="rgba(134,239,172,0.3)"/>
+            <line x1="10" y1="70" x2="51" y2="-24" stroke="rgba(134,239,172,0.2)" stroke-width="1" stroke-dasharray="2 2"/>
+            <line x1="110" y1="10" x2="87" y2="10" stroke="rgba(134,239,172,0.2)" stroke-width="1" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+
+        <div class="easing-track-wrap" style="background:var(--s2)">
+          <div class="easing-runner runner-spring" style="background:#86EFAC"></div>
+        </div>
+
+        <div class="easing-tag" style="color:#86EFAC;background:rgba(134,239,172,0.08);border-color:rgba(134,239,172,0.2)">cubic-bezier(0.34, 1.56, 0.64, 1)</div>
+        <div class="easing-use">Confirmações, toasts, botões de ação principal. Comunica que algo aconteceu com sucesso.</div>
+      </div>
+
+      <!-- ease-in-out (neutral) -->
+      <div class="easing-card">
+        <div class="t-label" style="margin-bottom:8px;color:#FCD34D">Neutral</div>
+        <div class="easing-name" style="color:#FCD34D">ease-in-out</div>
+        <div class="t-small" style="margin-top:4px">Transição simétrica e equilibrada</div>
+
+        <div class="easing-svg-wrap">
+          <svg class="easing-svg" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="10" y1="10" x2="10" y2="70" stroke="rgba(244,244,244,0.06)" stroke-width="1"/>
+            <line x1="10" y1="70" x2="110" y2="70" stroke="rgba(244,244,244,0.06)" stroke-width="1"/>
+            <line x1="10" y1="10" x2="110" y2="10" stroke="rgba(244,244,244,0.04)" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="110" y1="10" x2="110" y2="70" stroke="rgba(244,244,244,0.04)" stroke-width="1" stroke-dasharray="3 3"/>
+            <!-- cubic-bezier(0.4, 0, 0.2, 1) — classic material ease-in-out S curve -->
+            <!-- P0=(10,70) P1=(58,70) P2=(38,10) P3=(110,10) -->
+            <path d="M10,70 C58,70 38,10 110,10" class="curve-path" style="stroke:#FCD34D"/>
+            <circle cx="58" cy="70" r="2.5" fill="rgba(252,211,77,0.3)"/>
+            <circle cx="38" cy="10" r="2.5" fill="rgba(252,211,77,0.3)"/>
+            <line x1="10" y1="70" x2="58" y2="70" stroke="rgba(252,211,77,0.2)" stroke-width="1" stroke-dasharray="2 2"/>
+            <line x1="110" y1="10" x2="38" y2="10" stroke="rgba(252,211,77,0.2)" stroke-width="1" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+
+        <div class="easing-track-wrap" style="background:var(--s2)">
+          <div class="easing-runner runner-neutral" style="background:#FCD34D"></div>
+        </div>
+
+        <div class="easing-tag" style="color:#FCD34D;background:rgba(252,211,77,0.08);border-color:rgba(252,211,77,0.2)">cubic-bezier(0.4, 0, 0.2, 1)</div>
+        <div class="easing-use">Modais, sidebars, transitions de página. Entrada e saída com igual peso.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03 — DURAÇÕES
+     ============================================================ -->
+<section class="section" id="duracoes">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-hud">
+        <span class="t-hud">03 //</span>
+        <div class="section-hud-line"></div>
+      </div>
+      <h2 class="t-section-title">Durações</h2>
+      <p class="t-body" style="margin-top:8px;max-width:520px;">
+        A escala de tempo da Hubme.Ai. Use tokens CSS, nunca valores arbitrários.
+        Hover em cada linha para ver a animação ao vivo.
+      </p>
+    </div>
+
+    <div class="duration-rows">
+
+      <div class="duration-row">
+        <span class="dur-token">--dur-instant</span>
+        <span class="dur-value accent">80ms</span>
+        <span class="dur-use">Tooltips, cursor changes, micro-feedback</span>
+        <div class="dur-demo-wrap">
+          <div class="dur-demo-block" style="animation-duration:80ms"></div>
+        </div>
+      </div>
+
+      <div class="duration-row">
+        <span class="dur-token">--dur-fast</span>
+        <span class="dur-value accent">150ms</span>
+        <span class="dur-use">Buttons, inputs, small state changes</span>
+        <div class="dur-demo-wrap">
+          <div class="dur-demo-block" style="animation-duration:150ms"></div>
+        </div>
+      </div>
+
+      <div class="duration-row">
+        <span class="dur-token">--dur-normal</span>
+        <span class="dur-value accent">250ms</span>
+        <span class="dur-use">Cards, navigation, content reveals</span>
+        <div class="dur-demo-wrap">
+          <div class="dur-demo-block" style="animation-duration:250ms"></div>
+        </div>
+      </div>
+
+      <div class="duration-row">
+        <span class="dur-token">--dur-slow</span>
+        <span class="dur-value accent">400ms</span>
+        <span class="dur-use">Page transitions, modals, drawers</span>
+        <div class="dur-demo-wrap">
+          <div class="dur-demo-block" style="animation-duration:400ms"></div>
+        </div>
+      </div>
+
+      <div class="duration-row">
+        <span class="dur-token">--dur-enter</span>
+        <span class="dur-value accent">600ms</span>
+        <span class="dur-use">Hero sections, landing sequences, choreography</span>
+        <div class="dur-demo-wrap">
+          <div class="dur-demo-block" style="animation-duration:600ms"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Token reference block -->
+    <div style="margin-top:32px">
+      <div class="code-block">
+        <div class="code-block-header">
+          <div class="code-block-dot" style="background:#F87171"></div>
+          <div class="code-block-dot" style="background:#FCD34D"></div>
+          <div class="code-block-dot" style="background:#4ADE80"></div>
+          <span class="t-hud" style="margin-left:8px">motion-tokens.css</span>
+        </div>
+        <pre><span class="code-kw">:root</span> <span class="code-punc">{</span>
+  <span class="code-cmt">/* Duration Scale */</span>
+  <span class="code-prop">--dur-instant</span><span class="code-punc">:</span>  <span class="code-val">80ms</span><span class="code-punc">;</span>   <span class="code-cmt">/* tooltips, cursor */</span>
+  <span class="code-prop">--dur-fast</span><span class="code-punc">:</span>     <span class="code-val">150ms</span><span class="code-punc">;</span>  <span class="code-cmt">/* buttons, inputs */</span>
+  <span class="code-prop">--dur-normal</span><span class="code-punc">:</span>   <span class="code-val">250ms</span><span class="code-punc">;</span>  <span class="code-cmt">/* cards, nav */</span>
+  <span class="code-prop">--dur-slow</span><span class="code-punc">:</span>     <span class="code-val">400ms</span><span class="code-punc">;</span>  <span class="code-cmt">/* modals, pages */</span>
+  <span class="code-prop">--dur-enter</span><span class="code-punc">:</span>    <span class="code-val">600ms</span><span class="code-punc">;</span>  <span class="code-cmt">/* hero, sequences */</span>
+
+  <span class="code-cmt">/* Easing Curves */</span>
+  <span class="code-prop">--ease-out</span><span class="code-punc">:</span>     <span class="code-val">cubic-bezier(0.16, 1, 0.3, 1)</span><span class="code-punc">;</span>
+  <span class="code-prop">--ease-spring</span><span class="code-punc">:</span>  <span class="code-val">cubic-bezier(0.34, 1.56, 0.64, 1)</span><span class="code-punc">;</span>
+  <span class="code-prop">--ease-neutral</span><span class="code-punc">: </span><span class="code-val">cubic-bezier(0.4, 0, 0.2, 1)</span><span class="code-punc">;</span>
+<span class="code-punc">}</span></pre>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     04 — KEYFRAMES
+     ============================================================ -->
+<section class="section" id="keyframes">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-hud">
+        <span class="t-hud">04 //</span>
+        <div class="section-hud-line"></div>
+      </div>
+      <h2 class="t-section-title">Keyframes</h2>
+      <p class="t-body" style="margin-top:8px;max-width:520px;">
+        As cinco animações nativas da Hubme.Ai. Cada uma tem um propósito semântico específico —
+        não são decorativas, são funcionais.
+      </p>
+    </div>
+
+    <div class="keyframes-grid">
+
+      <!-- hub-pulse -->
+      <div class="keyframe-card">
+        <div class="keyframe-title">hub-pulse</div>
+        <div class="keyframe-desc">Logotipo respirando. Presença viva, não mecânica.</div>
+        <div class="demo-stage" style="min-height:120px">
+          <div class="kf-pulse-mark">
+            <div class="kf-pulse-mark-inner"></div>
+          </div>
+        </div>
+        <div class="code-block">
+          <pre><span class="code-kw">@keyframes</span> <span class="code-str">hub-pulse</span> <span class="code-punc">{</span>
+  <span class="code-val">0%, 100%</span> <span class="code-punc">{</span> <span class="code-prop">transform</span><span class="code-punc">:</span> <span class="code-val">scale(1)</span><span class="code-punc">;</span> <span class="code-prop">opacity</span><span class="code-punc">:</span> <span class="code-val">1</span><span class="code-punc">; }</span>
+  <span class="code-val">50%</span>      <span class="code-punc">{</span> <span class="code-prop">transform</span><span class="code-punc">:</span> <span class="code-val">scale(1.08)</span><span class="code-punc">;</span> <span class="code-prop">opacity</span><span class="code-punc">:</span> <span class="code-val">0.82</span><span class="code-punc">; }</span>
+<span class="code-punc">}</span>
+<span class="code-cmt">/* usage */</span>
+<span class="code-prop">animation</span><span class="code-punc">:</span> <span class="code-val">hub-pulse 2.5s var(--ease-neutral) infinite</span><span class="code-punc">;</span></pre>
+        </div>
+      </div>
+
+      <!-- hub-ping -->
+      <div class="keyframe-card">
+        <div class="keyframe-title">hub-ping</div>
+        <div class="keyframe-desc">Radar ping. Sinal de atividade ou notificação.</div>
+        <div class="demo-stage" style="min-height:120px">
+          <div class="kf-ping-wrap">
+            <div class="kf-ping-ring"></div>
+            <div class="kf-ping-ring kf-ping-ring-2"></div>
+            <div class="kf-ping-center"></div>
+          </div>
+        </div>
+        <div class="code-block">
+          <pre><span class="code-kw">@keyframes</span> <span class="code-str">hub-ping</span> <span class="code-punc">{</span>
+  <span class="code-val">0%</span>        <span class="code-punc">{</span> <span class="code-prop">transform</span><span class="code-punc">:</span> <span class="code-val">scale(1)</span><span class="code-punc">;</span> <span class="code-prop">opacity</span><span class="code-punc">:</span> <span class="code-val">0.7</span><span class="code-punc">; }</span>
+  <span class="code-val">75%, 100%</span> <span class="code-punc">{</span> <span class="code-prop">transform</span><span class="code-punc">:</span> <span class="code-val">scale(2.4)</span><span class="code-punc">;</span> <span class="code-prop">opacity</span><span class="code-punc">:</span> <span class="code-val">0</span><span class="code-punc">; }</span>
+<span class="code-punc">}</span>
+<span class="code-cmt">/* usage */</span>
+<span class="code-prop">animation</span><span class="code-punc">:</span> <span class="code-val">hub-ping 1.8s cubic-bezier(0,0,0.2,1) infinite</span><span class="code-punc">;</span></pre>
+        </div>
+      </div>
+
+      <!-- hub-enter -->
+      <div class="keyframe-card">
+        <div class="keyframe-title">hub-enter</div>
+        <div class="keyframe-desc">Elemento entrando de baixo com opacity. A animação padrão de aparecimento.</div>
+        <div class="demo-stage" style="min-height:120px;padding:20px">
+          <div class="kf-enter-demo">
+            <div class="kf-enter-item">Elemento A</div>
+            <div class="kf-enter-item">Elemento B</div>
+            <div class="kf-enter-item">Elemento C</div>
+          </div>
+        </div>
+        <div class="code-block">
+          <pre><span class="code-kw">@keyframes</span> <span class="code-str">hub-enter</span> <span class="code-punc">{</span>
+  <span class="code-kw">from</span> <span class="code-punc">{</span> <span class="code-prop">opacity</span><span class="code-punc">:</span> <span class="code-val">0</span><span class="code-punc">;</span> <span class="code-prop">transform</span><span class="code-punc">:</span> <span class="code-val">translateY(12px)</span><span class="code-punc">; }</span>
+  <span class="code-kw">to</span>   <span class="code-punc">{</span> <span class="code-prop">opacity</span><span class="code-punc">:</span> <span class="code-val">1</span><span class="code-punc">;</span> <span class="code-prop">transform</span><span class="code-punc">:</span> <span class="code-val">translateY(0)</span><span class="code-punc">; }</span>
+<span class="code-punc">}</span>
+<span class="code-cmt">/* usage */</span>
+<span class="code-prop">animation</span><span class="code-punc">:</span> <span class="code-val">hub-enter 600ms var(--ease-out) both</span><span class="code-punc">;</span></pre>
+        </div>
+      </div>
+
+      <!-- hub-spin-slow -->
+      <div class="keyframe-card">
+        <div class="keyframe-title">hub-spin-slow</div>
+        <div class="keyframe-desc">Rotação lenta e contínua. Para loading states e indicadores de processo.</div>
+        <div class="demo-stage" style="min-height:120px">
+          <div style="display:flex;align-items:center;gap:20px">
+            <div class="kf-spin-ring"></div>
+            <div style="font-size:0.8125rem;color:var(--muted)">Processando...</div>
+          </div>
+        </div>
+        <div class="code-block">
+          <pre><span class="code-kw">@keyframes</span> <span class="code-str">hub-spin-slow</span> <span class="code-punc">{</span>
+  <span class="code-kw">from</span> <span class="code-punc">{</span> <span class="code-prop">transform</span><span class="code-punc">:</span> <span class="code-val">rotate(0deg)</span><span class="code-punc">; }</span>
+  <span class="code-kw">to</span>   <span class="code-punc">{</span> <span class="code-prop">transform</span><span class="code-punc">:</span> <span class="code-val">rotate(360deg)</span><span class="code-punc">; }</span>
+<span class="code-punc">}</span>
+<span class="code-cmt">/* usage */</span>
+<span class="code-prop">animation</span><span class="code-punc">:</span> <span class="code-val">hub-spin-slow 2s linear infinite</span><span class="code-punc">;</span></pre>
+        </div>
+      </div>
+
+      <!-- hub-glow-pulse (full width) -->
+      <div class="keyframe-card full-width">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start">
+          <div>
+            <div class="keyframe-title">hub-glow-pulse</div>
+            <div class="keyframe-desc">Glow pulsando em elementos de accent. Comunica "ativo" ou "disponível".</div>
+            <div class="demo-stage" style="min-height:120px;margin-bottom:0">
+              <div class="kf-glow-ball"></div>
+            </div>
+          </div>
+          <div class="code-block" style="margin-top:0;align-self:start">
+            <pre style="font-size:0.74rem"><span class="code-kw">@keyframes</span> <span class="code-str">hub-glow-pulse</span> <span class="code-punc">{</span>
+  <span class="code-val">0%, 100%</span> <span class="code-punc">{</span>
+    <span class="code-prop">box-shadow</span><span class="code-punc">:</span>
+      <span class="code-val">0 0 8px 0 rgba(34,211,238,0.15)</span><span class="code-punc">,</span>
+      <span class="code-val">0 0 24px 0 rgba(34,211,238,0.05)</span><span class="code-punc">;</span>
+  <span class="code-punc">}</span>
+  <span class="code-val">50%</span> <span class="code-punc">{</span>
+    <span class="code-prop">box-shadow</span><span class="code-punc">:</span>
+      <span class="code-val">0 0 20px 0 rgba(34,211,238,0.4)</span><span class="code-punc">,</span>
+      <span class="code-val">0 0 60px 0 rgba(34,211,238,0.15)</span><span class="code-punc">;</span>
+  <span class="code-punc">}</span>
+<span class="code-punc">}</span>
+<span class="code-cmt">/* usage */</span>
+<span class="code-prop">animation</span><span class="code-punc">:</span>
+  <span class="code-val">hub-glow-pulse 2.5s var(--ease-neutral) infinite</span><span class="code-punc">;</span></pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     05 — CHOREOGRAPHY
+     ============================================================ -->
+<section class="section choreo-section" id="coreografia">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-hud">
+        <span class="t-hud">05 //</span>
+        <div class="section-hud-line"></div>
+      </div>
+      <h2 class="t-section-title">Coreografia</h2>
+      <p class="t-body" style="margin-top:8px;max-width:520px;">
+        Como sequenciar múltiplos elementos entrando na tela.
+        Stagger cria percepção de fluidez sem parecer aleatório.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+
+      <div>
+        <div style="margin-bottom:24px">
+          <div class="choreo-rule">
+            <div class="choreo-rule-icon accent">→</div>
+            <div class="choreo-rule-text">
+              <strong>Stagger delay:</strong> cada item adiciona +80ms de delay ao anterior
+            </div>
+          </div>
+          <div class="choreo-rule">
+            <div class="choreo-rule-icon accent">≤</div>
+            <div class="choreo-rule-text">
+              <strong>Máximo 5 elementos</strong> simultâneos. Acima disso, quebre em grupos.
+            </div>
+          </div>
+          <div class="choreo-rule">
+            <div class="choreo-rule-icon accent">↓</div>
+            <div class="choreo-rule-text">
+              <strong>Direção:</strong> sempre de baixo para cima (translateY positivo → zero).
+              Nunca lateral sem motivo.
+            </div>
+          </div>
+          <div class="choreo-rule">
+            <div class="choreo-rule-icon accent">t</div>
+            <div class="choreo-rule-text">
+              Use <code style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--accent)">animation-fill-mode: both</code> para evitar flash antes/depois da animação.
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <pre style="font-size:0.74rem"><span class="code-cmt">/* Stagger pattern */</span>
+<span class="code-str">.item:nth-child(1)</span> <span class="code-punc">{</span> <span class="code-prop">animation-delay</span><span class="code-punc">:</span> <span class="code-val">0ms</span><span class="code-punc">; }</span>
+<span class="code-str">.item:nth-child(2)</span> <span class="code-punc">{</span> <span class="code-prop">animation-delay</span><span class="code-punc">:</span> <span class="code-val">80ms</span><span class="code-punc">; }</span>
+<span class="code-str">.item:nth-child(3)</span> <span class="code-punc">{</span> <span class="code-prop">animation-delay</span><span class="code-punc">:</span> <span class="code-val">160ms</span><span class="code-punc">; }</span>
+<span class="code-str">.item:nth-child(4)</span> <span class="code-punc">{</span> <span class="code-prop">animation-delay</span><span class="code-punc">:</span> <span class="code-val">240ms</span><span class="code-punc">; }</span>
+<span class="code-str">.item:nth-child(5)</span> <span class="code-punc">{</span> <span class="code-prop">animation-delay</span><span class="code-punc">:</span> <span class="code-val">320ms</span><span class="code-punc">; }</span>
+
+<span class="code-str">.item</span> <span class="code-punc">{</span>
+  <span class="code-prop">animation</span><span class="code-punc">:</span> <span class="code-val">hub-enter var(--dur-enter) var(--ease-out) both</span><span class="code-punc">;</span>
+<span class="code-punc">}</span></pre>
+        </div>
+      </div>
+
+      <div>
+        <div class="stagger-demo" id="stagger-demo">
+          <div class="stagger-item animate" style="animation-delay:0ms">
+            <div class="stagger-dot"></div>
+            <span class="stagger-label">Conexão estabelecida</span>
+            <span class="stagger-delay-badge">0ms</span>
+          </div>
+          <div class="stagger-item animate" style="animation-delay:80ms">
+            <div class="stagger-dot"></div>
+            <span class="stagger-label">Dados sincronizados</span>
+            <span class="stagger-delay-badge">+80ms</span>
+          </div>
+          <div class="stagger-item animate" style="animation-delay:160ms">
+            <div class="stagger-dot"></div>
+            <span class="stagger-label">Agentes inicializados</span>
+            <span class="stagger-delay-badge">+160ms</span>
+          </div>
+          <div class="stagger-item animate" style="animation-delay:240ms">
+            <div class="stagger-dot"></div>
+            <span class="stagger-label">Pipeline ativo</span>
+            <span class="stagger-delay-badge">+240ms</span>
+          </div>
+          <div class="stagger-item animate" style="animation-delay:320ms">
+            <div class="stagger-dot"></div>
+            <span class="stagger-label">Sistema pronto</span>
+            <span class="stagger-delay-badge">+320ms</span>
+          </div>
+        </div>
+
+        <button class="choreo-replay-btn" onclick="replayStagger()">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 6C1 3.24 3.24 1 6 1C7.66 1 9.14 1.82 10.06 3.08M11 6C11 8.76 8.76 11 6 11C4.34 11 2.86 10.18 1.94 8.92" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M10 1L10 4L7 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Replay
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     06 — DO & DON'T
+     ============================================================ -->
+<section class="section" id="dodont">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-hud">
+        <span class="t-hud">06 //</span>
+        <div class="section-hud-line"></div>
+      </div>
+      <h2 class="t-section-title">Do &amp; Don't</h2>
+      <p class="t-body" style="margin-top:8px;max-width:520px;">
+        Os erros mais comuns. Lado a lado para deixar a diferença inegável.
+      </p>
+    </div>
+
+    <div class="dod-grid">
+
+      <!-- Pair 1: Fast vs Slow feedback -->
+      <div class="dod-pair">
+        <div class="dod-card do">
+          <div class="dod-verdict">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 5.5L4 7.5L8 3" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            DO
+          </div>
+          <div class="dod-title">Feedback imediato — 150ms</div>
+          <div class="dod-subtitle">O usuário sente que a UI responde a ele</div>
+          <div class="demo-stage" style="min-height:100px">
+            <button class="dod-fast-btn">Salvar dados</button>
+          </div>
+          <div class="t-small">Hover mostra resposta em ~150ms. Parece vivo.</div>
+        </div>
+
+        <div class="dod-card dont">
+          <div class="dod-verdict">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M3 3L7 7M7 3L3 7" stroke="#F87171" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            DON'T
+          </div>
+          <div class="dod-title">Feedback lento — 800ms</div>
+          <div class="dod-subtitle">O usuário duvida se clicou</div>
+          <div class="demo-stage" style="min-height:100px">
+            <button class="dod-slow-btn">Salvar dados</button>
+          </div>
+          <div class="t-small">Hover demora 800ms. Parece travado ou com bug.</div>
+        </div>
+      </div>
+
+      <!-- Pair 2: ease-out vs linear -->
+      <div class="dod-pair">
+        <div class="dod-card do">
+          <div class="dod-verdict">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 5.5L4 7.5L8 3" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            DO
+          </div>
+          <div class="dod-title">ease-out para entradas</div>
+          <div class="dod-subtitle">Física natural — rápido no começo, suave no fim</div>
+          <div class="demo-stage" style="min-height:100px;padding:16px">
+            <div style="width:100%;max-width:240px">
+              <div class="dod-ease-track">
+                <div class="dod-ease-ball good"></div>
+              </div>
+            </div>
+          </div>
+          <div class="t-small">Desacelera organicamente. Parece intencional.</div>
+        </div>
+
+        <div class="dod-card dont">
+          <div class="dod-verdict">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M3 3L7 7M7 3L3 7" stroke="#F87171" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            DON'T
+          </div>
+          <div class="dod-title">linear — velocidade constante</div>
+          <div class="dod-subtitle">Parece mecânico, programático, inumano</div>
+          <div class="demo-stage" style="min-height:100px;padding:16px">
+            <div style="width:100%;max-width:240px">
+              <div class="dod-ease-track">
+                <div class="dod-ease-ball bad"></div>
+              </div>
+            </div>
+          </div>
+          <div class="t-small">Velocidade constante. Parece um script rodando.</div>
+        </div>
+      </div>
+
+      <!-- Pair 3: Subtle vs Excessive -->
+      <div class="dod-pair">
+        <div class="dod-card do">
+          <div class="dod-verdict">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 5.5L4 7.5L8 3" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            DO
+          </div>
+          <div class="dod-title">Movimento sutil e preciso</div>
+          <div class="dod-subtitle">Hover com translateY(-3px) + scale(1.02)</div>
+          <div class="demo-stage" style="min-height:120px">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+              <div class="dod-subtle-box"></div>
+              <span class="t-small">Hover sobre o bloco</span>
+            </div>
+          </div>
+          <div class="t-small">Leve elevação confirma interatividade. Não distrai.</div>
+        </div>
+
+        <div class="dod-card dont">
+          <div class="dod-verdict">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M3 3L7 7M7 3L3 7" stroke="#F87171" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            DON'T
+          </div>
+          <div class="dod-title">Bounce excessivo e contínuo</div>
+          <div class="dod-subtitle">Animação infinita sem parar = ansiedade visual</div>
+          <div class="demo-stage" style="min-height:120px">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+              <div class="dod-bounce-box"></div>
+              <span class="t-small">Isso nunca para. Irritante.</span>
+            </div>
+          </div>
+          <div class="t-small">Rotação + scale + loop infinito. Grita por atenção o tempo todo.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="footer-logo-mark"></div>
+        <span class="footer-brand">hubme.ai</span>
+      </div>
+      <div class="footer-meta">
+        hubme.ai Movimento v1.0<br>
+        Brand Machine / AIOX — 2026-03-22
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT — INTERACTIVE DEMOS
+     ============================================================ -->
+<script>
+  /* Toggle switch */
+  function toggleSwitch(el) {
+    el.classList.toggle('is-on');
+    const stateEl = document.getElementById('toggle-state');
+    const isOn = el.classList.contains('is-on');
+    stateEl.textContent = isOn ? 'on' : 'off';
+    stateEl.className = 'toggle-state' + (isOn ? ' active' : '');
+  }
+
+  /* Stagger replay */
+  function replayStagger() {
+    const items = document.querySelectorAll('#stagger-demo .stagger-item');
+    items.forEach(item => {
+      item.classList.remove('animate');
+      void item.offsetHeight; /* force reflow */
+    });
+    requestAnimationFrame(() => {
+      items.forEach(item => {
+        item.classList.add('animate');
+      });
+    });
+  }
+
+  /* Intersection Observer — trigger animations on scroll */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  /* Respect reduced motion */
+  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (mediaQuery.matches) {
+    const style = document.createElement('style');
+    style.textContent = `
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  /* Nav active state on scroll */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.style.color = '';
+        });
+        const activeLink = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (activeLink) {
+          activeLink.style.color = 'var(--accent)';
+        }
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  sections.forEach(section => scrollObserver.observe(section));
+</script>
+
+</body>
+</html>

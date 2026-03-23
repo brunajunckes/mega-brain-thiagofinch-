@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hubme.Ai — Brand Guidelines // Tom e Voz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,900;1,14..32,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── CSS TOKENS ──────────────────────────────────────────── */
+    :root {
+      --s0: oklch(9% 0.006 247);
+      --s1: oklch(11% 0.007 247);
+      --s2: oklch(13.5% 0.007 247);
+      --s3: oklch(16% 0.008 247);
+      --s4: oklch(19% 0.009 247);
+      --accent: #22D3EE;
+      --a1: color-mix(in oklch, #22D3EE 6%, transparent);
+      --a2: color-mix(in oklch, #22D3EE 12%, transparent);
+      --a3: color-mix(in oklch, #22D3EE 20%, transparent);
+      --a-border: color-mix(in oklch, #22D3EE 25%, transparent);
+      --cream: #F4F4F4;
+      --dim: rgba(244,244,244,0.55);
+      --muted: rgba(244,244,244,0.35);
+      --success: #4ADE80;
+      --error: #F87171;
+      --gutter: max(2rem, calc(50vw - 560px));
+      --radius: 12px;
+      --radius-sm: 8px;
+      --gap: 10px;
+    }
+
+    /* ─── RESET ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--s0);
+      color: var(--cream);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: color-mix(in oklch, var(--s0) 80%, transparent);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid var(--a-border);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--cream);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav-logo .dot { color: var(--accent); }
+    .nav-mark { width: 24px; height: 24px; flex-shrink: 0; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--dim);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+
+    .nav-other-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-other-links a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-other-links a:hover { color: var(--dim); }
+
+    .nav-sep { color: var(--muted); opacity: 0.3; }
+
+    .nav-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--a2);
+      border: 1px solid var(--a-border);
+      border-radius: 4px;
+      padding: 2px 7px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── LAYOUT SHELL ────────────────────────────────────────── */
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 var(--gutter) 7rem;
+    }
+
+    section { margin-bottom: 5.5rem; }
+
+    /* ─── TYPOGRAPHY ──────────────────────────────────────────── */
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    .section-h {
+      font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 1.75rem;
+    }
+
+    /* ─── HERO ────────────────────────────────────────────────── */
+    .hero {
+      padding: 5.5rem 0 4rem;
+    }
+
+    .hero-h1 {
+      font-size: clamp(3.5rem, 9vw, 6rem);
+      font-weight: 900;
+      line-height: 0.97;
+      letter-spacing: -0.045em;
+      color: var(--cream);
+      margin: 1.25rem 0 1.5rem;
+    }
+    .hero-h1 .cyan { color: var(--accent); }
+
+    .hero-lead {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--dim);
+      max-width: 520px;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .hero-rule {
+      margin-top: 4rem;
+      height: 1px;
+      background: linear-gradient(90deg, var(--a-border) 0%, transparent 75%);
+    }
+
+    /* ─── SECTION DIVIDER ─────────────────────────────────────── */
+    .rule {
+      height: 1px;
+      background: linear-gradient(90deg, var(--a-border) 0%, transparent 70%);
+      margin-bottom: 3.5rem;
+    }
+
+    /* ─── BENTO GRID — PERSONALITY ───────────────────────────── */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: auto auto;
+      gap: var(--gap);
+      grid-template-areas:
+        "direto  direto  direto  intel   intel   parceiro"
+        "quote   quote   result  result  conf    conf";
+    }
+
+    @media (max-width: 860px) {
+      .bento {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+          "direto  direto"
+          "intel   parceiro"
+          "quote   quote"
+          "result  result"
+          "conf    conf";
+      }
+    }
+
+    @media (max-width: 520px) {
+      .bento {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "direto"
+          "intel"
+          "parceiro"
+          "quote"
+          "result"
+          "conf";
+      }
+    }
+
+    /* ─── BENTO CELL BASE ─────────────────────────────────────── */
+    .bc {
+      background: var(--s1);
+      border: 1px solid var(--a-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .bc:hover {
+      border-color: color-mix(in oklch, #22D3EE 42%, transparent);
+      transform: translateY(-2px);
+    }
+
+    .bc::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 15% 15%, var(--a1) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* Area assignments */
+    .bc-direto   { grid-area: direto;   background: var(--s2); }
+    .bc-intel    { grid-area: intel;    }
+    .bc-parceiro { grid-area: parceiro; }
+    .bc-quote    { grid-area: quote;    background: var(--a2); border-color: color-mix(in oklch, #22D3EE 30%, transparent); }
+    .bc-result   { grid-area: result;   }
+    .bc-conf     { grid-area: conf;     background: var(--s2); }
+
+    .bc-icon {
+      font-size: 22px;
+      margin-bottom: 0.75rem;
+      display: block;
+      line-height: 1;
+      opacity: 0.9;
+    }
+
+    .bc-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .bc-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: -0.015em;
+      margin-bottom: 0.45rem;
+    }
+
+    .bc-desc {
+      font-size: 13px;
+      color: var(--dim);
+      line-height: 1.6;
+      margin-bottom: 0.85rem;
+    }
+
+    .bc-ex {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-style: italic;
+      color: var(--accent);
+      background: color-mix(in oklch, #22D3EE 8%, transparent);
+      border-left: 2px solid var(--accent);
+      padding: 0.45rem 0.75rem;
+      border-radius: 0 4px 4px 0;
+      line-height: 1.55;
+      opacity: 0.9;
+    }
+
+    /* Quote cell */
+    .bc-quote .quote-mark {
+      font-size: 5.5rem;
+      font-weight: 900;
+      line-height: 0.75;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      display: block;
+      opacity: 0.65;
+    }
+    .bc-quote .quote-text {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+    }
+
+    /* ─── EDITORIAL — DO & DONT ───────────────────────────────── */
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+    }
+
+    @media (max-width: 600px) {
+      .editorial-grid { grid-template-columns: 1fr; }
+    }
+
+    .editorial-pair {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .do-card, .dont-card {
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.2rem;
+    }
+
+    .do-card {
+      background: color-mix(in oklch, #4ADE80 6%, var(--s1));
+      border: 1px solid color-mix(in oklch, #4ADE80 28%, transparent);
+    }
+
+    .dont-card {
+      background: color-mix(in oklch, #F87171 5%, var(--s1));
+      border: 1px solid color-mix(in oklch, #F87171 22%, transparent);
+    }
+
+    .card-sig {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .do-card   .card-sig { color: var(--success); }
+    .dont-card .card-sig { color: var(--error); }
+
+    .card-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      color: var(--cream);
+      line-height: 1.55;
+      opacity: 0.88;
+    }
+
+    /* ─── PLATFORM CARDS ──────────────────────────────────────── */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap);
+    }
+
+    @media (max-width: 680px) {
+      .platform-grid { grid-template-columns: 1fr; }
+    }
+
+    .platform-card {
+      background: var(--s1);
+      border: 1px solid var(--a-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .platform-card:hover {
+      border-color: color-mix(in oklch, #22D3EE 38%, transparent);
+      transform: translateY(-2px);
+    }
+
+    .platform-pip {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--a2);
+      border: 1px solid var(--a-border);
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .platform-name {
+      font-size: 11px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 0.35rem;
+    }
+
+    .platform-rule {
+      font-size: 13px;
+      color: var(--dim);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .platform-ex {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: var(--accent);
+      background: var(--a1);
+      border: 1px solid var(--a-border);
+      border-radius: 6px;
+      padding: 0.6rem 0.8rem;
+      line-height: 1.55;
+      opacity: 0.9;
+    }
+
+    /* ─── NAMING ──────────────────────────────────────────────── */
+    .naming-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+    }
+
+    @media (max-width: 540px) {
+      .naming-grid { grid-template-columns: 1fr; }
+    }
+
+    .naming-card {
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+
+    .naming-correct {
+      background: color-mix(in oklch, #4ADE80 5%, var(--s1));
+      border: 1px solid color-mix(in oklch, #4ADE80 28%, transparent);
+    }
+
+    .naming-wrong {
+      background: color-mix(in oklch, #F87171 4%, var(--s1));
+      border: 1px solid color-mix(in oklch, #F87171 22%, transparent);
+    }
+
+    .naming-hdr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+    }
+    .naming-correct .naming-hdr { color: var(--success); }
+    .naming-wrong   .naming-hdr { color: var(--error); }
+
+    .naming-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid rgba(244,244,244,0.06);
+    }
+    .naming-row:last-child { border-bottom: none; }
+
+    .naming-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--cream);
+    }
+
+    .naming-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ─── PYRAMID ─────────────────────────────────────────────── */
+    .pyramid-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 2rem 0 2.5rem;
+    }
+
+    .pyr-step {
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.1rem 2rem;
+      transition: transform 0.2s;
+      border: 1px solid var(--a-border);
+    }
+    .pyr-step:hover { transform: scale(1.015); }
+
+    .pyr-1 {
+      width: min(260px, 100%);
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .pyr-2 {
+      width: min(470px, 100%);
+      background: var(--s3);
+    }
+    .pyr-3 {
+      width: min(680px, 100%);
+      background: var(--s2);
+    }
+
+    .pyr-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+    .pyr-1 .pyr-label { color: var(--s0); opacity: 0.65; }
+    .pyr-2 .pyr-label,
+    .pyr-3 .pyr-label { color: var(--accent); }
+
+    .pyr-word {
+      font-size: clamp(1.15rem, 3vw, 1.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .pyr-1 .pyr-word { color: var(--s0); }
+    .pyr-2 .pyr-word,
+    .pyr-3 .pyr-word { color: var(--cream); }
+
+    .pyr-sub {
+      font-size: 12px;
+      margin-top: 0.2rem;
+    }
+    .pyr-1 .pyr-sub { color: var(--s0); opacity: 0.6; }
+    .pyr-2 .pyr-sub,
+    .pyr-3 .pyr-sub { color: var(--dim); }
+
+    /* ─── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--a-border);
+      padding: 1.5rem var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .footer-t {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .footer-t .hi { color: var(--accent); opacity: 0.75; }
+
+    /* ─── FADE-IN ANIMATIONS ──────────────────────────────────── */
+    .fi {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.48s ease, transform 0.48s ease;
+    }
+    .fi.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger bento cells */
+    .bc:nth-child(1)  { transition-delay: 0.04s; }
+    .bc:nth-child(2)  { transition-delay: 0.08s; }
+    .bc:nth-child(3)  { transition-delay: 0.12s; }
+    .bc:nth-child(4)  { transition-delay: 0.16s; }
+    .bc:nth-child(5)  { transition-delay: 0.20s; }
+    .bc:nth-child(6)  { transition-delay: 0.24s; }
+
+    /* Stagger editorial */
+    .editorial-pair:nth-child(1)  { transition-delay: 0.04s; }
+    .editorial-pair:nth-child(2)  { transition-delay: 0.10s; }
+    .editorial-pair:nth-child(3)  { transition-delay: 0.16s; }
+    .editorial-pair:nth-child(4)  { transition-delay: 0.22s; }
+
+    /* Stagger platform cards */
+    .platform-card:nth-child(1)   { transition-delay: 0.04s; }
+    .platform-card:nth-child(2)   { transition-delay: 0.10s; }
+    .platform-card:nth-child(3)   { transition-delay: 0.16s; }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ───────────────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">
+        <svg class="nav-mark" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="ng-gl" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#22D3EE"/>
+              <stop offset="100%" stop-color="#0891B2"/>
+            </linearGradient>
+          </defs>
+          <circle cx="40" cy="14" r="4" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="63" cy="27" r="4" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="63" cy="53" r="4" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="40" cy="66" r="4" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="17" cy="53" r="4" fill="#22D3EE" opacity="0.5"/>
+          <circle cx="17" cy="27" r="4" fill="#22D3EE" opacity="0.5"/>
+          <line x1="40" y1="14" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+          <line x1="63" y1="27" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+          <line x1="63" y1="53" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+          <line x1="40" y1="66" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+          <line x1="17" y1="53" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+          <line x1="17" y1="27" x2="40" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+          <circle cx="40" cy="40" r="14" fill="#22D3EE" opacity="0.08"/>
+          <circle cx="40" cy="40" r="7" fill="url(#ng-gl)"/>
+          <circle cx="40" cy="40" r="3" fill="#F0FDFF"/>
+        </svg>
+        hubme<span class="dot">.ai</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#personalidade">Personalidade</a></li>
+        <li><a href="#editorial">Editorial</a></li>
+        <li><a href="#plataforma">Plataforma</a></li>
+        <li><a href="#nomenclatura">Nomenclatura</a></li>
+        <li><a href="#hierarquia">Hierarquia</a></li>
+      </ul>
+
+      <div class="nav-other-links">
+        <a href="brandbook.html">Brandbook</a>
+        <span class="nav-sep">|</span>
+        <a href="movimento.html">Movimento</a>
+        <span class="nav-sep">|</span>
+        <a href="pitch.html">Pitch</a>
+        <span class="nav-badge">v1.0</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── MAIN ──────────────────────────────────────────────────── -->
+  <main>
+
+    <!-- HERO ──────────────────────────────────────────────────── -->
+    <section class="hero fi">
+      <div class="eyebrow">Guidelines // Tom e Voz</div>
+      <h1 class="hero-h1">
+        Como a marca<br>
+        <span class="cyan">fala.</span>
+      </h1>
+      <p class="hero-lead">
+        A Hubme.Ai tem uma voz clara, direta e inteligente.
+        Como o melhor tech lead que você já teve.
+      </p>
+      <div class="hero-rule"></div>
+    </section>
+
+    <!-- 01 // PERSONALIDADE ───────────────────────────────────── -->
+    <section id="personalidade">
+      <div class="eyebrow fi">01 // Personalidade</div>
+      <h2 class="section-h fi">Os traços que definem<br>como nos expressamos.</h2>
+
+      <div class="bento">
+
+        <!-- DIRETO — 3 cols -->
+        <div class="bc bc-direto fi">
+          <span class="bc-icon">→</span>
+          <div class="bc-tag">Traço 01</div>
+          <div class="bc-title">Direto</div>
+          <div class="bc-desc">Vai ao ponto. Sem introduções, sem rodeios. A primeira frase já carrega o conteúdo principal — nunca uma abertura vazia ou uma saudação que não acrescenta nada.</div>
+          <div class="bc-ex">"Deploy concluído. 3 containers reiniciados, 0 erros."</div>
+        </div>
+
+        <!-- INTELIGENTE — 2 cols -->
+        <div class="bc bc-intel fi">
+          <span class="bc-icon">◈</span>
+          <div class="bc-tag">Traço 02</div>
+          <div class="bc-title">Inteligente</div>
+          <div class="bc-desc">Usa terminologia técnica quando necessário. Não simplifica para parecer amigável — respeita a inteligência do interlocutor.</div>
+          <div class="bc-ex">"RLS ativo. Zero rows expostas fora do user context."</div>
+        </div>
+
+        <!-- PARCEIRO — 1 col -->
+        <div class="bc bc-parceiro fi">
+          <span class="bc-icon">∞</span>
+          <div class="bc-tag">Traço 03</div>
+          <div class="bc-title">Parceiro</div>
+          <div class="bc-desc">Fala como alguém da equipe, usa "nós". Não é fornecedor — é co-fundador tecnológico do que você está construindo.</div>
+          <div class="bc-ex">"Nosso próximo passo: migrar para edge functions."</div>
+        </div>
+
+        <!-- QUOTE — 2 cols -->
+        <div class="bc bc-quote fi">
+          <span class="quote-mark">"</span>
+          <div class="quote-text">Como o melhor tech lead que você já teve.</div>
+        </div>
+
+        <!-- ORIENTADO A RESULTADO — 2 cols -->
+        <div class="bc bc-result fi">
+          <span class="bc-icon">◎</span>
+          <div class="bc-tag">Traço 04</div>
+          <div class="bc-title">Orientado a Resultado</div>
+          <div class="bc-desc">Foca no que foi feito e no próximo passo imediato. Não celebra processo — entrega o estado atual e o vetor de avanço.</div>
+          <div class="bc-ex">"Story 4.2 completa. Próximo: testes de carga na edge."</div>
+        </div>
+
+        <!-- CONFIAVEL — 2 cols -->
+        <div class="bc bc-conf fi">
+          <span class="bc-icon">▣</span>
+          <div class="bc-tag">Traço 05</div>
+          <div class="bc-title">Confiável</div>
+          <div class="bc-desc">Nunca esconde erros. Transparência é confiança. Quando algo falha, diz exatamente o que falhou, onde, e o que está sendo feito — sem minimizar, sem drama.</div>
+          <div class="bc-ex">"Erro: timeout linha 47. Motivo: pool esgotado. Aumentando para 20."</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 02 // EDITORIAL ───────────────────────────────────────── -->
+    <section id="editorial">
+      <div class="rule"></div>
+      <div class="eyebrow fi">02 // Editorial</div>
+      <h2 class="section-h fi">O que escrever.<br>O que nunca escrever.</h2>
+
+      <div class="editorial-grid">
+
+        <div class="editorial-pair fi">
+          <div class="do-card">
+            <div class="card-sig">✓ Correto</div>
+            <div class="card-text">"Deploy concluído. 3 containers reiniciados, 0 erros."</div>
+          </div>
+          <div class="dont-card">
+            <div class="card-sig">✗ Errado</div>
+            <div class="card-text">"Olá! Estou super animado em informar que completamos o deploy com sucesso!!! 🎉🎉🎉"</div>
+          </div>
+        </div>
+
+        <div class="editorial-pair fi">
+          <div class="do-card">
+            <div class="card-sig">✓ Correto</div>
+            <div class="card-text">"Isso pode causar conflito. Quer que eu verifique antes?"</div>
+          </div>
+          <div class="dont-card">
+            <div class="card-sig">✗ Errado</div>
+            <div class="card-text">"ATENÇÃO! PERIGO! Essa ação pode DESTRUIR seu banco de dados!!!"</div>
+          </div>
+        </div>
+
+        <div class="editorial-pair fi">
+          <div class="do-card">
+            <div class="card-sig">✓ Correto</div>
+            <div class="card-text">"Não consegui completar. Erro: timeout na linha 47."</div>
+          </div>
+          <div class="dont-card">
+            <div class="card-sig">✗ Errado</div>
+            <div class="card-text">"Ops! Parece que algo deu erradinho por aqui 😅"</div>
+          </div>
+        </div>
+
+        <div class="editorial-pair fi">
+          <div class="do-card">
+            <div class="card-sig">✓ Correto</div>
+            <div class="card-text">"Task concluída em 4.2s via Ollama local."</div>
+          </div>
+          <div class="dont-card">
+            <div class="card-sig">✗ Errado</div>
+            <div class="card-text">"A inteligência artificial processou com sucesso sua solicitação utilizando tecnologia de ponta!"</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 03 // PLATAFORMA ──────────────────────────────────────── -->
+    <section id="plataforma">
+      <div class="rule"></div>
+      <div class="eyebrow fi">03 // Tom por Plataforma</div>
+      <h2 class="section-h fi">Mesma voz.<br>Calibragens diferentes.</h2>
+
+      <div class="platform-grid">
+
+        <div class="platform-card fi">
+          <div class="platform-pip">in</div>
+          <div class="platform-name">LinkedIn</div>
+          <div class="platform-rule">Profissional com personalidade. Insights reais, bastidores de construção. Sem jargão de "guru". Dados específicos, contexto real.</div>
+          <div class="platform-ex">"Construímos um sistema que reduz custo AI em 90%. Aqui está como funciona."</div>
+        </div>
+
+        <div class="platform-card fi">
+          <div class="platform-pip">𝕏</div>
+          <div class="platform-name">Twitter / X</div>
+          <div class="platform-rule">Direto, provocativo, técnico. Hooks fortes, dados específicos, sem fluff. Cada tweet é uma claim que pode ser verificada.</div>
+          <div class="platform-ex">"957 entidades. 11 agentes. 90% custo menor. É assim que uma empresa AI-first opera."</div>
+        </div>
+
+        <div class="platform-card fi">
+          <div class="platform-pip">⌘</div>
+          <div class="platform-name">Interface UI</div>
+          <div class="platform-rule">Ultra-direto. Estado + ação disponível. Sem artigos desnecessários. O usuário lê em movimento — cada palavra conta.</div>
+          <div class="platform-ex">"3 tasks ativas · 0 erros · Deploy pronto →"</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 04 // NOMENCLATURA ────────────────────────────────────── -->
+    <section id="nomenclatura">
+      <div class="rule"></div>
+      <div class="eyebrow fi">04 // Nomenclatura</div>
+      <h2 class="section-h fi">O nome é um ativo.<br>Escreva certo.</h2>
+
+      <div class="naming-grid fi">
+
+        <div class="naming-card naming-correct">
+          <div class="naming-hdr">✓ Correto</div>
+          <div class="naming-row">
+            <span class="naming-val">Hubme.Ai</span>
+            <span class="naming-note">nome completo</span>
+          </div>
+          <div class="naming-row">
+            <span class="naming-val">Hubme</span>
+            <span class="naming-note">versão curta</span>
+          </div>
+          <div class="naming-row">
+            <span class="naming-val">hubme.ai</span>
+            <span class="naming-note">URL e handle</span>
+          </div>
+          <div class="naming-row">
+            <span class="naming-val">Hub</span>
+            <span class="naming-note">referência informal</span>
+          </div>
+        </div>
+
+        <div class="naming-card naming-wrong">
+          <div class="naming-hdr">✗ Incorreto</div>
+          <div class="naming-row">
+            <span class="naming-val">HubMe</span>
+            <span class="naming-note">capitalização errada</span>
+          </div>
+          <div class="naming-row">
+            <span class="naming-val">HUBME</span>
+            <span class="naming-note">all caps fora de contexto</span>
+          </div>
+          <div class="naming-row">
+            <span class="naming-val">Hub.me.ai</span>
+            <span class="naming-note">pontuação errada</span>
+          </div>
+          <div class="naming-row">
+            <span class="naming-val">hubme AI</span>
+            <span class="naming-note">sem ponto no .ai</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 05 // HIERARQUIA ──────────────────────────────────────── -->
+    <section id="hierarquia">
+      <div class="rule"></div>
+      <div class="eyebrow fi">05 // Hierarquia de Mensagem</div>
+      <h2 class="section-h fi">A pirâmide<br>da mensagem.</h2>
+
+      <div class="pyramid-wrap fi">
+
+        <div class="pyr-step pyr-1">
+          <div class="pyr-label">Palavra-chave</div>
+          <div class="pyr-word">Compound</div>
+          <div class="pyr-sub">A palavra que define tudo</div>
+        </div>
+
+        <div class="pyr-step pyr-2">
+          <div class="pyr-label">A Categoria</div>
+          <div class="pyr-word">AI Operating System</div>
+          <div class="pyr-sub">O que somos no mercado</div>
+        </div>
+
+        <div class="pyr-step pyr-3">
+          <div class="pyr-label">Tagline</div>
+          <div class="pyr-word">Where AI compounds.</div>
+          <div class="pyr-sub">A promessa em três palavras</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-t">
+      <span class="hi">hubme.ai</span> Guidelines v1.0
+    </div>
+    <div class="footer-t">
+      Brand Machine / <span class="hi">AIOX</span> — 2026-03-22
+    </div>
+  </footer>
+
+  <!-- ── SCROLL OBSERVER ──────────────────────────────────────── -->
+  <script>
+    const io = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.07, rootMargin: '0px 0px -32px 0px' }
+    );
+    document.querySelectorAll('.fi').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>

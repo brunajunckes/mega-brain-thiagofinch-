@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hubme.Ai — Brand Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ─── Reset ─────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ─── Design Tokens ──────────────────────────────────────── */
+  :root {
+    --s0: oklch(9% 0.006 247);
+    --s1: oklch(11% 0.007 247);
+    --s2: oklch(13.5% 0.007 247);
+    --s3: oklch(16% 0.008 247);
+    --s4: oklch(19% 0.009 247);
+    --accent: #22D3EE;
+    --a1: color-mix(in oklch, #22D3EE 5%, transparent);
+    --a2: color-mix(in oklch, #22D3EE 10%, transparent);
+    --a3: color-mix(in oklch, #22D3EE 18%, transparent);
+    --a-border: color-mix(in oklch, #22D3EE 22%, transparent);
+    --cream: #F4F4F4;
+    --dim: rgba(244,244,244,0.55);
+    --muted: rgba(244,244,244,0.35);
+    --gutter: max(2rem, calc(50vw - 480px));
+  }
+
+  /* ─── Base ───────────────────────────────────────────────── */
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--s0);
+    color: var(--cream);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ─── Background Texture (CSS-only constellation) ───────── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle 3px at 12% 18%, rgba(34,211,238,0.12) 0%, transparent 100%),
+      radial-gradient(circle 2px at 85% 12%, rgba(34,211,238,0.09) 0%, transparent 100%),
+      radial-gradient(circle 2px at 72% 34%, rgba(34,211,238,0.07) 0%, transparent 100%),
+      radial-gradient(circle 3px at 28% 58%, rgba(34,211,238,0.08) 0%, transparent 100%),
+      radial-gradient(circle 2px at 91% 67%, rgba(34,211,238,0.10) 0%, transparent 100%),
+      radial-gradient(circle 2px at 5% 82%, rgba(34,211,238,0.07) 0%, transparent 100%),
+      radial-gradient(circle 3px at 55% 88%, rgba(34,211,238,0.09) 0%, transparent 100%),
+      radial-gradient(circle 2px at 44% 44%, rgba(34,211,238,0.06) 0%, transparent 100%),
+      radial-gradient(circle 2px at 18% 90%, rgba(34,211,238,0.08) 0%, transparent 100%),
+      radial-gradient(circle 2px at 76% 76%, rgba(34,211,238,0.07) 0%, transparent 100%),
+      radial-gradient(circle 60vw at 50% 0%, rgba(34,211,238,0.025) 0%, transparent 70%);
+  }
+
+  /* ─── Animations ─────────────────────────────────────────── */
+  @keyframes hub-glow {
+    0%,100% { filter: drop-shadow(0 0 8px rgba(34,211,238,0.2)); }
+    50%      { filter: drop-shadow(0 0 24px rgba(34,211,238,0.6)) drop-shadow(0 0 48px rgba(34,211,238,0.2)); }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes card-in {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50%       { transform: translateY(6px); opacity: 0.9; }
+  }
+
+  @keyframes badge-shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  /* ─── Hero ───────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--gutter);
+    text-align: center;
+    gap: 0;
+  }
+
+  .hub-mark {
+    animation: hub-glow 3s ease-in-out infinite;
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    opacity: 0;
+    animation: hub-glow 3s ease-in-out infinite, fade-in 0.6s ease forwards;
+  }
+
+  .wordmark {
+    margin-top: 28px;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1;
+    color: var(--cream);
+    opacity: 0;
+    animation: fade-in 0.6s ease 0.15s forwards;
+  }
+
+  .wordmark .ai {
+    color: var(--accent);
+  }
+
+  .version-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 5px 14px;
+    border-radius: 100px;
+    background: var(--a2);
+    border: 1px solid var(--a-border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    opacity: 0;
+    animation: fade-in 0.6s ease 0.3s forwards;
+  }
+
+  .version-badge::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
+  }
+
+  .tagline {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--dim);
+    letter-spacing: -0.2px;
+    opacity: 0;
+    animation: fade-in 0.6s ease 0.45s forwards;
+  }
+
+  /* ─── Scroll Indicator ───────────────────────────────────── */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fade-in 0.6s ease 1s forwards;
+  }
+
+  .scroll-indicator .arrow {
+    font-size: 1.1rem;
+    color: var(--dim);
+    animation: scroll-bounce 2s ease-in-out infinite;
+    line-height: 1;
+  }
+
+  .scroll-indicator .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ─── Cards Section ──────────────────────────────────────── */
+  .cards-section {
+    position: relative;
+    z-index: 1;
+    padding: 80px var(--gutter) 80px;
+  }
+
+  .cards-heading {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .cards-heading h2 {
+    font-size: 0.72rem;
+    font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.7;
+  }
+
+  /* ─── Grid ───────────────────────────────────────────────── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* ─── Card ───────────────────────────────────────────────── */
+  .card {
+    display: block;
+    background: var(--s1);
+    border: 1px solid var(--a-border);
+    border-radius: 12px;
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    opacity: 0;
+    /* animation applied via JS with stagger */
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 40% at 50% 0%, var(--a1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .card:hover {
+    border-color: var(--a3);
+    background: var(--s2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(34,211,238,0.06), 0 2px 8px rgba(0,0,0,0.4);
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  .card.wide {
+    grid-column: span 2;
+  }
+
+  .card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    display: block;
+    line-height: 1;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* JSON badge */
+  .badge-json {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.62rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em;
+    background: var(--a2);
+    color: var(--accent);
+    border: 1px solid var(--a-border);
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  /* Arrow hint on card hover */
+  .card-arrow {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    font-size: 0.9rem;
+    color: var(--accent);
+    opacity: 0;
+    transform: translate(-4px, 4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .card:hover .card-arrow {
+    opacity: 0.7;
+    transform: translate(0, 0);
+  }
+
+  /* ─── Divider ────────────────────────────────────────────── */
+  .section-divider {
+    max-width: 960px;
+    margin: 0 auto 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--a-border) 20%, var(--a-border) 80%, transparent);
+    opacity: 0.6;
+  }
+
+  /* ─── Footer ─────────────────────────────────────────────── */
+  .footer {
+    position: relative;
+    z-index: 1;
+    padding: 0 var(--gutter) 48px;
+    text-align: center;
+  }
+
+  .footer-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding-top: 32px;
+    border-top: 1px solid color-mix(in oklch, #22D3EE 8%, transparent);
+  }
+
+  .footer-line {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .footer-line .accent {
+    color: var(--accent);
+  }
+
+  .footer-line .gift {
+    color: var(--dim);
+    font-style: italic;
+  }
+
+  /* ─── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .wordmark { font-size: 2.2rem; }
+    .tagline  { font-size: 1rem; }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .card.wide {
+      grid-column: span 1;
+    }
+  }
+
+  /* ─── Animated state (set by JS) ────────────────────────── */
+  .card.animate-in {
+    animation: card-in 0.5s ease forwards;
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ────────────────────────────────────────────── -->
+<section class="hero">
+
+  <!-- Hub-mark SVG -->
+  <svg class="hub-mark" width="64" height="64" viewBox="0 0 98 98" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="49" cy="49" r="40" fill="var(--a1)" stroke="var(--accent)" stroke-width="0.5" stroke-opacity="0.3"/>
+    <circle cx="49" cy="49" r="10" fill="var(--accent)"/>
+    <circle cx="49" cy="49" r="4" fill="#F0FDFF"/>
+    <line x1="49" y1="49" x2="16" y2="20" stroke="var(--accent)" stroke-width="1.5" stroke-opacity="0.4"/>
+    <line x1="49" y1="49" x2="82" y2="20" stroke="var(--accent)" stroke-width="1.5" stroke-opacity="0.4"/>
+    <line x1="49" y1="49" x2="90" y2="49" stroke="var(--accent)" stroke-width="1.5" stroke-opacity="0.4"/>
+    <line x1="49" y1="49" x2="82" y2="78" stroke="var(--accent)" stroke-width="1.5" stroke-opacity="0.4"/>
+    <line x1="49" y1="49" x2="16" y2="78" stroke="var(--accent)" stroke-width="1.5" stroke-opacity="0.4"/>
+    <line x1="49" y1="49" x2="8" y2="49" stroke="var(--accent)" stroke-width="1.5" stroke-opacity="0.4"/>
+    <circle cx="16" cy="20" r="5" fill="var(--accent)" opacity="0.55"/>
+    <circle cx="82" cy="20" r="5" fill="var(--accent)" opacity="0.55"/>
+    <circle cx="90" cy="49" r="5" fill="var(--accent)" opacity="0.55"/>
+    <circle cx="82" cy="78" r="5" fill="var(--accent)" opacity="0.55"/>
+    <circle cx="16" cy="78" r="5" fill="var(--accent)" opacity="0.55"/>
+    <circle cx="8" cy="49" r="5" fill="var(--accent)" opacity="0.55"/>
+  </svg>
+
+  <!-- Wordmark -->
+  <div class="wordmark" role="heading" aria-level="1">hubme<span class="ai">.ai</span></div>
+
+  <!-- Version badge -->
+  <div class="version-badge" aria-label="Brand Package version 1.0">Brand Package v1.0</div>
+
+  <!-- Tagline -->
+  <p class="tagline">Where AI compounds.</p>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator" aria-hidden="true">
+    <span class="arrow">↓</span>
+    <span class="label">Explore</span>
+  </div>
+
+</section>
+
+<!-- ─── CARDS ────────────────────────────────────────────── -->
+<section class="cards-section" id="brand-sections">
+
+  <div class="cards-heading">
+    <h2>Brand Sections</h2>
+  </div>
+
+  <div class="section-divider" aria-hidden="true"></div>
+
+  <div class="grid">
+
+    <!-- Brandbook -->
+    <a class="card" href="brandbook.html" data-card>
+      <span class="card-icon" aria-hidden="true">🎨</span>
+      <div class="card-title">Brandbook</div>
+      <p class="card-desc">Cores, tipografia, logo e regras de uso visual</p>
+      <span class="card-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <!-- Movimento -->
+    <a class="card" href="movimento.html" data-card>
+      <span class="card-icon" aria-hidden="true">⚡</span>
+      <div class="card-title">Movimento</div>
+      <p class="card-desc">Motion design, keyframes e curvas de animação</p>
+      <span class="card-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <!-- Pitch -->
+    <a class="card" href="pitch.html" data-card>
+      <span class="card-icon" aria-hidden="true">🚀</span>
+      <div class="card-title">Pitch</div>
+      <p class="card-desc">Proposta de valor, story arc e ICP</p>
+      <span class="card-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <!-- Guidelines -->
+    <a class="card" href="guidelines.html" data-card>
+      <span class="card-icon" aria-hidden="true">📖</span>
+      <div class="card-title">Guidelines</div>
+      <p class="card-desc">Tom de voz, editorial e nomenclatura</p>
+      <span class="card-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <!-- Design Tokens — wide -->
+    <a class="card wide" href="brand-tokens.json" data-card>
+      <span class="card-icon" aria-hidden="true">🔧</span>
+      <div class="card-title">
+        Design Tokens
+        <span class="badge-json">JSON</span>
+      </div>
+      <p class="card-desc">Tokens DTCG para shadcn/ui — cores, tipografia, espaçamento, motion</p>
+      <span class="card-arrow" aria-hidden="true">↗</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ─── FOOTER ───────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-line">Brand Machine v1 · AIOX Framework · 2026-03-22</p>
+    <p class="footer-line">
+      <span class="accent">@brand-reverse-mapper</span>
+      <span class="gift"> — Primeiros 10 clientes: brinde</span>
+    </p>
+  </div>
+</footer>
+
+<!-- ─── JS: Staggered card animations ───────────────────── -->
+<script>
+  (function () {
+    'use strict';
+
+    const STAGGER_MS = 80;
+
+    function animateCards(entries, observer) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var cards = entry.target.querySelectorAll('[data-card]');
+        cards.forEach(function (card, i) {
+          setTimeout(function () {
+            card.style.animationDelay = '0ms';
+            card.classList.add('animate-in');
+          }, i * STAGGER_MS);
+        });
+        observer.unobserve(entry.target);
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      var grid = document.querySelector('.grid');
+      if (grid) {
+        var observer = new IntersectionObserver(animateCards, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -40px 0px',
+        });
+        observer.observe(grid);
+      }
+    } else {
+      // Fallback: show all cards immediately
+      document.querySelectorAll('[data-card]').forEach(function (card) {
+        card.style.opacity = '1';
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

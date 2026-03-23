@@ -1,0 +1,93 @@
+Return-Path: <>
+Delivered-To: mary@hubme.tech
+Received: from mail.hubme.tech
+	by mail.hubme.tech with LMTP
+	id Un+WAXsWwGkgBwAAcErP4g
+	(envelope-from <>)
+	for <mary@hubme.tech>; Sun, 22 Mar 2026 16:19:07 +0000
+Received: by mail.hubme.tech (Postfix)
+	id F27C214C61E; Sun, 22 Mar 2026 16:19:06 +0000 (UTC)
+Date: Sun, 22 Mar 2026 16:19:06 +0000 (UTC)
+From: Mail Delivery System <MAILER-DAEMON@mail.hubme.tech>
+Subject: Undelivered Mail Returned to Sender
+To: mary@hubme.tech
+Auto-Submitted: auto-replied
+MIME-Version: 1.0
+Content-Type: multipart/report; report-type=delivery-status;
+	boundary="13B8714C61A.1774196346/mail.hubme.tech"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260322161906.F27C214C61E@mail.hubme.tech>
+
+This is a MIME-encapsulated message.
+
+--13B8714C61A.1774196346/mail.hubme.tech
+Content-Description: Notification
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+This is the mail system at host mail.hubme.tech.
+
+I'm sorry to have to inform you that your message could not
+be delivered to one or more recipients. It's attached below.
+
+For further assistance, please send mail to postmaster.
+
+If you do so, please include this problem report. You can
+delete your own text from the attached returned message.
+
+                   The mail system
+
+<lady.mary.2300@gmail.com>: host gmail-smtp-in.l.google.com[172.217.192.26]
+    said: 550-5.7.26 Your email has been blocked because the sender is
+    unauthenticated. 550-5.7.26 Gmail requires all senders to authenticate with
+    either SPF or DKIM. 550-5.7.26  550-5.7.26  Authentication results:
+    550-5.7.26  DKIM = did not pass 550-5.7.26  SPF [hubme.tech] with ip:
+    [72.60.158.108] = did not pass 550-5.7.26  550-5.7.26  For instructions on
+    setting up authentication, go to 550 5.7.26
+    https://support.google.com/mail/answer/81126#authentication
+    ada2fe7eead31-602af864422si1671936137.33 - gsmtp (in reply to end of DATA
+    command)
+
+--13B8714C61A.1774196346/mail.hubme.tech
+Content-Description: Delivery report
+Content-Type: message/delivery-status
+
+Reporting-MTA: dns; mail.hubme.tech
+X-Postfix-Queue-ID: 13B8714C61A
+X-Postfix-Sender: rfc822; mary@hubme.tech
+Arrival-Date: Sun, 22 Mar 2026 16:19:04 +0000 (UTC)
+
+Final-Recipient: rfc822; lady.mary.2300@gmail.com
+Original-Recipient: rfc822;lady.mary.2300@gmail.com
+Action: failed
+Status: 5.7.26
+Remote-MTA: dns; gmail-smtp-in.l.google.com
+Diagnostic-Code: smtp; 550-5.7.26 Your email has been blocked because the
+    sender is unauthenticated. 550-5.7.26 Gmail requires all senders to
+    authenticate with either SPF or DKIM. 550-5.7.26  550-5.7.26
+    Authentication results: 550-5.7.26  DKIM = did not pass 550-5.7.26  SPF
+    [hubme.tech] with ip: [72.60.158.108] = did not pass 550-5.7.26  550-5.7.26
+    For instructions on setting up authentication, go to 550 5.7.26
+    https://support.google.com/mail/answer/81126#authentication
+    ada2fe7eead31-602af864422si1671936137.33 - gsmtp
+
+--13B8714C61A.1774196346/mail.hubme.tech
+Content-Description: Undelivered Message
+Content-Type: message/rfc822
+Content-Transfer-Encoding: 8bit
+
+Return-Path: <mary@hubme.tech>
+Received: by mail.hubme.tech (Postfix, from userid 0)
+	id 13B8714C61A; Sun, 22 Mar 2026 16:19:04 +0000 (UTC)
+From: mary@hubme.tech
+To: lady.mary.2300@gmail.com
+Subject: HubMe AI - Email Server Funcionando!
+MIME-Version: 1.0
+Content-Type: text/plain; charset="ANSI_X3.4-1968"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260322161904.13B8714C61A@mail.hubme.tech>
+Date: Sun, 22 Mar 2026 16:19:04 +0000 (UTC)
+
+Oi! Este email foi enviado automaticamente pelo servidor HubMe AI. Se voce recebeu, o sistema de email esta funcionando perfeitamente. - Mary AI
+
+--13B8714C61A.1774196346/mail.hubme.tech--

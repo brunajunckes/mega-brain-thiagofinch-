@@ -1,0 +1,138 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "meta": {
+    "name": "Hubme.Ai — Design Tokens",
+    "version": "1.0.0",
+    "brand": "Hubme.Ai",
+    "theme": "Dark Cockpit — Cyan Edition",
+    "date": "2026-03-22",
+    "generated-by": "Brand Machine v1 / AIOX"
+  },
+
+  "color": {
+    "primitive": {
+      "accent":          { "$value": "#22D3EE", "$type": "color", "$description": "Primary accent. Cyan — conectividade, IA, clareza" },
+      "accent-deep":     { "$value": "#0891B2", "$type": "color", "$description": "Accent profundo. CTAs sólidos, botões primários" },
+      "accent-soft":     { "$value": "rgba(34,211,238,0.12)", "$type": "color", "$description": "Accent suave. Chip fills, badge backgrounds" },
+      "accent-glow":     { "$value": "rgba(34,211,238,0.25)", "$type": "color", "$description": "Glow. Hover rings, focus states" },
+
+      "canvas":          { "$value": "#09090A", "$type": "color", "$description": "Canvas principal" },
+      "dark":            { "$value": "#0C0C0D", "$type": "color", "$description": "Hero panels, editorial" },
+      "surface":         { "$value": "#111113", "$type": "color", "$description": "Cards, navbars, modais" },
+      "surface-alt":     { "$value": "#18181B", "$type": "color", "$description": "Nested blocks, linhas alt" },
+      "surface-panel":   { "$value": "#141416", "$type": "color", "$description": "Sidebars, drawers" },
+      "surface-console": { "$value": "#1A1A1D", "$type": "color", "$description": "Console/output zones" },
+      "surface-hover":   { "$value": "#202023", "$type": "color", "$description": "Hover state" },
+
+      "cream":           { "$value": "#F4F4F4", "$type": "color", "$description": "Texto principal" },
+      "cream-alt":       { "$value": "#E8E8E8", "$type": "color", "$description": "Texto secundário" },
+      "warm-white":      { "$value": "#FFFFFF", "$type": "color", "$description": "Máximo contraste" },
+      "dim":             { "$value": "rgba(244,244,244,0.5)", "$type": "color", "$description": "Texto dimmed" },
+      "muted":           { "$value": "#9CA3AF", "$type": "color", "$description": "Labels, captions" },
+      "meta":            { "$value": "#6B7280", "$type": "color", "$description": "Metadata, contadores" },
+
+      "border":          { "$value": "rgba(156,156,156,0.12)", "$type": "color" },
+      "border-soft":     { "$value": "rgba(156,156,156,0.07)", "$type": "color" },
+      "border-strong":   { "$value": "rgba(156,156,156,0.22)", "$type": "color" },
+      "border-accent":   { "$value": "rgba(34,211,238,0.3)", "$type": "color", "$description": "Bordered accent components" },
+
+      "success":         { "$value": "#4ADE80", "$type": "color" },
+      "warning":         { "$value": "#FACC15", "$type": "color" },
+      "error":           { "$value": "#F87171", "$type": "color" },
+      "info":            { "$value": "#60A5FA", "$type": "color" }
+    }
+  },
+
+  "typography": {
+    "font": {
+      "display":  { "$value": "'TASAOrbiterDisplay', 'Syne', serif", "$type": "fontFamily" },
+      "sans":     { "$value": "'Geist', 'Inter', system-ui, sans-serif", "$type": "fontFamily" },
+      "mono":     { "$value": "'GeistMono', 'JetBrains Mono', monospace", "$type": "fontFamily" }
+    },
+    "size": {
+      "display":  { "$value": "4rem",    "$type": "dimension" },
+      "h1":       { "$value": "2.5rem",  "$type": "dimension" },
+      "h2":       { "$value": "1.75rem", "$type": "dimension" },
+      "h3":       { "$value": "1.25rem", "$type": "dimension" },
+      "body":     { "$value": "1rem",    "$type": "dimension" },
+      "small":    { "$value": "0.875rem","$type": "dimension" },
+      "label":    { "$value": "0.75rem", "$type": "dimension" },
+      "micro":    { "$value": "0.65rem", "$type": "dimension" }
+    },
+    "weight": {
+      "black":    { "$value": "900", "$type": "fontWeight" },
+      "bold":     { "$value": "700", "$type": "fontWeight" },
+      "semibold": { "$value": "600", "$type": "fontWeight" },
+      "medium":   { "$value": "500", "$type": "fontWeight" },
+      "regular":  { "$value": "400", "$type": "fontWeight" }
+    }
+  },
+
+  "spacing": {
+    "0":   { "$value": "0px" },
+    "1":   { "$value": "4px" },
+    "2":   { "$value": "8px" },
+    "3":   { "$value": "12px" },
+    "4":   { "$value": "16px" },
+    "5":   { "$value": "20px" },
+    "6":   { "$value": "24px" },
+    "8":   { "$value": "32px" },
+    "10":  { "$value": "40px" },
+    "12":  { "$value": "48px" },
+    "16":  { "$value": "64px" },
+    "20":  { "$value": "80px" },
+    "24":  { "$value": "96px" },
+    "32":  { "$value": "128px" }
+  },
+
+  "radius": {
+    "sm":   { "$value": "4px" },
+    "md":   { "$value": "8px" },
+    "lg":   { "$value": "12px" },
+    "xl":   { "$value": "16px" },
+    "2xl":  { "$value": "24px" },
+    "full": { "$value": "9999px" }
+  },
+
+  "shadow": {
+    "glow-accent": { "$value": "0 0 24px rgba(34,211,238,0.15), 0 0 8px rgba(34,211,238,0.08)" },
+    "card":        { "$value": "0 1px 3px rgba(0,0,0,0.4), 0 0 0 1px rgba(156,156,156,0.08)" },
+    "panel":       { "$value": "0 4px 24px rgba(0,0,0,0.6)" }
+  },
+
+  "motion": {
+    "duration": {
+      "fast":     { "$value": "120ms" },
+      "normal":   { "$value": "200ms" },
+      "slow":     { "$value": "350ms" },
+      "verySlow": { "$value": "600ms" }
+    },
+    "easing": {
+      "spring":       { "$value": "cubic-bezier(0.34, 1.56, 0.64, 1)" },
+      "smooth":       { "$value": "cubic-bezier(0.4, 0, 0.2, 1)" },
+      "decelerate":   { "$value": "cubic-bezier(0, 0, 0.2, 1)" },
+      "accelerate":   { "$value": "cubic-bezier(0.4, 0, 1, 1)" }
+    }
+  },
+
+  "shadcn": {
+    "$description": "CSS variables para shadcn/ui — adicionar em globals.css :root.dark",
+    "background":          { "$value": "222.2 84% 4.9%" },
+    "foreground":          { "$value": "210 40% 98%" },
+    "card":                { "$value": "222.2 84% 6%" },
+    "card-foreground":     { "$value": "210 40% 98%" },
+    "primary":             { "$value": "189 94% 53%" },
+    "primary-foreground":  { "$value": "222.2 84% 4.9%" },
+    "secondary":           { "$value": "217 19% 10%" },
+    "secondary-foreground":{ "$value": "210 40% 98%" },
+    "muted":               { "$value": "217 19% 10%" },
+    "muted-foreground":    { "$value": "215 20% 65%" },
+    "accent":              { "$value": "189 94% 53%" },
+    "accent-foreground":   { "$value": "222.2 84% 4.9%" },
+    "destructive":         { "$value": "0 63% 71%" },
+    "border":              { "$value": "217 19% 15%" },
+    "input":               { "$value": "217 19% 15%" },
+    "ring":                { "$value": "189 94% 53%" },
+    "radius":              { "$value": "0.5rem" }
+  }
+}

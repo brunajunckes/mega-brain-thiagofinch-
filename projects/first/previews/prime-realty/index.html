@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prime Realty - Imóveis de Luxo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    svg { overflow: hidden; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 16px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 100; box-shadow: 0 1px 20px rgba(0,0,0,0.08); }
+    .logo { font-size: 1.4rem; font-weight: 700; color: #1a1a2e; }
+    .logo span { color: #c8a96e; }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul a { text-decoration: none; color: #555; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    nav ul a:hover { color: #c8a96e; }
+    .nav-cta { background: #1a1a2e; color: white !important; padding: 10px 20px; border-radius: 6px; }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, #1a1a2e 0%, #2d2d4e 50%, #1a1a2e 100%); color: white; padding: 160px 40px 100px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8a96e' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+    .hero-tag { display: inline-block; background: #c8a96e20; border: 1px solid #c8a96e40; color: #c8a96e; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 24px; letter-spacing: 1px; text-transform: uppercase; }
+    .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+    .hero h1 span { color: #c8a96e; }
+    .hero p { font-size: 1.2rem; color: #aaa; max-width: 600px; margin: 0 auto 40px; line-height: 1.6; }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: #c8a96e; color: #1a1a2e; padding: 16px 36px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.2s; }
+    .btn-primary:hover { background: #d4b87e; transform: translateY(-2px); }
+    .btn-secondary { background: transparent; color: white; padding: 16px 36px; border: 2px solid #ffffff40; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.2s; }
+    .btn-secondary:hover { border-color: #c8a96e; color: #c8a96e; }
+
+    /* STATS */
+    .stats { background: #c8a96e; padding: 40px; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; }
+    .stat { text-align: center; color: #1a1a2e; }
+    .stat-num { font-size: 2.5rem; font-weight: 800; display: block; }
+    .stat-label { font-size: 0.9rem; opacity: 0.8; }
+
+    /* PROPERTIES */
+    .section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-tag { color: #c8a96e; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+    .section-header h2 { font-size: 2.5rem; font-weight: 800; margin-top: 8px; color: #1a1a2e; }
+    .properties { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 32px; }
+    .prop-card { border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s; }
+    .prop-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+    .prop-img { height: 220px; display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+    .prop-img.house { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .prop-img.apt { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    .prop-img.studio { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+    .prop-info { padding: 24px; }
+    .prop-price { font-size: 1.5rem; font-weight: 800; color: #c8a96e; }
+    .prop-name { font-size: 1.1rem; font-weight: 600; margin: 8px 0 4px; }
+    .prop-loc { color: #777; font-size: 0.9rem; margin-bottom: 16px; }
+    .prop-features { display: flex; gap: 16px; font-size: 0.85rem; color: #555; }
+    .prop-btn { display: block; text-align: center; background: #1a1a2e; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 16px; transition: background 0.2s; }
+    .prop-btn:hover { background: #2d2d4e; }
+
+    /* CONTACT */
+    .contact-section { background: #f8f6f0; padding: 80px 40px; text-align: center; }
+    .contact-section h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
+    .contact-section p { color: #666; font-size: 1.1rem; margin-bottom: 40px; }
+    .contact-form { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+    .contact-form input, .contact-form select { padding: 16px; border: 2px solid #e0d8c8; border-radius: 8px; font-size: 1rem; background: white; transition: border-color 0.2s; }
+    .contact-form input:focus, .contact-form select:focus { outline: none; border-color: #c8a96e; }
+    .contact-form button { background: #1a1a2e; color: white; padding: 16px; border: none; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s; }
+    .contact-form button:hover { background: #c8a96e; }
+
+    /* FOOTER */
+    footer { background: #1a1a2e; color: #aaa; text-align: center; padding: 40px; }
+    footer .footer-logo { color: white; font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
+    footer .footer-logo span { color: #c8a96e; }
+    .powered { margin-top: 24px; font-size: 0.8rem; }
+    .powered a { color: #c8a96e; text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .hero { padding: 120px 20px 60px; }
+      .stats { gap: 30px; padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Prime<span>Realty</span></div>
+  <ul>
+    <li><a href="#imoveis">Imóveis</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#contato">Contato</a></li>
+    <li><a href="#contato" class="nav-cta">Falar com Consultor</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Imóveis de Luxo & Alto Padrão</div>
+  <h1>Encontre o Imóvel<br><span>dos Seus Sonhos</span></h1>
+  <p>Mais de 500 propriedades exclusivas em São Paulo. Atendimento personalizado, consultores especializados.</p>
+  <div class="hero-btns">
+    <a href="#imoveis" class="btn-primary">Ver Imóveis Disponíveis</a>
+    <a href="#contato" class="btn-secondary">Agendar Visita</a>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Imóveis Disponíveis</span></div>
+  <div class="stat"><span class="stat-num">12 anos</span><span class="stat-label">No Mercado</span></div>
+  <div class="stat"><span class="stat-num">2.400+</span><span class="stat-label">Famílias Atendidas</span></div>
+  <div class="stat"><span class="stat-num">98%</span><span class="stat-label">Satisfação</span></div>
+</div>
+
+<div class="section" id="imoveis">
+  <div class="section-header">
+    <div class="section-tag">Destaques</div>
+    <h2>Imóveis em Evidência</h2>
+  </div>
+  <div class="properties">
+    <div class="prop-card">
+      <div class="prop-img house">🏡</div>
+      <div class="prop-info">
+        <div class="prop-price">R$ 2.800.000</div>
+        <div class="prop-name">Casa em Condomínio Fechado</div>
+        <div class="prop-loc">📍 Alphaville, SP</div>
+        <div class="prop-features">
+          <span>🛏 4 quartos</span>
+          <span>🚿 4 banheiros</span>
+          <span>🚗 3 vagas</span>
+        </div>
+        <a href="#contato" class="prop-btn">Ver Detalhes</a>
+      </div>
+    </div>
+    <div class="prop-card">
+      <div class="prop-img apt">🏢</div>
+      <div class="prop-info">
+        <div class="prop-price">R$ 1.450.000</div>
+        <div class="prop-name">Apartamento Alto Padrão</div>
+        <div class="prop-loc">📍 Jardins, São Paulo</div>
+        <div class="prop-features">
+          <span>🛏 3 quartos</span>
+          <span>🚿 2 banheiros</span>
+          <span>🚗 2 vagas</span>
+        </div>
+        <a href="#contato" class="prop-btn">Ver Detalhes</a>
+      </div>
+    </div>
+    <div class="prop-card">
+      <div class="prop-img studio">🏙</div>
+      <div class="prop-info">
+        <div class="prop-price">R$ 680.000</div>
+        <div class="prop-name">Studio Moderno</div>
+        <div class="prop-loc">📍 Vila Olímpia, São Paulo</div>
+        <div class="prop-features">
+          <span>🛏 1 quarto</span>
+          <span>🚿 1 banheiro</span>
+          <span>🚗 1 vaga</span>
+        </div>
+        <a href="#contato" class="prop-btn">Ver Detalhes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contact-section" id="contato">
+  <h2>Fale com um Consultor</h2>
+  <p>Encontre o imóvel ideal com nossa ajuda especializada. Retorno em até 2 horas.</p>
+  <form class="contact-form" onsubmit="return false">
+    <input type="text" placeholder="Seu nome completo" required>
+    <input type="tel" placeholder="WhatsApp (com DDD)" required>
+    <input type="email" placeholder="Seu e-mail" required>
+    <select>
+      <option value="">Tipo de imóvel</option>
+      <option>Casa</option>
+      <option>Apartamento</option>
+      <option>Studio</option>
+      <option>Cobertura</option>
+      <option>Terreno</option>
+    </select>
+    <button type="submit">Quero ser Atendido →</button>
+  </form>
+</div>
+
+<footer>
+  <div class="footer-logo">Prime<span>Realty</span></div>
+  <p>📍 Av. Paulista, 1000 - São Paulo, SP | 📞 (11) 9 9999-9999</p>
+  <div class="powered">Site criado por <a href="https://go.hubme.tech">HubMe AI</a> · Sites profissionais em 24h</div>
+</footer>
+
+</body>
+</html>

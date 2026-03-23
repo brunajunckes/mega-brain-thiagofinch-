@@ -8,7 +8,7 @@ export async function POST(request, { params }) {
     const r = await fetch(`${BACKEND}/api/projects/${id}/deep-revision`, {
       method: 'POST',
       headers: { 'Authorization': token || '', 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body: JSON.stringify({ ...body, project_id: id })
     });
     const text = await r.text();
     try {

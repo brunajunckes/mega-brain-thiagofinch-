@@ -22,3 +22,9 @@ GLOBAL_RULE_8=Log errors with logger.error before re-throwing with context
 # Quality Standards
 GLOBAL_RULE_9=All code must pass npm run lint, npm run typecheck, and npm test before completion
 GLOBAL_RULE_10=Zero external dependencies unless explicitly approved — prefer Node.js stdlib
+
+# Token Economy (PERMANENT)
+GLOBAL_RULE_11=Always minimize token usage without losing quality — prefer haiku/sonnet subagents, partial reads (limit/offset), parallel calls, and /compact
+GLOBAL_RULE_12=Never read a full file when a partial read suffices — always use limit/offset for files >100 lines
+GLOBAL_RULE_13=Delegate search/explore tasks to haiku subagents — never use opus/sonnet for file search or grep
+GLOBAL_RULE_14=Suggest /compact proactively after major tasks or when session exceeds ~80 messages

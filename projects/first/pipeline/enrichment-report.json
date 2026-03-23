@@ -1,0 +1,66 @@
+{
+  "created_at": "2026-03-23T02:14:07.798520+00:00",
+  "updated_at": "2026-03-23T02:14:46.345834+00:00",
+  "runs": [
+    {
+      "started_at": "2026-03-23T02:14:07.798566+00:00",
+      "leads_processed": 3,
+      "leads_enriched": 3,
+      "leads_skipped": 0,
+      "args": {
+        "max": 3,
+        "niche": null,
+        "pattern_only": true,
+        "verify_smtp": false,
+        "hunter_key_provided": false
+      },
+      "finished_at": "2026-03-23T02:14:07.806834+00:00"
+    },
+    {
+      "started_at": "2026-03-23T02:14:15.322039+00:00",
+      "leads_processed": 3,
+      "leads_enriched": 3,
+      "leads_skipped": 0,
+      "args": {
+        "max": 3,
+        "niche": null,
+        "pattern_only": true,
+        "verify_smtp": false,
+        "hunter_key_provided": false
+      },
+      "finished_at": "2026-03-23T02:14:15.331137+00:00"
+    },
+    {
+      "started_at": "2026-03-23T02:14:45.974766+00:00",
+      "leads_processed": 147,
+      "leads_enriched": 147,
+      "leads_skipped": 0,
+      "args": {
+        "max": null,
+        "niche": null,
+        "pattern_only": true,
+        "verify_smtp": false,
+        "hunter_key_provided": false
+      },
+      "finished_at": "2026-03-23T02:14:46.345763+00:00"
+    }
+  ],
+  "totals": {
+    "leads_total": 153,
+    "leads_enriched": 153,
+    "coverage_pct": 100.0,
+    "by_source": {
+      "pattern_guess": 153
+    },
+    "by_confidence": {
+      "low": 153
+    },
+    "by_niche": {
+      "roofing": 30,
+      "dental": 33,
+      "construction": 30,
+      "HVAC": 30,
+      "law firm": 30
+    }
+  }
+}

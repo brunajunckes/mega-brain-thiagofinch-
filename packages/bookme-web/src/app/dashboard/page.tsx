@@ -29,6 +29,7 @@ export default function DashboardPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<{email?: string} | null>(null);
+  const [generating, setGenerating] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
@@ -52,6 +53,30 @@ export default function DashboardPage() {
     const token = localStorage.getItem('access_token');
     await fetch(`/api/projects/${id}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
     setProjects(prev => prev.filter(p => p.id !== id));
+  };
+
+  const handleGenerateAll = async (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (generating[id]) return;
+    setGenerating(prev => ({ ...prev, [id]: true }));
+    try {
+      const token = localStorage.getItem('access_token');
+      const r = await fetch(`/api/projects/${id}/generate-all`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ project_id: id, parallel: true })
+      });
+      const data = await r.json();
+      if (r.ok) {
+        alert(`✅ ${data.chapters_generated} capítulos gerados! (${data.total_words} palavras)`);
+        fetchProjects(token!);
+      } else {
+        alert(`❌ Erro: ${data.error || 'Falha na geração'}`);
+      }
+    } catch {
+      alert('❌ Erro de conexão');
+    }
+    setGenerating(prev => ({ ...prev, [id]: false }));
   };
 
   const logout = () => {
@@ -121,6 +146,7 @@ export default function DashboardPage() {
                   <span style={{color:'#666',fontSize:13}}>{p.word_count.toLocaleString()} words</span>
                   <div style={{display:'flex',gap:8}}>
                     <button onClick={e=>{e.stopPropagation();router.push(`/editor?id=${p.id}`)}} style={{padding:'6px 14px',background:'#1e3a5f',color:'#60a5fa',borderRadius:6,fontSize:12,fontWeight:600}}>Edit</button>
+                    <button onClick={e=>handleGenerateAll(p.id, e)} disabled={!!generating[p.id]} style={{padding:'6px 14px',background:generating[p.id]?'#333':'#14532d',color:generating[p.id]?'#666':'#86efac',borderRadius:6,fontSize:12,fontWeight:600,cursor:generating[p.id]?'not-allowed':'pointer'}}>{generating[p.id]?'Gerando...':'⟳ Regenerar'}</button>
                     <button onClick={e=>{e.stopPropagation();handleDelete(p.id)}} style={{padding:'6px 14px',background:'#3f1d1d',color:'#fca5a5',borderRadius:6,fontSize:12,fontWeight:600}}>Delete</button>
                   </div>
                 </div>

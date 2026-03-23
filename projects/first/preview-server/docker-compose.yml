@@ -1,0 +1,15 @@
+services:
+  preview-server:
+    build: .
+    container_name: hubme-preview
+    ports:
+      - "3012:3012"
+    volumes:
+      - ../previews:/previews:ro
+    environment:
+      - PREVIEWS_DIR=/previews
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 128M

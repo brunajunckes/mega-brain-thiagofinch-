@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <defs>
+    <linearGradient id="hub-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22D3EE"/>
+      <stop offset="100%" stop-color="#0891B2"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#22D3EE" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft-glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Mark: Hub icon (central node + 6 connections) -->
+  <!-- Outer ring nodes -->
+  <circle cx="40" cy="18" r="3.5" fill="#22D3EE" opacity="0.5"/>
+  <circle cx="58" cy="18" r="3.5" fill="#22D3EE" opacity="0.5"/>
+  <circle cx="67" cy="40" r="3.5" fill="#22D3EE" opacity="0.5"/>
+  <circle cx="58" cy="62" r="3.5" fill="#22D3EE" opacity="0.5"/>
+  <circle cx="40" cy="62" r="3.5" fill="#22D3EE" opacity="0.5"/>
+  <circle cx="31" cy="40" r="3.5" fill="#22D3EE" opacity="0.5"/>
+
+  <!-- Connection lines to center -->
+  <line x1="40" y1="18" x2="49" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+  <line x1="58" y1="18" x2="49" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+  <line x1="67" y1="40" x2="49" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+  <line x1="58" y1="62" x2="49" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+  <line x1="40" y1="62" x2="49" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+  <line x1="31" y1="40" x2="49" y2="40" stroke="#22D3EE" stroke-width="1" opacity="0.25"/>
+
+  <!-- Hexagon outline -->
+  <polygon points="49,9 64,18 64,62 49,71 34,62 34,18" fill="none" stroke="#22D3EE" stroke-width="1" stroke-opacity="0.15"/>
+
+  <!-- Central node glow -->
+  <circle cx="49" cy="40" r="10" fill="url(#glow)"/>
+  <!-- Central node -->
+  <circle cx="49" cy="40" r="6" fill="url(#hub-gradient)" filter="url(#soft-glow)"/>
+  <!-- Inner dot -->
+  <circle cx="49" cy="40" r="2.5" fill="#F0FDFF"/>
+
+  <!-- Wordmark -->
+  <!-- "hubme" -->
+  <text x="88" y="48" font-family="'Geist', 'Inter', system-ui, sans-serif" font-weight="700" font-size="28" letter-spacing="-0.5" fill="#F4F4F4">hubme</text>
+  <!-- ".ai" accent -->
+  <text x="218" y="48" font-family="'Geist', 'Inter', system-ui, sans-serif" font-weight="400" font-size="28" letter-spacing="-0.5" fill="#22D3EE">.ai</text>
+</svg>

@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+export const dynamic = 'force-dynamic';
+
 const services = [
   {
     icon: '🤖',
