@@ -8,9 +8,9 @@
 # - File types for categorization
 #
 version: 5.0.3
-generated_at: "2026-03-22T15:48:32.136Z"
+generated_at: "2026-03-23T02:42:07.826Z"
 generator: scripts/generate-install-manifest.js
-file_count: 1176
+file_count: 1669
 files:
   - path: cli/commands/analyze.js
     hash: sha256:8ac961416f6f9654164d33a5ded534bdc568463cca58f238a4a30868a9ebae9c
@@ -1601,13 +1601,13 @@ files:
     type: core
     size: 13729
   - path: core/synapse/context/context-builder.js
-    hash: sha256:121cd0a1df8a44098831cd4335536e8facf4e65b8aec48f4ce9c2d432dc6252a
+    hash: sha256:35bddefbc966a0ece4fdc7bfa2fc57cd5db99a37c5b5002a50ee81483dcedcae
     type: core
-    size: 1013
+    size: 1057
   - path: core/synapse/context/context-tracker.js
-    hash: sha256:48e94db7b1778dedecc8eae829139579ad7778ff47668597ebe766610696553f
+    hash: sha256:1e056fcba0e60bff7e7bd075fe458e3f197860f5880964023c55fe39b7823254
     type: core
-    size: 5839
+    size: 5844
   - path: core/synapse/diagnostics/collectors/consistency-collector.js
     hash: sha256:65f4255f87c9900400649dc8b9aedaac4851b5939d93e127778bd93cee99db12
     type: core
@@ -1629,9 +1629,9 @@ files:
     type: core
     size: 2198
   - path: core/synapse/diagnostics/collectors/quality-collector.js
-    hash: sha256:30ae299eab6d569d09afe3530a5b2f1ff35ef75366a1ab56a9e2a57d39d3611c
+    hash: sha256:eca8bb16ffac88b2b16a8a6ac10163c740f90027076491bf705ab818976c6773
     type: core
-    size: 8583
+    size: 8557
   - path: core/synapse/diagnostics/collectors/relevance-matrix.js
     hash: sha256:f92c4f7061dc82eed4310a27b69eade33d3015f9beb1bed688601a2dccbad22e
     type: core
@@ -1661,21 +1661,21 @@ files:
     type: core
     size: 3812
   - path: core/synapse/domain/domain-loader.js
-    hash: sha256:af788f9da956b89eef1e5eb4ef4efdf05ca758c8969a2c375f568119495ebc05
+    hash: sha256:a678de79a4d9a00e249e4b5cd5372bd91abc784da4ce8adaa8bbb514a16a4633
     type: core
-    size: 8122
+    size: 9410
   - path: core/synapse/engine.js
-    hash: sha256:47bab93a2144edce875ee68cc2717fee1bd824c9affdd5964454f5141310b8e0
+    hash: sha256:8752c6cee1caa1327e30319209d20b59b661d6068a73d04edf89e7e8777aa511
     type: core
-    size: 13602
+    size: 13660
   - path: core/synapse/layers/l0-constitution.js
     hash: sha256:2123a6a44915aaac2a6bbd26c67c285c9d1e12b50fe42a8ada668306b07d1c4a
     type: core
     size: 2383
   - path: core/synapse/layers/l1-global.js
-    hash: sha256:21f6969e6d64e9a85c876be6799db4ca7d090f0009057f4a06ead8da12392d45
+    hash: sha256:cc2eb07253029376187c3ada86c095effe3eac8e8b13d408da3ebf3dcd146c91
     type: core
-    size: 3131
+    size: 3295
   - path: core/synapse/layers/l2-agent.js
     hash: sha256:a8677dc58ae7927c5292a4b52883bbc905c8112573b8b8631f0b8bc01ea2b6e6
     type: core
@@ -1713,9 +1713,9 @@ files:
     type: core
     size: 5532
   - path: core/synapse/output/formatter.js
-    hash: sha256:fe4f6c2f6091defb6af66dad71db0640f919b983111087f8cc5821e3d44ca864
+    hash: sha256:b4d4394d0134f241676e2017a0b99c30e6a34cfbf9626d2196f67232fd24059f
     type: core
-    size: 16418
+    size: 16548
   - path: core/synapse/runtime/hook-runtime.js
     hash: sha256:c1422bda2983600f1e175fbe4a6e2b0d87c73122b06b17c31fe09edd0135199a
     type: core
@@ -1840,14 +1840,34 @@ files:
     hash: sha256:5176849c01d90e5867f18962e03ff10a10628f40c30fe5c8cb65209f833c0884
     type: data
     size: 9575
-<<<<<<< HEAD
   - path: data/constitution.md
     hash: sha256:ba597ca7b104653769e0d1467dddf2ac0a0c5d6a398372e6283e1da8bd31621d
-=======
-  - path: data/entity-registry.yaml
-    hash: sha256:2faa53bcaf0264fbac5b5c92d171ef13fd5b68c9f37d9f01c1372501284cd5c0
     type: data
-    size: 554197
+    size: 5161
+  - path: data/core-config.yaml
+    hash: sha256:82a36027f0997e8cb888862b1d7962dd2d1c27b3fd841a761978189895c9f4cf
+    type: data
+    size: 11090
+  - path: data/csharp.md
+    hash: sha256:4667d33407c59fd6c7b4558370893a14df6d461645fc840b2df2fb7508bd6fcf
+    type: data
+    size: 10851
+  - path: data/decision-heuristics-framework.md
+    hash: sha256:a84b23641dcc89228c7ebd3e11f371f4321f5fd4cc93a446e2a0117d978f7bc2
+    type: data
+    size: 16853
+  - path: data/entity-registry.yaml
+    hash: sha256:edc0db4de060d78a681f1d945acbfd8b19efecf89df4b95f0f8ae4412f4ce3a2
+    type: data
+    size: 554160
+  - path: data/go.md
+    hash: sha256:e0851caecbdc2cea6531359fe640427685cd6ed664dbf991ccb135917c4d1ec2
+    type: data
+    size: 11080
+  - path: data/java.md
+    hash: sha256:b912e04412f63b59439f7cca119802bed95a6cb756221e3ba7aee45c3d2890fd
+    type: data
+    size: 11492
   - path: data/learned-patterns.yaml
     hash: sha256:24ac0b160615583a0ff783d3da8af80b7f94191575d6db2054ec8e10a3f945dc
     type: data
@@ -2020,6 +2040,10 @@ files:
     hash: sha256:aea4b5a6065732ddac548f341cd5e0b5635e99443816a3ec55a59482db3bd393
     type: agent
     size: 15907
+  - path: development/agents/brand-reverse-mapper.md
+    hash: sha256:31934a83b1ff84a5d7480ca33ebdcffa46d4646430812ae1e72d516faabae393
+    type: agent
+    size: 13223
   - path: development/agents/business/frontend-lead.md
     hash: sha256:e3e6a742eb45b1ce842c42b0c85d7a6f98b8e3480a600281f21596b84d640f12
     type: agent
@@ -2064,6 +2088,770 @@ files:
     hash: sha256:eb2ee887047c94db3441126cd0198cac44cec779026d7842a3a1c7eba936027f
     type: agent
     size: 1398
+  - path: development/agents/mega-brain-context.md
+    hash: sha256:07beb08fe4c8cd5c77392e4b3037f37ced815063f12264a4d760bdab847b4782
+    type: agent
+    size: 5815
+  - path: development/agents/mega-brain/_templates/INDEX.md
+    hash: sha256:6d38d27a72f96e5f73f4b5783e7f1314b9482e3fbd4e4fefae56f02d4c5bc568
+    type: agent
+    size: 78497
+  - path: development/agents/mega-brain/_templates/TEMPLATE-AGENT-MD-ULTRA-ROBUSTO-V3.md
+    hash: sha256:adff821d24dd446a8546d9fe98fabf21da394223d926172952a791d1fe8bfd24
+    type: agent
+    size: 256217
+  - path: development/agents/mega-brain/AGENT-INDEX.yaml
+    hash: sha256:13ec5edc800ccbde87f7a7f8510b0b9fe5b1e2386d2d4cc0b7c59d988e2f8058
+    type: agent
+    size: 2917
+  - path: development/agents/mega-brain/boardroom/CHECKLIST-MASTER.md
+    hash: sha256:526db1580a7eb1a651443e5fb0dfc57cd9d86ca8b835da19eb9e529728da5a44
+    type: agent
+    size: 6965
+  - path: development/agents/mega-brain/boardroom/config/BOARDROOM-CONFIG.md
+    hash: sha256:50d117a90a6e0e878891f71703ea5bb9ea6af2daa9a041a029ed6fc01a131614
+    type: agent
+    size: 5528
+  - path: development/agents/mega-brain/boardroom/config/TTS-INTEGRATION.md
+    hash: sha256:8a3bf6ec91a96abc550421c0c2ce33f3ebb116cabd59628799bd98365d76b5fc
+    type: agent
+    size: 6028
+  - path: development/agents/mega-brain/boardroom/config/VOICE-PROFILES.md
+    hash: sha256:bf070995122d8e874fd27a4b383f0555427214acc0f2d473b3e48f1eda306938
+    type: agent
+    size: 15068
+  - path: development/agents/mega-brain/boardroom/INTEGRATION-GUIDE.md
+    hash: sha256:987a3baa6613a013e21352511a09e7153622641ece5373d6d58dbfe63293332b
+    type: agent
+    size: 11633
+  - path: development/agents/mega-brain/boardroom/README.md
+    hash: sha256:b85da124343e9c77c649ca4f97ad600686cb541a34891f34039d8ad2db41e9a7
+    type: agent
+    size: 7714
+  - path: development/agents/mega-brain/boardroom/scripts/audio_generator_edge.py
+    hash: sha256:084b4605898c8631efbab545e678d67c4f694be2702589c97dd1ca3a13fe36a1
+    type: agent
+    size: 12750
+  - path: development/agents/mega-brain/boardroom/scripts/audio_generator.py
+    hash: sha256:994cc45bc4298d677a22527cc716b68327537d7bfd0b32995e24fe3f58f12b32
+    type: agent
+    size: 14110
+  - path: development/agents/mega-brain/boardroom/scripts/jarvis_boardroom_hook.py
+    hash: sha256:0bb96c7ef4abb14635c284d1d611d39f60b8ad224266f9e138405d6538056079
+    type: agent
+    size: 14708
+  - path: development/agents/mega-brain/boardroom/scripts/notebooklm_generator.py
+    hash: sha256:20668b358b5ab3e68b4a1a823b179fa3712b16cf5fad0fa57c843d9473072db1
+    type: agent
+    size: 20707
+  - path: development/agents/mega-brain/boardroom/templates/EPISODE-TEMPLATE.md
+    hash: sha256:cd9df34e6135ee7e6a565d04737836c57a28b478a461028d0a09bd364d9eb3c7
+    type: agent
+    size: 10403
+  - path: development/agents/mega-brain/boardroom/templates/scene-templates/SCENE-AGENT-DEBATE.md
+    hash: sha256:059a5bed1bfe590e94664cf14c4d66480913ef549e8cd56d78432228a9570bce
+    type: agent
+    size: 5602
+  - path: development/agents/mega-brain/boardroom/templates/scene-templates/SCENE-COUNCIL.md
+    hash: sha256:1328697dcdb87960aa15d69c7923e658d0523f5a6d032a0396228edc5c2fa63f
+    type: agent
+    size: 6206
+  - path: development/agents/mega-brain/boardroom/templates/scene-templates/SCENE-DNA-CONSULTATION.md
+    hash: sha256:28549fd7a5c3b0f00fe7100e81c84d1dfc6a561bf6a80dfaad64dd6841174ace
+    type: agent
+    size: 2919
+  - path: development/agents/mega-brain/boardroom/templates/scene-templates/SCENE-QUESTION.md
+    hash: sha256:664f56b6daebb98eae188a3936541dddf4e5750198438f5b8398d57c7f17e35b
+    type: agent
+    size: 3504
+  - path: development/agents/mega-brain/boardroom/workflows/WORKFLOW-AUDIO-GENERATION.md
+    hash: sha256:3a4c76629533bdbb2d6a0fc4dff51a00bc2978afefd6f296dd319d49caa4fbc0
+    type: agent
+    size: 12219
+  - path: development/agents/mega-brain/cargo/c-level/cfo/AGENT.md
+    hash: sha256:63ba76d327fcc98ba10438bb65b2ac53e263eef1e8efc3761705dc102247d1eb
+    type: agent
+    size: 196918
+  - path: development/agents/mega-brain/cargo/c-level/cfo/DNA-CONFIG.yaml
+    hash: sha256:aa8807cbedf8eabfbcd228768fdf4c5218b0b2d599ef7bf6666a56f7c4d90853
+    type: agent
+    size: 6408
+  - path: development/agents/mega-brain/cargo/c-level/cfo/MEMORY.md
+    hash: sha256:6ebc1e9c32ab833abed597da25f2de1f8e48b372d9cef4bd7eeeaa9fa94e8059
+    type: agent
+    size: 52319
+  - path: development/agents/mega-brain/cargo/c-level/cfo/SOUL.md
+    hash: sha256:440d025a25f21c9738f1f382894fdeca02bc2aa160e53374d5f8ede7c343b3f8
+    type: agent
+    size: 11172
+  - path: development/agents/mega-brain/cargo/c-level/cmo/AGENT.md
+    hash: sha256:3fefc2d0afc2aed06f1f8d66c645343ca5875f710a950c9c2b1b9e02da0b68a1
+    type: agent
+    size: 182924
+  - path: development/agents/mega-brain/cargo/c-level/cmo/DNA-CONFIG.yaml
+    hash: sha256:f0928ac730fdd3a4afe098db58b186d3cee202e0f3e231e499f050074ef3285b
+    type: agent
+    size: 18164
+  - path: development/agents/mega-brain/cargo/c-level/cmo/MEMORY.md
+    hash: sha256:91722b4e060ffd7690351a51b1d2ed95fb603deb072f6b7f51c0e90327bfa27a
+    type: agent
+    size: 61329
+  - path: development/agents/mega-brain/cargo/c-level/cmo/SOUL.md
+    hash: sha256:5dca15741515294ddf51451d2654741214e4a6c410b179aa63a10edb6076a90c
+    type: agent
+    size: 11347
+  - path: development/agents/mega-brain/cargo/c-level/coo/AGENT.md
+    hash: sha256:6c5bea268f33a004acb91031bd135aa0a7e0b1f246c9c7629c871db224f0decb
+    type: agent
+    size: 193957
+  - path: development/agents/mega-brain/cargo/c-level/coo/DNA-CONFIG.yaml
+    hash: sha256:ae9445e2b480930d039a883bd18bc01d9efc34a0a2a6572ea3c6a5e8b850b91c
+    type: agent
+    size: 28891
+  - path: development/agents/mega-brain/cargo/c-level/coo/MEMORY.md
+    hash: sha256:f7b446952fdcfb8d385ab418e894d138f8c6b7d06cec4b3840b0a7f420c6262e
+    type: agent
+    size: 136317
+  - path: development/agents/mega-brain/cargo/c-level/coo/SOUL.md
+    hash: sha256:b5fe95d440a583047ff715b7e1a6d96504463764e76916d006c88cf84ce3a1a4
+    type: agent
+    size: 13166
+  - path: development/agents/mega-brain/cargo/c-level/cro/AGENT.md
+    hash: sha256:534f6402312bc641afe967a9b6ed8d70f5fc8c0b8df9788a3400d3ff4e9b0455
+    type: agent
+    size: 100724
+  - path: development/agents/mega-brain/cargo/c-level/cro/DNA-CONFIG.yaml
+    hash: sha256:aa588e4a5661f62c872bda52f40af272d28c90ed5df866d9f94525e27da9499b
+    type: agent
+    size: 14160
+  - path: development/agents/mega-brain/cargo/c-level/cro/MEMORY.md
+    hash: sha256:79066591984fc6852690e04e831377d928ed68fada66504270ca026a1075e074
+    type: agent
+    size: 33054
+  - path: development/agents/mega-brain/cargo/c-level/cro/SOUL.md
+    hash: sha256:d2ecd2532ea8e02b5fb9416b5f9f412db93ffdb77052cae1299cd00da65cef90
+    type: agent
+    size: 12082
+  - path: development/agents/mega-brain/cargo/content/content-creator/SOW.json
+    hash: sha256:73ba657745ae7ac0e2fdb4509e7f77e0acb54fd4de194ecaed8fb32e02253671
+    type: agent
+    size: 1735
+  - path: development/agents/mega-brain/cargo/content/content-creator/SOW.md
+    hash: sha256:397f6e46e2efe069b149a6b2b6480fe395a461eba47a92e146da774ccf0e27f4
+    type: agent
+    size: 1423
+  - path: development/agents/mega-brain/cargo/design/designer/SOW.json
+    hash: sha256:690755bb917b671307e20534644c2ace5236e4d1307db8e647bffe2f0c393504
+    type: agent
+    size: 1674
+  - path: development/agents/mega-brain/cargo/design/designer/SOW.md
+    hash: sha256:09143f035b9a0c21f1269675ae2fb44f4fd22f503783875e236950f5f72f0bf8
+    type: agent
+    size: 1387
+  - path: development/agents/mega-brain/cargo/general/paid-media-specialist/SOW.json
+    hash: sha256:a408f04316bb690b4b45ab365e27a02dc8860f5454b385b977be5d4088bec35c
+    type: agent
+    size: 1540
+  - path: development/agents/mega-brain/cargo/general/paid-media-specialist/SOW.md
+    hash: sha256:d46074a510856ea135c63008f56bc3bdad20023b75f22cbd26fc31c15520175b
+    type: agent
+    size: 1305
+  - path: development/agents/mega-brain/cargo/general/sdr/SOW.json
+    hash: sha256:114d72ecdd72e814c1e915d2434a0c122cd3493a1e213896486dc8e6fffef223
+    type: agent
+    size: 1549
+  - path: development/agents/mega-brain/cargo/general/sdr/SOW.md
+    hash: sha256:215dbb19a75eaea821cf92184b61f23cdbf1c8b92d243381e108392f35f57ed0
+    type: agent
+    size: 1308
+  - path: development/agents/mega-brain/cargo/growth/media-buyer/SOW.json
+    hash: sha256:272a09701a65b8cafa67b4a2148fa60c0352b57eea33b77340dd852cb8e11077
+    type: agent
+    size: 1889
+  - path: development/agents/mega-brain/cargo/growth/media-buyer/SOW.md
+    hash: sha256:ea8dd65aa750bc80ae5f0486ae4a7aa926d5dadac97cdcaac18490cbcefc4706
+    type: agent
+    size: 1522
+  - path: development/agents/mega-brain/cargo/hr/hr-director/SOW.json
+    hash: sha256:8b9f8d22004d54247f7db6ff99e95341048215f83541ede73e3cdb4dd034af6a
+    type: agent
+    size: 1800
+  - path: development/agents/mega-brain/cargo/hr/hr-director/SOW.md
+    hash: sha256:5171dfdfb0b9dda541a2ad192c3d30124a1861e0a01908a02199db5a4d32e470
+    type: agent
+    size: 1412
+  - path: development/agents/mega-brain/cargo/marketing/cmo/SOW.json
+    hash: sha256:4e1ba9530b47fd26fc3908b728773f1a9c4d256eb9e0e67aa8b91b34111a0a66
+    type: agent
+    size: 1468
+  - path: development/agents/mega-brain/cargo/marketing/cmo/SOW.md
+    hash: sha256:efde23bca1ea4bdb123b16bfcd28be3a83a6220eb7b0cbbcbd1e7a0fbb564705
+    type: agent
+    size: 1241
+  - path: development/agents/mega-brain/cargo/marketing/funnel-strategist/SOW.json
+    hash: sha256:fc9c4f89e0dd2e86af6dd82ea0f251221390fee0474a9a3fb4b0fff3531ac028
+    type: agent
+    size: 1911
+  - path: development/agents/mega-brain/cargo/marketing/funnel-strategist/SOW.md
+    hash: sha256:35131be60e6ce3e8f6dac4b8dc0c55e909faef01f93f3810a9568a6dd3fe78a2
+    type: agent
+    size: 1552
+  - path: development/agents/mega-brain/cargo/marketing/marketer/SOW.json
+    hash: sha256:c3ab40a8c2fd49cea025f5fc31a340cee909c7b8109181527a89e58332828009
+    type: agent
+    size: 1852
+  - path: development/agents/mega-brain/cargo/marketing/marketer/SOW.md
+    hash: sha256:9af880d4c3a17926c3d3962a49115d4032c5b36d7e8fb6559d747b6dc39e3e2c
+    type: agent
+    size: 1419
+  - path: development/agents/mega-brain/cargo/marketing/paid-media-specialist/AGENT.md
+    hash: sha256:b62014c96ae13cc782a638a7d05fc6d0f2e147d58771953e9fdbadedbd120585
+    type: agent
+    size: 73813
+  - path: development/agents/mega-brain/cargo/marketing/paid-media-specialist/DNA-CONFIG.yaml
+    hash: sha256:1ada883a133d1ec772b161794c64b063fd116d7b72bd2344220f36d4c285d626
+    type: agent
+    size: 18533
+  - path: development/agents/mega-brain/cargo/marketing/paid-media-specialist/MEMORY.md
+    hash: sha256:c8670aa9d379e6456bdafe1dc0a54d778f3f703c57bcae8d27681ff5f4615267
+    type: agent
+    size: 134213
+  - path: development/agents/mega-brain/cargo/marketing/paid-media-specialist/SOUL.md
+    hash: sha256:2da13a7397fbadf63087328c2616a59c0751b989c7a8dacbc611ddef1ebc8361
+    type: agent
+    size: 17188
+  - path: development/agents/mega-brain/cargo/operations/cfo/SOW.json
+    hash: sha256:3e4f94199396e47b228ddc227c54afb31f55a2b35dec3daeb3e7525a8b5f5588
+    type: agent
+    size: 1645
+  - path: development/agents/mega-brain/cargo/operations/cfo/SOW.md
+    hash: sha256:dc1a4041aae2885f8c28a2e3c8fe1c276aff426b973d24eff1eb310cd0b4cd94
+    type: agent
+    size: 1356
+  - path: development/agents/mega-brain/cargo/operations/coo/SOW.json
+    hash: sha256:e8baa155429ebb756b17b698cab5596e5145fcbb00960c87b86f25ceb753b648
+    type: agent
+    size: 1635
+  - path: development/agents/mega-brain/cargo/operations/coo/SOW.md
+    hash: sha256:2fe8fab7cb20919b25b240df7c8863563c41b368222f08d3e8600f798ed436eb
+    type: agent
+    size: 1356
+  - path: development/agents/mega-brain/cargo/operations/sales-coordinator/SOW.json
+    hash: sha256:73fc29f18a489ca4fee1d3f2d621a2d21f26862172f87e0fcb4729290398fbe2
+    type: agent
+    size: 1788
+  - path: development/agents/mega-brain/cargo/operations/sales-coordinator/SOW.md
+    hash: sha256:a1deb0bafe003269d08225385e24a887bea3f65cf1ad4c522d627e1a88ffa83c
+    type: agent
+    size: 1478
+  - path: development/agents/mega-brain/cargo/README.md
+    hash: sha256:0e755a150ae37ed23a4f3ee55a971bbdbb7c742e42b22ead773e30d8cce9f780
+    type: agent
+    size: 852
+  - path: development/agents/mega-brain/cargo/sales/bdr/AGENT.md
+    hash: sha256:96871a9742e6b38d21af9e00ea6f4ddc4fa66d26848d797e0752b636f413708d
+    type: agent
+    size: 96835
+  - path: development/agents/mega-brain/cargo/sales/bdr/DNA-CONFIG.yaml
+    hash: sha256:f235b357b67c00462a82d72be1c6e53c8e2b79892f5025732cdbe39a17382a10
+    type: agent
+    size: 20353
+  - path: development/agents/mega-brain/cargo/sales/bdr/MEMORY.md
+    hash: sha256:82d848f8cc501430ebe5df7c847577cdfe7580e862434b7a35f293097ed8a292
+    type: agent
+    size: 189285
+  - path: development/agents/mega-brain/cargo/sales/bdr/SOUL.md
+    hash: sha256:ddc284b1f14327d8221befd38a9e397107f46c4df7c9118e9b854371364f8a43
+    type: agent
+    size: 19905
+  - path: development/agents/mega-brain/cargo/sales/bdr/SOW.json
+    hash: sha256:97768ca87628bafb0d766212a2ab74400a8b8b2f53a31f0aef842e64317c38dc
+    type: agent
+    size: 1933
+  - path: development/agents/mega-brain/cargo/sales/bdr/SOW.md
+    hash: sha256:e6a787e04c1766d6c26d45d64ba7ed8e5de45feffc1aa7d004f8714c7d1b9d3b
+    type: agent
+    size: 1543
+  - path: development/agents/mega-brain/cargo/sales/closer/AGENT.md
+    hash: sha256:42b2f4dea90b98a17449972a1f9a4692fd8fc8cb1464dbb8ea4ef5be8b3e6bbd
+    type: agent
+    size: 97907
+  - path: development/agents/mega-brain/cargo/sales/closer/DNA-CONFIG.yaml
+    hash: sha256:40b1c6131dd2a832edbd687140fd69f5a63d2125931c888a25c5278e74a0d5df
+    type: agent
+    size: 24450
+  - path: development/agents/mega-brain/cargo/sales/closer/MEMORY.md
+    hash: sha256:f6f42f1aa1bc3004c6d591488bd1cb5ed0e29b3757424f7c983aa31b50942ac1
+    type: agent
+    size: 542526
+  - path: development/agents/mega-brain/cargo/sales/closer/SOUL.md
+    hash: sha256:07edb6123f986c0643c30e82e9e9237bd5b7b14668233d96c7e5d9bd689094ad
+    type: agent
+    size: 17159
+  - path: development/agents/mega-brain/cargo/sales/closer/SOW.json
+    hash: sha256:29c8e5411889ce80c1200422cc49e5d31ca635e29979f93d06e5acd2e3edc8f3
+    type: agent
+    size: 1933
+  - path: development/agents/mega-brain/cargo/sales/closer/SOW.md
+    hash: sha256:3c9b487d667934fa1f0407cfc01a0f133e79664634c956e9af785dbaa20500a7
+    type: agent
+    size: 1475
+  - path: development/agents/mega-brain/cargo/sales/cro/SOW.json
+    hash: sha256:92cc6c6c30dd6c7ad889ce8efcc0007d43819549a9391f2a0238e318e5bc221d
+    type: agent
+    size: 1731
+  - path: development/agents/mega-brain/cargo/sales/cro/SOW.md
+    hash: sha256:9550858b48d12e0f0105f5de2ea582a65957ff093d8d07c02aa8032ffd775dff
+    type: agent
+    size: 1413
+  - path: development/agents/mega-brain/cargo/sales/customer-success/AGENT.md
+    hash: sha256:9b252bed83bf08a57ea347abed4899378dd1c223725751af7f20042e3512da29
+    type: agent
+    size: 127821
+  - path: development/agents/mega-brain/cargo/sales/customer-success/DNA-CONFIG.yaml
+    hash: sha256:5c8332e615389c864ebd578d59a7401d4b40831b2a6045252a2172e28f1f45c7
+    type: agent
+    size: 9937
+  - path: development/agents/mega-brain/cargo/sales/customer-success/MEMORY.md
+    hash: sha256:30e49f22bdc6c0e95a32041407b8f32f45e29e6a77cb592413f89c2cd03c004c
+    type: agent
+    size: 35462
+  - path: development/agents/mega-brain/cargo/sales/customer-success/SOUL.md
+    hash: sha256:05b1a8b0bac286845802ed2cc14cae258a4e06d8bd61bfcb5e1756d362d706ef
+    type: agent
+    size: 15066
+  - path: development/agents/mega-brain/cargo/sales/customer-success/SOW.json
+    hash: sha256:1593d004452d7969bdd3638b436d3ba8185db7aca3a0b1e2db5840d43e6ef8cf
+    type: agent
+    size: 1816
+  - path: development/agents/mega-brain/cargo/sales/customer-success/SOW.md
+    hash: sha256:734f797403362a8598973ebee6cd9653e9755b9b37021bb82f91e15ab8aba114
+    type: agent
+    size: 1421
+  - path: development/agents/mega-brain/cargo/sales/lns/AGENT.md
+    hash: sha256:3f5898fb1a2c698cf3eeda79f0a52690ec43819242ed80dc796a23964392d21e
+    type: agent
+    size: 103248
+  - path: development/agents/mega-brain/cargo/sales/lns/DNA-CONFIG.yaml
+    hash: sha256:e1f3537b724d16f5e057d5073acb231a0768c722a59a7254c04d4392c160aba7
+    type: agent
+    size: 10712
+  - path: development/agents/mega-brain/cargo/sales/lns/MEMORY.md
+    hash: sha256:8afb3a8526d6a711d14a22b35e3fa2dfd6d70acc55b1e4d4d7287f5f1880fb92
+    type: agent
+    size: 84964
+  - path: development/agents/mega-brain/cargo/sales/lns/SOUL.md
+    hash: sha256:8d71395f98b3044f33095cc6835bec486c299f7ba1ce3280da598729d81f9372
+    type: agent
+    size: 11854
+  - path: development/agents/mega-brain/cargo/sales/lns/SOW.json
+    hash: sha256:b672b69f59b1b9508e715dc215db54cc4e3db8b03bc7c9fb7ecfed8d6580b37e
+    type: agent
+    size: 1706
+  - path: development/agents/mega-brain/cargo/sales/lns/SOW.md
+    hash: sha256:82c519e42241b97cd38ca72ea054a6ba15a9ef458cc2025316ca950e7fbf3437
+    type: agent
+    size: 1383
+  - path: development/agents/mega-brain/cargo/sales/nepq-specialist/AGENT.md
+    hash: sha256:6662d8a519fd6928a8900629e8243826e263cd549b7b57807e21c1520a88aebe
+    type: agent
+    size: 95051
+  - path: development/agents/mega-brain/cargo/sales/nepq-specialist/DNA-CONFIG.yaml
+    hash: sha256:20707104163c486ee02300a3dacdcbe5531f503e5e195cd5f9c2aea621cd2c1e
+    type: agent
+    size: 16219
+  - path: development/agents/mega-brain/cargo/sales/nepq-specialist/MEMORY.md
+    hash: sha256:451bfb060676a88aae72e26b77882373ba753cc54c2a60a75cb79d208150b6fe
+    type: agent
+    size: 265542
+  - path: development/agents/mega-brain/cargo/sales/nepq-specialist/SOUL.md
+    hash: sha256:5e11fed07572a1132b75fb823f3fa63e934c7a95933c57504452227288beac2d
+    type: agent
+    size: 13580
+  - path: development/agents/mega-brain/cargo/sales/sales-coordinator/AGENT.md
+    hash: sha256:412e0451cd437b93ff9fac135af170397a285035a6ea2b434fb93ae843d28645
+    type: agent
+    size: 104715
+  - path: development/agents/mega-brain/cargo/sales/sales-coordinator/DNA-CONFIG.yaml
+    hash: sha256:00e3ad5df37eb1b3f2b8ae0e9b251e9babcf38a1477ba6554d385fc3d45e5e28
+    type: agent
+    size: 7921
+  - path: development/agents/mega-brain/cargo/sales/sales-coordinator/MEMORY.md
+    hash: sha256:136f088631a8634782b129f31eec420f70be0ff96851564a0637331d3bfc7349
+    type: agent
+    size: 38461
+  - path: development/agents/mega-brain/cargo/sales/sales-coordinator/SOUL.md
+    hash: sha256:68569a7764fc7b9998cea7cbc9bcca83f127e10a967df2cd0d18c551c161a128
+    type: agent
+    size: 10354
+  - path: development/agents/mega-brain/cargo/sales/sales-lead/AGENT.md
+    hash: sha256:ce7c986273a262196c9fe59f2376572019b253bde0199973a20f04702f303a57
+    type: agent
+    size: 130331
+  - path: development/agents/mega-brain/cargo/sales/sales-lead/DNA-CONFIG.yaml
+    hash: sha256:90c8e4b04e8ec875f332d4685e3011ee839d19bd5a977f7f7b809b8978598417
+    type: agent
+    size: 9804
+  - path: development/agents/mega-brain/cargo/sales/sales-lead/MEMORY.md
+    hash: sha256:d1db54430c7a83228d8d510c8aa7afd0b9237a3bb0a14965d9b8f4dac8d2d530
+    type: agent
+    size: 64014
+  - path: development/agents/mega-brain/cargo/sales/sales-lead/SOUL.md
+    hash: sha256:758daf3a9738115517b358aa313acf19376e4a7117f698756f69e78b6de315e7
+    type: agent
+    size: 20466
+  - path: development/agents/mega-brain/cargo/sales/sales-lead/SOW.json
+    hash: sha256:6ab5c0b85d7fdf54ff3d1fc0d477f5bbdc3eb2fb8d440dcc7c8da645f8ab06bb
+    type: agent
+    size: 1703
+  - path: development/agents/mega-brain/cargo/sales/sales-lead/SOW.md
+    hash: sha256:49c513b66db89dee48518668e516ed7741c3839cfe31ff9268d1574b10604cfc
+    type: agent
+    size: 1405
+  - path: development/agents/mega-brain/cargo/sales/sales-manager/AGENT.md
+    hash: sha256:bfbfc8425d6c9a30830eaa23c15e7143c4c654edbdf6f89703105b0ac52e2ff5
+    type: agent
+    size: 105226
+  - path: development/agents/mega-brain/cargo/sales/sales-manager/DNA-CONFIG.yaml
+    hash: sha256:a85289628e92b85d105fcf48d2144f37aa76e3932cdf0b66506776e02f18724c
+    type: agent
+    size: 20892
+  - path: development/agents/mega-brain/cargo/sales/sales-manager/MEMORY.md
+    hash: sha256:aaafa06b644887d28ca4cf6db1ca12b16c738fd908b115194841a6e06354a1d2
+    type: agent
+    size: 222410
+  - path: development/agents/mega-brain/cargo/sales/sales-manager/SOUL.md
+    hash: sha256:22de0a655195683edd7e51109cde90b7560cfee1d9d4004ab6615eaee23acfeb
+    type: agent
+    size: 35597
+  - path: development/agents/mega-brain/cargo/sales/sales-manager/SOW.json
+    hash: sha256:8feca071a549a215587e74585e4d12e03cc80016b0c1335db452a4ccbeb4f51b
+    type: agent
+    size: 2062
+  - path: development/agents/mega-brain/cargo/sales/sales-manager/SOW.md
+    hash: sha256:338cbcd0d8b20667993e180c4f7cc03e007929807f5ab789cde3721a413f79d5
+    type: agent
+    size: 1574
+  - path: development/agents/mega-brain/cargo/sales/sds/AGENT.md
+    hash: sha256:9c6b22ce0c68838c12cf7b92b937850002c8af1a87a74afed5a2fab5941673fd
+    type: agent
+    size: 150377
+  - path: development/agents/mega-brain/cargo/sales/sds/DNA-CONFIG.yaml
+    hash: sha256:3c882cf4ba093a80df6e02d174eae338ca1c6d5f4d77e7c97fa6aa36cae895eb
+    type: agent
+    size: 19327
+  - path: development/agents/mega-brain/cargo/sales/sds/MEMORY.md
+    hash: sha256:71e08164fe5188e555a2fa8249aa5d5dabee8510805c87be2c24c4c0e46e18d4
+    type: agent
+    size: 55137
+  - path: development/agents/mega-brain/cargo/sales/sds/SOUL.md
+    hash: sha256:ef3e902299d4abd73a1136851bdfb9d0788cc1465ff9a4c259828349ff53ee07
+    type: agent
+    size: 22933
+  - path: development/agents/mega-brain/cargo/sales/sds/SOW.json
+    hash: sha256:0c194465eb049c9284a2cb548d82728ccb9a62338eaee065e7832b3c32b92582
+    type: agent
+    size: 1847
+  - path: development/agents/mega-brain/cargo/sales/sds/SOW.md
+    hash: sha256:136f786053570bb456ffd60ad70e4bfcb5bb19cbff43b78a5eb7e9ed9b99518d
+    type: agent
+    size: 1474
+  - path: development/agents/mega-brain/cargo/sales/setter/SOW.json
+    hash: sha256:e1930ffd5e6048b256dbf0dab192d5b5db0b34301ea1811e4b3ccc6955b7e255
+    type: agent
+    size: 2014
+  - path: development/agents/mega-brain/cargo/sales/setter/SOW.md
+    hash: sha256:f7eefcdcdbb8abed6d124ea91232badfc815f369575d185924e93613c0579a89
+    type: agent
+    size: 1567
+  - path: development/agents/mega-brain/cargo/SHARED-RULES.md
+    hash: sha256:d30b4ee648ee3ade7b919f5330ac2f678f6b7e8aaba622ffd983343fc1859647
+    type: agent
+    size: 11011
+  - path: development/agents/mega-brain/cargo/tech/data-analyst/SOW.json
+    hash: sha256:440dbf039911cf770ac5af18956f68a537af7ab5aee7f62f879a456b9a19a972
+    type: agent
+    size: 1816
+  - path: development/agents/mega-brain/cargo/tech/data-analyst/SOW.md
+    hash: sha256:ce28de5831907df8b3c87b509ed1208331fdbfb5bc4f1fe74a14ebbd9ba65493
+    type: agent
+    size: 1483
+  - path: development/agents/mega-brain/conclave/README.md
+    hash: sha256:a2da347bfbf8a87707dbb853f0475e82139d8b2d69a36fbeb6128823da24fd7b
+    type: agent
+    size: 935
+  - path: development/agents/mega-brain/constitution/BASE-CONSTITUTION.md
+    hash: sha256:a818a9ce9372f940f05db543b7f0edc2b2ae9be7fb0be4310c2128ecddf2b7ff
+    type: agent
+    size: 6380
+  - path: development/agents/mega-brain/MASTER-AGENT.md
+    hash: sha256:81185eaa9cdca7def135b90a1b1efedc79ff1965254755bd9dbd680eab7f2295
+    type: agent
+    size: 20101
+  - path: development/agents/mega-brain/persona-registry.yaml
+    hash: sha256:02d4ac36838f454f36bb9f2cfaea58f39a835e50ec1edcff333dc547d65b6c5f
+    type: agent
+    size: 7699
+  - path: development/agents/mega-brain/README.md
+    hash: sha256:879b83afc2fb9aca02f5b1cd02d14ae69093dd4037ac5619c62507bce23b14e9
+    type: agent
+    size: 1815
+  - path: development/agents/mega-brain/sua-empresa/_example/jds/EXAMPLE-JD.md
+    hash: sha256:b13a2ca4cada3353d5736a5b0b88ec585ffd6399efcb0060a07f443032a34695
+    type: agent
+    size: 1036
+  - path: development/agents/mega-brain/sua-empresa/_example/org/EXAMPLE-ORG.md
+    hash: sha256:dd7d5750c547fdd4980711b72d035cf3c86bbce5d580b82d8982c50ca5160ec3
+    type: agent
+    size: 775
+  - path: development/agents/mega-brain/sua-empresa/_example/roles/EXAMPLE-ROLE.md
+    hash: sha256:1f7710d2d3352731b66c3d665e552daf483d7536884741ac13db620f9a8d4c6a
+    type: agent
+    size: 943
+  - path: development/agents/mega-brain/sua-empresa/README.md
+    hash: sha256:0c7a902a97f3693e39a892aaaca2688832a29432abb66a8f7653f7a97ea228f7
+    type: agent
+    size: 1526
+  - path: development/agents/mega-brain/system/boardroom/CHECKLIST-MASTER.md
+    hash: sha256:f037b4c16fe437785d99b77f9615af17c3bc56b2e9e2a06c3028cc745758153a
+    type: agent
+    size: 6974
+  - path: development/agents/mega-brain/system/boardroom/config/BOARDROOM-CONFIG.md
+    hash: sha256:50d117a90a6e0e878891f71703ea5bb9ea6af2daa9a041a029ed6fc01a131614
+    type: agent
+    size: 5528
+  - path: development/agents/mega-brain/system/boardroom/config/TTS-INTEGRATION.md
+    hash: sha256:8a3bf6ec91a96abc550421c0c2ce33f3ebb116cabd59628799bd98365d76b5fc
+    type: agent
+    size: 6028
+  - path: development/agents/mega-brain/system/boardroom/config/voice_mapping.json
+    hash: sha256:7eb0ae03f1f8f57960a338ea1a184d5d7e57ccac4e7ee0c7ca57d0648427e279
+    type: agent
+    size: 3154
+  - path: development/agents/mega-brain/system/boardroom/config/VOICE-PROFILES.md
+    hash: sha256:bf070995122d8e874fd27a4b383f0555427214acc0f2d473b3e48f1eda306938
+    type: agent
+    size: 15068
+  - path: development/agents/mega-brain/system/boardroom/INTEGRATION-GUIDE.md
+    hash: sha256:15ab5775c055e32dd633830305870b6db719f929c7633236883806e933d6cb5f
+    type: agent
+    size: 11660
+  - path: development/agents/mega-brain/system/boardroom/README.md
+    hash: sha256:b85da124343e9c77c649ca4f97ad600686cb541a34891f34039d8ad2db41e9a7
+    type: agent
+    size: 7714
+  - path: development/agents/mega-brain/system/boardroom/scripts/audio_generator_edge.py
+    hash: sha256:084b4605898c8631efbab545e678d67c4f694be2702589c97dd1ca3a13fe36a1
+    type: agent
+    size: 12750
+  - path: development/agents/mega-brain/system/boardroom/scripts/audio_generator.py
+    hash: sha256:994cc45bc4298d677a22527cc716b68327537d7bfd0b32995e24fe3f58f12b32
+    type: agent
+    size: 14110
+  - path: development/agents/mega-brain/system/boardroom/scripts/jarvis_boardroom_hook.py
+    hash: sha256:0bb96c7ef4abb14635c284d1d611d39f60b8ad224266f9e138405d6538056079
+    type: agent
+    size: 14708
+  - path: development/agents/mega-brain/system/boardroom/scripts/notebooklm_generator.py
+    hash: sha256:20668b358b5ab3e68b4a1a823b179fa3712b16cf5fad0fa57c843d9473072db1
+    type: agent
+    size: 20707
+  - path: development/agents/mega-brain/system/boardroom/templates/EPISODE-TEMPLATE.md
+    hash: sha256:cd9df34e6135ee7e6a565d04737836c57a28b478a461028d0a09bd364d9eb3c7
+    type: agent
+    size: 10403
+  - path: development/agents/mega-brain/system/boardroom/templates/scene-templates/SCENE-AGENT-DEBATE.md
+    hash: sha256:059a5bed1bfe590e94664cf14c4d66480913ef549e8cd56d78432228a9570bce
+    type: agent
+    size: 5602
+  - path: development/agents/mega-brain/system/boardroom/templates/scene-templates/SCENE-COUNCIL.md
+    hash: sha256:1328697dcdb87960aa15d69c7923e658d0523f5a6d032a0396228edc5c2fa63f
+    type: agent
+    size: 6206
+  - path: development/agents/mega-brain/system/boardroom/templates/scene-templates/SCENE-DNA-CONSULTATION.md
+    hash: sha256:28549fd7a5c3b0f00fe7100e81c84d1dfc6a561bf6a80dfaad64dd6841174ace
+    type: agent
+    size: 2919
+  - path: development/agents/mega-brain/system/boardroom/templates/scene-templates/SCENE-QUESTION.md
+    hash: sha256:664f56b6daebb98eae188a3936541dddf4e5750198438f5b8398d57c7f17e35b
+    type: agent
+    size: 3504
+  - path: development/agents/mega-brain/system/boardroom/workflows/WORKFLOW-AUDIO-GENERATION.md
+    hash: sha256:3a4c76629533bdbb2d6a0fc4dff51a00bc2978afefd6f296dd319d49caa4fbc0
+    type: agent
+    size: 12219
+  - path: development/agents/mega-brain/system/conclave/advogado-do-diabo/ACTIVATION.yaml
+    hash: sha256:137dcdc90a920f61e9179e6b12bd615ffb6ebdbd07de099887fe82c0eec7850b
+    type: agent
+    size: 1363
+  - path: development/agents/mega-brain/system/conclave/advogado-do-diabo/AGENT.md
+    hash: sha256:d292722a42d3782ceef4dca2d143cd7ac3ea382930c83af8fe9c9824dd22e5d3
+    type: agent
+    size: 37869
+  - path: development/agents/mega-brain/system/conclave/advogado-do-diabo/SOUL.md
+    hash: sha256:7b45b545a01d5ec3a6b493cd716965cb4bba28846ff2511b1d8cdd1d3bd0fe92
+    type: agent
+    size: 4459
+  - path: development/agents/mega-brain/system/conclave/CRITIC.md
+    hash: sha256:2df6b776c9a6a6908920f7e510b38460fee45f37b41fc15ee4e6b7b79ebb026d
+    type: agent
+    size: 7825
+  - path: development/agents/mega-brain/system/conclave/critico-metodologico/ACTIVATION.yaml
+    hash: sha256:17cdb75cd3e0c8a0b58f63a9ff74d828fbe36f7904f67f88c542ce05d558dfcc
+    type: agent
+    size: 1387
+  - path: development/agents/mega-brain/system/conclave/critico-metodologico/AGENT.md
+    hash: sha256:9adac1acf31e3553332d92e695c4617180ab0a5b9b31cbcaa121851b48ca7acc
+    type: agent
+    size: 63431
+  - path: development/agents/mega-brain/system/conclave/critico-metodologico/SOUL.md
+    hash: sha256:c96b64770c2302ab902ea170bc40e398354e15497e5bc54ba1aed70faaef587f
+    type: agent
+    size: 4851
+  - path: development/agents/mega-brain/system/conclave/DEVILS-ADVOCATE.md
+    hash: sha256:22ca1f1a385237a57424f7df29d467bc24246fd3dec8d996e361882396b40501
+    type: agent
+    size: 11575
+  - path: development/agents/mega-brain/system/conclave/README.md
+    hash: sha256:a2da347bfbf8a87707dbb853f0475e82139d8b2d69a36fbeb6128823da24fd7b
+    type: agent
+    size: 935
+  - path: development/agents/mega-brain/system/conclave/sintetizador/ACTIVATION.yaml
+    hash: sha256:d052c6e0aa865e5ff175be2e7d2236976c13a9878ace6fc370251ced04317e6d
+    type: agent
+    size: 1337
+  - path: development/agents/mega-brain/system/conclave/sintetizador/AGENT.md
+    hash: sha256:4a474c8832e4fcdfa0fda13891e478dce1996bfcf9538bca2b6789d1a2430c32
+    type: agent
+    size: 51462
+  - path: development/agents/mega-brain/system/conclave/sintetizador/SOUL.md
+    hash: sha256:baf7bb90915246d2db96a23a8373419cf88b7e9793d8261959a0924fdfe17630
+    type: agent
+    size: 4530
+  - path: development/agents/mega-brain/system/conclave/SYNTHESIZER.md
+    hash: sha256:ade3a650c377f212e39087458f5a8fa6a7c0108b7de8a95930d80171866c89c7
+    type: agent
+    size: 14246
+  - path: development/agents/mega-brain/system/dev-ops/anvil/ACTIVATION.yaml
+    hash: sha256:e033ab819ea26a3d95f0f565d7d356f1d4c869c0c164037c05082de406cffa97
+    type: agent
+    size: 1145
+  - path: development/agents/mega-brain/system/dev-ops/anvil/AGENT.md
+    hash: sha256:1e0c01b5f77caa6d356db2c350fb92c941ad616b199dcf523e0f67c8c01871e3
+    type: agent
+    size: 3159
+  - path: development/agents/mega-brain/system/dev-ops/anvil/SOUL.md
+    hash: sha256:10a505cdebfca31c4932c1ae4e34ee0ced289be8a2af596a1ee7145c0b34dd0f
+    type: agent
+    size: 1545
+  - path: development/agents/mega-brain/system/dev-ops/beacon/ACTIVATION.yaml
+    hash: sha256:da79122037ef17c45cc6b472cd9d5cc9d8e137ce27dc398d279953bdf84ea4e5
+    type: agent
+    size: 1204
+  - path: development/agents/mega-brain/system/dev-ops/beacon/AGENT.md
+    hash: sha256:ad6cf7361982390e8e0fcc86cfd2eb5b8f99f97f46c6111b9c52761d6d96b2a9
+    type: agent
+    size: 2954
+  - path: development/agents/mega-brain/system/dev-ops/beacon/SOUL.md
+    hash: sha256:ef25f7a980c1ad505eb16175821adeb9d24fb577157f8c7d04ab5e0ea6e74a48
+    type: agent
+    size: 1768
+  - path: development/agents/mega-brain/system/dev-ops/compass/ACTIVATION.yaml
+    hash: sha256:10e4fa28c3b2012f0008b031372d091b9dc6c6218041a1f4df22306e1044f55d
+    type: agent
+    size: 1238
+  - path: development/agents/mega-brain/system/dev-ops/compass/AGENT.md
+    hash: sha256:3d8be498deb38b1005a6c9c44221b9bc1d8d640c346ec07ea9d6ddf8eeb10cae
+    type: agent
+    size: 2695
+  - path: development/agents/mega-brain/system/dev-ops/compass/SOUL.md
+    hash: sha256:10153784bff91edb2ac6f8fbb0d35b4dea42dad4df75797deec977534eed521b
+    type: agent
+    size: 1638
+  - path: development/agents/mega-brain/system/dev-ops/hawk/ACTIVATION.yaml
+    hash: sha256:a1e1328f0ff39601aec378a537449b951537138c8a61149b089ba805dfad6223
+    type: agent
+    size: 1158
+  - path: development/agents/mega-brain/system/dev-ops/hawk/AGENT.md
+    hash: sha256:3d14a00ba15df8bb700e81fa565f91b07c454c8496a74d15db8c7128222fb595
+    type: agent
+    size: 2920
+  - path: development/agents/mega-brain/system/dev-ops/hawk/SOUL.md
+    hash: sha256:93d031f78f778d08e8535ebd7a948fb51ee1f613e145e973169a89ae16e107e0
+    type: agent
+    size: 1596
+  - path: development/agents/mega-brain/system/dev-ops/rocket/ACTIVATION.yaml
+    hash: sha256:10b28cfa4d381d4c2a4e4ae88d1e1a182b6c9bdd0ebf015a1dacf35c816f5018
+    type: agent
+    size: 1132
+  - path: development/agents/mega-brain/system/dev-ops/rocket/AGENT.md
+    hash: sha256:3bfc0060e24eda805ec4071b4ccdb447eb16677e907818f36ad1491b4f09e5b2
+    type: agent
+    size: 2896
+  - path: development/agents/mega-brain/system/dev-ops/rocket/SOUL.md
+    hash: sha256:1ca87847683a5a66ef9700579d02f525cd219d3dac3649f88869e2a7d3567708
+    type: agent
+    size: 1575
+  - path: development/agents/mega-brain/system/knowledge-ops/atlas/ACTIVATION.yaml
+    hash: sha256:5f7c8dfe9fa7f6058ffe4281926d6a7a9349fad9487f99149013f4408f340912
+    type: agent
+    size: 1223
+  - path: development/agents/mega-brain/system/knowledge-ops/atlas/AGENT.md
+    hash: sha256:222ce711ded961c69af1b6621e77c66c7e7ffae6e0aa6045e1de7ddc76f42e24
+    type: agent
+    size: 3695
+  - path: development/agents/mega-brain/system/knowledge-ops/atlas/SOUL.md
+    hash: sha256:e11e2483764a06db9dbb6fcc394dcf0bd80243840b925ab268d6ad731afb179c
+    type: agent
+    size: 1894
+  - path: development/agents/mega-brain/system/knowledge-ops/echo/ACTIVATION.yaml
+    hash: sha256:18805a8e3672b7816fd1914b51372cc50f36744068f86b1bcf1a154c1ae7f464
+    type: agent
+    size: 1272
+  - path: development/agents/mega-brain/system/knowledge-ops/echo/AGENT.md
+    hash: sha256:33442317f0d4773877d5c60e4a70a9962c4cc6060d6b94be7e30bf18df8475b8
+    type: agent
+    size: 4305
+  - path: development/agents/mega-brain/system/knowledge-ops/echo/SOUL.md
+    hash: sha256:e418984d003bbc0952e268e7e0ea412dc16f487c3c8e1cc8bd836aac0ae61822
+    type: agent
+    size: 1895
+  - path: development/agents/mega-brain/system/knowledge-ops/forge/ACTIVATION.yaml
+    hash: sha256:4da50119a1ba6b1eb7e579c5adb7c6da796551273360f1bc6c3324d16b7ff714
+    type: agent
+    size: 1281
+  - path: development/agents/mega-brain/system/knowledge-ops/forge/AGENT.md
+    hash: sha256:76da650f27ba6fe1682cafbbb5fc00a9988edd866122ff720b491aa3269d86cc
+    type: agent
+    size: 4406
+  - path: development/agents/mega-brain/system/knowledge-ops/forge/SOUL.md
+    hash: sha256:4caf1353c3fd5c3928c7c788d68a7a18ac2473bcb08364b4a59ffc50fac23946
+    type: agent
+    size: 1997
+  - path: development/agents/mega-brain/system/knowledge-ops/lens/ACTIVATION.yaml
+    hash: sha256:9bbed8a826b59877654451d84c5b06abae1546e1a108bdcd111173f696caabf3
+    type: agent
+    size: 1235
+  - path: development/agents/mega-brain/system/knowledge-ops/lens/AGENT.md
+    hash: sha256:8a881e713a05e3ff91235a3ef988c1824e49857502c9d78f4f8400db7718c494
+    type: agent
+    size: 3656
+  - path: development/agents/mega-brain/system/knowledge-ops/lens/SOUL.md
+    hash: sha256:317564f130b7a3fa6322f40d82cf39d63621fe3a75f158a8875c939516d9fb14
+    type: agent
+    size: 1949
+  - path: development/agents/mega-brain/system/knowledge-ops/sage/ACTIVATION.yaml
+    hash: sha256:021c1127475cbb33fcd4e7fa55c6ffabd65a35a394436b579fca85297e15800e
+    type: agent
+    size: 1286
+  - path: development/agents/mega-brain/system/knowledge-ops/sage/AGENT.md
+    hash: sha256:8ad78398f980695159bde77eeeca6890a5b5fa9b558d0ce7d01dad09c8bab92f
+    type: agent
+    size: 4517
+  - path: development/agents/mega-brain/system/knowledge-ops/sage/SOUL.md
+    hash: sha256:4b5c96ba83ed885832986cd1105e63c48061364f5e83e86f77e8c8467a0c2f7a
+    type: agent
+    size: 1936
   - path: development/agents/pm.md
     hash: sha256:8c81fd9b6df9b98fa3d3654062464498396ddb4eaf0b6dc3a644ae4227982f4b
     type: agent
@@ -2140,6 +2928,290 @@ files:
     hash: sha256:7435a3713437e3f35d8342705f6a725fe98bdbf040e1dc9accd375f021fe1dff
     type: checklist
     size: 3695
+  - path: development/commands/mega-brain/agents.md
+    hash: sha256:7d3b7370d8c9e41e79f2dccfa16f865937b389eb7955217a195fbc3fcb6666c3
+    type: development
+    size: 5875
+  - path: development/commands/mega-brain/ask.md
+    hash: sha256:5d73261e447c95f13267bcb03168020c499dd7d0a9bc6c7c642d14b475a1883c
+    type: development
+    size: 2820
+  - path: development/commands/mega-brain/benchmark.md
+    hash: sha256:aef3a678551b3785eeefd02c68a19cd3e0a69f2f0343029f629b9e7af0b528d1
+    type: development
+    size: 10206
+  - path: development/commands/mega-brain/chat.md
+    hash: sha256:191334fda968184ef8b18cabd7a3cc9e8f9c013eda9ccff29ba89c8d80e6d2a8
+    type: development
+    size: 34278
+  - path: development/commands/mega-brain/compare.md
+    hash: sha256:67dd756f80f62f12d34fa0c0c132b139219d990828d7935f4ae97cebec43cba8
+    type: development
+    size: 6884
+  - path: development/commands/mega-brain/conclave.md
+    hash: sha256:561d98f357c5f96f1377f66b658101159ee830ebcc26c7a0151d0c898dd790be
+    type: development
+    size: 13070
+  - path: development/commands/mega-brain/config.md
+    hash: sha256:cf0f9a284917ea50dfae4e9d98fac7bb26a67afc3a15b806cbcee834b1c43546
+    type: development
+    size: 4676
+  - path: development/commands/mega-brain/create-agent.md
+    hash: sha256:23376c19b3b4b785ad3c76fec93f14021737272d8063e6f65ded6c539bc953fe
+    type: development
+    size: 12152
+  - path: development/commands/mega-brain/debate.md
+    hash: sha256:07add1f15571b5f94c2d1b6e6fc1f6bf2e8277f067b554c27dfcf6e1d42e08ff
+    type: development
+    size: 14923
+  - path: development/commands/mega-brain/documentation/create-architecture-documentation.md
+    hash: sha256:e1a54c78057b1c1e55e3c76a77148cb8762c8cd98a8537d31ae3c990176d21d5
+    type: development
+    size: 4089
+  - path: development/commands/mega-brain/dossiers.md
+    hash: sha256:28d3c42d94620b345998fbe3fcc972a612b84fc0726feed13112c669ce0f2e64
+    type: development
+    size: 6149
+  - path: development/commands/mega-brain/evolve.md
+    hash: sha256:58f12e6c4cb3573d61ef4169c3cc9f3bcd2a04fb59d9e086e91b7580c5a0828a
+    type: development
+    size: 9894
+  - path: development/commands/mega-brain/extract-dna.md
+    hash: sha256:87abf6ccd11cc60214a48308b6c595e88f90b6625a5f6f45d771ab766d100db1
+    type: development
+    size: 5247
+  - path: development/commands/mega-brain/extract-knowledge.md
+    hash: sha256:ede0ff988f49e6bf2f86298b29b0df0b03eee88d5e838b4b33f40b0a38ca13a4
+    type: development
+    size: 14965
+  - path: development/commands/mega-brain/gsd/add-phase.md
+    hash: sha256:0964fe118f62d7be0d43c010bc34dd20e3cbafb9fad652e7a5f77c383caafe9a
+    type: development
+    size: 1137
+  - path: development/commands/mega-brain/gsd/add-tests.md
+    hash: sha256:b2daf5b1e9184fc6e62c02202b3ab66dc34af006623340db1ed53a17b404f2e1
+    type: development
+    size: 1365
+  - path: development/commands/mega-brain/gsd/add-todo.md
+    hash: sha256:baddc2bdbaa5b0c26762aaeb5c3cbfb26be939fcb25862a893d15a178c34143b
+    type: development
+    size: 1199
+  - path: development/commands/mega-brain/gsd/audit-milestone.md
+    hash: sha256:3e9cb53c0c1d1f09c7b28692b12baa1d40de022cabd82b6db9a9df38e8854d69
+    type: development
+    size: 1217
+  - path: development/commands/mega-brain/gsd/check-todos.md
+    hash: sha256:4e8d8775082216b83e750e8f3b8980f4c8a15dd58656455718756f4d165a0786
+    type: development
+    size: 1246
+  - path: development/commands/mega-brain/gsd/cleanup.md
+    hash: sha256:e5b4f36fc89175d2533d4e9553b721cedcdad4dc8c6d0d60e204ecc5052f22a3
+    type: development
+    size: 576
+  - path: development/commands/mega-brain/gsd/complete-milestone.md
+    hash: sha256:e478d2f72884bc2f7b73e38e4d31e1f24caeae3f56a4e14b3a3df96ff3ac5d25
+    type: development
+    size: 4493
+  - path: development/commands/mega-brain/gsd/debug.md
+    hash: sha256:33798be4a178e923ab78987f8b01c87f48e97957a01e2237ad13be13d195e313
+    type: development
+    size: 3822
+  - path: development/commands/mega-brain/gsd/discuss-phase.md
+    hash: sha256:d18221cdbb7d5b356ca771d89e3b1a558b5340a1b751763c31b2024df9309fd1
+    type: development
+    size: 2984
+  - path: development/commands/mega-brain/gsd/execute-phase.md
+    hash: sha256:d92a1f9bd08769f8358f30e6785d5bfb1a63d07ed40f64db7fd7ea31a0465888
+    type: development
+    size: 1301
+  - path: development/commands/mega-brain/gsd/health.md
+    hash: sha256:b6725748dca99b636de1019c2c116734fb49cd539204d3814a53fdf664e74841
+    type: development
+    size: 634
+  - path: development/commands/mega-brain/gsd/help.md
+    hash: sha256:d97ba64a6873280c278ed81c0896884769f55fdd9251e067eaabc88b18f45e07
+    type: development
+    size: 594
+  - path: development/commands/mega-brain/gsd/insert-phase.md
+    hash: sha256:61f6d25b1bcdb020cb83c96517ab8b9d4e7148bda625d1bbaf0302a82fcb87d8
+    type: development
+    size: 1072
+  - path: development/commands/mega-brain/gsd/join-discord.md
+    hash: sha256:a4fbe9bdc6e313e77a5b92cfda9422de3f084d11354c74a7fb68f158dd0892b6
+    type: development
+    size: 389
+  - path: development/commands/mega-brain/gsd/list-phase-assumptions.md
+    hash: sha256:4892ceb2c8e15b9c5563c4589ebcdeec7750f3de77b8d5a20ee5244e1f385bba
+    type: development
+    size: 1459
+  - path: development/commands/mega-brain/gsd/map-codebase.md
+    hash: sha256:7cb8cc0ce5c6d564410452226ed0be3d96231963074beadc400b22cfcd237bfc
+    type: development
+    size: 2591
+  - path: development/commands/mega-brain/gsd/new-milestone.md
+    hash: sha256:9544901f26ddf9846c139a78fb89d29ef5a57ca08487fae0034a5f2b9e4ee61a
+    type: development
+    size: 1710
+  - path: development/commands/mega-brain/gsd/new-project.md
+    hash: sha256:f2f69d36bd92384119a936c9d269fc712cf3e804caffd44a3187082aff5e4a0e
+    type: development
+    size: 1402
+  - path: development/commands/mega-brain/gsd/pause-work.md
+    hash: sha256:ced9777c7f80d377764c35acae1318310b31fafc46cb033befadb8a276996a8c
+    type: development
+    size: 1036
+  - path: development/commands/mega-brain/gsd/plan-milestone-gaps.md
+    hash: sha256:4bc11e0984c9694f221ec7abb066c3cd83b49f28fe8efb9535eb962732dd31cd
+    type: development
+    size: 1037
+  - path: development/commands/mega-brain/gsd/plan-phase.md
+    hash: sha256:9fbdf97a104dc7ebfd5d9a48c0219dcddb61b581889fe8735e83f83be8474522
+    type: development
+    size: 1668
+  - path: development/commands/mega-brain/gsd/progress.md
+    hash: sha256:ee9201a498eabfdda64074a6f0fe700993f3e65cfad78b43be0044fdaadedb12
+    type: development
+    size: 717
+  - path: development/commands/mega-brain/gsd/quick.md
+    hash: sha256:ac9f5d1c9fe58c9ea3dc926cb0115609af54dc1384d90099c55dcb01fa7afa83
+    type: development
+    size: 1308
+  - path: development/commands/mega-brain/gsd/reapply-patches.md
+    hash: sha256:5549efe40f4ec8921e0ed99b98c79087560ad70d97c2a3cf652fe183816c714a
+    type: development
+    size: 3174
+  - path: development/commands/mega-brain/gsd/remove-phase.md
+    hash: sha256:a2f7e805df90b2e9bfd7f8fca53c90f6fbd6f3822e723ca93434dc198e7fea45
+    type: development
+    size: 983
+  - path: development/commands/mega-brain/gsd/research-phase.md
+    hash: sha256:8adab662f847d8ebf1950a7c85bb007a8a9797338ca024cb8822121fc1b928dc
+    type: development
+    size: 5583
+  - path: development/commands/mega-brain/gsd/resume-work.md
+    hash: sha256:0759b7c53299c111f96128961a39242666e1652718919735d6744809332bdcca
+    type: development
+    size: 1135
+  - path: development/commands/mega-brain/gsd/set-profile.md
+    hash: sha256:a14e505e690d814870b2ac53ef3b6444457dd29ffb10fd24f01fca4d2455b656
+    type: development
+    size: 935
+  - path: development/commands/mega-brain/gsd/settings.md
+    hash: sha256:c16411c2b91767a18f0f621568e6fbdf729aa52239efc016cd42b606e08e7e12
+    type: development
+    size: 1002
+  - path: development/commands/mega-brain/gsd/update.md
+    hash: sha256:507a28e6d40bc7fb7539fea759d766b19b12af52f92ef9c8152141161044de0c
+    type: development
+    size: 956
+  - path: development/commands/mega-brain/gsd/verify-work.md
+    hash: sha256:7c6515dc991a04cb67b78d293ea24ea653f22a99eb95b16716a91b72f244a700
+    type: development
+    size: 1312
+  - path: development/commands/mega-brain/inbox.md
+    hash: sha256:57f964ba43e91fcc02cd5784f1e6a9235078ff75321938c5accd67b1dbdcaaa3
+    type: development
+    size: 12514
+  - path: development/commands/mega-brain/ingest-empresa.md
+    hash: sha256:577b65632667fab9a4af6c951925fc7128e26666d8b1830fbdeda20fc88c26c7
+    type: development
+    size: 5018
+  - path: development/commands/mega-brain/ingest-pessoal.md
+    hash: sha256:7490f56f64e1feb1589ff786987e6c6c32b1ab5a851ea9eeee5198a0ad8b21dd
+    type: development
+    size: 6273
+  - path: development/commands/mega-brain/ingest.md
+    hash: sha256:6b73c86236b6e7ea64e920b6499ba1f4e8a453f0abbdc859b261a7a2c8ec988c
+    type: development
+    size: 4878
+  - path: development/commands/mega-brain/jarvis-briefing.md
+    hash: sha256:c7200074f3e312b1b36c31d12db54ae9e7e619ba49fa2886b97cb72ca3482bd2
+    type: development
+    size: 2124
+  - path: development/commands/mega-brain/jarvis-control.md
+    hash: sha256:5386488dd4cf927b86312e181bde1b306f74f05762d74eef5224d282c33abe08
+    type: development
+    size: 5133
+  - path: development/commands/mega-brain/jarvis-full.md
+    hash: sha256:d69d59f397daf8c003aae4090642cc151b1dc9990bd1f55f91c05220c240782a
+    type: development
+    size: 5024
+  - path: development/commands/mega-brain/jarvis.md
+    hash: sha256:ccc842dd5c9e595bec3c58ae4934b6aab9ce79513699f973309faaa14916cd5a
+    type: development
+    size: 9575
+  - path: development/commands/mega-brain/ler-drive.md
+    hash: sha256:2b7f780f4817735268a03e5eca3be4f9cab2f3098733bdfc5862f3f30edecb2b
+    type: development
+    size: 5585
+  - path: development/commands/mega-brain/log.md
+    hash: sha256:981983c7f78d7e16a7ad854555cf91f62db2b23bf7dd0f6e1d312a72f08a2637
+    type: development
+    size: 6312
+  - path: development/commands/mega-brain/loop.md
+    hash: sha256:b8ccb6c04d7554481191e13e6a3654ed3991ef4169c5a4fb84213ee7541b1215
+    type: development
+    size: 4026
+  - path: development/commands/mega-brain/loops.md
+    hash: sha256:c2bac9af01e76869a07e40731f95c1905c3e7e6377ad902c0052913c2866d4a8
+    type: development
+    size: 6223
+  - path: development/commands/mega-brain/mission-autopilot.md
+    hash: sha256:940d1f57d317b882872198c0c798cebc59dd4853f85dd38e77d91cdd6e7d76e3
+    type: development
+    size: 32281
+  - path: development/commands/mega-brain/mission.md
+    hash: sha256:90edd353f92a8cadcabe60cf3c8c5bbf31dc2db66b9f522edb3de07e4af4b0e7
+    type: development
+    size: 12266
+  - path: development/commands/mega-brain/process-inbox.md
+    hash: sha256:5e838f2e1e87703241fd3781b4e50f02ff71e689a669e33ed3ab6f97c59c5054
+    type: development
+    size: 5091
+  - path: development/commands/mega-brain/process-jarvis.md
+    hash: sha256:c15e7d836d017f72d6885859783cbc7a6599eb643a57f0b7b3a4546759f7b198
+    type: development
+    size: 144792
+  - path: development/commands/mega-brain/process-video.md
+    hash: sha256:63a0ae47427bde067063073aeb32c81385fe52249773b30db734ae30bd6fbb49
+    type: development
+    size: 3640
+  - path: development/commands/mega-brain/rag-search.md
+    hash: sha256:ebe1f0956592e570efb7288a8b588151b1a5f88f88586cbb129eb7a5f79149e0
+    type: development
+    size: 3942
+  - path: development/commands/mega-brain/resume.md
+    hash: sha256:0ebafc9d8282e4019d3b80713769aa66fb9b539a57bed1b1001ef0b1fb59a33b
+    type: development
+    size: 572
+  - path: development/commands/mega-brain/save.md
+    hash: sha256:d388891d588304048d4bca3601074d53b2638409e926e1dde5852fee378943e9
+    type: development
+    size: 986
+  - path: development/commands/mega-brain/scan-inbox.md
+    hash: sha256:3b5142c016dde572fe8d03a61b25b7396b6263e37b6bcdff203d33dfb1094ff8
+    type: development
+    size: 3567
+  - path: development/commands/mega-brain/setup.md
+    hash: sha256:9846ca3565ddd891d10ea3109182358bf70058b250818e4e68963926342dc192
+    type: development
+    size: 4442
+  - path: development/commands/mega-brain/system-digest.md
+    hash: sha256:2971c6a858cbc7addc014f9291fc0de36e6724381a8efcd7c8fe9996fdbaffb5
+    type: development
+    size: 8865
+  - path: development/commands/mega-brain/verify.md
+    hash: sha256:f35c0bb84f8581e98c71524543333b887e7b108089dc8cc1ae79e87d73f28b5b
+    type: development
+    size: 9848
+  - path: development/commands/mega-brain/view-dna.md
+    hash: sha256:b8beda621c9c1e07ce740051ff42b7e573a2020f63befbf70f1f45ffcb3c1980
+    type: development
+    size: 8555
+  - path: development/commands/mega-brain/visual-extract.md
+    hash: sha256:9e92a38c1b928d39f8815a3f3e61cccb3074c49fee5e0599f40eae6196a72e55
+    type: development
+    size: 11399
   - path: development/data/decision-heuristics-framework.md
     hash: sha256:a84b23641dcc89228c7ebd3e11f371f4321f5fd4cc93a446e2a0117d978f7bc2
     type: data

@@ -9803,31 +9803,6 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-<<<<<<< HEAD
-      checksum: sha256:85355d6e56dd48b164bab592330d0c7ffb43aff076c45cbb2becc60c7be4bdf8
-      lastVerified: '2026-03-22T00:07:02.859Z'
-    conditional-executor:
-      path: .aiox-core/core/orchestration/conditional-executor.js
-      layer: L1
-      type: module
-      purpose: Entity at .aiox-core/core/orchestration/conditional-executor.js
-      keywords:
-        - conditional
-        - executor
-      usedBy:
-        - conditional-executor.test
-      dependencies:
-        - condition-evaluator
-      externalDeps: []
-      plannedDeps: []
-      lifecycle: production
-      adaptability:
-        score: 0.4
-        constraints: []
-        extensionPoints: []
-      checksum: sha256:474f69a22b078baa7d4c02abad2484b460a3e7444983f7bccb041abf7280cbe6
-      lastVerified: '2026-03-22T00:07:02.860Z'
-=======
       checksum: sha256:8bf565cf56194340ff4e1d642647150775277bce649411d0338faa2c96106745
       lastVerified: '2026-03-22T15:46:53.373Z'
     context-manager:
@@ -10067,10 +10042,6 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-<<<<<<< HEAD
-      checksum: sha256:b970675d49512d56703484de003c958e4f040a0576c071a9cb7efbab8ddf1928
-      lastVerified: '2026-03-22T00:07:02.944Z'
-=======
       checksum: sha256:61b874d74fae62e9307861b02b7505538f1c94362fe638fc3941b0665dcbbdf6
       lastVerified: '2026-03-22T15:46:53.417Z'
     message-formatter:
@@ -12463,10 +12434,6 @@ entities:
         score: 0.4
         constraints: []
         extensionPoints: []
-<<<<<<< HEAD
-      checksum: sha256:bcdf0a9bcc510da2ce1dfdbe59d394cb4b6298be9aff8609e3f586a135edbe61
-      lastVerified: '2026-03-22T00:07:03.353Z'
-=======
       checksum: sha256:5d526f25502559f03e938a993014bcbfab46eca320e6967fff607b6881cbf7d3
       lastVerified: '2026-03-22T15:46:53.625Z'
     context-builder:
